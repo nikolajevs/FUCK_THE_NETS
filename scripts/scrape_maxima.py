@@ -25,8 +25,9 @@ DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
 DATE_RE = re.compile(r"(\d{1,2})[.](\d{1,2})[.]?\s*[-–]\s*(\d{1,2})[.](\d{1,2})[.]?(?:\s*(\d{4}))?")
 
 def prices_from(text: str) -> list[float]:
-    vals = [int(a) + int(b) / 100 for a, b in PRICE_RE.findall(text)]
-    vals += [int(a) + int(b) / 100 for a, b in SPLIT_PRICE_RE.findall(text)]
+    # Unit prices such as (3,31 €/kg) precede the actual shelf price on some cards.
+    cleaned = re.sub(r"\\([^)]*€\\s*/\\s*[^)]*\\)", " ", text)
+    vals = [int(a) + int(b) / 100 for a, b in PRICE_TOKEN_RE.findall(cleaned)]
     result = []
     for value in vals:
         if 0.01 <= value <= 9999 and value not in result:
