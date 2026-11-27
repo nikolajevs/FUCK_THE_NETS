@@ -1451,6 +1451,32 @@ def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: di
     return fallback
 
 
+def _split_pdf_cell_by_bullets(cell_text: str) -> list[str]:
+    """Split a merged PDF cell only when every bullet-separated offer is complete."""
+    if not re.search(r"[•·▪●◦]", cell_text):
+        return [cell_text]
+
+    chunks = [
+        " ".join(chunk.split())
+        for chunk in re.split(r"[•·▪●◦]+", cell_text)
+        if chunk.strip()
+    ]
+    priced_chunks = [chunk for chunk in chunks if prices_from(chunk)]
+    if len(priced_chunks) < 2:
+        return [cell_text]
+
+    # Never discard a price or guess which title owns it. Every part containing
+    # shelf prices must contain exactly one plausible product and one price pair.
+    for chunk in priced_chunks:
+        if len(prices_from(chunk)) != 2:
+            return [cell_text]
+        name = _clean_pdf_product_name(chunk)
+        if not name or not _looks_like_pdf_product_description(name):
+            return [cell_text]
+
+    return priced_chunks
+
+
 def parse_catalogue_pdf(
     pdf_bytes: bytes,
     catalogue: dict,
@@ -1499,145 +1525,148 @@ def parse_catalogue_pdf(
             date_status = "verified" if valid_from and valid_until else "unknown"
 
         for row_number, column_number, cell_text in cells:
-            name = _clean_pdf_product_name(cell_text)
-            if not name or not _looks_like_pdf_product_description(name):
-                continue
-            price, regular, discount, issues = _pdf_price_quality(cell_text)
-            if price is None:
-                continue
+            product_parts = _split_pdf_cell_by_bullets(cell_text)
+            for part_number, product_text in enumerate(product_parts, start=1):
+                split_suffix = f":{part_number}" if len(product_parts) > 1 else ""
+                name = _clean_pdf_product_name(product_text)
+                if not name or not _looks_like_pdf_product_description(name):
+                    continue
+                price, regular, discount, issues = _pdf_price_quality(product_text)
+                if price is None:
+                    continue
 
-            # Some brochure pages emit the shelf-price text before the product
-            # title. A single price in that order may belong to a neighbouring
-            # card; keep it for review instead of publishing a guessed match.
-            if _pdf_cell_starts_with_price(cell_text):
-                issues.append("price_before_product_name")
+                # Some brochure pages emit the shelf-price text before the product
+                # title. A single price in that order may belong to a neighbouring
+                # card; keep it for review instead of publishing a guessed match.
+                if _pdf_cell_starts_with_price(product_text):
+                    issues.append("price_before_product_name")
 
-            # If a cell contains a unit-price label but only one number survived
-            # geometric extraction, that number may be €/kg or €/l rather than
-            # the product's shelf price. Keep it out of the verified feed.
-            has_unit_price_label = bool(re.search(
-                r"(?:€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)|"
-                r"/\s*(?:kg|l|100\s*g|100\s*ml))",
-                cell_text,
-                flags=re.IGNORECASE,
-            ))
-            shelf_prices = prices_from(cell_text)
-            if (
-                has_unit_price_label
-                and len(shelf_prices) <= 1
-                and not (len(shelf_prices) == 1 and _has_explicit_shelf_price(cell_text, price))
-            ):
-                issues.append("unit_price_only_or_misaligned")
-
-            # A plausible price pair is not enough when neighbouring cards or
-            # store-event copy leaked into the product title.
-            name_folded = name.casefold()
-            name_issues: list[str] = []
-            if (
-                page_catalogue["id"] == "maxima-well-done-premium"
-                and page_index == 1
-                and regular is None
-                and price >= 15
-            ):
-                name_issues.append("unit_price_suspected")
-            if (
-                ";" in name
-                or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
-                or (
-                    re.match(r"^\d{1,2}\s+(?!cm\b|mm\b|kg\b|g\b|ml\b|l\b)", name_folded)
-                    and not re.match(r"^\d{1,2}\s+iepak", name_folded)
-                )
-                or name_folded.startswith("izm")
-                or re.search(r"\b(?:g|kg|ml|l)\s+\d{1,2}$", name_folded)
-                or name_folded.endswith(" no")
-                or any(term in name_folded for term in (
-                    "roj", "darba dien", "atkl", "dien",
+                # If a cell contains a unit-price label but only one number survived
+                # geometric extraction, that number may be €/kg or €/l rather than
+                # the product's shelf price. Keep it out of the verified feed.
+                has_unit_price_label = bool(re.search(
+                    r"(?:€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)|"
+                    r"/\s*(?:kg|l|100\s*g|100\s*ml))",
+                    product_text,
+                    flags=re.IGNORECASE,
                 ))
-                or re.search(r"\b\d{1,2}:\d{2}\b", name)
-                or re.search(r"\(\s*/\s*kg", name_folded)
-            ):
-                name_issues.append("product_name_ambiguous")
-            issues = list(dict.fromkeys([*issues, *name_issues]))
+                shelf_prices = prices_from(product_text)
+                if (
+                    has_unit_price_label
+                    and len(shelf_prices) <= 1
+                    and not (len(shelf_prices) == 1 and _has_explicit_shelf_price(product_text, price))
+                ):
+                    issues.append("unit_price_only_or_misaligned")
 
-            identity = product_identity(name)
-            image = None
-            source_product_id = f"pdf:{page_index + 1}:{row_number}:{column_number}"
-            offer_id = stable_offer_id(
-                page_catalogue["id"],
-                identity["canonicalProductId"],
-                image,
-                page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
-                page_catalogue.get("storeFormats", []),
-                False,
-                source_product_id,
-            )
-            quality = {
-                "priceStatus": "review" if issues else "verified",
-                "dateStatus": date_status,
-                "storeScopeStatus": "verified" if (
-                    page_catalogue.get("storeFormats") or page_catalogue.get("storeDescription")
-                ) else "unknown",
-                "issues": issues,
-            }
-            paldies_marker = bool(re.search(
-                r"(?:cena\s+ar\s+paldies|paldies\s+karte|ar\s+paldies\s+kart)",
-                cell_text,
-                flags=re.IGNORECASE,
-            ))
-            requires_paldies = (
-                paldies_marker
-                or page_catalogue["id"] == "maxima-well-done-premium"
-                or (
-                    page_catalogue["id"] == "maxima-catalogue-black-friday-cenu-festivals"
-                    and page_index == 0
+                # A plausible price pair is not enough when neighbouring cards or
+                # store-event copy leaked into the product title.
+                name_folded = name.casefold()
+                name_issues: list[str] = []
+                if (
+                    page_catalogue["id"] == "maxima-well-done-premium"
+                    and page_index == 1
+                    and regular is None
+                    and price >= 15
+                ):
+                    name_issues.append("unit_price_suspected")
+                if (
+                    ";" in name
+                    or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
+                    or (
+                        re.match(r"^\d{1,2}\s+(?!cm\b|mm\b|kg\b|g\b|ml\b|l\b)", name_folded)
+                        and not re.match(r"^\d{1,2}\s+iepak", name_folded)
+                    )
+                    or name_folded.startswith("izm")
+                    or re.search(r"\b(?:g|kg|ml|l)\s+\d{1,2}$", name_folded)
+                    or name_folded.endswith(" no")
+                    or any(term in name_folded for term in (
+                        "roj", "darba dien", "atkl", "dien",
+                    ))
+                    or re.search(r"\b\d{1,2}:\d{2}\b", name)
+                    or re.search(r"\(\s*/\s*kg", name_folded)
+                ):
+                    name_issues.append("product_name_ambiguous")
+                issues = list(dict.fromkeys([*issues, *name_issues]))
+
+                identity = product_identity(name)
+                image = None
+                source_product_id = f"pdf:{page_index + 1}:{row_number}:{column_number}{split_suffix}"
+                offer_id = stable_offer_id(
+                    page_catalogue["id"],
+                    identity["canonicalProductId"],
+                    image,
+                    page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
+                    page_catalogue.get("storeFormats", []),
+                    False,
+                    source_product_id,
                 )
-            )
-            offer = {
-                "offerId": offer_id,
-                "sourceId": page_catalogue["id"],
-                "sourceProductId": source_product_id,
-                "productId": product_id(name),
-                "canonicalProductId": identity["canonicalProductId"],
-                "identityKey": identity["identityKey"],
-                "packageSize": identity["packageSize"],
-                "name": name,
-                "brand": None,
-                "image": image,
-                "price": price,
-                "regularPrice": regular,
-                "paldiesPrice": price if requires_paldies else None,
-                "priceWithoutPaldies": regular if requires_paldies else None,
-                "unit": None,
-                "discountPercent": discount,
-                "requiresPaldies": requires_paldies,
-                "paldis": requires_paldies,
-                "validFrom": valid_from,
-                "validUntil": valid_until,
-                "city": page_catalogue.get("city"),
-                "store": page_catalogue.get("storeDescription") or "Maxima",
-                "storeFormats": page_catalogue.get("storeFormats", []),
-                "storeScopeSource": page_catalogue.get("storeScopeSource"),
-                "campaign": page_catalogue["name"],
-                "campaignSource": page_catalogue["detailSource"],
-                "source": page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
-                "pdfPage": page_index + 1,
-                "checkedAt": observed_at,
-                "quality": quality,
-            }
-            if issues:
-                offer["reviewEvidence"] = {
-                    "rawCellText": " ".join(cell_text.split())[:600],
-                    "parsedName": name,
-                    "parsedPrices": prices_from(cell_text),
+                quality = {
+                    "priceStatus": "review" if issues else "verified",
+                    "dateStatus": date_status,
+                    "storeScopeStatus": "verified" if (
+                        page_catalogue.get("storeFormats") or page_catalogue.get("storeDescription")
+                    ) else "unknown",
+                    "issues": issues,
                 }
-            existing = offers_by_id.get(offer_id) or reviews_by_id.get(offer_id)
-            if existing and existing["quality"]["priceStatus"] == "verified" and quality["priceStatus"] == "review":
-                continue
-            if quality["priceStatus"] == "review":
-                reviews_by_id[offer_id] = offer
-            else:
-                offers_by_id[offer_id] = offer
-                reviews_by_id.pop(offer_id, None)
+                paldies_marker = bool(re.search(
+                    r"(?:cena\s+ar\s+paldies|paldies\s+karte|ar\s+paldies\s+kart)",
+                    product_text,
+                    flags=re.IGNORECASE,
+                ))
+                requires_paldies = (
+                    paldies_marker
+                    or page_catalogue["id"] == "maxima-well-done-premium"
+                    or (
+                        page_catalogue["id"] == "maxima-catalogue-black-friday-cenu-festivals"
+                        and page_index == 0
+                    )
+                )
+                offer = {
+                    "offerId": offer_id,
+                    "sourceId": page_catalogue["id"],
+                    "sourceProductId": source_product_id,
+                    "productId": product_id(name),
+                    "canonicalProductId": identity["canonicalProductId"],
+                    "identityKey": identity["identityKey"],
+                    "packageSize": identity["packageSize"],
+                    "name": name,
+                    "brand": None,
+                    "image": image,
+                    "price": price,
+                    "regularPrice": regular,
+                    "paldiesPrice": price if requires_paldies else None,
+                    "priceWithoutPaldies": regular if requires_paldies else None,
+                    "unit": None,
+                    "discountPercent": discount,
+                    "requiresPaldies": requires_paldies,
+                    "paldis": requires_paldies,
+                    "validFrom": valid_from,
+                    "validUntil": valid_until,
+                    "city": page_catalogue.get("city"),
+                    "store": page_catalogue.get("storeDescription") or "Maxima",
+                    "storeFormats": page_catalogue.get("storeFormats", []),
+                    "storeScopeSource": page_catalogue.get("storeScopeSource"),
+                    "campaign": page_catalogue["name"],
+                    "campaignSource": page_catalogue["detailSource"],
+                    "source": page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
+                    "pdfPage": page_index + 1,
+                    "checkedAt": observed_at,
+                    "quality": quality,
+                }
+                if issues:
+                    offer["reviewEvidence"] = {
+                        "rawCellText": " ".join(product_text.split())[:600],
+                        "parsedName": name,
+                        "parsedPrices": prices_from(product_text),
+                    }
+                existing = offers_by_id.get(offer_id) or reviews_by_id.get(offer_id)
+                if existing and existing["quality"]["priceStatus"] == "verified" and quality["priceStatus"] == "review":
+                    continue
+                if quality["priceStatus"] == "review":
+                    reviews_by_id[offer_id] = offer
+                else:
+                    offers_by_id[offer_id] = offer
+                    reviews_by_id.pop(offer_id, None)
 
     document.close()
     return (
