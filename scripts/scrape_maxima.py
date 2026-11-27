@@ -16,9 +16,12 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 try:
-    import fitz
-except ImportError:  # The scraper reports a clear error if the PDF dependency is absent.
-    fitz = None
+    import pymupdf as fitz
+except ImportError:
+    try:
+        import fitz  # Compatibility fallback for older PyMuPDF releases.
+    except ImportError:  # The scraper reports a clear error if the PDF dependency is absent.
+        fitz = None
 
 try:
     from scripts.product_identity import build_product_groups, product_identity
@@ -917,8 +920,6 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         if _looks_like_pdf_product_description(block[4])
     ]
     if not descriptions:
-        if float(page.rect.width) == 600 and float(page.rect.height) == 800:
-            print("PDF_DEBUG_NO_DESCRIPTIONS", blocks)
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
@@ -958,18 +959,13 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
             if not cell_descriptions:
                 continue
             results.append((row_index + 1, column_index + 1, cell_text))
-    if width == 600 and height == 800:
-        print("PDF_DEBUG_CELLS", {
-            "descriptions": [(b[0], b[1], b[4]) for b in descriptions],
-            "xClusters": x_clusters, "yClusters": y_clusters,
-            "results": results,
-        })
     return results
 
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
     folded = page_text.casefold()
-    if "grāmatu festivāls" in folded:
+    book_mentions = len(re.findall(r"\bgrāmata\b", folded))
+    if "grāmatu festivāls" in folded or book_mentions >= 2:
         match = next((item for item in catalogues if "grāmatu festivāls" in item["name"].casefold()), None)
         if match:
             return match
@@ -1019,8 +1015,6 @@ def parse_catalogue_pdf(
 
         for row_number, column_number, cell_text in cells:
             name = _clean_pdf_product_name(cell_text)
-            if page.rect.width == 600 and page.rect.height == 800:
-                print("PDF_DEBUG_CARD", row_number, column_number, repr(cell_text), repr(name), _looks_like_pdf_product_description(name))
             if not name or not _looks_like_pdf_product_description(name):
                 continue
             price, regular, discount, issues = _pdf_price_quality(cell_text)
@@ -1366,6 +1360,13 @@ def main():
         catalogue.update(catalogue_stats.get(
             catalogue["id"], {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
         ))
+        catalogue["complete"] = bool(catalogue.get("pdfSources")) and catalogue["pdfPages"] > 0
+        if not catalogue["complete"]:
+            print(
+                f"Warning: active catalogue was not fully parsed: {catalogue['name']} "
+                f"(PDF pages parsed: {catalogue['pdfPages']})",
+                file=sys.stderr,
+            )
 
     if not all_offers:
         raise RuntimeError("No verified product offers detected; refusing to overwrite the feed.")
@@ -1433,6 +1434,13 @@ def main():
         f"and {catalogue_review_count} PDF items need review; "
         f"history contains {len(history_payload['products'])} canonical products"
     )
+    for catalogue in active_catalogues:
+        print("ACTIVE_CATALOGUE", json.dumps({
+            key: catalogue.get(key) for key in (
+                "id", "name", "validFrom", "validUntil", "storeFormats", "city",
+                "verifiedOffers", "reviewOffers", "pdfPages", "complete"
+            )
+        }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
