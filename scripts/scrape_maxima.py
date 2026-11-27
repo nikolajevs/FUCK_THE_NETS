@@ -927,8 +927,17 @@ def _cluster_values(values: list[float], tolerance: float) -> list[list[float]]:
     return clusters
 
 
+def _is_pdf_dimension_annotation(text: str) -> bool:
+    """Identify standalone size arrows/labels that are not product titles."""
+    value = " ".join(text.replace("\xa0", " ").casefold().split())
+    dimension = r"(?:\d+(?:[,.]\d+)?\s*(?:cm|mm)|(?:cm|mm)\s*\d+(?:[,.]\d+)?)"
+    return bool(re.fullmatch(rf"{dimension}(?:\s+{dimension})*", value))
+
+
 def _looks_like_pdf_product_description(text: str) -> bool:
     folded = " ".join(text.casefold().split())
+    if _is_pdf_dimension_annotation(folded):
+        return False
     if re.match(r"^\d+\s+(?:izmērs\b|gab\.?\s*iepak\.?\b|iepak\.?\s*gab\.?\b)", folded):
         return False
     if len(re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)) < 2:
@@ -953,6 +962,8 @@ def _is_pdf_product_title_seed(text: str) -> bool:
     """Recognize product-name blocks even when package details and prices are separate."""
     value = " ".join(text.replace("\xa0", " ").split())
     folded = value.casefold()
+    if _is_pdf_dimension_annotation(folded):
+        return False
     if re.match(r"^\d+\s+(?:izmērs\b|gab\.?\s*iepak\.?\b|iepak\.?\s*gab\.?\b)", folded):
         return False
     words = re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)
@@ -1139,7 +1150,7 @@ def _pdf_description_anchors_by_line(
     candidates, words, width: float
 ) -> list[tuple[float, float]]:
     """Find distinct product starts on separate lines inside a merged PDF text block."""
-    anchors: list[tuple[float, float]] = []
+    anchors: list[tuple[float, float, int, int]] = []
     split_gap = max(22, width * 0.045)
 
     for block in candidates:
@@ -1188,16 +1199,37 @@ def _pdf_description_anchors_by_line(
                     anchors.append((
                         anchor_x,
                         min(float(item[1]) for item in segment),
+                        int(segment[0][5]),
+                        min(int(item[6]) for item in segment),
                     ))
 
-    unique: list[tuple[float, float]] = []
-    for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
-        if not any(
-            abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 18
-            for seen_x, seen_y in unique
-        ):
-            unique.append((x, y))
-    return unique
+    unique: list[tuple[float, float, int, int, int]] = []
+    for x, y, block_number, line_number in sorted(anchors, key=lambda point: (point[1], point[0])):
+        continuation = next(
+            (
+                index for index, (seen_x, _, seen_block, _, last_line) in enumerate(unique)
+                if block_number == seen_block
+                and abs(x - seen_x) < max(12, width * 0.025)
+                and line_number <= last_line + 1
+            ),
+            None,
+        )
+        if continuation is not None:
+            seen_x, seen_y, seen_block, first_line, _ = unique[continuation]
+            unique[continuation] = (
+                seen_x, seen_y, seen_block, first_line, max(line_number, unique[continuation][4])
+            )
+            continue
+
+        duplicate = any(
+            block_number != seen_block
+            and abs(x - seen_x) < max(12, width * 0.025)
+            and abs(y - seen_y) < 8
+            for seen_x, seen_y, seen_block, _, _ in unique
+        )
+        if not duplicate:
+            unique.append((x, y, block_number, line_number, line_number))
+    return [(x, y) for x, y, _, _, _ in unique]
 
 
 def _pdf_words_in_rect(words, left: float, top: float, right: float, bottom: float) -> str:
@@ -1219,6 +1251,42 @@ def _pdf_words_in_rect(words, left: float, top: float, right: float, bottom: flo
         )
         parts.extend(str(word[4]) for word in block_words)
     return " ".join(parts)
+
+
+def _pdf_dimension_for_anchor(
+    words, anchor_x: float, anchor_y: float, left: float, right: float
+) -> str | None:
+    """Attach an isolated vertical size label to its product in the same column."""
+    for unit_word in words:
+        unit = str(unit_word[4]).casefold().strip(".,:")
+        if unit not in {"cm", "mm"}:
+            continue
+        unit_x = (float(unit_word[0]) + float(unit_word[2])) / 2
+        unit_y = (float(unit_word[1]) + float(unit_word[3])) / 2
+        if not (
+            left <= unit_x < right
+            and abs(unit_x - anchor_x) <= max(18, (right - left) * 0.12)
+            and 90 <= unit_y - anchor_y <= 150
+        ):
+            continue
+
+        same_block_numbers = [
+            word for word in words
+            if int(word[5]) == int(unit_word[5])
+            and re.fullmatch(r"\d+(?:[,.]\d+)?", str(word[4]))
+            and abs(
+                (float(word[1]) + float(word[3])) / 2 - unit_y
+            ) <= 22
+        ]
+        if same_block_numbers:
+            nearest = min(
+                same_block_numbers,
+                key=lambda word: abs(
+                    (float(word[1]) + float(word[3])) / 2 - unit_y
+                ),
+            )
+            return f"{nearest[4]} {unit}"
+    return None
 
 
 def _pdf_row_bounds(
@@ -1393,7 +1461,11 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
         )
         next_y = min((value for value in same_column_y if value > y), default=None)
         top = max(float(rect.y0), y - 3)
-        bottom = min(float(rect.y1), next_y - 3 if next_y is not None else float(rect.y1))
+        bottom = min(
+            float(rect.y1),
+            next_y - 3 if next_y is not None else float(rect.y1),
+            y + max(90, height * 0.12),
+        )
         if bottom <= top:
             continue
 
@@ -1418,6 +1490,11 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
             right = float(rect.x0) + (column_index + 1) * width / len(x_centres)
 
         cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
+        dimension = _pdf_dimension_for_anchor(words, x, y, left, right)
+        if dimension and not re.search(
+            rf"\b{re.escape(dimension)}\b", cell_text, flags=re.IGNORECASE
+        ):
+            cell_text = f"{cell_text} {dimension}".strip()
         if cell_text.strip() and prices_from(cell_text):
             row_number = anchor_rows[anchor_index] + 1
             results.append((row_number, column_index + 1, cell_text))
@@ -1440,13 +1517,25 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
     baseline_ambiguous = ambiguous_count(baseline)
     geometry_ambiguous = ambiguous_count(geometry)
 
-    # Do not let a geometric guess replace a working product/title extraction
-    # just because it found more anchors. Adopt it only when it splits at least
-    # one merged multi-price cell into more cards and reduces that ambiguity.
+    def usable_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(1 <= len(prices_from(text)) <= 2 for _, _, text in cells)
+
+    def dimension_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(
+            bool(re.search(r"\b\d+(?:[,.]\d+)?\s*(?:cm|mm)\b", text, re.IGNORECASE))
+            for _, _, text in cells
+        )
+
+    # Prefer geometry when it recovers more priceable cards without increasing
+    # ambiguity, or when it preserves the same clean cards and adds isolated
+    # size labels that belong to those products.
     if (
-        baseline_ambiguous > 0
-        and len(geometry) > len(baseline)
-        and geometry_ambiguous < baseline_ambiguous
+        geometry_ambiguous < baseline_ambiguous
+        and usable_count(geometry) >= usable_count(baseline)
+    ) or (
+        geometry_ambiguous == baseline_ambiguous == 0
+        and usable_count(geometry) >= usable_count(baseline)
+        and dimension_count(geometry) > dimension_count(baseline)
     ):
         return geometry
     return baseline

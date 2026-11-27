@@ -2,6 +2,7 @@
 """Collect Mego Latvia promotional offers from weekly booklets and active campaigns."""
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -173,8 +174,45 @@ def _clean_name(parts: list[str]) -> str:
         text = re.sub(noise, " ", text, flags=re.IGNORECASE)
     # Strip unit-price fragments left in the name
     text = re.sub(r"€\s*/\s*(?:kg|l|rullis|gab)\b", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"€\s*/|/\s*(?:kg|l)\b", " ", text, flags=re.IGNORECASE)
     text = re.sub(r"\s+", " ", text).strip(" -–•*:")
     return text[:90]
+
+
+def _is_size_word(word, words: list[tuple]) -> bool:
+    """Recognize dimension/package tokens that can look like cent prices."""
+    token = str(word[4]).casefold().strip(".,:")
+    units = {"kg", "g", "ml", "l", "cm", "mm", "gab", "gb", "iepak"}
+    if token in units:
+        return True
+    if not re.fullmatch(r"\d+(?:[,.]\d+)?", token):
+        return False
+
+    line_words = sorted(
+        (
+            other for other in words
+            if int(other[5]) == int(word[5]) and int(other[6]) == int(word[6])
+        ),
+        key=lambda other: int(other[7]),
+    )
+    position = next((i for i, other in enumerate(line_words) if other is word), None)
+    if position is None:
+        # PDF word tuples can be copied while sorting, so use their stable fields.
+        position = next(
+            (
+                i for i, other in enumerate(line_words)
+                if int(other[7]) == int(word[7]) and str(other[4]) == str(word[4])
+            ),
+            None,
+        )
+    if position is None:
+        return False
+    previous = str(line_words[position - 1][4]).casefold().strip(".,:") if position else ""
+    following = (
+        str(line_words[position + 1][4]).casefold().strip(".,:")
+        if position + 1 < len(line_words) else ""
+    )
+    return following in units | {"x", "×"} or previous in {"x", "×"}
 
 
 def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
@@ -186,27 +224,51 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
     width = float(page.rect.width)
     height = float(page.rect.height)
 
-    # Identify price tokens with their positions
-    price_items: list[tuple[float, float, float, str]] = []  # cx, cy, value, raw
+    # Identify price tokens with their positions. In Mego leaflets the sale
+    # price is large and the crossed-out price is smaller; unit prices and
+    # package dimensions are body text and should not become shelf prices.
+    price_items: list[tuple[float, float, float, str, float]] = []  # cx, cy, value, raw, height
+    seen_prices: set[tuple[float, float, float]] = set()
     for w in words:
         x0, y0, x1, y1, token = w[0], w[1], w[2], w[3], w[4]
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-        val = _is_decimal_price(token) or _is_cent_price(token)
+        val = None if _is_size_word(w, words) else (_is_decimal_price(token) or _is_cent_price(token))
         if val is not None:
-            # Prefer larger font-ish tokens (taller boxes) as main prices
-            price_items.append((cx, cy, val, token))
+            height = float(y1 - y0)
+            key = (round(cx, 1), round(cy, 1), round(val, 2))
+            if key not in seen_prices:
+                seen_prices.add(key)
+                price_items.append((cx, cy, val, token, height))
+
+    # Some PDFs duplicate each text layer at identical coordinates. Exclude
+    # small package/unit-price text when this page also has proper price labels.
+    if any(item[4] >= 12 for item in price_items):
+        price_items = [item for item in price_items if item[4] >= 12]
 
     if not price_items:
         return [], []
 
-    # Group prices that are vertically close into "cards"
-    price_items.sort(key=lambda t: (t[1], t[0]))  # by y then x
-    cards: list[list[tuple[float, float, float, str]]] = []
-    for item in price_items:
+    # Price labels from different brochure columns can be only a few points
+    # apart vertically. Cluster x positions first, then group prices by row
+    # within each column.
+    x_clusters: list[list[float]] = []
+    for cx in sorted(item[0] for item in price_items):
+        if not x_clusters or cx - x_clusters[-1][-1] > max(24, width * 0.08):
+            x_clusters.append([cx])
+        else:
+            x_clusters[-1].append(cx)
+    x_centres = [sum(group) / len(group) for group in x_clusters]
+    assigned = [
+        (*item, min(range(len(x_centres)), key=lambda index: abs(item[0] - x_centres[index])))
+        for item in price_items
+    ]
+
+    assigned.sort(key=lambda t: (t[1], t[0]))  # by y then x
+    cards: list[list[tuple[float, float, float, str, float, int]]] = []
+    for item in assigned:
         placed = False
         for card in cards:
-            # Same card if y within ~45 pts and not too far in x
-            if abs(item[1] - card[0][1]) < 45 and abs(item[0] - card[0][0]) < width * 0.35:
+            if item[5] == card[0][5] and abs(item[1] - card[0][1]) < 45:
                 card.append(item)
                 placed = True
                 break
@@ -217,19 +279,25 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
     reviews = []
     seen: set[str] = set()
 
+    columns = len(x_centres)
     for card in cards:
         # Card centre
         cxs = [p[0] for p in card]
         cys = [p[1] for p in card]
-        card_cx = sum(cxs) / len(cxs)
         min_cy, max_cy = min(cys), max(cys)
+        column_index = card[0][5]
+        column_left = column_index * width / columns
+        column_right = (column_index + 1) * width / columns
 
-        # Collect name tokens: same column, mostly above the prices
+        # Keep title words inside this brochure column; adjacent columns often
+        # share the same vertical price baseline.
         name_tokens: list[tuple[float, str]] = []
         for w in words:
             x0, y0, x1, y1, token = w[0], w[1], w[2], w[3], w[4]
             cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-            if abs(cx - card_cx) > width * 0.18:
+            if not column_left <= cx < column_right:
+                continue
+            if float(x1) < 18:
                 continue
             if cy > max_cy + 8:
                 continue
@@ -237,7 +305,11 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
                 continue
             if _is_cent_price(token) or _is_decimal_price(token):
                 continue
-            if re.fullmatch(r"-?\d+%", token) or token in {"€", "kg", "g", "l", "ml", "/", "=", "x"}:
+            token_folded = token.casefold().strip(".,:")
+            if re.fullmatch(r"-?\d+%", token) or token_folded in {
+                "€", "kg", "g", "l", "ml", "cm", "mm", "gab", "gb", "iepak",
+                "/", "=", "x", "×",
+            }:
                 continue
             if re.fullmatch(r"[\d.,]+", token):
                 continue
@@ -281,7 +353,7 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
         seen.add(key)
 
         offer = {
-            "offerId": f"mego-{booklet['id']}-p{page_num}-{abs(hash(key)) % 10**8}",
+            "offerId": f"mego-{booklet['id']}-p{page_num}-{hashlib.sha1(key.encode('utf-8')).hexdigest()[:8]}",
             "name": name,
             "price": sale,
             "regularPrice": regular,
@@ -363,11 +435,15 @@ def main() -> None:
         print(f"Downloading {booklet['pdf']} ...")
         r = sess.get(booklet["pdf"], timeout=60)
         r.raise_for_status()
-        pdf_path = Path(f"/tmp/mego_{booklet['id']}.pdf")
+        pdf_path = Path("tmp/pdfs") / f"mego_{booklet['id']}.pdf"
+        pdf_path.parent.mkdir(parents=True, exist_ok=True)
         pdf_path.write_bytes(r.content)
 
         print(f"Parsing {pdf_path.name} ...")
-        offers, review = extract_offers_from_pdf(pdf_path, booklet)
+        try:
+            offers, review = extract_offers_from_pdf(pdf_path, booklet)
+        finally:
+            pdf_path.unlink(missing_ok=True)
         print(f"  -> {len(offers)} offers, {len(review)} need review")
         all_offers.extend(offers)
         all_review.extend(review)
