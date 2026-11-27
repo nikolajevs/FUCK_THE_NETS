@@ -1567,29 +1567,71 @@ def reconcile_paldies_prices(
     pdf_offers: list[dict],
     paldies_offers: list[dict],
 ) -> int:
-    """Replace PDF PALDIES prices with exact-product prices from the official AJAX catalogue."""
-    paldies_by_product: dict[str, dict] = {}
-    for offer in paldies_offers:
-        if offer.get("quality", {}).get("priceStatus") != "verified":
+    """Reconcile only unambiguous, compatible official PALDIES offers."""
+    by_product: dict[str, list[dict]] = defaultdict(list)
+    for source in paldies_offers:
+        if source.get("quality", {}).get("priceStatus") != "verified":
             continue
-        canonical_id = offer.get("canonicalProductId")
+        if not source.get("requiresPaldies"):
+            continue
+        canonical_id = source.get("canonicalProductId")
         if canonical_id:
-            paldies_by_product[canonical_id] = offer
+            by_product[canonical_id].append(source)
 
     reconciled = 0
     for offer in pdf_offers:
         if not offer.get("requiresPaldies"):
             continue
-        source = paldies_by_product.get(offer.get("canonicalProductId"))
-        if source is None:
+        candidates = []
+        for source in by_product.get(offer.get("canonicalProductId"), []):
+            # Never transfer prices between different validity periods or
+            # store formats, including unknown store scopes.
+            if not offer.get("validFrom") or not offer.get("validUntil"):
+                continue
+            if (source.get("validFrom"), source.get("validUntil")) != (
+                offer.get("validFrom"), offer.get("validUntil")
+            ):
+                continue
+            formats = offer.get("storeFormats") or []
+            source_formats = source.get("storeFormats") or []
+            if not formats or set(formats) != set(source_formats):
+                continue
+            candidates.append(source)
+
+        # Multiple identical cards are harmless; conflicting prices are not.
+        variants = {
+            (s.get("price"), s.get("regularPrice"), s.get("discountPercent"))
+            for s in candidates
+        }
+        if len(variants) != 1:
+            if len(variants) > 1:
+                quality = offer.setdefault("quality", {})
+                quality["priceStatus"] = "review"
+                quality.setdefault("issues", []).append("ambiguous_paldies_prices")
             continue
-        offer["price"] = source.get("price")
-        offer["regularPrice"] = source.get("regularPrice")
-        offer["paldiesPrice"] = source.get("paldiesPrice", source.get("price"))
-        offer["priceWithoutPaldies"] = source.get(
-            "priceWithoutPaldies", source.get("regularPrice")
-        )
-        offer["discountPercent"] = source.get("discountPercent")
+
+        source = candidates[0]
+        price = source.get("price")
+        regular = source.get("regularPrice")
+        discount = source.get("discountPercent")
+        if not isinstance(price, (int, float)) or price <= 0:
+            continue
+        if regular is not None:
+            if not isinstance(regular, (int, float)) or regular <= price:
+                continue
+            computed = round((1 - price / regular) * 100)
+            if discount is not None and abs(discount - computed) > 1:
+                offer.setdefault("quality", {}).setdefault("issues", []).append(
+                    "paldies_discount_percent_mismatch"
+                )
+                offer["quality"]["priceStatus"] = "review"
+                continue
+
+        offer["price"] = price
+        offer["regularPrice"] = regular
+        offer["paldiesPrice"] = price
+        offer["priceWithoutPaldies"] = source.get("priceWithoutPaldies", regular)
+        offer["discountPercent"] = discount
         reconciled += 1
     return reconciled
 
