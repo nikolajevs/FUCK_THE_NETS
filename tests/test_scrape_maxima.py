@@ -1,8 +1,11 @@
 import unittest
 from datetime import date
 
+from bs4 import BeautifulSoup
+
 from scripts.scrape_maxima import (
     campaign_dates,
+    campaign_dates_from_soup,
     offer_dates,
     prices_from,
     price_quality,
@@ -55,6 +58,18 @@ class MaximaScraperTests(unittest.TestCase):
         page = "Iknedēļas piedāvājums Filtrēt pēc kategorijas " + ("x" * 140) + "17. novembris - 4. janvāris " + "Iknedēļas piedāvājums 24.-30. novembris"
         self.assertEqual(
             campaign_dates(page, today=date(2026, 11, 27)),
+            ("2026-11-24", "2026-11-30"),
+        )
+
+    def test_campaign_dates_are_read_from_matching_dom_card(self):
+        html = """
+        <div class="campaign"><h2>Black Friday cenu festivāls</h2><p>26.-30. novembris</p></div>
+        <div class="campaign"><h2>Iknedēļas piedāvājums</h2><p>24.-30. novembris</p><a href="/bukleti/ONUKB-W48">Lasīt</a></div>
+        <div class="campaign"><h2>Dāvanu katalogs</h2><p>17. novembris - 4. janvāris</p></div>
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        self.assertEqual(
+            campaign_dates_from_soup(soup, soup.get_text(" "), today=date(2026, 11, 27)),
             ("2026-11-24", "2026-11-30"),
         )
 
