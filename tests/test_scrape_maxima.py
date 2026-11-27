@@ -15,6 +15,10 @@ class MaximaScraperTests(unittest.TestCase):
         text = "Olīvas 360 g (9,14 €/kg); (12,47 €/kg) 3 29 4 49"
         self.assertEqual(prices_from(text), [3.29, 4.49])
 
+    def test_unit_prices_are_removed_without_parentheses(self):
+        text = "Olīvas 360 g 9,14 €/kg; 12,47 €/kg 3 29 4 49"
+        self.assertEqual(prices_from(text), [3.29, 4.49])
+
     def test_lithuanian_style_single_month_name_range(self):
         self.assertEqual(
             offer_dates("24.-30. novembris", today=date(2026, 11, 27)),
@@ -35,6 +39,13 @@ class MaximaScraperTests(unittest.TestCase):
 
     def test_campaign_dates_ignore_other_campaign_banners(self):
         page = "Black Friday 26.-30. novembris Iknedēļas piedāvājums 24.-30. novembris"
+        self.assertEqual(
+            campaign_dates(page, today=date(2026, 11, 27)),
+            ("2026-11-24", "2026-11-30"),
+        )
+
+    def test_campaign_dates_skip_earlier_heading_without_date(self):
+        page = "Iknedēļas piedāvājums Filtrēt pēc kategorijas Iknedēļas piedāvājums 24.-30. novembris"
         self.assertEqual(
             campaign_dates(page, today=date(2026, 11, 27)),
             ("2026-11-24", "2026-11-30"),
