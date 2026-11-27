@@ -22,8 +22,6 @@ HEADERS = {
 PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
 DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
 DATE_RE = re.compile(r"(\d{1,2})[.](\d{1,2})[.]?\s*[-–]\s*(\d{1,2})[.](\d{1,2})[.]?(?:\s*(\d{4}))?")
-    r"(\\d{1,2})[.](\\d{1,2})[.]?\\s*[-–]\\s*(\\d{1,2})[.](\\d{1,2})[.]?(?:\\s*(\\d{4}))?"
-)
 IGNORED_NAMES = {"not found", "paldies", "image", "maxima"}
 IGNORED_PROMOTIONS = {"adventes kalendāriem", "rotaļlietām (izņemot konstruktoriem lego)"}
 
