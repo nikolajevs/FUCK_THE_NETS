@@ -104,6 +104,14 @@ def inspect_filtered_paldies(session: requests.Session) -> None:
         for option in soup.select("#filter_limit option")
     ]
     print("AJAX_URL", ajax_url, "LIMIT_OPTIONS", options)
+    for element_id in ("totalProducts", "ajax-load-more-url"):
+        print("GLOBAL_FIELD", element_id, (soup.find(id=element_id).attrs if soup.find(id=element_id) else None))
+    for button in soup.select(".lv-load-more, [data-page], [data-offset]"):
+        print("LOAD_MORE_CONTROL", button.name, button.attrs, button.get_text(" ", strip=True)[:120])
+    for script in soup.find_all("script"):
+        inline = script.string or script.get_text()
+        if inline and any(term in inline for term in ("ajax-load-more-url", "totalProducts", "lv-load-more", "salesloadmore")):
+            print("INLINE_OFFERS_SCRIPT", re.sub(r"\\s+", " ", inline)[:10000])
 
     params = [
         ("filters[]", "18"),
@@ -143,8 +151,10 @@ def inspect_filtered_paldies(session: requests.Session) -> None:
         if image and image.get("alt", "").strip():
             names.append(image["alt"].strip())
     print("FILTERED_ITEMS", len(items), "NAMES", len(names), "UNIQUE_NAMES", len(set(names)))
-    print("FILTERED_FIRST", names[:8])
-    print("FILTERED_LAST", names[-5:])
+    print("FILTERED_FIRST", [n for n in names if n.casefold() != "paldies"][:8])
+    print("FILTERED_LAST", [n for n in names if n.casefold() != "paldies"][-5:])
+    for item in items[:2]:
+        print("ITEM_STRUCT", item.attrs, [(img.get("alt"), img.get("src")) for img in item.find_all("img")[:4]])
 
     asset_url = "https://www.maxima.lv/js/front/pages/offers/offers.js?1793968385"
     asset = session.get(asset_url, headers=HEADERS, timeout=30)
