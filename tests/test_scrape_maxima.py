@@ -7,6 +7,8 @@ from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
     _clean_pdf_product_name,
+    _looks_like_pdf_product_description,
+    _is_pdf_product_title_seed,
     reconcile_paldies_prices,
     _catalogue_for_pdf_page,
     collect_paldies_catalog,
@@ -302,6 +304,56 @@ class MaximaScraperTests(unittest.TestCase):
 
         value = _clean_pdf_product_name("Mini Fuet izlase WELL PREMIUM 320 g 11")
         self.assertEqual(value, "Mini Fuet izlase WELL DONE PREMIUM 320 g")
+
+    def test_pdf_product_name_removes_clipped_price_prefix_after_cleanup(self):
+        value = _clean_pdf_product_name(
+            "• € 4 99 49 Bļoda AURORA ROYAL WHITE 1 gab., Ø15 cm"
+        )
+        self.assertEqual(value, "Bļoda AURORA ROYAL WHITE 1 gab., Ø15 cm")
+
+        multi_pack = _clean_pdf_product_name("3 IEPAK. Zeķes SEVEN LEMON 1 gab.")
+        self.assertEqual(multi_pack, "3 IEPAK. Zeķes SEVEN LEMON 1 gab.")
+
+    def test_price_comparison_legal_copy_is_not_a_product_candidate(self):
+        text = (
+            "Cenas ir pārbaudītas un salīdzinātas, pamatojoties uz kontrolpirkumiem. "
+            "Cenu salīdzinājums balstīts uz faktiskajiem pirkumiem. "
+            "Salīdzinājumā iekļautie produkti Citronu ledus tēja NESTEA 1,5 l"
+        )
+        self.assertFalse(_looks_like_pdf_product_description(text))
+        self.assertFalse(_is_pdf_product_title_seed(text))
+
+    def test_unit_price_only_cell_is_sent_to_review_with_evidence(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 300, 275),
+            "Provansas majonēze FRANCIS 250 g\\n5 16 /kg",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/weekly",
+            "detailSource": "https://www.maxima.lv/bukleti/weekly",
+            "pdfSources": ["https://www.maxima.lv/uploads/weekly.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/weekly",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(offers, [])
+        self.assertEqual(len(reviews), 1)
+        self.assertIn("unit_price_only_or_misaligned", reviews[0]["quality"]["issues"])
+        self.assertIn("5 16 /kg", reviews[0]["reviewEvidence"]["rawCellText"])
+        self.assertEqual(reviews[0]["reviewEvidence"]["parsedPrices"], [5.16])
 
     def test_reconcile_pdf_paldies_prices_from_official_catalogue(self):
         pdf_offers = [{
