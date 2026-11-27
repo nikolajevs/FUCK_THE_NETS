@@ -9,28 +9,34 @@ function priceHistoryMarkup(offer){
   if(!points.length)return '<p class="history-note">Cenu vēsture vēl nav savākta.</p>';
   const first=points[0],last=points[points.length-1];
   if(points.length===1){
-    return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>Pirmais novērojums: '+escapeHtml(formatDate(last.date))+'</span></div><p class="history-note">Pašlaik ir tikai viens mērījums. Pēc nākamajiem ikdienas atjauninājumiem šeit būs redzama cenas dinamika.</p>';
+    const usual=Number.isFinite(last.regularPrice)?' · Parastā cena: '+money(last.regularPrice):"";
+    return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>Pirmais novērojums: '+escapeHtml(formatDate(last.date))+usual+'</span></div><p class="history-note">Pašlaik ir tikai viens mērījums. Pēc nākamajiem ikdienas atjauninājumiem šeit būs redzamas cenu izmaiņas.</p>';
   }
 
   const width=640,height=250,left=68,right=22,top=18,bottom=42;
-  const values=points.map(point=>point.price);
+  const regular=points.map(point=>Number.isFinite(point.regularPrice)?point.regularPrice:null);
+  const values=[...points.map(point=>point.price),...regular.filter(Number.isFinite)];
   let min=Math.min(...values),max=Math.max(...values);
   const padding=Math.max((max-min)*.18,.05);
   min=Math.max(0,min-padding);max+=padding;
   if(max<=min)max=min+1;
   const x=index=>left+(index/(points.length-1))*(width-left-right);
   const y=value=>top+(max-value)/(max-min)*(height-top-bottom);
-  const coordinates=points.map((point,index)=>x(index).toFixed(1)+","+y(point.price).toFixed(1)).join(" ");
+  const promoCoordinates=points.map((point,index)=>x(index).toFixed(1)+","+y(point.price).toFixed(1)).join(" ");
+  const regularCoordinates=points.map((point,index)=>Number.isFinite(point.regularPrice)?x(index).toFixed(1)+","+y(point.regularPrice).toFixed(1):null).filter(Boolean).join(" ");
   const grid=[0,1,2,3].map(index=>{
     const value=min+(max-min)*index/3,yy=y(value);
     return '<line class="chart-grid" x1="'+left+'" y1="'+yy+'" x2="'+(width-right)+'" y2="'+yy+'"/><text class="chart-axis" x="'+(left-9)+'" y="'+(yy+4)+'" text-anchor="end">'+escapeHtml(money(value))+'</text>';
   }).join("");
-  const circles=points.map((point,index)=>'<circle class="chart-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+": "+money(point.price))+'</title></circle>').join("");
+  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+": akcijas cena "+money(point.price))+'</title></circle>').join("");
+  const regularCircles=points.map((point,index)=>Number.isFinite(point.regularPrice)?'<circle class="chart-point regular-point" cx="'+x(index)+'" cy="'+y(point.regularPrice)+'" r="3"><title>'+escapeHtml(formatDate(point.date)+": parastā cena "+money(point.regularPrice))+'</title></circle>':"").join("");
   const difference=last.price-first.price;
   const percent=first.price?difference/first.price*100:0;
   const trend=difference>.001?"price-up":difference<-.001?"price-down":"price-flat";
-  const trendText=difference>.001?"Cena pieaugusi":difference<-.001?"Cena samazinājusies":"Cena nav mainījusies";
-  return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>'+escapeHtml(formatDate(first.date))+' → '+escapeHtml(formatDate(last.date))+'</span><b class="'+trend+'">'+(difference>0?"+":"")+money(difference)+' ('+(percent>0?"+":"")+percent.toFixed(1)+'%)</b></div><div class="chart-wrap"><svg class="price-chart" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="Produkta cenas izmaiņas laikā">'+grid+'<polyline class="chart-line" points="'+coordinates+'"/>'+circles+'<text class="chart-date" x="'+left+'" y="'+(height-12)+'">'+escapeHtml(formatDate(first.date))+'</text><text class="chart-date" x="'+(width-right)+'" y="'+(height-12)+'" text-anchor="end">'+escapeHtml(formatDate(last.date))+'</text></svg></div><p class="history-note">'+trendText+'. Vēsture veidota no ikdienas Maxima piedāvājumu pārbaudēm, nevis no pilna veikala cenu arhīva.</p>';
+  const trendText=difference>.001?"Akcijas cena pieaugusi":difference<-.001?"Akcijas cena samazinājusies":"Akcijas cena nav mainījusies";
+  const regularLine=regular.filter(Number.isFinite).length>1?'<polyline class="chart-line regular-line" points="'+regularCoordinates+'"/>':"";
+  const legend='<div class="chart-legend"><span><i class="legend-swatch promo-swatch"></i>Akcijas cena</span><span><i class="legend-swatch regular-swatch"></i>Parastā cena</span></div>';
+  return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>'+escapeHtml(formatDate(first.date))+' → '+escapeHtml(formatDate(last.date))+'</span><b class="'+trend+'">'+(difference>0?"+":"")+money(difference)+' ('+(percent>0?"+":"")+percent.toFixed(1)+'%)</b></div>'+legend+'<div class="chart-wrap"><svg class="price-chart" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="Akcijas un parastās cenas izmaiņas laikā">'+grid+regularLine+'<polyline class="chart-line" points="'+promoCoordinates+'"/>'+regularCircles+promoCircles+'<text class="chart-date" x="'+left+'" y="'+(height-12)+'">'+escapeHtml(formatDate(first.date))+'</text><text class="chart-date" x="'+(width-right)+'" y="'+(height-12)+'" text-anchor="end">'+escapeHtml(formatDate(last.date))+'</text></svg></div><p class="history-note">'+trendText+'. Dati tiek vākti no ikdienas Maxima piedāvājumu pārbaudēm, nevis no pilna veikala cenu arhīva.</p>';
 }
 
 function render(){
