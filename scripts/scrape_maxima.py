@@ -1325,20 +1325,28 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
 
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Keep the conservative parser unless geometry clearly isolates more price cards."""
+    """Use geometric splitting only to resolve a real multi-price merge."""
     legacy = _pdf_page_cells_legacy(page)
     recovered = _pdf_page_cells_split(page)
     geometry = _pdf_page_cells_geometry(page)
+    baseline = max((legacy, recovered), key=len)
 
-    def score(cells: list[tuple[int, int, str]]) -> tuple[float, int]:
-        ambiguous = sum(len(prices_from(text)) > 2 for _, _, text in cells)
-        return len(cells) - 0.75 * ambiguous, len(cells)
+    def ambiguous_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(len(prices_from(text)) > 2 for _, _, text in cells)
 
-    baseline = max((legacy, recovered), key=score)
-    # Geometry is used when it actually separates more cards or materially
-    # reduces multi-price ambiguity. Equal-scoring legacy output preserves
-    # the full title and price context of previously passing brochure layouts.
-    return geometry if score(geometry) > score(baseline) else baseline
+    baseline_ambiguous = ambiguous_count(baseline)
+    geometry_ambiguous = ambiguous_count(geometry)
+
+    # Do not let a geometric guess replace a working product/title extraction
+    # just because it found more anchors. Adopt it only when it splits at least
+    # one merged multi-price cell into more cards and reduces that ambiguity.
+    if (
+        baseline_ambiguous > 0
+        and len(geometry) > len(baseline)
+        and geometry_ambiguous < baseline_ambiguous
+    ):
+        return geometry
+    return baseline
 
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
