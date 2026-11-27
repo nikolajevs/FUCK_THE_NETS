@@ -78,6 +78,21 @@ def product_id(name: str, unit: str | None = None) -> str:
 
 def prices_from(text: str) -> list[float]:
     """Read shelf prices, excluding €/kg and €/l unit prices."""
+    # Some PDFs print two unit prices in one parenthesis but attach the
+    # €/kg label only to the second value, e.g. "(12,48 19,98 €/kg)".
+    # Remove both only when a separate shelf-price token remains outside it.
+    unit_pair = re.search(
+        r"\\(\\s*\\d{1,3}[,.]\\s*\\d{2}\\s*(?:[;,]\\s*|\\s+)"
+        r"\\d{1,3}[,.]\\s*\\d{2}\\s*€\\s*/\\s*"
+        r"(?:kg|l|100\\s*g|100\\s*ml|gab\\.?|pcs?|rull\\w*|pāri|pāris)\\b[^)]*\\)",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if unit_pair:
+        without_unit_pair = text[:unit_pair.start()] + " " + text[unit_pair.end():]
+        if PRICE_TOKEN_RE.search(without_unit_pair):
+            text = without_unit_pair
+
     cleaned = re.sub(
         r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?|rull\w*|pāri|pāris)\b",
         " ", text, flags=re.IGNORECASE,
