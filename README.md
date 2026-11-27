@@ -22,7 +22,12 @@ Collects:
 
 PDF parsing uses PyMuPDF with word coordinates, column splitting, PALDIES price precedence, and a review queue for ambiguous cards. Product identity is conservative (normalized tokens + package size, no fuzzy merge).
 
-When a newly published brochure contains ambiguous product cards, GitHub Actions downloads the public Qwen3-VL-4B GGUF weights, builds CPU-only `llama-mtmd-cli`, and reviews only the affected card crops. The model and projector are cached; no Hugging Face token or inference API is used. Qwen notes are attached to review evidence only and never promote prices into the verified feed. If local inference fails, the regular scrape and deployment continue.
+When a newly published brochure contains ambiguous product cards, the review load is split between two vision models:
+
+1. **Gemini Flash-Lite first pass** (`scripts/gemini_pdf_review.py`) — new card crops go to the Gemini API (`gemini-3.5-flash-lite` by default; 2.5 Flash-Lite is closed to new API keys). Paced to ~13 RPM, capped per run (`GEMINI_MAX_REQUESTS`, default 40) and per day (`GEMINI_DAILY_BUDGET`, default 200, ledger in `data/gemini-usage.json`). Requires the `GEMINI_API_KEY` repository secret; without it the step is skipped. Locally a gitignored `gemini.token.txt` in the repo root works too.
+2. **Local Qwen3-VL fallback** (`scripts/qwen_pdf_review.py`) — cards Gemini could not resolve (quota exhausted, API errors, `decision=unclear`) are reviewed by the public Qwen3-VL-4B GGUF weights on the runner: GitHub Actions downloads them, builds CPU-only `llama-mtmd-cli`, and processes only the affected card crops. The model and projector are cached; no Hugging Face token is used. If every card was resolved by Gemini, the download/build steps are skipped entirely.
+
+Both layers attach advisory notes to `reviewEvidence.visionAssist` only and never promote prices into the verified feed. If either layer fails, the regular scrape and deployment continue.
 
 ```bash
 python scripts/scrape_maxima.py
