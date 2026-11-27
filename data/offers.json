@@ -2,9 +2,10 @@
   "source": "https://www.maxima.lv/bukleti/",
   "sources": [
     "https://www.maxima.lv/piedavajumi/",
-    "https://www.maxima.lv/premium"
+    "https://www.maxima.lv/premium",
+    "https://www.maxima.lv/paldies"
   ],
-  "updatedAt": "2026-11-27T09:08:07+00:00",
+  "updatedAt": "2026-11-27T09:09:03+00:00",
   "campaigns": [
     {
       "id": "maxima-weekly",
@@ -28,6 +29,18 @@
       "storeFormats": [],
       "storeScopeSource": null,
       "verifiedOffers": 20,
+      "reviewOffers": 0
+    },
+    {
+      "id": "maxima-paldies-featured",
+      "name": "Piedāvājumi ar PALDIES karti",
+      "source": "https://www.maxima.lv/paldies",
+      "detailSource": null,
+      "validFrom": null,
+      "validUntil": null,
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "verifiedOffers": 6,
       "reviewOffers": 0
     }
   ],
@@ -59,7 +72,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -94,7 +107,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -129,7 +142,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -164,10 +177,45 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "055d2acbad6137af",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "biezpiena-krems-president-vanilas-400g",
+      "canonicalProductId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+      "identityKey": "biezpiena krems president vanilas|mass:400g",
+      "packageSize": "mass:400g",
+      "name": "Biezpiena krēms PRESIDENT vaniļas 400g",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//biezpiena-krems-president-vanilas-400g-00001-1116120646.png?1794823606",
+      "price": 1.69,
+      "regularPrice": 2.49,
+      "paldiesPrice": 1.69,
+      "priceWithoutPaldies": 2.49,
+      "unit": null,
+      "discountPercent": 32,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -199,7 +247,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -234,7 +282,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -269,7 +317,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -304,10 +352,45 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "9f6be9fe18af3f58",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "cepsanas-komplekts-1-iepak-3-gab",
+      "canonicalProductId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+      "identityKey": "1 cepsanas iepak komplekts|count:3",
+      "packageSize": "count:3",
+      "name": "Cepšanas komplekts, 1 iepak./3 gab.",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//cepsanas-komplekts-00001-1124093635.png?1795505795",
+      "price": 9.99,
+      "regularPrice": 21.99,
+      "paldiesPrice": 9.99,
+      "priceWithoutPaldies": 21.99,
+      "unit": null,
+      "discountPercent": 55,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -339,7 +422,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -374,7 +457,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -409,7 +492,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -444,7 +527,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -479,7 +562,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -514,7 +597,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -549,7 +632,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -584,10 +667,45 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "905c33d1d396e698",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "piena-dzer-mullermilch-prot-bananu-400g",
+      "canonicalProductId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+      "identityKey": "bananu dzer mullermilch piena prot|mass:400g",
+      "packageSize": "mass:400g",
+      "name": "Piena dzēr.MULLERMILCH Prot. banānu 400g",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//piena-dzer-mullermilch-prot-bananu-400g-00002-1116120646.png?1794823606",
+      "price": 1.69,
+      "regularPrice": 2.39,
+      "paldiesPrice": 1.69,
+      "priceWithoutPaldies": 2.39,
+      "unit": null,
+      "discountPercent": 29,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -619,7 +737,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -654,7 +772,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -689,7 +807,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -724,7 +842,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -759,7 +877,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -794,7 +912,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -829,7 +947,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -864,7 +982,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -899,7 +1017,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -934,7 +1052,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -969,10 +1087,45 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "97d607b717d02863",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "siers-well-done-premium-ar-trifelem-180g",
+      "canonicalProductId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
+      "identityKey": "ar done premium siers trifelem well|mass:180g",
+      "packageSize": "mass:180g",
+      "name": "Siers WELL DONE PREMIUM ar trifelēm 180g",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-well-done-premium-ar-trifelem-180g-00192-1109163533.png?1794234933",
+      "price": 4.49,
+      "regularPrice": 4.99,
+      "paldiesPrice": 4.49,
+      "priceWithoutPaldies": 4.99,
+      "unit": null,
+      "discountPercent": 10,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -1004,7 +1157,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1039,7 +1192,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:08:07+00:00",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1074,7 +1227,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1109,7 +1262,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1144,10 +1297,45 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "01683b282a62f67e",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "uzglabasanas-trauks-ginger-1-gab-divi-veidi-550-ml",
+      "canonicalProductId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+      "identityKey": "divi ginger trauks uzglabasanas veidi|count:1 volume:550ml",
+      "packageSize": "count:1 volume:550ml",
+      "name": "Uzglabāšanas trauks GINGER, 1 gab., divi veidi, 550 ml",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//uzglabasanas-trauks-ginger-00002-1124093635.png?1795505795",
+      "price": 4.49,
+      "regularPrice": 7.99,
+      "paldiesPrice": 4.49,
+      "priceWithoutPaldies": 7.99,
+      "unit": null,
+      "discountPercent": 44,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -1179,10 +1367,45 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:08:06+00:00",
+      "checkedAt": "2026-11-27T09:09:02+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
+        "storeScopeStatus": "unknown",
+        "issues": []
+      }
+    },
+    {
+      "offerId": "aae9232021249ff1",
+      "sourceId": "maxima-paldies-featured",
+      "productId": "zobu-birste-jordan-target-sensitive",
+      "canonicalProductId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+      "identityKey": "birste jordan sensitive target zobu|",
+      "packageSize": "",
+      "name": "Zobu birste JORDAN Target Sensitive",
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/27//zobu-birste-jordan-target-sensitive-00003-1109163633.png?1794234993",
+      "price": 1.99,
+      "regularPrice": 3.69,
+      "paldiesPrice": 1.99,
+      "priceWithoutPaldies": 3.69,
+      "unit": null,
+      "discountPercent": 46,
+      "requiresPaldies": true,
+      "paldis": true,
+      "validFrom": null,
+      "validUntil": null,
+      "city": null,
+      "store": "Maxima",
+      "storeFormats": [],
+      "storeScopeSource": null,
+      "campaign": "Piedāvājumi ar PALDIES karti",
+      "campaignSource": "https://www.maxima.lv/paldies",
+      "source": "https://www.maxima.lv/paldies",
+      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "quality": {
+        "priceStatus": "verified",
+        "dateStatus": "unknown",
         "storeScopeStatus": "unknown",
         "issues": []
       }
@@ -1228,7 +1451,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1284,7 +1507,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1340,7 +1563,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1396,7 +1619,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1410,6 +1633,62 @@
       "highestDiscountPercent": 20,
       "campaigns": [
         "Well Done Premium"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+      "canonicalProductId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+      "identityKey": "biezpiena krems president vanilas|mass:400g",
+      "packageSize": "mass:400g",
+      "name": "Biezpiena krēms PRESIDENT vaniļas 400g",
+      "aliases": [
+        "Biezpiena krēms PRESIDENT vaniļas 400g"
+      ],
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//biezpiena-krems-president-vanilas-400g-00001-1116120646.png?1794823606",
+      "offers": [
+        {
+          "offerId": "055d2acbad6137af",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "biezpiena-krems-president-vanilas-400g",
+          "canonicalProductId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+          "identityKey": "biezpiena krems president vanilas|mass:400g",
+          "packageSize": "mass:400g",
+          "name": "Biezpiena krēms PRESIDENT vaniļas 400g",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//biezpiena-krems-president-vanilas-400g-00001-1116120646.png?1794823606",
+          "price": 1.69,
+          "regularPrice": 2.49,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.49,
+          "unit": null,
+          "discountPercent": 32,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.69,
+      "highestDiscountPercent": 32,
+      "campaigns": [
+        "Piedāvājumi ar PALDIES karti"
       ],
       "storeFormats": []
     },
@@ -1452,7 +1731,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1508,7 +1787,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1564,7 +1843,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1620,7 +1899,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1634,6 +1913,62 @@
       "highestDiscountPercent": 20,
       "campaigns": [
         "Well Done Premium"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+      "canonicalProductId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+      "identityKey": "1 cepsanas iepak komplekts|count:3",
+      "packageSize": "count:3",
+      "name": "Cepšanas komplekts, 1 iepak./3 gab.",
+      "aliases": [
+        "Cepšanas komplekts, 1 iepak./3 gab."
+      ],
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//cepsanas-komplekts-00001-1124093635.png?1795505795",
+      "offers": [
+        {
+          "offerId": "9f6be9fe18af3f58",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "cepsanas-komplekts-1-iepak-3-gab",
+          "canonicalProductId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+          "identityKey": "1 cepsanas iepak komplekts|count:3",
+          "packageSize": "count:3",
+          "name": "Cepšanas komplekts, 1 iepak./3 gab.",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//cepsanas-komplekts-00001-1124093635.png?1795505795",
+          "price": 9.99,
+          "regularPrice": 21.99,
+          "paldiesPrice": 9.99,
+          "priceWithoutPaldies": 21.99,
+          "unit": null,
+          "discountPercent": 55,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 9.99,
+      "highestDiscountPercent": 55,
+      "campaigns": [
+        "Piedāvājumi ar PALDIES karti"
       ],
       "storeFormats": []
     },
@@ -1676,7 +2011,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1732,7 +2067,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1788,7 +2123,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1844,7 +2179,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1900,7 +2235,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1956,7 +2291,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2012,7 +2347,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2068,7 +2403,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2082,6 +2417,62 @@
       "highestDiscountPercent": 27,
       "campaigns": [
         "Iknedēļas piedāvājums"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+      "canonicalProductId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+      "identityKey": "bananu dzer mullermilch piena prot|mass:400g",
+      "packageSize": "mass:400g",
+      "name": "Piena dzēr.MULLERMILCH Prot. banānu 400g",
+      "aliases": [
+        "Piena dzēr.MULLERMILCH Prot. banānu 400g"
+      ],
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//piena-dzer-mullermilch-prot-bananu-400g-00002-1116120646.png?1794823606",
+      "offers": [
+        {
+          "offerId": "905c33d1d396e698",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "piena-dzer-mullermilch-prot-bananu-400g",
+          "canonicalProductId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+          "identityKey": "bananu dzer mullermilch piena prot|mass:400g",
+          "packageSize": "mass:400g",
+          "name": "Piena dzēr.MULLERMILCH Prot. banānu 400g",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/16//piena-dzer-mullermilch-prot-bananu-400g-00002-1116120646.png?1794823606",
+          "price": 1.69,
+          "regularPrice": 2.39,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.39,
+          "unit": null,
+          "discountPercent": 29,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.69,
+      "highestDiscountPercent": 29,
+      "campaigns": [
+        "Piedāvājumi ar PALDIES karti"
       ],
       "storeFormats": []
     },
@@ -2124,7 +2515,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2180,7 +2571,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2236,7 +2627,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2292,7 +2683,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2348,7 +2739,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2404,7 +2795,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2460,7 +2851,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2484,7 +2875,8 @@
       "packageSize": "mass:180g",
       "name": "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
       "aliases": [
-        "Siers ar trifelēm WELL DONE PREMIUM, 180 g"
+        "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
+        "Siers WELL DONE PREMIUM ar trifelēm 180g"
       ],
       "brand": null,
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//siers-ar-trifelem-well-done-premium-00014-1120145123.png?1795179083",
@@ -2516,20 +2908,56 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
             "storeScopeStatus": "unknown",
             "issues": []
           }
+        },
+        {
+          "offerId": "97d607b717d02863",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "siers-well-done-premium-ar-trifelem-180g",
+          "canonicalProductId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
+          "identityKey": "ar done premium siers trifelem well|mass:180g",
+          "packageSize": "mass:180g",
+          "name": "Siers WELL DONE PREMIUM ar trifelēm 180g",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-well-done-premium-ar-trifelem-180g-00192-1109163533.png?1794234933",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "unit": null,
+          "discountPercent": 10,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
         }
       ],
-      "offerCount": 1,
+      "offerCount": 2,
       "lowestPrice": 4.49,
       "highestDiscountPercent": 10,
       "campaigns": [
-        "Iknedēļas piedāvājums"
+        "Iknedēļas piedāvājums",
+        "Piedāvājumi ar PALDIES karti"
       ],
       "storeFormats": []
     },
@@ -2572,7 +3000,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2628,7 +3056,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2684,7 +3112,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2740,7 +3168,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2796,7 +3224,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2852,7 +3280,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2908,7 +3336,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2964,7 +3392,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2978,6 +3406,62 @@
       "highestDiscountPercent": 17,
       "campaigns": [
         "Iknedēļas piedāvājums"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+      "canonicalProductId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+      "identityKey": "divi ginger trauks uzglabasanas veidi|count:1 volume:550ml",
+      "packageSize": "count:1 volume:550ml",
+      "name": "Uzglabāšanas trauks GINGER, 1 gab., divi veidi, 550 ml",
+      "aliases": [
+        "Uzglabāšanas trauks GINGER, 1 gab., divi veidi, 550 ml"
+      ],
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//uzglabasanas-trauks-ginger-00002-1124093635.png?1795505795",
+      "offers": [
+        {
+          "offerId": "01683b282a62f67e",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "uzglabasanas-trauks-ginger-1-gab-divi-veidi-550-ml",
+          "canonicalProductId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+          "identityKey": "divi ginger trauks uzglabasanas veidi|count:1 volume:550ml",
+          "packageSize": "count:1 volume:550ml",
+          "name": "Uzglabāšanas trauks GINGER, 1 gab., divi veidi, 550 ml",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/17//uzglabasanas-trauks-ginger-00002-1124093635.png?1795505795",
+          "price": 4.49,
+          "regularPrice": 7.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 7.99,
+          "unit": null,
+          "discountPercent": 44,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 4.49,
+      "highestDiscountPercent": 44,
+      "campaigns": [
+        "Piedāvājumi ar PALDIES karti"
       ],
       "storeFormats": []
     },
@@ -3020,7 +3504,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:06+00:00",
+          "checkedAt": "2026-11-27T09:09:02+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3036,12 +3520,68 @@
         "Iknedēļas piedāvājums"
       ],
       "storeFormats": []
+    },
+    {
+      "productId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+      "canonicalProductId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+      "identityKey": "birste jordan sensitive target zobu|",
+      "packageSize": "",
+      "name": "Zobu birste JORDAN Target Sensitive",
+      "aliases": [
+        "Zobu birste JORDAN Target Sensitive"
+      ],
+      "brand": null,
+      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/27//zobu-birste-jordan-target-sensitive-00003-1109163633.png?1794234993",
+      "offers": [
+        {
+          "offerId": "aae9232021249ff1",
+          "sourceId": "maxima-paldies-featured",
+          "productId": "zobu-birste-jordan-target-sensitive",
+          "canonicalProductId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+          "identityKey": "birste jordan sensitive target zobu|",
+          "packageSize": "",
+          "name": "Zobu birste JORDAN Target Sensitive",
+          "brand": null,
+          "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/27//zobu-birste-jordan-target-sensitive-00003-1109163633.png?1794234993",
+          "price": 1.99,
+          "regularPrice": 3.69,
+          "paldiesPrice": 1.99,
+          "priceWithoutPaldies": 3.69,
+          "unit": null,
+          "discountPercent": 46,
+          "requiresPaldies": true,
+          "paldis": true,
+          "validFrom": null,
+          "validUntil": null,
+          "city": null,
+          "store": "Maxima",
+          "storeFormats": [],
+          "storeScopeSource": null,
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "campaignSource": "https://www.maxima.lv/paldies",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "quality": {
+            "priceStatus": "verified",
+            "dateStatus": "unknown",
+            "storeScopeStatus": "unknown",
+            "issues": []
+          }
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.99,
+      "highestDiscountPercent": 46,
+      "campaigns": [
+        "Piedāvājumi ar PALDIES karti"
+      ],
+      "storeFormats": []
     }
   ],
   "reviewOffers": [],
   "summary": {
-    "offerVariants": 33,
-    "uniqueProducts": 33,
+    "offerVariants": 39,
+    "uniqueProducts": 38,
     "reviewOffers": 0
   }
 }

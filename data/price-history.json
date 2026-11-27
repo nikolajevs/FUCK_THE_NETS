@@ -1,6 +1,7 @@
 {
-  "updatedAt": "2026-11-27T09:08:07+00:00",
+  "updatedAt": "2026-11-27T09:09:03+00:00",
   "sources": [
+    "https://www.maxima.lv/paldies",
     "https://www.maxima.lv/piedavajumi/",
     "https://www.maxima.lv/premium"
   ],
@@ -46,7 +47,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -118,7 +119,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -190,7 +191,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -262,7 +263,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -334,7 +335,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -406,7 +407,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -478,7 +479,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -550,7 +551,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -622,7 +623,24 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "97d607b717d02863",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -643,9 +661,10 @@
           ],
           "campaigns": [
             "Iepriekšējā cenu vēsture",
-            "Iknedēļas piedāvājums"
+            "Iknedēļas piedāvājums",
+            "Piedāvājumi ar PALDIES karti"
           ],
-          "offerCount": 2,
+          "offerCount": 3,
           "priceVariants": [
             4.49
           ],
@@ -694,7 +713,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -766,7 +785,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -838,7 +857,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -910,7 +929,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "sourceId": "maxima-weekly",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -962,7 +981,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -984,7 +1003,7 @@
           "priceVariants": [
             0.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1009,7 +1028,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1031,7 +1050,7 @@
           "priceVariants": [
             0.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1056,7 +1075,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1078,7 +1097,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1103,7 +1122,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1125,7 +1144,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1150,7 +1169,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1172,7 +1191,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1197,7 +1216,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1219,7 +1238,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1244,7 +1263,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1266,7 +1285,7 @@
           "priceVariants": [
             2.19
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1291,7 +1310,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1313,7 +1332,7 @@
           "priceVariants": [
             1.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1338,7 +1357,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1360,7 +1379,7 @@
           "priceVariants": [
             2.69
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1385,7 +1404,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1407,7 +1426,7 @@
           "priceVariants": [
             2.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1432,7 +1451,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1454,7 +1473,7 @@
           "priceVariants": [
             2.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1479,7 +1498,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1501,7 +1520,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1526,7 +1545,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1548,7 +1567,7 @@
           "priceVariants": [
             0.95
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1573,7 +1592,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1595,7 +1614,7 @@
           "priceVariants": [
             0.95
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1620,7 +1639,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1642,7 +1661,7 @@
           "priceVariants": [
             0.95
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1667,7 +1686,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1689,7 +1708,7 @@
           "priceVariants": [
             1.79
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1714,7 +1733,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1736,7 +1755,7 @@
           "priceVariants": [
             3.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1761,7 +1780,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1783,7 +1802,7 @@
           "priceVariants": [
             2.39
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1808,7 +1827,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1830,7 +1849,7 @@
           "priceVariants": [
             4.49
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     },
@@ -1855,7 +1874,7 @@
           "campaign": "Well Done Premium",
           "sourceId": "maxima-well-done-premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ],
       "points": [
@@ -1877,7 +1896,242 @@
           "priceVariants": [
             2.99
           ],
-          "checkedAt": "2026-11-27T09:08:07+00:00"
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ]
+    },
+    "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b": {
+      "productId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+      "canonicalProductId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
+      "name": "Biezpiena krēms PRESIDENT vaniļas 400g",
+      "packageSize": "mass:400g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "055d2acbad6137af",
+          "price": 1.69,
+          "regularPrice": 2.49,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 32,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.69,
+          "regularPrice": 2.49,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 32,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaigns": [
+            "Piedāvājumi ar PALDIES karti"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            1.69
+          ],
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ]
+    },
+    "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3": {
+      "productId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+      "canonicalProductId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
+      "name": "Cepšanas komplekts, 1 iepak./3 gab.",
+      "packageSize": "count:3",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "9f6be9fe18af3f58",
+          "price": 9.99,
+          "regularPrice": 21.99,
+          "paldiesPrice": 9.99,
+          "priceWithoutPaldies": 21.99,
+          "requiresPaldies": true,
+          "discountPercent": 55,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 9.99,
+          "regularPrice": 21.99,
+          "paldiesPrice": 9.99,
+          "priceWithoutPaldies": 21.99,
+          "requiresPaldies": true,
+          "discountPercent": 55,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaigns": [
+            "Piedāvājumi ar PALDIES karti"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            9.99
+          ],
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ]
+    },
+    "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45": {
+      "productId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+      "canonicalProductId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
+      "name": "Piena dzēr.MULLERMILCH Prot. banānu 400g",
+      "packageSize": "mass:400g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "905c33d1d396e698",
+          "price": 1.69,
+          "regularPrice": 2.39,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.39,
+          "requiresPaldies": true,
+          "discountPercent": 29,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.69,
+          "regularPrice": 2.39,
+          "paldiesPrice": 1.69,
+          "priceWithoutPaldies": 2.39,
+          "requiresPaldies": true,
+          "discountPercent": 29,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaigns": [
+            "Piedāvājumi ar PALDIES karti"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            1.69
+          ],
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ]
+    },
+    "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a": {
+      "productId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+      "canonicalProductId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
+      "name": "Uzglabāšanas trauks GINGER, 1 gab., divi veidi, 550 ml",
+      "packageSize": "count:1 volume:550ml",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "01683b282a62f67e",
+          "price": 4.49,
+          "regularPrice": 7.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 7.99,
+          "requiresPaldies": true,
+          "discountPercent": 44,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 4.49,
+          "regularPrice": 7.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 7.99,
+          "requiresPaldies": true,
+          "discountPercent": 44,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaigns": [
+            "Piedāvājumi ar PALDIES karti"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            4.49
+          ],
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ]
+    },
+    "birste-jordan-sensitive-target-zobu-291eadabb78d": {
+      "productId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+      "canonicalProductId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
+      "name": "Zobu birste JORDAN Target Sensitive",
+      "packageSize": "",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "aae9232021249ff1",
+          "price": 1.99,
+          "regularPrice": 3.69,
+          "paldiesPrice": 1.99,
+          "priceWithoutPaldies": 3.69,
+          "requiresPaldies": true,
+          "discountPercent": 46,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaign": "Piedāvājumi ar PALDIES karti",
+          "sourceId": "maxima-paldies-featured",
+          "source": "https://www.maxima.lv/paldies",
+          "checkedAt": "2026-11-27T09:09:03+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 3.69,
+          "paldiesPrice": 1.99,
+          "priceWithoutPaldies": 3.69,
+          "requiresPaldies": true,
+          "discountPercent": 46,
+          "validFrom": null,
+          "validUntil": null,
+          "storeFormats": [],
+          "campaigns": [
+            "Piedāvājumi ar PALDIES karti"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            1.99
+          ],
+          "checkedAt": "2026-11-27T09:09:03+00:00"
         }
       ]
     }
