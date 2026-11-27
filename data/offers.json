@@ -5,17 +5,21 @@
     "https://www.maxima.lv/premium",
     "https://www.maxima.lv/paldies"
   ],
-  "updatedAt": "2026-11-27T09:09:03+00:00",
+  "updatedAt": "2026-11-27T09:10:01+00:00",
   "campaigns": [
     {
       "id": "maxima-weekly",
       "name": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "detailSource": null,
+      "detailSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "validFrom": "2026-11-24",
       "validUntil": "2026-11-30",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "verifiedOffers": 13,
       "reviewOffers": 0
     },
@@ -23,11 +27,15 @@
       "id": "maxima-well-done-premium",
       "name": "Well Done Premium",
       "source": "https://www.maxima.lv/premium",
-      "detailSource": null,
+      "detailSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "validFrom": "2026-11-24",
       "validUntil": "2026-11-30",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "verifiedOffers": 20,
       "reviewOffers": 0
     },
@@ -46,7 +54,7 @@
   ],
   "offers": [
     {
-      "offerId": "254b23679b38b1a5",
+      "offerId": "9b6c18e5a32d0ee3",
       "sourceId": "maxima-well-done-premium",
       "productId": "aitas-piena-jogurts-vanilas-wdp-115g",
       "canonicalProductId": "aitas-jogurts-piena-vanilas-wdp-mass-115g-fe1488643b79",
@@ -67,21 +75,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "83a9723f32a4025d",
+      "offerId": "49db8ae317335bbd",
       "sourceId": "maxima-well-done-premium",
       "productId": "aitas-piena-jogurts-wd-premium-115g",
       "canonicalProductId": "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81",
@@ -102,21 +114,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "fedba4c71f494b35",
+      "offerId": "5237282a792418dc",
       "sourceId": "maxima-well-done-premium",
       "productId": "aitas-siers-ar-meln-kiplokiem-wdp-150g",
       "canonicalProductId": "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06",
@@ -137,21 +153,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "a6b0dd697adddc1e",
+      "offerId": "4373303b24091d2d",
       "sourceId": "maxima-well-done-premium",
       "productId": "aitas-siers-ar-trifelem-wdp-150g",
       "canonicalProductId": "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7",
@@ -172,16 +192,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -212,7 +236,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -221,7 +245,7 @@
       }
     },
     {
-      "offerId": "8fdf79c0ff774612",
+      "offerId": "455ee317713846b2",
       "sourceId": "maxima-weekly",
       "productId": "biezpiena-sierins-karums-45-g-dazadi-veidi",
       "canonicalProductId": "biezpiena-dazadi-karums-sierins-veidi-mass-45g-db183f9e3ff9",
@@ -242,21 +266,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "5f02ef03c498a6ba",
+      "offerId": "cf78d9a834e1509e",
       "sourceId": "maxima-weekly",
       "productId": "biezpiens-zemaitijos-1-kg-9-fasets",
       "canonicalProductId": "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f",
@@ -277,21 +305,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "cc1bd7cc9fdb10bb",
+      "offerId": "9304d54fd839bb01",
       "sourceId": "maxima-well-done-premium",
       "productId": "cepts-biezp-siers-ar-garsaugiem-wdp-230g",
       "canonicalProductId": "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e",
@@ -312,21 +344,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "f3aa4294022c6843",
+      "offerId": "f4a5b0b9ff166845",
       "sourceId": "maxima-well-done-premium",
       "productId": "cepts-biezp-siers-ar-medu-cili-wdp-230g",
       "canonicalProductId": "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0",
@@ -347,16 +383,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -387,7 +427,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -396,7 +436,7 @@
       }
     },
     {
-      "offerId": "6e965bb0d2eef48f",
+      "offerId": "b874294c8b50efd6",
       "sourceId": "maxima-weekly",
       "productId": "cukgalas-skinkis-bez-kaula-un-adas-1-kg",
       "canonicalProductId": "adas-bez-cukgalas-kaula-skinkis-un-mass-1000g-cf7917ec29e4",
@@ -417,21 +457,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "ffa469930583c74b",
+      "offerId": "910ce57a59bf3e4d",
       "sourceId": "maxima-weekly",
       "productId": "hurma-persimon-1-kg",
       "canonicalProductId": "hurma-persimon-mass-1000g-360ebea3c672",
@@ -452,21 +496,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "8c848d8a71876821",
+      "offerId": "20c49082697df360",
       "sourceId": "maxima-weekly",
       "productId": "kartupeli-1-kg",
       "canonicalProductId": "kartupeli-mass-1000g-a09e7513fede",
@@ -487,21 +535,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "57ffb3891dd6900f",
+      "offerId": "215e8b0db40d8a22",
       "sourceId": "maxima-well-done-premium",
       "productId": "kazas-siers-mild-wd-premium-skeles-120g",
       "canonicalProductId": "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b",
@@ -522,21 +574,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "9967233c072cab69",
+      "offerId": "83b4efc4ffaa9f6f",
       "sourceId": "maxima-well-done-premium",
       "productId": "kremsiers-wdp-ar-san-marzano-tomatiem90g",
       "canonicalProductId": "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626",
@@ -557,21 +613,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "a65ccae24e45026c",
+      "offerId": "0fb62a54cb08ffec",
       "sourceId": "maxima-well-done-premium",
       "productId": "kupinatais-cedaras-siers-wdp-skeles-160g",
       "canonicalProductId": "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d",
@@ -592,21 +652,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "f331d65dfa74e4d3",
+      "offerId": "39f74c50fbcde8eb",
       "sourceId": "maxima-weekly",
       "productId": "mini-fuet-desu-izlase-well-done-premium-320-g",
       "canonicalProductId": "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e",
@@ -627,21 +691,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "bdbf5301addf2e3b",
+      "offerId": "8cc7197e1b7bdf31",
       "sourceId": "maxima-weekly",
       "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
       "canonicalProductId": "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6",
@@ -662,16 +730,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -702,7 +774,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -711,7 +783,7 @@
       }
     },
     {
-      "offerId": "7566fec0ed4f423c",
+      "offerId": "cb004671275a2724",
       "sourceId": "maxima-well-done-premium",
       "productId": "pipari-ar-sieru-un-kalt-tomat-wdp-210g",
       "canonicalProductId": "ar-kalt-pipari-sieru-tomat-un-wdp-mass-210g-15a89d5c6a0e",
@@ -732,21 +804,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "3220876ce2a40d05",
+      "offerId": "63506cfa898fa6f7",
       "sourceId": "maxima-well-done-premium",
       "productId": "pipari-ar-sieru-un-olivam-wdp-210g",
       "canonicalProductId": "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c",
@@ -767,21 +843,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "93e275d57e868c9f",
+      "offerId": "451ea766b5e8c203",
       "sourceId": "maxima-weekly",
       "productId": "plumju-tomati-1-kg",
       "canonicalProductId": "plumju-tomati-mass-1000g-9a2e38a551a8",
@@ -802,21 +882,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "a333265341e35ec1",
+      "offerId": "4adf42d7869a1f5d",
       "sourceId": "maxima-well-done-premium",
       "productId": "siera-gouda-mature-jersey-wdp-200g",
       "canonicalProductId": "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b",
@@ -837,21 +921,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "db9378a0db581370",
+      "offerId": "214de4a7ef3b250e",
       "sourceId": "maxima-well-done-premium",
       "productId": "siera-uzkoda-wd-premium-truffle-24g",
       "canonicalProductId": "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0",
@@ -872,21 +960,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "e0e728b27b441079",
+      "offerId": "caf243b9bc418a9b",
       "sourceId": "maxima-well-done-premium",
       "productId": "siera-uzkoda-well-done-premium-pesto-24g",
       "canonicalProductId": "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5",
@@ -907,21 +999,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "adb5636f311fff53",
+      "offerId": "7062399298c3fdc9",
       "sourceId": "maxima-well-done-premium",
       "productId": "siera-uzkoda-well-done-premium-pizza-24g",
       "canonicalProductId": "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055",
@@ -942,21 +1038,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "e7c3920a8bbf7442",
+      "offerId": "1a1f18ff4d14fd4f",
       "sourceId": "maxima-weekly",
       "productId": "siers-ar-trifelem-well-done-premium-180-g",
       "canonicalProductId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
@@ -977,21 +1077,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "ec95aec7ce9a2179",
+      "offerId": "bccf7d6ff40070e6",
       "sourceId": "maxima-well-done-premium",
       "productId": "siers-brie-well-done-premium-125g",
       "canonicalProductId": "brie-done-premium-siers-well-mass-125g-0382c4ee22b2",
@@ -1012,21 +1116,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "cbec8c4c96c03e46",
+      "offerId": "b83f4ff044407fa4",
       "sourceId": "maxima-well-done-premium",
       "productId": "siers-burrata-di-bufala-wdp-52-200g",
       "canonicalProductId": "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507",
@@ -1047,21 +1155,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "6e8dc9bf7831aadb",
+      "offerId": "3917f42751b72ef1",
       "sourceId": "maxima-well-done-premium",
       "productId": "siers-camembert-well-done-premium-150g",
       "canonicalProductId": "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb",
@@ -1082,16 +1194,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -1122,7 +1238,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1131,7 +1247,7 @@
       }
     },
     {
-      "offerId": "def61493f3c1d9f5",
+      "offerId": "2e697b0248e7a7eb",
       "sourceId": "maxima-well-done-premium",
       "productId": "siers-cedaras-vintage-wd-premium-200g",
       "canonicalProductId": "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835",
@@ -1152,21 +1268,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "269a62e8e62a6b0c",
+      "offerId": "9c99d6896e50977f",
       "sourceId": "maxima-well-done-premium",
       "productId": "siers-cedaras-vintage-wdp-skeles-160g",
       "canonicalProductId": "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c",
@@ -1187,21 +1307,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:00+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "b358b2fefd0cf06a",
+      "offerId": "8aa3a907d8cf837e",
       "sourceId": "maxima-weekly",
       "productId": "skabais-krejums-valmiera-450-g-20",
       "canonicalProductId": "20-krejums-skabais-valmiera-mass-450g-765f90870efe",
@@ -1222,21 +1346,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "f3ade249e168b215",
+      "offerId": "4ab3ef148874a1b1",
       "sourceId": "maxima-weekly",
       "productId": "smiltis-kaku-tualetei-lovett-5-l-cementejosas",
       "canonicalProductId": "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44",
@@ -1257,21 +1385,25 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
     {
-      "offerId": "1dd445895115a8fc",
+      "offerId": "d3881d8b04bbffd1",
       "sourceId": "maxima-weekly",
       "productId": "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu",
       "canonicalProductId": "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858",
@@ -1292,16 +1424,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -1332,7 +1468,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1341,7 +1477,7 @@
       }
     },
     {
-      "offerId": "139326b0f4a136c4",
+      "offerId": "05f40a6a1893e171",
       "sourceId": "maxima-weekly",
       "productId": "varaviksnes-forele-1-kg-kidata",
       "canonicalProductId": "forele-kidata-varaviksnes-mass-1000g-e7e702df1575",
@@ -1362,16 +1498,20 @@
       "validUntil": "2026-11-30",
       "city": null,
       "store": "Maxima",
-      "storeFormats": [],
-      "storeScopeSource": null,
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ],
+      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T09:09:02+00:00",
+      "checkedAt": "2026-11-27T09:09:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
-        "storeScopeStatus": "unknown",
+        "storeScopeStatus": "verified",
         "issues": []
       }
     },
@@ -1402,7 +1542,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T09:09:03+00:00",
+      "checkedAt": "2026-11-27T09:10:01+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1425,7 +1565,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//aitas-piena-jogurts-vanilas-wdp-115g-00369-1124122538.png?1795515938",
       "offers": [
         {
-          "offerId": "254b23679b38b1a5",
+          "offerId": "9b6c18e5a32d0ee3",
           "sourceId": "maxima-well-done-premium",
           "productId": "aitas-piena-jogurts-vanilas-wdp-115g",
           "canonicalProductId": "aitas-jogurts-piena-vanilas-wdp-mass-115g-fe1488643b79",
@@ -1446,16 +1586,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1466,7 +1610,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81",
@@ -1481,7 +1629,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//aitas-piena-jogurts-wd-premium-115g-00368-1124122538.png?1795515938",
       "offers": [
         {
-          "offerId": "83a9723f32a4025d",
+          "offerId": "49db8ae317335bbd",
           "sourceId": "maxima-well-done-premium",
           "productId": "aitas-piena-jogurts-wd-premium-115g",
           "canonicalProductId": "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81",
@@ -1502,16 +1650,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1522,7 +1674,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06",
@@ -1537,7 +1693,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//aitas-siers-ar-meln-kiplokiem-wdp-150g-00377-1109160239.png?1794232959",
       "offers": [
         {
-          "offerId": "fedba4c71f494b35",
+          "offerId": "5237282a792418dc",
           "sourceId": "maxima-well-done-premium",
           "productId": "aitas-siers-ar-meln-kiplokiem-wdp-150g",
           "canonicalProductId": "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06",
@@ -1558,16 +1714,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1578,7 +1738,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7",
@@ -1593,7 +1757,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//aitas-siers-ar-trifelem-wdp-150g-00376-1109160239.png?1794232959",
       "offers": [
         {
-          "offerId": "a6b0dd697adddc1e",
+          "offerId": "4373303b24091d2d",
           "sourceId": "maxima-well-done-premium",
           "productId": "aitas-siers-ar-trifelem-wdp-150g",
           "canonicalProductId": "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7",
@@ -1614,16 +1778,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1634,7 +1802,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "biezpiena-krems-president-vanilas-mass-400g-42de50fb9a2b",
@@ -1675,7 +1847,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -1705,7 +1877,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//biezpiena-sierins-karums-00006-1120145122.png?1795179082",
       "offers": [
         {
-          "offerId": "8fdf79c0ff774612",
+          "offerId": "455ee317713846b2",
           "sourceId": "maxima-weekly",
           "productId": "biezpiena-sierins-karums-45-g-dazadi-veidi",
           "canonicalProductId": "biezpiena-dazadi-karums-sierins-veidi-mass-45g-db183f9e3ff9",
@@ -1726,16 +1898,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1746,7 +1922,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f",
@@ -1761,7 +1941,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//biezpiens-zemaitijos-00003-1120145154.png?1795179114",
       "offers": [
         {
-          "offerId": "5f02ef03c498a6ba",
+          "offerId": "cf78d9a834e1509e",
           "sourceId": "maxima-weekly",
           "productId": "biezpiens-zemaitijos-1-kg-9-fasets",
           "canonicalProductId": "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f",
@@ -1782,16 +1962,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1802,7 +1986,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e",
@@ -1817,7 +2005,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//cepts-biezp-siers-ar-garsaugiem-wdp-230g-00356-1109160239.png?1794232959",
       "offers": [
         {
-          "offerId": "cc1bd7cc9fdb10bb",
+          "offerId": "9304d54fd839bb01",
           "sourceId": "maxima-well-done-premium",
           "productId": "cepts-biezp-siers-ar-garsaugiem-wdp-230g",
           "canonicalProductId": "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e",
@@ -1838,16 +2026,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1858,7 +2050,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0",
@@ -1873,7 +2069,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//cepts-biezp-siers-ar-medu-cili-wdp-230g-00355-1109160239.png?1794232959",
       "offers": [
         {
-          "offerId": "f3aa4294022c6843",
+          "offerId": "f4a5b0b9ff166845",
           "sourceId": "maxima-well-done-premium",
           "productId": "cepts-biezp-siers-ar-medu-cili-wdp-230g",
           "canonicalProductId": "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0",
@@ -1894,16 +2090,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -1914,7 +2114,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "1-cepsanas-iepak-komplekts-count-3-f948e1d42aa3",
@@ -1955,7 +2159,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -1985,7 +2189,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//cukgalas-skinkis-bez-kaula-un-adas-00004-1120145154.png?1795179114",
       "offers": [
         {
-          "offerId": "6e965bb0d2eef48f",
+          "offerId": "b874294c8b50efd6",
           "sourceId": "maxima-weekly",
           "productId": "cukgalas-skinkis-bez-kaula-un-adas-1-kg",
           "canonicalProductId": "adas-bez-cukgalas-kaula-skinkis-un-mass-1000g-cf7917ec29e4",
@@ -2006,16 +2210,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2026,7 +2234,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "hurma-persimon-mass-1000g-360ebea3c672",
@@ -2041,7 +2253,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//hurma-persimon-00012-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "ffa469930583c74b",
+          "offerId": "910ce57a59bf3e4d",
           "sourceId": "maxima-weekly",
           "productId": "hurma-persimon-1-kg",
           "canonicalProductId": "hurma-persimon-mass-1000g-360ebea3c672",
@@ -2062,16 +2274,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2082,7 +2298,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "kartupeli-mass-1000g-a09e7513fede",
@@ -2097,7 +2317,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//kartupeli-00010-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "8c848d8a71876821",
+          "offerId": "20c49082697df360",
           "sourceId": "maxima-weekly",
           "productId": "kartupeli-1-kg",
           "canonicalProductId": "kartupeli-mass-1000g-a09e7513fede",
@@ -2118,16 +2338,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2138,7 +2362,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b",
@@ -2153,7 +2381,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//kazas-siers-mild-wd-premium-skeles-120g-00226-1109163701.png?1794235021",
       "offers": [
         {
-          "offerId": "57ffb3891dd6900f",
+          "offerId": "215e8b0db40d8a22",
           "sourceId": "maxima-well-done-premium",
           "productId": "kazas-siers-mild-wd-premium-skeles-120g",
           "canonicalProductId": "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b",
@@ -2174,16 +2402,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2194,7 +2426,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626",
@@ -2209,7 +2445,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//kremsiers-wdp-ar-san-marzano-tomatiem90g-00357-1109160231.png?1794232951",
       "offers": [
         {
-          "offerId": "9967233c072cab69",
+          "offerId": "83b4efc4ffaa9f6f",
           "sourceId": "maxima-well-done-premium",
           "productId": "kremsiers-wdp-ar-san-marzano-tomatiem90g",
           "canonicalProductId": "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626",
@@ -2230,16 +2466,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2250,7 +2490,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d",
@@ -2265,7 +2509,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//kupinatais-cedaras-siers-wdp-skeles-160g-00197-1124122038.png?1795515638",
       "offers": [
         {
-          "offerId": "a65ccae24e45026c",
+          "offerId": "0fb62a54cb08ffec",
           "sourceId": "maxima-well-done-premium",
           "productId": "kupinatais-cedaras-siers-wdp-skeles-160g",
           "canonicalProductId": "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d",
@@ -2286,16 +2530,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2306,7 +2554,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e",
@@ -2321,7 +2573,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//mini-fuet-desu-izlase-well-done-premium-00015-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "f331d65dfa74e4d3",
+          "offerId": "39f74c50fbcde8eb",
           "sourceId": "maxima-weekly",
           "productId": "mini-fuet-desu-izlase-well-done-premium-320-g",
           "canonicalProductId": "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e",
@@ -2342,16 +2594,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2362,7 +2618,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6",
@@ -2377,7 +2637,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//olivas-pilditas-ar-apelsiniem-well-done-premium-00013-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "bdbf5301addf2e3b",
+          "offerId": "8cc7197e1b7bdf31",
           "sourceId": "maxima-weekly",
           "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
           "canonicalProductId": "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6",
@@ -2398,16 +2658,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2418,7 +2682,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "bananu-dzer-mullermilch-piena-prot-mass-400g-f36933cc2d45",
@@ -2459,7 +2727,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -2489,7 +2757,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//pipari-ar-sieru-un-kalt-tomat-wdp-210g-00280-1109160231.png?1794232951",
       "offers": [
         {
-          "offerId": "7566fec0ed4f423c",
+          "offerId": "cb004671275a2724",
           "sourceId": "maxima-well-done-premium",
           "productId": "pipari-ar-sieru-un-kalt-tomat-wdp-210g",
           "canonicalProductId": "ar-kalt-pipari-sieru-tomat-un-wdp-mass-210g-15a89d5c6a0e",
@@ -2510,16 +2778,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2530,7 +2802,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c",
@@ -2545,7 +2821,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//pipari-ar-sieru-un-olivam-wdp-210g-00279-1109160231.png?1794232951",
       "offers": [
         {
-          "offerId": "3220876ce2a40d05",
+          "offerId": "63506cfa898fa6f7",
           "sourceId": "maxima-well-done-premium",
           "productId": "pipari-ar-sieru-un-olivam-wdp-210g",
           "canonicalProductId": "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c",
@@ -2566,16 +2842,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2586,7 +2866,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "plumju-tomati-mass-1000g-9a2e38a551a8",
@@ -2601,7 +2885,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//plumju-tomati-00011-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "93e275d57e868c9f",
+          "offerId": "451ea766b5e8c203",
           "sourceId": "maxima-weekly",
           "productId": "plumju-tomati-1-kg",
           "canonicalProductId": "plumju-tomati-mass-1000g-9a2e38a551a8",
@@ -2622,16 +2906,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2642,7 +2930,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b",
@@ -2657,7 +2949,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siera-gouda-mature-jersey-wdp-200g-00262-1109160150.png?1794232910",
       "offers": [
         {
-          "offerId": "a333265341e35ec1",
+          "offerId": "4adf42d7869a1f5d",
           "sourceId": "maxima-well-done-premium",
           "productId": "siera-gouda-mature-jersey-wdp-200g",
           "canonicalProductId": "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b",
@@ -2678,16 +2970,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2698,7 +2994,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0",
@@ -2713,7 +3013,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siera-uzkoda-wd-premium-truffle-24g-00239-1109163701.png?1794235021",
       "offers": [
         {
-          "offerId": "db9378a0db581370",
+          "offerId": "214de4a7ef3b250e",
           "sourceId": "maxima-well-done-premium",
           "productId": "siera-uzkoda-wd-premium-truffle-24g",
           "canonicalProductId": "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0",
@@ -2734,16 +3034,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2754,7 +3058,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5",
@@ -2769,7 +3077,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siera-uzkoda-well-done-premium-pesto-24g-00238-1110161606.png?1794320166",
       "offers": [
         {
-          "offerId": "e0e728b27b441079",
+          "offerId": "caf243b9bc418a9b",
           "sourceId": "maxima-well-done-premium",
           "productId": "siera-uzkoda-well-done-premium-pesto-24g",
           "canonicalProductId": "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5",
@@ -2790,16 +3098,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2810,7 +3122,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055",
@@ -2825,7 +3141,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siera-uzkoda-well-done-premium-pizza-24g-00237-1110161606.png?1794320166",
       "offers": [
         {
-          "offerId": "adb5636f311fff53",
+          "offerId": "7062399298c3fdc9",
           "sourceId": "maxima-well-done-premium",
           "productId": "siera-uzkoda-well-done-premium-pizza-24g",
           "canonicalProductId": "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055",
@@ -2846,16 +3162,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -2866,7 +3186,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
@@ -2882,7 +3206,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//siers-ar-trifelem-well-done-premium-00014-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "e7c3920a8bbf7442",
+          "offerId": "1a1f18ff4d14fd4f",
           "sourceId": "maxima-weekly",
           "productId": "siers-ar-trifelem-well-done-premium-180-g",
           "canonicalProductId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
@@ -2903,16 +3227,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         },
@@ -2943,7 +3271,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -2959,7 +3287,11 @@
         "Iknedēļas piedāvājums",
         "Piedāvājumi ar PALDIES karti"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "brie-done-premium-siers-well-mass-125g-0382c4ee22b2",
@@ -2974,7 +3306,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-brie-well-done-premium-125g-00323-1109163816.png?1794235096",
       "offers": [
         {
-          "offerId": "ec95aec7ce9a2179",
+          "offerId": "bccf7d6ff40070e6",
           "sourceId": "maxima-well-done-premium",
           "productId": "siers-brie-well-done-premium-125g",
           "canonicalProductId": "brie-done-premium-siers-well-mass-125g-0382c4ee22b2",
@@ -2995,16 +3327,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3015,7 +3351,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507",
@@ -3030,7 +3370,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-burrata-di-bufala-wdp-52-200g-00200-1109160150.png?1794232910",
       "offers": [
         {
-          "offerId": "cbec8c4c96c03e46",
+          "offerId": "b83f4ff044407fa4",
           "sourceId": "maxima-well-done-premium",
           "productId": "siers-burrata-di-bufala-wdp-52-200g",
           "canonicalProductId": "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507",
@@ -3051,16 +3391,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3071,7 +3415,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb",
@@ -3086,7 +3434,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-camembert-well-done-premium-150g-00259-1109163701.png?1794235021",
       "offers": [
         {
-          "offerId": "6e8dc9bf7831aadb",
+          "offerId": "3917f42751b72ef1",
           "sourceId": "maxima-well-done-premium",
           "productId": "siers-camembert-well-done-premium-150g",
           "canonicalProductId": "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb",
@@ -3107,16 +3455,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3127,7 +3479,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835",
@@ -3142,7 +3498,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-cedaras-vintage-wd-premium-200g-00193-1109160150.png?1794232910",
       "offers": [
         {
-          "offerId": "def61493f3c1d9f5",
+          "offerId": "2e697b0248e7a7eb",
           "sourceId": "maxima-well-done-premium",
           "productId": "siers-cedaras-vintage-wd-premium-200g",
           "canonicalProductId": "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835",
@@ -3163,16 +3519,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3183,7 +3543,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c",
@@ -3198,7 +3562,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/10/30//siers-cedaras-vintage-wdp-skeles-160g-00198-1109163656.png?1794235016",
       "offers": [
         {
-          "offerId": "269a62e8e62a6b0c",
+          "offerId": "9c99d6896e50977f",
           "sourceId": "maxima-well-done-premium",
           "productId": "siers-cedaras-vintage-wdp-skeles-160g",
           "canonicalProductId": "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c",
@@ -3219,16 +3583,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:00+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3239,7 +3607,11 @@
       "campaigns": [
         "Well Done Premium"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "20-krejums-skabais-valmiera-mass-450g-765f90870efe",
@@ -3254,7 +3626,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//skabais-krejums-valmiera-00002-1120145154.png?1795179114",
       "offers": [
         {
-          "offerId": "b358b2fefd0cf06a",
+          "offerId": "8aa3a907d8cf837e",
           "sourceId": "maxima-weekly",
           "productId": "skabais-krejums-valmiera-450-g-20",
           "canonicalProductId": "20-krejums-skabais-valmiera-mass-450g-765f90870efe",
@@ -3275,16 +3647,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3295,7 +3671,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44",
@@ -3310,7 +3690,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//smiltis-kaku-tualetei-lovett-00008-1120145123.png?1795179083",
       "offers": [
         {
-          "offerId": "f3ade249e168b215",
+          "offerId": "4ab3ef148874a1b1",
           "sourceId": "maxima-weekly",
           "productId": "smiltis-kaku-tualetei-lovett-5-l-cementejosas",
           "canonicalProductId": "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44",
@@ -3331,16 +3711,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3351,7 +3735,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858",
@@ -3366,7 +3754,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//sala-uzkoda-pringles-00007-1120145122.png?1795179082",
       "offers": [
         {
-          "offerId": "1dd445895115a8fc",
+          "offerId": "d3881d8b04bbffd1",
           "sourceId": "maxima-weekly",
           "productId": "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu",
           "canonicalProductId": "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858",
@@ -3387,16 +3775,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3407,7 +3799,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "divi-ginger-trauks-uzglabasanas-veidi-count-1-volume-550ml-2a71388ca08a",
@@ -3448,7 +3844,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -3478,7 +3874,7 @@
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//varaviksnes-forele-00005-1120145154.png?1795179114",
       "offers": [
         {
-          "offerId": "139326b0f4a136c4",
+          "offerId": "05f40a6a1893e171",
           "sourceId": "maxima-weekly",
           "productId": "varaviksnes-forele-1-kg-kidata",
           "canonicalProductId": "forele-kidata-varaviksnes-mass-1000g-e7e702df1575",
@@ -3499,16 +3895,20 @@
           "validUntil": "2026-11-30",
           "city": null,
           "store": "Maxima",
-          "storeFormats": [],
-          "storeScopeSource": null,
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T09:09:02+00:00",
+          "checkedAt": "2026-11-27T09:09:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
-            "storeScopeStatus": "unknown",
+            "storeScopeStatus": "verified",
             "issues": []
           }
         }
@@ -3519,7 +3919,11 @@
       "campaigns": [
         "Iknedēļas piedāvājums"
       ],
-      "storeFormats": []
+      "storeFormats": [
+        "X",
+        "XX",
+        "XXX"
+      ]
     },
     {
       "productId": "birste-jordan-sensitive-target-zobu-291eadabb78d",
@@ -3560,7 +3964,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T09:09:03+00:00",
+          "checkedAt": "2026-11-27T09:10:01+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
