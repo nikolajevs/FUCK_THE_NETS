@@ -1006,6 +1006,14 @@ def _clean_pdf_product_name(text: str) -> str:
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
     value = re.sub(r"\s+", " ", value).strip(" -;,:.")
+    # Price tokens may be removed above, exposing a detached unit label at the end.
+    value = re.sub(
+        r"\s*[;(]?\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)\s*[)]?$",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
+
     # Brochure layout can leak a neighbouring product's size label into the
     # start of the actual title (for example "izmērs 15+ kg Putekļsūcējs...").
     value = re.sub(
