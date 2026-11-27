@@ -70,6 +70,31 @@ IGNORED_PROMOTIONS = {
     "adventes kalendāriem",
     "rotaļlietām (izņemot konstruktoriem lego)",
 }
+LATVIAN_DIACRITICS = "āčēģīķļņšūž"
+CP1251_UTF8_MOJIBAKE_MARKERS = tuple(
+    character.encode("utf-8").decode("cp1251")
+    for character in LATVIAN_DIACRITICS + LATVIAN_DIACRITICS.upper()
+)
+CYRILLIC_RE = re.compile(r"[А-Яа-яЁё]")
+
+
+def repair_cp1251_utf8_mojibake(text: str) -> str:
+    """Repair UTF-8 Latvian letters that were mistakenly decoded as CP1251."""
+    if not any(marker in text for marker in CP1251_UTF8_MOJIBAKE_MARKERS):
+        return text
+    try:
+        repaired = text.encode("cp1251").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+
+    # Require a real Latvian diacritic and fewer Cyrillic characters after the
+    # reversible conversion, so ordinary Cyrillic product names stay intact.
+    if (
+        not any(character in repaired.casefold() for character in LATVIAN_DIACRITICS)
+        or len(CYRILLIC_RE.findall(repaired)) >= len(CYRILLIC_RE.findall(text))
+    ):
+        return text
+    return repaired
 
 
 def product_id(name: str, unit: str | None = None) -> str:
@@ -694,7 +719,7 @@ def parse_campaign(
     reviews_by_id: dict[str, dict] = {}
 
     for img in soup.find_all("img"):
-        name = (img.get("alt") or "").strip()
+        name = repair_cp1251_utf8_mojibake((img.get("alt") or "").strip())
         if len(name) < 4 or name.casefold() in IGNORED_NAMES | IGNORED_PROMOTIONS:
             continue
 
@@ -823,6 +848,7 @@ def parse_paldies_card(
     if not name:
         name = f"Maxima PALDIES product {source_product_id or 'unknown'}"
         issues.append("product_name_not_found")
+    name = repair_cp1251_utf8_mojibake(name)
     if not source_product_id:
         issues.append("source_product_id_missing")
 
@@ -1337,7 +1363,7 @@ def _clean_pdf_product_name(text: str) -> str:
         flags=re.IGNORECASE,
     )
     value = re.sub(r"^[•·€\s]+", "", value)
-    return value
+    return repair_cp1251_utf8_mojibake(value)
 
 def _pdf_cell_starts_with_price(text: str) -> bool:
     """Detect PDF cells where a price was extracted before the product title."""
@@ -2389,9 +2415,14 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
         })
 
     for old_key, old_product in old_products.items():
-        name = old_product.get("name", "")
+        old_name = old_product.get("name", "")
+        name = repair_cp1251_utf8_mojibake(old_name)
         identity = product_identity(name)
-        canonical_id = old_product.get("canonicalProductId") or identity["canonicalProductId"]
+        canonical_id = (
+            identity["canonicalProductId"]
+            if name != old_name
+            else old_product.get("canonicalProductId") or identity["canonicalProductId"]
+        )
         entry = get_entry(canonical_id, name, identity["packageSize"])
         if len(name) > len(entry["name"]):
             entry["name"] = name
