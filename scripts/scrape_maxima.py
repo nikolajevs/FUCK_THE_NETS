@@ -962,6 +962,10 @@ def _is_pdf_product_title_seed(text: str) -> bool:
 
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
+    starts_with_price = bool(re.match(
+        r"^\d{1,3}(?:[,.]\s*\d{2}|\s+\d{2})(?:\s*€)?(?:\s+|$)",
+        value,
+    ))
     # PDF extraction may retain standalone card bullets inside the clipped cell.
     value = re.sub(r"(?<!\w)[•·▪●◦]+(?!\w)", " ", value)
     value = " ".join(value.split())
@@ -1005,6 +1009,11 @@ def _clean_pdf_product_name(text: str) -> str:
     )
     value = re.sub(r"\d{1,3}[,.]\d{2}\s*€?", " ", value)
     value = re.sub(r"(?<!\d)\d{1,3}\s+\d{2}(?!\d)", " ", value)
+    # When a leading shelf-price token is removed, PDF layout can leave its
+    # final zero immediately before the product title (for example
+    # "0,45 0 Kartupeļi 1 kg"). Remove only that orphaned leading zero.
+    if starts_with_price:
+        value = re.sub(r"^0\s+(?=[A-Za-zĀČĒĢĪĶĻŅŌŖŠŪŽ])", "", value)
     value = re.sub(r"-\s*\d{1,2}\s*%", " ", value)
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
