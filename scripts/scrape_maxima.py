@@ -936,14 +936,16 @@ def _is_pdf_product_title_seed(text: str) -> bool:
 
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
+    # Brochure card numbers are often extracted as if they were part of the SKU.
     value = re.sub(
-        r"^\d{1,2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\\.?|iepak\\.?)\\b)",
+        r"^\d{1,2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
         "",
         value,
         flags=re.IGNORECASE,
     )
+    # A trailing bare number after the package size is often a clipped price token.
     value = re.sub(
-        r"((?:\d+(?:[,.]\d+)?\s*(?:kg|g|ml|l|gab\\.?)))\s+\d{1,2}$",
+        r"(\b\d+(?:[,.]\d+)?\s*(?:kg|g|ml|l|gab\.?))\s+\d{1,2}$",
         r"\1",
         value,
         flags=re.IGNORECASE,
@@ -965,7 +967,6 @@ def _clean_pdf_product_name(text: str) -> str:
     value = value.replace("*", " ")
     value = re.sub(r"\s+", " ", value).strip(" -;,:.")
     return value
-
 
 def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | None, list[str]]:
     prices = prices_from(text)
