@@ -68,6 +68,16 @@ def inspect_all_paldies_offers(session: requests.Session) -> None:
     names = [(image.get("alt") or "").strip() for image in product_images]
     unique_names = list(dict.fromkeys(names))
     print(f"product_images={len(product_images)} unique_alt_names={len(unique_names)}")
+    print("counts=", {
+        "offer_item": len(soup.select(".offer-item")),
+        "item": len(soup.select(".item")),
+        "swiper_slide": len(soup.select(".swiper-slide")),
+        "offer_card": len(soup.select(".offer-card")),
+        "product": len(soup.select("[data-product-id]")),
+    })
+    for node in soup.select(".swiper-slide, .offer-item, .item")[:4]:
+        print("CARD_SAMPLE", node.name, node.get("class"), node.get_text(" ", strip=True)[:350])
+    print("pagination_text=", [node.get_text(" ", strip=True) for node in soup.select("button, a") if any(k in node.get_text(" ", strip=True).casefold() for k in ("next", "atpaka", "nākam"))][:12])
     print("first_names=", unique_names[:12])
     print("last_names=", unique_names[-5:])
     if not product_images:
@@ -113,6 +123,21 @@ def describe_page(url: str, session: requests.Session) -> None:
                                k: v for k, v in anchor.attrs.items() if k.startswith("data-")
                            }})
 
+    print("-- FILTER FORM DETAILS --")
+    filter_form = soup.find(id="sales-filters-form")
+    if filter_form:
+        for field in filter_form.find_all(["input", "select", "button"]):
+            if not isinstance(field, Tag):
+                continue
+            parent = field.parent
+            print(" FILTER_FIELD", {
+                "tag": field.name, "type": field.get("type"), "name": field.get("name"),
+                "value": field.get("value"), "id": field.get("id"), "class": field.get("class"),
+                "parent_text": parent.get_text(" ", strip=True)[:180] if isinstance(parent, Tag) else "",
+                "parent_class": parent.get("class") if isinstance(parent, Tag) else None,
+            })
+        for node in filter_form.select("#ajax-load-more-url, #totalProducts, #filter_limit"):
+            print(" HIDDEN_OR_LIMIT", node.name, node.attrs)
     print("-- FILTER CONTROLS --")
     for field in soup.find_all(["input", "select", "button"]):
         if not isinstance(field, Tag):
@@ -137,7 +162,10 @@ def describe_page(url: str, session: requests.Session) -> None:
             continue
         inline = script.string or script.get_text()
         if inline and re.search(r"paldies|offer|product|ajax|filter|pagination", inline, re.I):
-            print(" INLINE_SCRIPT", re.sub(r"\s+", " ", inline)[:1800])
+            if "loadAllOffers" in inline:
+                match = re.search(r"function loadAllOffers\s*\(\).*?(?=\$\( document \)|$)", inline, re.S)
+                snippet = match.group(0) if match else inline
+                print(" INLINE_LOAD_ALL", re.sub(r"\s+", " ", snippet)[:7000])
 
     print("-- PAGE COUNT / DATA ATTRIBUTES --")
     for node in soup.find_all(True):
