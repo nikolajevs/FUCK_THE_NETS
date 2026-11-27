@@ -340,6 +340,23 @@ python3 -m http.server 8000
 
 Open http://localhost:8000
 
+## Admin panel
+
+Open `http://localhost:8000/admin.html` to review ambiguous offers and inspect the
+Gemini / Qwen review statistics. Gemini's daily usage comes from
+`data/gemini-usage.json` (the configured default budget is 200 requests/day;
+the counter uses UTC dates). Qwen runs locally and has no API request quota, so
+the panel reports suggestions saved in the feeds and the remaining Maxima/Spar
+review queue instead.
+
+The site is static, so edits are stored in the browser's local IndexedDB draft
+store. Use **Download changes** to export one edited feed as JSON or several as a
+ZIP, then replace the matching files in `data/` and commit them. Imported feeds
+can also be edited when the panel is opened without a local server. Approving a
+card moves it from `reviewOffers` to `offers`; rejecting it archives it under
+`rejectedOffers` in the exported feed. After publishing exported data, use
+**Reset** to clear the browser's cached drafts and load the updated feed files.
+
 ## Tests
 
 ```bash

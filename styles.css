@@ -24,6 +24,8 @@ button, select { cursor: pointer; }
 
 .topbar { height: 76px; background: rgba(255,255,255,.94); border-bottom: 1px solid #e9eee9; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+.admin-entry { display: inline-flex; align-items: center; gap: 5px; padding: 8px 11px; border: 1px solid #e3eae4; border-radius: 8px; background: #fff; color: #376d4d; font-size: 10px; font-weight: 700; text-decoration: none; }
+.admin-entry:hover { border-color: #bad2c0; background: #f6faf7; }
 .brand { display: inline-flex; gap: 11px; align-items: center; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 17px; letter-spacing: -.4px; }
 .brand-mark { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 13px; background: var(--green); color: #fff; font-size: 22px; box-shadow: 0 5px 12px #176b4625; }
 .brand-name { line-height: 1.05; }
