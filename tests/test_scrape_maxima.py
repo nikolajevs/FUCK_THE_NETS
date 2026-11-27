@@ -330,7 +330,7 @@ class MaximaScraperTests(unittest.TestCase):
         page = document.new_page(width=600, height=800)
         page.insert_textbox(
             fitz.Rect(25, 190, 300, 275),
-            "Provansas majonēze FRANCIS 250 g\\n5 16 /kg",
+            "Provansas majonēze FRANCIS 250 g\n5 16 /kg",
         )
         payload = document.tobytes()
         document.close()
@@ -505,11 +505,11 @@ class MaximaScraperTests(unittest.TestCase):
         page = document.new_page(width=600, height=800)
         page.insert_textbox(
             fitz.Rect(25, 190, 270, 275),
-            "6 izmērs 15+ kg Putekļsūcējs robots ROBOROCK Q7 BF 1 gab., melns\\n139 99 229 99",
+            "6 izmērs 15+ kg Putekļsūcējs robots ROBOROCK Q7 BF 1 gab., melns\n139 99 229 99",
         )
         page.insert_textbox(
             fitz.Rect(320, 190, 580, 275),
-            "Matu veidotājs vai taisnotājs DYSON 1 gab.\\n369 99 499 99 no",
+            "Matu veidotājs vai taisnotājs DYSON 1 gab.\n369 99 499 99 no",
         )
         payload = document.tobytes()
         document.close()
