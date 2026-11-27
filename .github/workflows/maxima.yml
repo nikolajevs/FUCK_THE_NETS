@@ -22,17 +22,13 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install scraper dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 pymupdf
       - name: Validate scraper syntax
         run: python -m py_compile scripts/scrape_maxima.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
       - name: Validate frontend JavaScript
         run: node --check app.js
-      - name: Install PDF inspection dependency
-        run: pip install pymupdf
-      - name: Inspect active brochure PDFs
-        run: python scripts/inspect_brochures.py
       - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
       - name: Commit refreshed data
