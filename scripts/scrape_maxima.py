@@ -53,7 +53,8 @@ CAMPAIGNS = [
 ]
 
 PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
-MULTI_BUY_RE = re.compile(r"\\b\\d+\\s*\\+\\s*\\d+\\b|\\b(?:pērkot|iegādājoties|saņemot)\\b", re.IGNORECASE)\nDISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
+MULTI_BUY_RE = re.compile(r"\b\d+\s*\+\s*\d+\b|\b(?:pērkot|iegādājoties|saņemot)\b", re.IGNORECASE)
+DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
 MONTHS = {
     "janvāris": 1, "janv": 1, "februāris": 2, "febr": 2,
     "marts": 3, "mar": 3, "aprīlis": 4, "apr": 4,
@@ -394,11 +395,11 @@ def price_quality(
 def _has_explicit_shelf_price(text: str, price: float) -> bool:
     """Check whether the parsed shelf price is explicitly followed by € (not €/unit)."""
     for match in re.finditer(
-        r"(?<!\\d)(\\d{1,3}[,.]\\s*\\d{2})\\s*€(?!\\s*/)",
+        r"(?<!\d)(\d{1,3}[,.]\s*\d{2})\s*€(?!\s*/)",
         text,
         flags=re.IGNORECASE,
     ):
-        value = float(re.sub(r"\\s+", "", match.group(1)).replace(",", "."))
+        value = float(re.sub(r"\s+", "", match.group(1)).replace(",", "."))
         if abs(value - price) < 0.005:
             return True
     return False
