@@ -975,7 +975,7 @@ def _clean_pdf_product_name(text: str) -> str:
     # Brochure layout can leak a neighbouring product's size label into the
     # start of the actual title (for example "izmērs 15+ kg Putekļsūcējs...").
     value = re.sub(
-        r"^izm(?:ērs|ers)\s+\d{1,2}\+?\s*(?:kg|g|cm|mm)\s+",
+        r"^izm.{1,2}rs\s+\d{1,2}\+?\s*(?:kg|g|cm|mm)\s+",
         "",
         value,
         flags=re.IGNORECASE,
