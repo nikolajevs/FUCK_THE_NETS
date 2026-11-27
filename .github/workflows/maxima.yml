@@ -5,11 +5,6 @@ on:
   schedule:
     - cron: "17 4 * * *"
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 concurrency:
   group: maxima-pages
   cancel-in-progress: true
@@ -17,6 +12,8 @@ concurrency:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,31 +21,43 @@ jobs:
           python-version: "3.12"
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4
-      - name: Collect current offers
+      - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/offers.json
+          git add data/offers.json data/price-history.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima offers"
+            git commit -m "Update Maxima offers and price history"
             git push
           fi
 
-  deploy:
+  build-pages:
     needs: update-data
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: main
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
+  deploy:
+    needs: build-pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
