@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5f2">
+  <meta name="description" content="Панель модерации и статистика источников данных Atlaides Latvijā.">
+  <title>Администрирование — Atlaides Latvijā</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a class="admin-brand" href="./" aria-label="На главную">
+        <span class="brand-mark">%</span>
+        <span>Atlaides<span class="brand-sub">УПРАВЛЕНИЕ</span></span>
+      </a>
+
+      <div class="sidebar-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="side-nav" aria-label="Разделы панели">
+        <button class="nav-link is-active" type="button" data-view="overview"><span class="nav-icon">▦</span>Обзор</button>
+        <button class="nav-link" type="button" data-view="moderation"><span class="nav-icon">✓</span>Модерация<span class="nav-badge" id="navPending">—</span></button>
+      </nav>
+
+      <div class="sidebar-label feeds-label">ИСТОЧНИКИ</div>
+      <div class="feed-nav" id="feedNav" aria-label="Файлы данных"></div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note-icon">i</div>
+        <p>Черновики сохраняются в этом браузере. Чтобы опубликовать изменения, скачайте JSON и обновите файлы в <code>data/</code>.</p>
+        <a href="./">Открыть витрину <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Atlaides Latvijā</span><span class="crumb-slash">/</span><strong id="crumbCurrent">Обзор</strong></div>
+        <div class="top-actions">
+          <span class="sync-state" id="syncState"><span class="sync-dot"></span>Подключение к данным…</span>
+          <button class="button button-secondary" id="importButton" type="button"><span aria-hidden="true">↑</span> Импорт JSON</button>
+          <input id="fileInput" type="file" accept=".json,application/json" multiple hidden>
+          <button class="button button-primary" id="exportButton" type="button" disabled><span aria-hidden="true">↓</span> Скачать изменения</button>
+          <button class="button button-reset" id="clearDraftsButton" type="button" hidden>Сбросить</button>
+        </div>
+      </header>
+
+      <section class="view is-visible" id="overviewView" data-panel="overview">
+        <div class="page-heading">
+          <div><p class="eyebrow">ПАНЕЛЬ УПРАВЛЕНИЯ</p><h1>Обзор данных</h1><p class="heading-subtitle">Состояние предложений, проверок и автоматического разбора.</p></div>
+          <div class="date-chip"><span class="calendar-icon">▦</span><span id="todayLabel">Сегодня</span></div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card metric-pending"><div class="metric-top"><span class="metric-icon">◷</span><span class="metric-tag tag-amber">Требуют внимания</span></div><div class="metric-value" id="pendingMetric">—</div><div class="metric-label">записей в очереди</div><button class="metric-link" type="button" data-open-view="moderation">Перейти к модерации <span>→</span></button></article>
+          <article class="metric-card"><div class="metric-top"><span class="metric-icon icon-green">✓</span><span class="metric-tag tag-green">Активны</span></div><div class="metric-value" id="offersMetric">—</div><div class="metric-label">проверенных предложений</div><div class="metric-foot" id="feedsMetric">из — загруженных источников</div></article>
+          <article class="metric-card"><div class="metric-top"><span class="metric-icon icon-blue">✎</span><span class="metric-tag tag-blue">Черновики</span></div><div class="metric-value" id="draftsMetric">0</div><div class="metric-label">изменённых файлов</div><div class="metric-foot">Сохранены локально в браузере</div></article>
+        </div>
+
+        <section class="ai-section" aria-labelledby="aiHeading">
+          <div class="section-heading"><div><p class="eyebrow">АВТОМАТИЧЕСКАЯ ПРОВЕРКА</p><h2 id="aiHeading">Статистика моделей</h2></div><span class="data-source-note" id="aiUpdated">Данные из файлов проекта</span></div>
+          <div class="ai-grid">
+            <article class="ai-card gemini-card">
+              <div class="ai-card-head"><div class="model-icon gemini-icon">✦</div><div><h3>Gemini Flash-Lite</h3><p>Облачная проверка · общий дневной лимит</p></div><span class="model-status status-active"><i></i>Учитывается</span></div>
+              <div class="quota-row"><div><span class="quota-caption">Запросы сегодня</span><strong id="geminiUsed">—</strong></div><div class="quota-remain"><span class="quota-caption">Осталось</span><strong id="geminiRemaining">—</strong></div></div>
+              <div class="quota-track" role="progressbar" aria-label="Использование дневного лимита Gemini" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0"><span id="geminiProgress"></span></div>
+              <div class="ai-meta"><span>Дневной лимит <strong id="geminiBudget">200</strong> запросов</span><span>За один запуск <strong>40</strong> · Spar <strong>8</strong></span></div>
+              <div class="ai-foot"><span id="geminiLedgerDate">Счётчик запросов обновляется workflow</span><span><strong id="geminiSuggestions">—</strong> подсказок в данных</span></div>
+            </article>
+
+            <article class="ai-card qwen-card">
+              <div class="ai-card-head"><div class="model-icon qwen-icon">◈</div><div><h3>Qwen3-VL</h3><p>Локальный разбор на runner · llama.cpp</p></div><span class="model-status status-local"><i></i>Локально</span></div>
+              <div class="qwen-stats"><div class="qwen-stat"><strong id="qwenSuggestions">—</strong><span>подсказок сохранено</span></div><div class="qwen-stat"><strong id="qwenResolved">—</strong><span>решено</span></div><div class="qwen-stat"><strong id="qwenUnclear">—</strong><span>без ответа</span></div><div class="qwen-stat"><strong id="qwenPending">—</strong><span>ожидают Qwen</span></div></div>
+              <div class="qwen-bar"><span id="qwenResolvedBar"></span><span id="qwenUnclearBar"></span></div>
+              <div class="ai-foot"><span>Считаются подсказки, сохранённые в фидах</span><span>Дневная квота API: <strong>не применяется</strong></span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="sources-section" aria-labelledby="sourcesHeading">
+          <div class="section-heading"><div><p class="eyebrow">СВЕЖЕСТЬ И ДАННЫЕ</p><h2 id="sourcesHeading">Источники предложений</h2></div><button class="text-button" id="refreshButton" type="button">Обновить данные <span aria-hidden="true">↻</span></button></div>
+          <div class="source-table-wrap"><table class="source-table"><thead><tr><th>Магазин</th><th>Предложений</th><th>На проверке</th><th>Обновлено</th><th>Статус</th></tr></thead><tbody id="sourceRows"><tr><td colspan="5" class="table-loading">Загружаем файлы источников…</td></tr></tbody></table></div>
+        </section>
+      </section>
+
+      <section class="view" id="moderationView" data-panel="moderation">
+        <div class="page-heading moderation-heading">
+          <div><p class="eyebrow">РУЧНАЯ ПРОВЕРКА</p><h1>Очередь модерации</h1><p class="heading-subtitle">Проверьте название и цену перед добавлением предложения на витрину.</p></div>
+          <div class="queue-total"><strong id="queueHeadingCount">0</strong><span>на проверке</span></div>
+        </div>
+
+        <div class="queue-toolbar">
+          <label class="queue-search"><span aria-hidden="true">⌕</span><input type="search" id="queueSearch" placeholder="Поиск по названию, магазину или ID…"><kbd>⌘ K</kbd></label>
+          <label class="select-wrap"><span class="sr-only">Магазин</span><select id="feedFilter"><option value="all">Все магазины</option></select></label>
+          <label class="select-wrap"><span class="sr-only">Причина проверки</span><select id="reasonFilter"><option value="all">Все причины</option><option value="missing_price">Нет цены</option><option value="weak_name">Слабое название</option><option value="price_mismatch">Цена не совпала</option><option value="merged_name">Объединённое название</option><option value="low_confidence">Низкая уверенность</option><option value="percent_only">Только процент</option></select></label>
+        </div>
+
+        <div class="queue-layout">
+          <section class="queue-list-panel" aria-label="Список предложений на проверке">
+            <div class="queue-list-head"><span id="queueResultCount">— записей</span><button id="sortQueueButton" class="icon-button" type="button" title="Сортировать по магазину">↕</button></div>
+            <div class="queue-list" id="queueList"><div class="queue-empty">Загружаем предложения…</div></div>
+          </section>
+          <section class="editor-panel" id="editorPanel" aria-label="Редактор предложения">
+            <div class="editor-empty"><div class="editor-empty-icon">✎</div><h2>Выберите предложение</h2><p>Карточка и сведения об источнике появятся здесь.</p></div>
+          </section>
+        </div>
+      </section>
+
+      <footer class="admin-footer"><span>Atlaides Latvijā · Панель модерации</span><span id="footerStatus">Статические JSON-файлы</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
