@@ -627,9 +627,10 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
 
 def main():
     session = requests.Session()
-    brochure_response = session.get(BROCHURES_URL, headers=HEADERS, timeout=30)
-    brochure_response.raise_for_status()
-    brochure_index = BeautifulSoup(brochure_response.text, "html.parser")
+    # The weekly offers page exposes the active campaign cards and their own brochure links.
+    campaign_index_response = session.get(CAMPAIGNS[0]["url"], headers=HEADERS, timeout=30)
+    campaign_index_response.raise_for_status()
+    brochure_index = BeautifulSoup(campaign_index_response.text, "html.parser")
 
     all_offers: list[dict] = []
     all_reviews: list[dict] = []
