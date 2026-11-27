@@ -1,11 +1,54 @@
 {
-  "updatedAt": "2026-11-27T09:04:51+00:00",
-  "source": "https://www.maxima.lv/piedavajumi/",
+  "updatedAt": "2026-11-27T09:08:07+00:00",
+  "sources": [
+    "https://www.maxima.lv/piedavajumi/",
+    "https://www.maxima.lv/premium"
+  ],
   "products": {
-    "biezpiena-sierins-karums-45-g-dazadi-veidi": {
-      "productId": "biezpiena-sierins-karums-45-g-dazadi-veidi",
+    "biezpiena-dazadi-karums-sierins-veidi-mass-45g-db183f9e3ff9": {
+      "productId": "biezpiena-dazadi-karums-sierins-veidi-mass-45g-db183f9e3ff9",
+      "canonicalProductId": "biezpiena-dazadi-karums-sierins-veidi-mass-45g-db183f9e3ff9",
       "name": "Biezpiena sieriņš KĀRUMS, 45 g, dažādi veidi",
-      "unit": null,
+      "packageSize": "mass:45g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 0.29,
+          "regularPrice": 0.52,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 44,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:biezpiena-sierins-karums-45-g-dazadi-veidi",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "8fdf79c0ff774612",
+          "price": 0.29,
+          "regularPrice": 0.52,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 44,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -22,14 +65,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            0.29
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "biezpiens-zemaitijos-1-kg-9-fasets": {
-      "productId": "biezpiens-zemaitijos-1-kg-9-fasets",
+    "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f": {
+      "productId": "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f",
+      "canonicalProductId": "9-biezpiens-fasets-zemaitijos-mass-1000g-d1919ab9b95f",
       "name": "Biezpiens ŽEMAITIJOS, 1 kg, 9%, fasēts",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 3.59,
+          "regularPrice": 6.89,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 48,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:biezpiens-zemaitijos-1-kg-9-fasets",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "5f02ef03c498a6ba",
+          "price": 3.59,
+          "regularPrice": 6.89,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 48,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -46,14 +137,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            3.59
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "cukgalas-skinkis-bez-kaula-un-adas-1-kg": {
-      "productId": "cukgalas-skinkis-bez-kaula-un-adas-1-kg",
+    "adas-bez-cukgalas-kaula-skinkis-un-mass-1000g-cf7917ec29e4": {
+      "productId": "adas-bez-cukgalas-kaula-skinkis-un-mass-1000g-cf7917ec29e4",
+      "canonicalProductId": "adas-bez-cukgalas-kaula-skinkis-un-mass-1000g-cf7917ec29e4",
       "name": "Cūkgaļas šķiņķis bez kaula un ādas, 1 kg",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 2.79,
+          "regularPrice": 5.49,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 49,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:cukgalas-skinkis-bez-kaula-un-adas-1-kg",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "6e965bb0d2eef48f",
+          "price": 2.79,
+          "regularPrice": 5.49,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 49,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -70,14 +209,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            2.79
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "hurma-persimon-1-kg": {
-      "productId": "hurma-persimon-1-kg",
+    "hurma-persimon-mass-1000g-360ebea3c672": {
+      "productId": "hurma-persimon-mass-1000g-360ebea3c672",
+      "canonicalProductId": "hurma-persimon-mass-1000g-360ebea3c672",
       "name": "Hurma PERSIMON, 1 kg",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:hurma-persimon-1-kg",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "ffa469930583c74b",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -94,14 +281,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            1.99
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "kartupeli-1-kg": {
-      "productId": "kartupeli-1-kg",
+    "kartupeli-mass-1000g-a09e7513fede": {
+      "productId": "kartupeli-mass-1000g-a09e7513fede",
+      "canonicalProductId": "kartupeli-mass-1000g-a09e7513fede",
       "name": "Kartupeļi, 1 kg",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 0.19,
+          "regularPrice": 0.45,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 58,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:kartupeli-1-kg",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "8c848d8a71876821",
+          "price": 0.19,
+          "regularPrice": 0.45,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 58,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -118,14 +353,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            0.19
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "mini-fuet-desu-izlase-well-done-premium-320-g": {
-      "productId": "mini-fuet-desu-izlase-well-done-premium-320-g",
+    "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e": {
+      "productId": "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e",
+      "canonicalProductId": "desu-done-fuet-izlase-mini-premium-well-mass-320g-d1944d69512e",
       "name": "Mini Fuet desu izlase WELL DONE PREMIUM, 320 g",
-      "unit": null,
+      "packageSize": "mass:320g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "paldiesPrice": 6.99,
+          "priceWithoutPaldies": 11.99,
+          "requiresPaldies": true,
+          "discountPercent": 42,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:mini-fuet-desu-izlase-well-done-premium-320-g",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "f331d65dfa74e4d3",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "paldiesPrice": 6.99,
+          "priceWithoutPaldies": 11.99,
+          "requiresPaldies": true,
+          "discountPercent": 42,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -142,14 +425,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            6.99
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g": {
-      "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
+    "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6": {
+      "productId": "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6",
+      "canonicalProductId": "apelsiniem-ar-done-olivas-pilditas-premium-well-mass-360g-0a497c8be7b6",
       "name": "Olīvas pildītas ar apelsīniem WELL DONE PREMIUM, 360 g",
-      "unit": null,
+      "packageSize": "mass:360g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 3.29,
+          "regularPrice": 4.49,
+          "paldiesPrice": 3.29,
+          "priceWithoutPaldies": 4.49,
+          "requiresPaldies": true,
+          "discountPercent": 27,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "bdbf5301addf2e3b",
+          "price": 3.29,
+          "regularPrice": 4.49,
+          "paldiesPrice": 3.29,
+          "priceWithoutPaldies": 4.49,
+          "requiresPaldies": true,
+          "discountPercent": 27,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -166,14 +497,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            3.29
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "plumju-tomati-1-kg": {
-      "productId": "plumju-tomati-1-kg",
+    "plumju-tomati-mass-1000g-9a2e38a551a8": {
+      "productId": "plumju-tomati-mass-1000g-9a2e38a551a8",
+      "canonicalProductId": "plumju-tomati-mass-1000g-9a2e38a551a8",
       "name": "Plūmju tomāti, 1 kg",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 2.39,
+          "regularPrice": 3.79,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 37,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:plumju-tomati-1-kg",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "93e275d57e868c9f",
+          "price": 2.39,
+          "regularPrice": 3.79,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 37,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -190,14 +569,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            2.39
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "siers-ar-trifelem-well-done-premium-180-g": {
-      "productId": "siers-ar-trifelem-well-done-premium-180-g",
+    "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544": {
+      "productId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
+      "canonicalProductId": "ar-done-premium-siers-trifelem-well-mass-180g-a71d3126b544",
       "name": "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
-      "unit": null,
+      "packageSize": "mass:180g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:siers-ar-trifelem-well-done-premium-180-g",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "e7c3920a8bbf7442",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -214,14 +641,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            4.49
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "skabais-krejums-valmiera-450-g-20": {
-      "productId": "skabais-krejums-valmiera-450-g-20",
+    "20-krejums-skabais-valmiera-mass-450g-765f90870efe": {
+      "productId": "20-krejums-skabais-valmiera-mass-450g-765f90870efe",
+      "canonicalProductId": "20-krejums-skabais-valmiera-mass-450g-765f90870efe",
       "name": "Skābais krējums VALMIERA, 450 g, 20%",
-      "unit": null,
+      "packageSize": "mass:450g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 1.49,
+          "regularPrice": 2.39,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 38,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:skabais-krejums-valmiera-450-g-20",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "b358b2fefd0cf06a",
+          "price": 1.49,
+          "regularPrice": 2.39,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 38,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -238,14 +713,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            1.49
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "smiltis-kaku-tualetei-lovett-5-l-cementejosas": {
-      "productId": "smiltis-kaku-tualetei-lovett-5-l-cementejosas",
+    "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44": {
+      "productId": "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44",
+      "canonicalProductId": "cementejosas-kaku-lovett-smiltis-tualetei-volume-5000ml-429aab548d44",
       "name": "Smiltis kaķu tualetei LOVETT, 5 l, cementējošas",
-      "unit": null,
+      "packageSize": "volume:5000ml",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 3.49,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 43,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:smiltis-kaku-tualetei-lovett-5-l-cementejosas",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "f3ade249e168b215",
+          "price": 1.99,
+          "regularPrice": 3.49,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 43,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -262,14 +785,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            1.99
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu": {
-      "productId": "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu",
+    "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858": {
+      "productId": "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858",
+      "canonicalProductId": "ar-garsu-krejuma-originala-pringles-sala-sipolu-skaba-mass-165g-332aca20a858",
       "name": "Sālā uzkoda PRINGLES, 165 g, oriģinālā vai ar skābā krējuma un sīpolu garšu",
-      "unit": null,
+      "packageSize": "mass:165g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 1.89,
+          "regularPrice": 2.29,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 17,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "1dd445895115a8fc",
+          "price": 1.89,
+          "regularPrice": 2.29,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 17,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -286,14 +857,62 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            1.89
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
         }
       ]
     },
-    "varaviksnes-forele-1-kg-kidata": {
-      "productId": "varaviksnes-forele-1-kg-kidata",
+    "forele-kidata-varaviksnes-mass-1000g-e7e702df1575": {
+      "productId": "forele-kidata-varaviksnes-mass-1000g-e7e702df1575",
+      "canonicalProductId": "forele-kidata-varaviksnes-mass-1000g-e7e702df1575",
       "name": "Varavīksnes forele, 1 kg, ķīdāta",
-      "unit": null,
+      "packageSize": "mass:1000g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 42,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [
+            "X",
+            "XX",
+            "XXX"
+          ],
+          "checkedAt": "2026-11-27T09:04:51+00:00",
+          "offerId": "legacy:varaviksnes-forele-1-kg-kidata",
+          "sourceId": "legacy-history",
+          "campaign": "Iepriekšējā cenu vēsture"
+        },
+        {
+          "date": "2026-11-27",
+          "offerId": "139326b0f4a136c4",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "paldiesPrice": null,
+          "priceWithoutPaldies": null,
+          "requiresPaldies": false,
+          "discountPercent": 42,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Iknedēļas piedāvājums",
+          "sourceId": "maxima-weekly",
+          "source": "https://www.maxima.lv/piedavajumi/",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
       "points": [
         {
           "date": "2026-11-27",
@@ -310,7 +929,955 @@
             "XX",
             "XXX"
           ],
+          "campaigns": [
+            "Iepriekšējā cenu vēsture",
+            "Iknedēļas piedāvājums"
+          ],
+          "offerCount": 2,
+          "priceVariants": [
+            6.99
+          ],
           "checkedAt": "2026-11-27T09:04:51+00:00"
+        }
+      ]
+    },
+    "aitas-jogurts-piena-vanilas-wdp-mass-115g-fe1488643b79": {
+      "productId": "aitas-jogurts-piena-vanilas-wdp-mass-115g-fe1488643b79",
+      "canonicalProductId": "aitas-jogurts-piena-vanilas-wdp-mass-115g-fe1488643b79",
+      "name": "Aitas piena jogurts vaniļas WDP 115g",
+      "packageSize": "mass:115g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "254b23679b38b1a5",
+          "price": 0.99,
+          "regularPrice": 1.99,
+          "paldiesPrice": 0.99,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.99,
+          "regularPrice": 1.99,
+          "paldiesPrice": 0.99,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            0.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81": {
+      "productId": "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81",
+      "canonicalProductId": "aitas-jogurts-piena-premium-wd-mass-115g-075ad3a8fa81",
+      "name": "Aitas piena jogurts WD PREMIUM 115g",
+      "packageSize": "mass:115g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "83a9723f32a4025d",
+          "price": 0.99,
+          "regularPrice": 1.99,
+          "paldiesPrice": 0.99,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.99,
+          "regularPrice": 1.99,
+          "paldiesPrice": 0.99,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 50,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            0.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06": {
+      "productId": "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06",
+      "canonicalProductId": "aitas-ar-kiplokiem-meln-siers-wdp-mass-150g-c385e699ff06",
+      "name": "Aitas siers ar meln.ķiplokiem WDP 150g",
+      "packageSize": "mass:150g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "fedba4c71f494b35",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7": {
+      "productId": "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7",
+      "canonicalProductId": "aitas-ar-siers-trifelem-wdp-mass-150g-857beb8bedf7",
+      "name": "Aitas siers ar trifelēm WDP 150g",
+      "packageSize": "mass:150g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "a6b0dd697adddc1e",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e": {
+      "productId": "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e",
+      "canonicalProductId": "ar-biezp-cepts-garsaugiem-siers-wdp-mass-230g-2cd85f20c87e",
+      "name": "Cepts biezp.siers ar garšaugiem WDP 230g",
+      "packageSize": "mass:230g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "cc1bd7cc9fdb10bb",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0": {
+      "productId": "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0",
+      "canonicalProductId": "ar-biezp-cepts-cili-medu-siers-wdp-mass-230g-d15e809be9d0",
+      "name": "Cepts biezp.siers ar medu-čili WDP 230g",
+      "packageSize": "mass:230g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "f3aa4294022c6843",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b": {
+      "productId": "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b",
+      "canonicalProductId": "kazas-mild-premium-siers-skeles-wd-mass-120g-1a05a17a788b",
+      "name": "Kazas siers Mild WD PREMIUM šķēlēs 120g",
+      "packageSize": "mass:120g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "57ffb3891dd6900f",
+          "price": 2.19,
+          "regularPrice": 2.49,
+          "paldiesPrice": 2.19,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 12,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.19,
+          "regularPrice": 2.49,
+          "paldiesPrice": 2.19,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 12,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.19
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626": {
+      "productId": "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626",
+      "canonicalProductId": "ar-kremsiers-marzano-san-tomatiem90g-wdp-65543c85b626",
+      "name": "Krēmsiers WDP ar San Marzano tomātiem90g",
+      "packageSize": "",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "9967233c072cab69",
+          "price": 1.99,
+          "regularPrice": 2.49,
+          "paldiesPrice": 1.99,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 2.49,
+          "paldiesPrice": 1.99,
+          "priceWithoutPaldies": 2.49,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            1.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d": {
+      "productId": "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d",
+      "canonicalProductId": "cedaras-kupinatais-siers-skeles-wdp-mass-160g-c8ae851cd94d",
+      "name": "Kūpinātais Čedaras siers WDP šķēlēs 160g",
+      "packageSize": "mass:160g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "a65ccae24e45026c",
+          "price": 2.69,
+          "regularPrice": 3.49,
+          "paldiesPrice": 2.69,
+          "priceWithoutPaldies": 3.49,
+          "requiresPaldies": true,
+          "discountPercent": 23,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.69,
+          "regularPrice": 3.49,
+          "paldiesPrice": 2.69,
+          "priceWithoutPaldies": 3.49,
+          "requiresPaldies": true,
+          "discountPercent": 23,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.69
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "ar-kalt-pipari-sieru-tomat-un-wdp-mass-210g-15a89d5c6a0e": {
+      "productId": "ar-kalt-pipari-sieru-tomat-un-wdp-mass-210g-15a89d5c6a0e",
+      "canonicalProductId": "ar-kalt-pipari-sieru-tomat-un-wdp-mass-210g-15a89d5c6a0e",
+      "name": "Pipari ar sieru un kalt.tomāt.WDP 210g",
+      "packageSize": "mass:210g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "7566fec0ed4f423c",
+          "price": 2.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 40,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 40,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c": {
+      "productId": "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c",
+      "canonicalProductId": "ar-olivam-pipari-sieru-un-wdp-mass-210g-f62a3838c26c",
+      "name": "Pipari ar sieru un olīvām WDP 210g",
+      "packageSize": "mass:210g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "3220876ce2a40d05",
+          "price": 2.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 40,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 40,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b": {
+      "productId": "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b",
+      "canonicalProductId": "gouda-jersey-mature-siera-wdp-mass-200g-b66abbdb2d1b",
+      "name": "Siera Gouda Mature Jersey WDP 200g",
+      "packageSize": "mass:200g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "a333265341e35ec1",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 4.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 20,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0": {
+      "productId": "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0",
+      "canonicalProductId": "premium-siera-truffle-uzkoda-wd-mass-24g-a23ef48bcbb0",
+      "name": "Siera uzkoda WD PREMIUM Truffle 24g",
+      "packageSize": "mass:24g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "db9378a0db581370",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            0.95
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5": {
+      "productId": "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5",
+      "canonicalProductId": "done-pesto-premium-siera-uzkoda-well-mass-24g-f96171decbb5",
+      "name": "Siera uzkoda WELL DONE PREMIUM Pesto 24g",
+      "packageSize": "mass:24g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "e0e728b27b441079",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            0.95
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055": {
+      "productId": "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055",
+      "canonicalProductId": "done-pizza-premium-siera-uzkoda-well-mass-24g-b196b3b7c055",
+      "name": "Siera uzkoda WELL DONE PREMIUM Pizza 24g",
+      "packageSize": "mass:24g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "adb5636f311fff53",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.95,
+          "regularPrice": 1.09,
+          "paldiesPrice": 0.95,
+          "priceWithoutPaldies": 1.09,
+          "requiresPaldies": true,
+          "discountPercent": 13,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            0.95
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "brie-done-premium-siers-well-mass-125g-0382c4ee22b2": {
+      "productId": "brie-done-premium-siers-well-mass-125g-0382c4ee22b2",
+      "canonicalProductId": "brie-done-premium-siers-well-mass-125g-0382c4ee22b2",
+      "name": "Siers Brie WELL DONE PREMIUM 125g",
+      "packageSize": "mass:125g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "ec95aec7ce9a2179",
+          "price": 1.79,
+          "regularPrice": 1.99,
+          "paldiesPrice": 1.79,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.79,
+          "regularPrice": 1.99,
+          "paldiesPrice": 1.79,
+          "priceWithoutPaldies": 1.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            1.79
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507": {
+      "productId": "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507",
+      "canonicalProductId": "52-bufala-burrata-di-siers-wdp-mass-200g-57b864c88507",
+      "name": "Siers Burrata Di Bufala WDP 52% 200g",
+      "packageSize": "mass:200g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "cbec8c4c96c03e46",
+          "price": 3.99,
+          "regularPrice": 5.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 5.99,
+          "requiresPaldies": true,
+          "discountPercent": 33,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.99,
+          "regularPrice": 5.99,
+          "paldiesPrice": 3.99,
+          "priceWithoutPaldies": 5.99,
+          "requiresPaldies": true,
+          "discountPercent": 33,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            3.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb": {
+      "productId": "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb",
+      "canonicalProductId": "camembert-done-premium-siers-well-mass-150g-1c20f6bed4eb",
+      "name": "Siers Camembert WELL DONE PREMIUM 150g",
+      "packageSize": "mass:150g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "6e8dc9bf7831aadb",
+          "price": 2.39,
+          "regularPrice": 2.69,
+          "paldiesPrice": 2.39,
+          "priceWithoutPaldies": 2.69,
+          "requiresPaldies": true,
+          "discountPercent": 11,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.39,
+          "regularPrice": 2.69,
+          "paldiesPrice": 2.39,
+          "priceWithoutPaldies": 2.69,
+          "requiresPaldies": true,
+          "discountPercent": 11,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.39
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835": {
+      "productId": "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835",
+      "canonicalProductId": "cedaras-premium-siers-vintage-wd-mass-200g-f178a4dc2835",
+      "name": "Siers Čedaras Vintage WD PREMIUM 200g",
+      "packageSize": "mass:200g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "def61493f3c1d9f5",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "paldiesPrice": 4.49,
+          "priceWithoutPaldies": 4.99,
+          "requiresPaldies": true,
+          "discountPercent": 10,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            4.49
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ]
+    },
+    "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c": {
+      "productId": "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c",
+      "canonicalProductId": "cedaras-siers-skeles-vintage-wdp-mass-160g-190805c8c24c",
+      "name": "Siers Čedaras Vintage WDP šķēlēs 160g",
+      "packageSize": "mass:160g",
+      "observations": [
+        {
+          "date": "2026-11-27",
+          "offerId": "269a62e8e62a6b0c",
+          "price": 2.99,
+          "regularPrice": 3.49,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 3.49,
+          "requiresPaldies": true,
+          "discountPercent": 14,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaign": "Well Done Premium",
+          "sourceId": "maxima-well-done-premium",
+          "source": "https://www.maxima.lv/premium",
+          "checkedAt": "2026-11-27T09:08:07+00:00"
+        }
+      ],
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.99,
+          "regularPrice": 3.49,
+          "paldiesPrice": 2.99,
+          "priceWithoutPaldies": 3.49,
+          "requiresPaldies": true,
+          "discountPercent": 14,
+          "validFrom": "2026-11-24",
+          "validUntil": "2026-11-30",
+          "storeFormats": [],
+          "campaigns": [
+            "Well Done Premium"
+          ],
+          "offerCount": 1,
+          "priceVariants": [
+            2.99
+          ],
+          "checkedAt": "2026-11-27T09:08:07+00:00"
         }
       ]
     }
