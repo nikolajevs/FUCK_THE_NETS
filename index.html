@@ -3,34 +3,125 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#146b3a">
-  <meta name="description" content="Maxima veikalu piedāvājumi Latvijā vienuviet.">
-  <title>Maxima piedāvājumi Latvijā</title>
+  <meta name="theme-color" content="#124b34">
+  <meta name="description" content="Salīdzini aktuālās cenas un piedāvājumus Latvijas veikalos vienuviet.">
+  <title>Atlaides Latvijā — salīdzini veikalu piedāvājumus</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap header-inner">
-      <a class="brand" href="./" aria-label="Sākums"><span class="brand-mark">M</span><span>Atlaides<span class="brand-sub">LATVIJA</span></span></a>
-      <span class="header-note">Maxima piedāvājumi</span>
+      <a class="brand" href="./" aria-label="Atlaides Latvijā — sākums">
+        <span class="brand-mark" aria-hidden="true">%</span>
+        <span class="brand-name">Atlaides<span class="brand-sub">LATVIJĀ</span></span>
+      </a>
+      <div id="networkBadges" class="network-badges" aria-label="Pieejamie veikalu tīkli"></div>
     </div>
   </header>
+
   <main class="wrap">
-    <section class="intro">
-      <p class="eyebrow">IEPIRKUMI GUDRĀK</p>
-      <h1>Maxima atlaides<br><span>vienuviet.</span></h1>
-      <p class="lead">Meklē un salīdzini aktuālos piedāvājumus Latvijas Maxima veikalos.</p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> IEPĒRCIES PĀRDOMĀTI</p>
+        <h1 id="hero-title">Atrodi labāko cenu.<br><span>Visos veikalos.</span></h1>
+        <p class="hero-lead">Salīdzini aktuālos bukletu piedāvājumus un izvēlies izdevīgāko sev.</p>
+      </div>
+      <aside class="hero-stats" aria-label="Piedāvājumu pārskats">
+        <div class="stats-heading">Šobrīd katalogā</div>
+        <div class="stats-row">
+          <div><strong id="statStores">—</strong><span>veikalu tīkli</span></div>
+          <div><strong id="statProducts">—</strong><span>produkti</span></div>
+          <div><strong id="statOffers">—</strong><span>piedāvājumi</span></div>
+        </div>
+        <p id="lastUpdated" class="last-updated">Ielādē jaunākos datus…</p>
+      </aside>
+      <div class="hero-decoration" aria-hidden="true"></div>
     </section>
-    <section class="filters" aria-label="Piedāvājumu filtri">
-      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Meklēt preci vai zīmolu…" autocomplete="off"></label>
-      <label class="select-label"><span>Pilsēta</span><select id="city"><option value="">Visas pilsētas</option></select></label>
-      <label class="select-label"><span>Kārtošana</span><select id="sort"><option value="discount">Lielākā atlaide</option><option value="price">Zemākā cena</option><option value="name">Nosaukums A–Z</option></select></label>
+
+    <section class="filter-panel" aria-label="Piedāvājumu meklēšana un filtri">
+      <div class="filter-top">
+        <label class="search-field" for="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Meklē preci, zīmolu vai veikalu…" autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="store-field">
+          <span class="field-label">Veikalu tīkls</span>
+          <div id="storeFilters" class="store-filters" role="group" aria-label="Filtrēt pēc veikalu tīkla"></div>
+        </div>
+      </div>
+
+      <div class="filter-bottom">
+        <label class="field campaign-field" for="campaign">
+          <span class="field-label">Buklets</span>
+          <select id="campaign"><option value="">Visi bukleti</option></select>
+        </label>
+        <fieldset class="field price-field">
+          <legend class="field-label">Cena, €</legend>
+          <div class="price-inputs">
+            <label><span class="sr-only">Cena no</span><input id="minPrice" type="number" min="0" step="0.01" placeholder="No"></label>
+            <span aria-hidden="true">—</span>
+            <label><span class="sr-only">Cena līdz</span><input id="maxPrice" type="number" min="0" step="0.01" placeholder="Līdz"></label>
+          </div>
+        </fieldset>
+        <label class="field" for="discount">
+          <span class="field-label">Atlaide</span>
+          <select id="discount">
+            <option value="">Jebkura</option>
+            <option value="20">Vismaz 20%</option>
+            <option value="30">Vismaz 30%</option>
+            <option value="50">Vismaz 50%</option>
+          </select>
+        </label>
+        <label class="field city-field" for="city">
+          <span class="field-label">Pilsēta</span>
+          <select id="city"><option value="">Visas pilsētas</option></select>
+        </label>
+        <label class="field condition-field" for="condition">
+          <span class="field-label">Nosacījumi</span>
+          <select id="condition">
+            <option value="">Visi piedāvājumi</option>
+            <option value="none">Bez kartes vai lietotnes</option>
+            <option value="card">Nepieciešama karte</option>
+            <option value="app">Tikai lietotnē</option>
+          </select>
+        </label>
+        <label class="field sort-field" for="sort">
+          <span class="field-label">Kārtot pēc</span>
+          <select id="sort">
+            <option value="price">Zemākā cena</option>
+            <option value="discount">Lielākā atlaide</option>
+            <option value="name">Nosaukums A–Z</option>
+          </select>
+        </label>
+        <button id="clearFilters" class="clear-filters" type="button" disabled>Notīrīt</button>
+      </div>
     </section>
-    <div class="results-head"><h2>Aktuālie piedāvājumi</h2><span id="count" class="count">0 produkti</span></div>
-    <div id="offers" class="grid" aria-live="polite"></div>
-    <div id="empty" class="empty" hidden><div class="empty-icon">%</div><h3>Piedāvājumi vēl nav pievienoti</h3><p>Kad būs pārbaudīti dati, tie parādīsies šeit.</p></div>
-    <footer><span>Dati tiek publicēti tikai ar norādītu avotu un derīguma termiņu.</span><span id="updated"></span></footer>
+
+    <div id="dataWarning" class="data-warning" role="status" hidden></div>
+
+    <section class="results-section" aria-labelledby="results-title">
+      <div class="results-head">
+        <div>
+          <p class="section-kicker">IZVĒLIES IZDEVĪGĀKO</p>
+          <h2 id="results-title">Piedāvājumu salīdzinājums</h2>
+        </div>
+        <div id="count" class="count" aria-live="polite">Ielādē…</div>
+      </div>
+      <div id="offers" class="grid" aria-live="polite"></div>
+      <div id="empty" class="empty" hidden>
+        <div class="empty-icon" aria-hidden="true">⌕</div>
+        <h3 id="emptyTitle">Neko neatradām</h3>
+        <p id="emptyText">Pamēģini mainīt meklējamo frāzi vai noņemt kādu filtru.</p>
+        <button id="emptyClear" type="button">Notīrīt filtrus</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Cenas un derīguma termiņi norādīti pie katra piedāvājuma. Nepārbaudīti ieraksti netiek rādīti.</span>
+      <span id="updated"></span>
+    </footer>
   </main>
 </body>
 </html>

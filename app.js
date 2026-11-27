@@ -1,142 +1,456 @@
-const state={products:[],history:{}};
-const money=value=>new Intl.NumberFormat("lv-LV",{style:"currency",currency:"EUR"}).format(value);
-const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-const formatDate=value=>{const [y,m,d]=String(value).split("-").map(Number);return new Intl.DateTimeFormat("lv-LV").format(new Date(y,m-1,d));};
+const state = {
+  products: [],
+  offers: [],
+  stores: [],
+  campaignLabels: new Map(),
+  campaignOptions: [],
+  updates: [],
+  selectedStore: "",
+};
 
-function priceHistoryMarkup(product){
-  const history=state.history[product.canonicalProductId||product.productId||""];
-  const points=(history?.points||[]).filter(point=>Number.isFinite(point.price)).slice(-60);
-  const priceLabel="Zemākā novērotā cena";
-  const pointPriceLabel=point=>point.requiresPaldies?"cena ar PALDIES":"akcijas cena";
-  if(!points.length)return '<p class="history-note">Cenu vēsture vēl nav savākta.</p>';
-  const first=points[0],last=points[points.length-1];
-  if(points.length===1){
-    const usual=Number.isFinite(last.regularPrice)?' · Parastā cena: '+money(last.regularPrice):"";
-    const count=last.offerCount>1?' · Salīdzināti '+last.offerCount+' piedāvājuma varianti':"";
-    return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>Pirmais novērojums: '+escapeHtml(formatDate(last.date))+usual+count+'</span></div><p class="history-note">Pašlaik ir tikai viens dienas mērījums. Pēc atkārtotiem atjauninājumiem būs redzama zemākās novērotās cenas dinamika.</p>';
+const money = value => new Intl.NumberFormat("lv-LV", {
+  style: "currency",
+  currency: "EUR",
+}).format(value);
+
+const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+}[char]));
+
+function normalizedStore(value) {
+  const name = String(value || "Veikals").trim();
+  const folded = name.toLocaleLowerCase("lv");
+  if (folded.includes("maxima")) return { key: "maxima", name: "Maxima" };
+  if (folded.includes("mego")) return { key: "mego", name: "Mego" };
+  return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
+}
+
+function campaignKey(offer) {
+  return String(offer.campaignId || offer.sourceId || offer.campaign || "");
+}
+
+function campaignToken(offer) {
+  return normalizedStore(offer.storeName || offer.store).key + "::" + campaignKey(offer);
+}
+
+function campaignSlugLabel(value) {
+  const known = {
+    "kas-labs-sonedel-buklets-nr-49": "Kas labs šonedēļ · buklets Nr. 49",
+    "kas-labs-sonedel-buklets-nr-48": "Kas labs šonedēļ · buklets Nr. 48",
+    "tikai-3-dienas": "Tikai 3 dienas",
+    "brivdienas-jasvin": "Brīvdienas jāsvin",
+  };
+  return known[value] || value
+    .replace(/-nr-(\d+)/g, " · Nr. $1")
+    .replace(/sonedel/g, "šonedēļ")
+    .replace(/brivdienas/g, "brīvdienas")
+    .replace(/jasvin/g, "jāsvin")
+    .replace(/-/g, " ")
+    .replace(/^\w/, character => character.toLocaleUpperCase("lv"));
+}
+
+function campaignLabel(offer) {
+  const token = campaignToken(offer);
+  return state.campaignLabels.get(token)
+    || (offer.campaign && offer.campaign !== campaignKey(offer)
+      ? String(offer.campaign)
+      : campaignSlugLabel(campaignKey(offer)));
+}
+
+function offerDiscount(offer) {
+  if (Number.isFinite(offer.discountPercent)) return offer.discountPercent;
+  if (Number.isFinite(offer.regularPrice) && Number.isFinite(offer.price) && offer.regularPrice > offer.price) {
+    return Math.round((offer.regularPrice - offer.price) / offer.regularPrice * 100);
   }
-
-  const width=640,height=250,left=68,right=22,top=18,bottom=42;
-  const regular=points.map(point=>Number.isFinite(point.regularPrice)?point.regularPrice:null);
-  const values=[...points.map(point=>point.price),...regular.filter(Number.isFinite)];
-  let min=Math.min(...values),max=Math.max(...values);
-  const padding=Math.max((max-min)*.18,.05);
-  min=Math.max(0,min-padding);max+=padding;
-  if(max<=min)max=min+1;
-  const x=index=>left+(index/(points.length-1))*(width-left-right);
-  const y=value=>top+(max-value)/(max-min)*(height-top-bottom);
-  const promoCoordinates=points.map((point,index)=>x(index).toFixed(1)+","+y(point.price).toFixed(1)).join(" ");
-  const regularCoordinates=points.map((point,index)=>Number.isFinite(point.regularPrice)?x(index).toFixed(1)+","+y(point.regularPrice).toFixed(1):null).filter(Boolean).join(" ");
-  const grid=[0,1,2,3].map(index=>{
-    const value=min+(max-min)*index/3,yy=y(value);
-    return '<line class="chart-grid" x1="'+left+'" y1="'+yy+'" x2="'+(width-right)+'" y2="'+yy+'"/><text class="chart-axis" x="'+(left-9)+'" y="'+(yy+4)+'" text-anchor="end">'+escapeHtml(money(value))+'</text>';
-  }).join("");
-  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+": "+pointPriceLabel(point)+" "+money(point.price))+'</title></circle>').join("");
-  const regularCircles=points.map((point,index)=>Number.isFinite(point.regularPrice)?'<circle class="chart-point regular-point" cx="'+x(index)+'" cy="'+y(point.regularPrice)+'" r="3"><title>'+escapeHtml(formatDate(point.date)+": parastā cena "+money(point.regularPrice))+'</title></circle>':"").join("");
-  const difference=last.price-first.price;
-  const percent=first.price?difference/first.price*100:0;
-  const trend=difference>.001?"price-up":difference<-.001?"price-down":"price-flat";
-  const trendText=difference>.001?"Zemākā novērotā cena pieaugusi":difference<-.001?"Zemākā novērotā cena samazinājusies":"Zemākā novērotā cena nav mainījusies";
-  const regularLine=regular.filter(Number.isFinite).length>1?'<polyline class="chart-line regular-line" points="'+regularCoordinates+'"/>':"";
-  const legend='<div class="chart-legend"><span><i class="legend-swatch promo-swatch"></i>'+priceLabel+'</span><span><i class="legend-swatch regular-swatch"></i>Parastā cena</span></div>';
-  return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>'+escapeHtml(formatDate(first.date))+' → '+escapeHtml(formatDate(last.date))+'</span><b class="'+trend+'">'+(difference>0?"+":"")+money(difference)+' ('+(percent>0?"+":"")+percent.toFixed(1)+'%)</b></div>'+legend+'<div class="chart-wrap"><svg class="price-chart" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="Zemākās novērotās un parastās cenas izmaiņas laikā">'+grid+regularLine+'<polyline class="chart-line" points="'+promoCoordinates+'"/>'+regularCircles+promoCircles+'<text class="chart-date" x="'+left+'" y="'+(height-12)+'">'+escapeHtml(formatDate(first.date))+'</text><text class="chart-date" x="'+(width-right)+'" y="'+(height-12)+'" text-anchor="end">'+escapeHtml(formatDate(last.date))+'</text></svg></div><p class="history-note">'+trendText+'. Katras dienas punktā izmantota zemākā verificētā cena no atrastajiem Maxima piedāvājumiem. Atsevišķi piedāvājumu varianti saglabāti vēsturē.</p>';
+  return null;
 }
 
-function offerVariantMarkup(offer){
-  const formats=Array.isArray(offer.storeFormats)&&offer.storeFormats.length
-    ?"MAXIMA "+offer.storeFormats.join(", ")
-    :"Veikala formāts nav apstiprināts";
-  const validity=offer.validFrom&&offer.validUntil
-    ?formatDate(offer.validFrom)+"–"+formatDate(offer.validUntil)
-    :"Derīguma termiņš nav norādīts";
-  const loyalty=offer.requiresPaldies
-    ?'<span class="variant-loyalty">PALDIES</span>'
-    :'<span class="variant-loyalty neutral">Bez kartes nosacījuma</span>';
-  const regular=Number.isFinite(offer.regularPrice)&&offer.regularPrice>offer.price
-    ?'<del>'+money(offer.regularPrice)+'</del>'
-    :"";
-  const discount=Number.isFinite(offer.discountPercent)
-    ?'<span class="variant-discount">-'+escapeHtml(offer.discountPercent)+'%</span>'
-    :"";
-  return '<div class="offer-variant"><div class="variant-price"><strong>'+money(offer.price)+'</strong>'+regular+discount+'</div><div class="variant-meta"><strong>'+escapeHtml(offer.campaign||"Maxima piedāvājums")+'</strong><span>'+escapeHtml(formats)+'</span><span>'+escapeHtml(validity)+'</span></div><div class="variant-actions">'+loyalty+'<a href="'+escapeHtml(offer.source||offer.campaignSource||"#")+'" target="_blank" rel="noopener">Avots ↗</a></div></div>';
-}
-
-function render(){
-  const query=document.querySelector("#search").value.trim().toLocaleLowerCase("lv");
-  const city=document.querySelector("#city").value;
-  const sort=document.querySelector("#sort").value;
-  const items=state.products.filter(product=>{
-    const variants=product.offers||[];
-    const cityMatch=!city||variants.some(offer=>offer.city===city);
-    const searchable=[product.name,product.brand,...(product.aliases||[]),...variants.map(offer=>offer.campaign),...variants.flatMap(offer=>offer.storeFormats||[])];
-    return cityMatch&&searchable.some(value=>String(value??"").toLocaleLowerCase("lv").includes(query));
-  });
-  items.sort((a,b)=>sort==="price"?(a.lowestPrice??Infinity)-(b.lowestPrice??Infinity):sort==="name"?a.name.localeCompare(b.name,"lv"):(b.highestDiscountPercent??0)-(a.highestDiscountPercent??0));
-  const offerCount=items.reduce((sum,product)=>sum+(product.offerCount||product.offers?.length||0),0);
-  document.querySelector("#count").textContent=items.length+" produkti · "+offerCount+" piedāvājumi";
-  document.querySelector("#offers").innerHTML=items.map(product=>{
-    const variants=[...(product.offers||[])].sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));
-    const historyId=product.canonicalProductId||product.productId||"";
-    const badge=Number.isFinite(product.highestDiscountPercent)
-      ?'<span class="badge">Līdz -'+escapeHtml(product.highestDiscountPercent)+'%</span>'
-      :"";
-    const aliases=(product.aliases||[]).length>1
-      ?'<div class="meta">Apvienoti '+product.aliases.length+' nosaukuma varianti</div>'
-      :"";
-    return '<article class="card"><div class="card-image">'+(product.image?'<img src="'+escapeHtml(product.image)+'" alt="" style="max-width:100%;max-height:100%;object-fit:contain">':'%')+'</div><div class="card-body">'+badge+'<h3>'+escapeHtml(product.name)+'</h3><div class="meta">'+escapeHtml([product.brand,product.packageSize].filter(Boolean).join(" · "))+'</div>'+aliases+'<div class="price-row"><span class="price">'+(Number.isFinite(product.lowestPrice)?money(product.lowestPrice):"Cena nav norādīta")+'</span><span class="meta">zemākā atrastā cena</span></div><div class="variant-heading">'+variants.length+' piedāvājuma varianti</div><div class="offer-variants">'+variants.map(offerVariantMarkup).join("")+'</div><button class="history-toggle" type="button" data-history-toggle="'+escapeHtml(historyId)+'" aria-expanded="false">Cenu vēsture <span aria-hidden="true">⌄</span></button><div class="history-panel" id="history-'+escapeHtml(historyId)+'" hidden>'+priceHistoryMarkup(product)+'</div></div></article>';
-  }).join("");
-  document.querySelector("#empty").hidden=items.length!==0;
-}
-
-async function init(){
-  try{
-    const response=await fetch("data/offers.json",{cache:"no-store"});
-    if(!response.ok)throw new Error("Cannot load offers");
-    const data=await response.json();
-
-    if(Array.isArray(data.products)&&data.products.length){
-      state.products=data.products;
-    }else{
-      state.products=(Array.isArray(data.offers)?data.offers:[]).map(offer=>({
-        productId:offer.productId,
-        canonicalProductId:offer.productId,
-        name:offer.name,
-        image:offer.image,
-        lowestPrice:offer.price,
-        highestDiscountPercent:offer.discountPercent,
-        offerCount:1,
-        offers:[offer],
-      }));
+function groupOffers(offers) {
+  const groups = new Map();
+  for (const offer of offers) {
+    const identity = String(offer.identityKey || "").trim();
+    const key = identity && identity !== "|" && !identity.startsWith("unmatched:")
+      ? "identity:" + identity
+      : "product:" + (offer.canonicalProductId || offer.productId || offer.offerId);
+    let product = groups.get(key);
+    if (!product) {
+      product = {
+        identityKey: identity,
+        canonicalProductId: null,
+        name: offer.name || "Prece bez nosaukuma",
+        brand: offer.brand || null,
+        image: offer.image || null,
+        packageSize: offer.packageSize || "",
+        aliases: [],
+        offers: [],
+      };
+      groups.set(key, product);
     }
-
-    try{
-      const historyResponse=await fetch("data/price-history.json",{cache:"no-store"});
-      if(historyResponse.ok){
-        const historyData=await historyResponse.json();
-        state.history=historyData.products||{};
-      }
-    }catch(error){console.warn("Price history unavailable",error);}
-
-    const cities=[...new Set(state.products.flatMap(product=>(product.offers||[]).map(offer=>offer.city)).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"lv"));
-    document.querySelector("#city").innerHTML='<option value="">Visas pilsētas</option>'+cities.map(city=>'<option>'+escapeHtml(city)+'</option>').join("");
-    document.querySelector("#updated").textContent=data.updatedAt?"Atjaunots: "+data.updatedAt:"";
-  }catch(error){
-    console.error(error);
-    document.querySelector("#empty").hidden=false;
-    document.querySelector("#empty h3").textContent="Neizdevās ielādēt piedāvājumus";
+    if (offer.name && !product.aliases.includes(offer.name)) product.aliases.push(offer.name);
+    if (offer.name && offer.name.length > product.name.length) product.name = offer.name;
+    if (!product.brand && offer.brand) product.brand = offer.brand;
+    if (!product.image && offer.image) product.image = offer.image;
+    if (!product.packageSize && offer.packageSize) product.packageSize = offer.packageSize;
+    if (!product.canonicalProductId || offer.storeKey === "maxima") {
+      product.canonicalProductId = offer.canonicalProductId || offer.productId || product.canonicalProductId;
+    }
+    product.offers.push(offer);
   }
+  return [...groups.values()].map(product => {
+    product.offers.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+    return product;
+  }).sort((a, b) => a.name.localeCompare(b.name, "lv"));
+}
+
+function formatShortDate(value) {
+  if (!value) return "";
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value));
+  const date = match
+    ? new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]), 12)
+    : new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : new Intl.DateTimeFormat("lv-LV", {
+    day: "numeric",
+    month: "short",
+  }).format(date);
+}
+
+function formatDateRange(offer) {
+  if (offer.validFrom && offer.validUntil) {
+    return formatShortDate(offer.validFrom) + "–" + formatShortDate(offer.validUntil);
+  }
+  return formatShortDate(offer.validUntil) || "Termiņš nav norādīts";
+}
+
+function formatUpdate(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("lv-LV", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
+
+function safeSource(value) {
+  const source = String(value || "");
+  return /^https?:\/\//i.test(source) ? source : "#";
+}
+
+function renderStoreFilters() {
+  const target = document.querySelector("#storeFilters");
+  const counts = new Map(state.stores.map(store => [store.key, state.offers.filter(offer => offer.storeKey === store.key).length]));
+  const buttons = [{ key: "", name: "Visi tīkli", count: state.offers.length }, ...state.stores.map(store => ({
+    ...store,
+    count: counts.get(store.key) || 0,
+  }))];
+  target.innerHTML = buttons.map(store => '<button class="store-filter" type="button" data-store="'
+    + escapeHtml(store.key) + '" aria-pressed="' + String(state.selectedStore === store.key) + '">'
+    + escapeHtml(store.name) + '<span class="store-filter-count">' + store.count + '</span></button>').join("");
+  document.querySelector("#networkBadges").innerHTML = state.stores.map(store =>
+    '<span class="network-badge">' + escapeHtml(store.name) + '</span>'
+  ).join("");
+}
+
+function renderCampaignOptions() {
+  const target = document.querySelector("#campaign");
+  target.innerHTML = '<option value="">Visi bukleti</option>' + state.campaignOptions.map(option =>
+    '<option value="' + escapeHtml(option.value) + '">' + escapeHtml(option.label) + '</option>'
+  ).join("");
+}
+
+function renderCityOptions() {
+  const cities = [...new Set(state.offers.map(offer => offer.city).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "lv"));
+  document.querySelector("#city").innerHTML = '<option value="">Visas pilsētas</option>' + cities.map(city =>
+    '<option value="' + escapeHtml(city) + '">' + escapeHtml(city) + '</option>'
+  ).join("");
+}
+
+function conditionMatches(offer, filter) {
+  const needsCard = Boolean(offer.requiresPaldies || offer.requiresCard);
+  const appOnly = Boolean(offer.onlyInApp);
+  if (filter === "none") return !needsCard && !appOnly;
+  if (filter === "card") return needsCard;
+  if (filter === "app") return appOnly;
+  return true;
+}
+
+function offerSearchText(offer) {
+  return [
+    offer.storeName,
+    offer.location,
+    campaignLabel(offer),
+    offer.campaign,
+    offer.city,
+    ...(offer.storeFormats || []),
+  ].filter(Boolean).join(" ").toLocaleLowerCase("lv");
+}
+
+function matchesOffer(offer, filters) {
+  if (state.selectedStore && offer.storeKey !== state.selectedStore) return false;
+  if (filters.campaign && campaignToken(offer) !== filters.campaign) return false;
+  if (filters.city && offer.city !== filters.city) return false;
+  if (filters.minPrice !== null && (!Number.isFinite(offer.price) || offer.price < filters.minPrice)) return false;
+  if (filters.maxPrice !== null && (!Number.isFinite(offer.price) || offer.price > filters.maxPrice)) return false;
+  if (filters.minDiscount !== null) {
+    const discount = offerDiscount(offer);
+    if (discount === null || discount < filters.minDiscount) return false;
+  }
+  return conditionMatches(offer, filters.condition);
+}
+
+function offerVariantMarkup(offer) {
+  const regular = Number.isFinite(offer.regularPrice) && offer.regularPrice > offer.price
+    ? '<del>' + money(offer.regularPrice) + '</del>'
+    : "";
+  const discount = offerDiscount(offer);
+  const discountBadge = discount !== null && discount > 0
+    ? '<span class="variant-discount">−' + escapeHtml(discount) + '%</span>'
+    : "";
+  const store = normalizedStore(offer.storeName || offer.store);
+  const tags = [];
+  if (offer.requiresPaldies) tags.push('<span class="condition-tag strong">PALDIES karte</span>');
+  else if (offer.requiresCard) tags.push('<span class="condition-tag strong">Klienta karte</span>');
+  if (offer.onlyInApp) tags.push('<span class="condition-tag strong">Tikai lietotnē</span>');
+  if (!tags.length) tags.push('<span class="condition-tag">Bez kartes nosacījuma</span>');
+  const formats = Array.isArray(offer.storeFormats) && offer.storeFormats.length
+    ? '<span>Veikali ' + escapeHtml(offer.storeFormats.join(", ")) + '</span>'
+    : "";
+  const location = offer.location || offer.city;
+  const locationLabel = location
+    ? '<span>Vieta: ' + escapeHtml(location) + '</span>'
+    : formats;
+  const productSource = safeSource(offer.source || offer.campaignSource);
+
+  return '<article class="offer-variant">'
+    + '<div class="variant-top"><span class="retailer-tag ' + escapeHtml(store.key) + '">' + escapeHtml(store.name) + '</span>'
+    + '<span class="variant-date">' + escapeHtml(formatDateRange(offer)) + '</span></div>'
+    + '<div class="variant-campaign">' + escapeHtml(campaignLabel(offer)) + '</div>'
+    + '<div class="variant-price-row"><div class="variant-price"><strong>' + money(offer.price) + '</strong>' + regular + discountBadge + '</div></div>'
+    + '<div class="variant-tags">' + tags.join("") + '</div>'
+    + '<div class="variant-bottom">' + locationLabel + '<a href="' + escapeHtml(productSource) + '" target="_blank" rel="noopener">Avots ↗</a></div>'
+    + '</article>';
+}
+
+function renderProduct(product) {
+  const prices = product.offers.map(offer => offer.price).filter(Number.isFinite);
+  const bestPrice = prices.length ? Math.min(...prices) : null;
+  const bestDiscount = product.offers.map(offerDiscount).filter(Number.isFinite);
+  const topDiscount = bestDiscount.length ? Math.max(...bestDiscount) : null;
+  const stores = [...new Map(product.offers.map(offer => [offer.storeKey, offer.storeName])).entries()];
+  const image = product.image
+    ? '<img src="' + escapeHtml(product.image) + '" alt="" loading="lazy">'
+    : '<span aria-hidden="true">' + escapeHtml((product.name || "%").slice(0, 1).toLocaleUpperCase("lv")) + '</span>';
+  const storeTags = stores.map(([key, name]) => '<span class="retailer-tag ' + escapeHtml(key) + '">' + escapeHtml(name) + '</span>').join("");
+  const packageSize = product.packageSize ? '<p class="product-meta">' + escapeHtml(product.packageSize) + '</p>' : "";
+  const discountBadge = topDiscount !== null && topDiscount > 0
+    ? '<span class="saving-badge">Līdz −' + escapeHtml(topDiscount) + '%</span>'
+    : '<span class="saving-badge store-count">' + stores.length + ' ' + (stores.length === 1 ? 'tīkls' : 'tīkli') + '</span>';
+
+  return '<article class="card">'
+    + '<div class="product-top"><div class="product-thumb">' + image + '</div>'
+    + '<div class="product-heading"><div class="product-stores">' + storeTags + '</div>'
+    + '<h3>' + escapeHtml(product.name) + '</h3>' + packageSize + '</div></div>'
+    + '<div class="best-price"><div class="best-price-main"><strong>' + (bestPrice === null ? 'Cena nav norādīta' : money(bestPrice)) + '</strong>'
+    + '<span>labākā cena · ' + stores.map(([, name]) => escapeHtml(name)).join(" + ") + '</span></div>' + discountBadge + '</div>'
+    + '<div class="offer-list-heading"><span>' + product.offers.length + ' ' + (product.offers.length === 1 ? 'piedāvājums' : 'piedāvājumi') + '</span>'
+    + '<span>' + stores.length + ' ' + (stores.length === 1 ? 'veikalu tīkls' : 'veikalu tīkli') + '</span></div>'
+    + '<div class="offer-list">' + product.offers.map(offerVariantMarkup).join("") + '</div>'
+    + '</article>';
+}
+
+function activeFilters() {
+  const parsePrice = selector => {
+    const value = document.querySelector(selector).value.trim();
+    if (!value) return null;
+    const parsed = Number(value);
+    return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+  };
+  const discount = document.querySelector("#discount").value;
+  return {
+    query: document.querySelector("#search").value.trim().toLocaleLowerCase("lv"),
+    campaign: document.querySelector("#campaign").value,
+    city: document.querySelector("#city").value,
+    minPrice: parsePrice("#minPrice"),
+    maxPrice: parsePrice("#maxPrice"),
+    minDiscount: discount ? Number(discount) : null,
+    condition: document.querySelector("#condition").value,
+    sort: document.querySelector("#sort").value,
+  };
+}
+
+function render() {
+  const filters = activeFilters();
+  const products = [];
+  for (const product of state.products) {
+    const productText = [product.name, product.brand, ...(product.aliases || [])]
+      .filter(Boolean).join(" ").toLocaleLowerCase("lv");
+    const productMatchesQuery = !filters.query || productText.includes(filters.query);
+    const variants = product.offers.filter(offer => {
+      if (!matchesOffer(offer, filters)) return false;
+      return productMatchesQuery || offerSearchText(offer).includes(filters.query);
+    });
+    if (!variants.length) continue;
+    products.push({ ...product, offers: variants });
+  }
+
+  products.sort((a, b) => {
+    if (filters.sort === "name") return a.name.localeCompare(b.name, "lv");
+    if (filters.sort === "discount") {
+      const discountA = Math.max(-1, ...a.offers.map(offerDiscount).filter(Number.isFinite));
+      const discountB = Math.max(-1, ...b.offers.map(offerDiscount).filter(Number.isFinite));
+      return discountB - discountA || (Math.min(...a.offers.map(offer => offer.price)) - Math.min(...b.offers.map(offer => offer.price)));
+    }
+    return Math.min(...a.offers.map(offer => offer.price)) - Math.min(...b.offers.map(offer => offer.price));
+  });
+
+  const offerCount = products.reduce((sum, product) => sum + product.offers.length, 0);
+  document.querySelector("#offers").innerHTML = products.map(renderProduct).join("");
+  document.querySelector("#count").textContent = products.length + " produkti · " + offerCount + " piedāvājumi";
+
+  const empty = document.querySelector("#empty");
+  empty.hidden = products.length !== 0;
+  const noData = state.offers.length === 0;
+  document.querySelector("#emptyTitle").textContent = noData ? "Piedāvājumi nav pieejami" : "Neko neatradām";
+  document.querySelector("#emptyText").textContent = noData
+    ? "Datu avoti pašlaik nav sasniedzami. Mēģini vēlāk."
+    : "Pamēģini mainīt meklējamo frāzi vai noņemt kādu filtru.";
+  document.querySelector("#emptyClear").hidden = noData;
+
+  const clear = document.querySelector("#clearFilters");
+  clear.disabled = !filters.query && !state.selectedStore && !filters.campaign
+    && !filters.city && filters.minPrice === null && filters.maxPrice === null
+    && filters.minDiscount === null && !filters.condition && filters.sort === "price";
+}
+
+function renderStats() {
+  document.querySelector("#statStores").textContent = state.stores.length;
+  document.querySelector("#statProducts").textContent = state.products.length.toLocaleString("lv-LV");
+  document.querySelector("#statOffers").textContent = state.offers.length.toLocaleString("lv-LV");
+  document.querySelector("#lastUpdated").textContent = state.updates.length
+    ? state.updates.map(item => item.name + " · " + formatUpdate(item.value)).join("  /  ")
+    : "Atjauninājuma laiks nav norādīts";
+  document.querySelector("#updated").textContent = state.updates.length
+    ? "Datu atjauninājumi: " + state.updates.map(item => item.name + " " + formatUpdate(item.value)).join(" · ")
+    : "";
+}
+
+async function fetchFeed(path, fallbackStore) {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(path + " returned " + response.status);
+  const data = await response.json();
+  return { data, fallbackStore };
+}
+
+function addCampaignMetadata(feed, storeKey) {
+  const data = feed.data;
+  for (const item of [...(data.campaigns || []), ...(data.catalogues || [])]) {
+    if (!item.id || !item.name) continue;
+    const token = storeKey + "::" + item.id;
+    const name = storeKey === "mego" ? campaignSlugLabel(item.id) : item.name;
+    state.campaignLabels.set(token, name);
+  }
+}
+
+async function init() {
+  const sources = [
+    ["data/offers.json", "Maxima"],
+    ["data/mego-offers.json", "Mego"],
+  ];
+  const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
+  const feeds = [];
+  const failures = [];
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") feeds.push(result.value);
+    else failures.push(sources[index][1]);
+  });
+
+  const allOffers = [];
+  const storeMap = new Map();
+  for (const feed of feeds) {
+    const store = normalizedStore(feed.data.store || feed.fallbackStore);
+    storeMap.set(store.key, store);
+    addCampaignMetadata(feed, store.key);
+    if (feed.data.updatedAt) state.updates.push({ name: store.name, value: feed.data.updatedAt });
+    for (const rawOffer of feed.data.offers || []) {
+      if (!Number.isFinite(rawOffer.price)) continue;
+      const rawStore = String(rawOffer.store || "").trim();
+      const rawStoreType = rawStore ? normalizedStore(rawStore) : store;
+      const location = rawStore && rawStoreType.key !== store.key
+        ? rawStore
+        : rawOffer.location || rawOffer.city || null;
+      allOffers.push({ ...rawOffer, location, storeKey: store.key, storeName: store.name });
+    }
+  }
+
+  state.offers = allOffers;
+  state.stores = [...storeMap.values()].sort((a, b) => a.name.localeCompare(b.name, "lv"));
+  state.products = groupOffers(allOffers);
+  state.campaignOptions = [...new Map(allOffers.map(offer => [campaignToken(offer), {
+    value: campaignToken(offer),
+    label: normalizedStore(offer.storeName).name + " · " + campaignLabel(offer),
+  }])).values()].sort((a, b) => a.label.localeCompare(b.label, "lv"));
+
+  if (failures.length) {
+    const warning = document.querySelector("#dataWarning");
+    warning.hidden = false;
+    warning.textContent = "Neizdevās ielādēt " + failures.join(" un ") + " datus. Pārējo veikalu piedāvājumi ir pieejami.";
+  }
+
+  renderStoreFilters();
+  renderCampaignOptions();
+  renderCityOptions();
+  renderStats();
   render();
 }
 
-document.querySelector("#offers").addEventListener("click",event=>{
-  const button=event.target.closest("[data-history-toggle]");
-  if(!button)return;
-  const panel=document.querySelector("#history-"+CSS.escape(button.dataset.historyToggle));
-  if(!panel)return;
-  const open=panel.hidden;
-  panel.hidden=!open;
-  button.setAttribute("aria-expanded",String(open));
-  button.querySelector("span").textContent=open?"⌃":"⌄";
+function clearFilters() {
+  document.querySelector("#search").value = "";
+  document.querySelector("#campaign").value = "";
+  document.querySelector("#city").value = "";
+  document.querySelector("#minPrice").value = "";
+  document.querySelector("#maxPrice").value = "";
+  document.querySelector("#discount").value = "";
+  document.querySelector("#condition").value = "";
+  document.querySelector("#sort").value = "price";
+  state.selectedStore = "";
+  renderStoreFilters();
+  render();
+}
+
+document.querySelector("#storeFilters").addEventListener("click", event => {
+  const button = event.target.closest("[data-store]");
+  if (!button) return;
+  state.selectedStore = button.dataset.store;
+  renderStoreFilters();
+  render();
 });
-["search","city","sort"].forEach(id=>document.querySelector("#"+id).addEventListener(id==="search"?"input":"change",render));
-init();
+
+document.querySelector("#offers").addEventListener("error", event => {
+  if (event.target instanceof HTMLImageElement) event.target.hidden = true;
+}, true);
+
+["search", "campaign", "city", "minPrice", "maxPrice", "discount", "condition", "sort"]
+  .forEach(id => document.querySelector("#" + id).addEventListener(id === "search" || id.endsWith("Price") ? "input" : "change", render));
+
+document.querySelector("#clearFilters").addEventListener("click", clearFilters);
+document.querySelector("#emptyClear").addEventListener("click", clearFilters);
+document.addEventListener("keydown", event => {
+  if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase("en") === "k") {
+    event.preventDefault();
+    document.querySelector("#search").focus();
+  }
+});
+
+init().catch(error => {
+  console.error(error);
+  document.querySelector("#dataWarning").hidden = false;
+  document.querySelector("#dataWarning").textContent = "Neizdevās ielādēt piedāvājumus. Mēģini vēlāk.";
+  render();
+});
