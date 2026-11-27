@@ -5,7 +5,7 @@
     "https://www.maxima.lv/premium",
     "https://www.maxima.lv/paldies"
   ],
-  "updatedAt": "2026-11-27T10:52:12+00:00",
+  "updatedAt": "2026-11-27T10:52:59+00:00",
   "campaigns": [
     {
       "id": "maxima-weekly",
@@ -84,7 +84,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -123,7 +123,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -162,7 +162,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -201,7 +201,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -236,7 +236,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -275,7 +275,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -314,7 +314,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -353,7 +353,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -392,7 +392,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -427,7 +427,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -466,7 +466,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -505,7 +505,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -544,7 +544,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -583,7 +583,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -622,7 +622,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -661,7 +661,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -700,7 +700,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -739,7 +739,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -774,7 +774,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -813,7 +813,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -852,7 +852,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -891,7 +891,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -930,7 +930,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -969,7 +969,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1008,7 +1008,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1047,7 +1047,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1086,7 +1086,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1125,7 +1125,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1164,7 +1164,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1203,7 +1203,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1238,7 +1238,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1277,7 +1277,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1316,7 +1316,7 @@
       "campaign": "Well Done Premium",
       "campaignSource": "https://www.maxima.lv/premium",
       "source": "https://www.maxima.lv/premium",
-      "checkedAt": "2026-11-27T10:52:11+00:00",
+      "checkedAt": "2026-11-27T10:52:58+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1355,7 +1355,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1394,7 +1394,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1433,7 +1433,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1468,7 +1468,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1507,7 +1507,7 @@
       "campaign": "Iknedēļas piedāvājums",
       "campaignSource": "https://www.maxima.lv/piedavajumi/",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T10:52:10+00:00",
+      "checkedAt": "2026-11-27T10:52:57+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "verified",
@@ -1542,7 +1542,7 @@
       "campaign": "Piedāvājumi ar PALDIES karti",
       "campaignSource": "https://www.maxima.lv/paldies",
       "source": "https://www.maxima.lv/paldies",
-      "checkedAt": "2026-11-27T10:52:12+00:00",
+      "checkedAt": "2026-11-27T10:52:59+00:00",
       "quality": {
         "priceStatus": "verified",
         "dateStatus": "unknown",
@@ -1595,7 +1595,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1659,7 +1659,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1723,7 +1723,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1787,7 +1787,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1847,7 +1847,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -1907,7 +1907,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -1971,7 +1971,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2035,7 +2035,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2099,7 +2099,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2159,7 +2159,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -2219,7 +2219,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2283,7 +2283,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2347,7 +2347,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2411,7 +2411,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2475,7 +2475,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2539,7 +2539,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2603,7 +2603,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2667,7 +2667,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2727,7 +2727,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -2787,7 +2787,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2851,7 +2851,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2915,7 +2915,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -2979,7 +2979,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3043,7 +3043,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3107,7 +3107,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3171,7 +3171,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3236,7 +3236,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3271,7 +3271,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -3336,7 +3336,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3400,7 +3400,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3464,7 +3464,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3528,7 +3528,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3592,7 +3592,7 @@
           "campaign": "Well Done Premium",
           "campaignSource": "https://www.maxima.lv/premium",
           "source": "https://www.maxima.lv/premium",
-          "checkedAt": "2026-11-27T10:52:11+00:00",
+          "checkedAt": "2026-11-27T10:52:58+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3656,7 +3656,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3720,7 +3720,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3784,7 +3784,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3844,7 +3844,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
@@ -3904,7 +3904,7 @@
           "campaign": "Iknedēļas piedāvājums",
           "campaignSource": "https://www.maxima.lv/piedavajumi/",
           "source": "https://www.maxima.lv/piedavajumi/",
-          "checkedAt": "2026-11-27T10:52:10+00:00",
+          "checkedAt": "2026-11-27T10:52:57+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "verified",
@@ -3964,7 +3964,7 @@
           "campaign": "Piedāvājumi ar PALDIES karti",
           "campaignSource": "https://www.maxima.lv/paldies",
           "source": "https://www.maxima.lv/paldies",
-          "checkedAt": "2026-11-27T10:52:12+00:00",
+          "checkedAt": "2026-11-27T10:52:59+00:00",
           "quality": {
             "priceStatus": "verified",
             "dateStatus": "unknown",
