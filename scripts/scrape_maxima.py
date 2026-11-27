@@ -86,51 +86,60 @@ def prices_from(text: str) -> list[float]:
 
 
 def offer_dates(text: str, today: date | None = None) -> tuple[str | None, str | None]:
-    """Parse Latvian campaign date ranges, including ranges spanning New Year."""
+    """Parse Latvian campaign date ranges, including end-year dates across New Year."""
     today = today or date.today()
     text = " ".join(text.replace("\xa0", " ").split()).casefold()
-    year_match = re.search(r"\b(20\d{2})\b", text)
-    explicit_year = int(year_match.group(1)) if year_match else None
 
-    cross_month = re.search(
+    match = re.search(
         rf"(?P<d1>\d{{1,2}})\.?\s*(?P<m1>{MONTH_PATTERN})\.?\s*[-–—]\s*"
         rf"(?P<d2>\d{{1,2}})\.?\s*(?P<m2>{MONTH_PATTERN})\.?",
         text,
     )
-    if cross_month:
-        d1, m1, d2, m2 = cross_month.group("d1", "m1", "d2", "m2")
+    if match:
+        d1, m1, d2, m2 = match.group("d1", "m1", "d2", "m2")
         month1, month2 = MONTHS[m1.rstrip(".")], MONTHS[m2.rstrip(".")]
     else:
-        same_month = re.search(
+        match = re.search(
             rf"(?P<d1>\d{{1,2}})\.?\s*[-–—]\s*(?P<d2>\d{{1,2}})\.?\s*"
             rf"(?P<m>{MONTH_PATTERN})\.?",
             text,
         )
-        if same_month:
-            d1, d2, month_name = same_month.group("d1", "d2", "m")
+        if match:
+            d1, d2, month_name = match.group("d1", "d2", "m")
             month1 = month2 = MONTHS[month_name.rstrip(".")]
         else:
-            numeric = re.search(
+            match = re.search(
                 r"(?P<d1>\d{1,2})\.(?P<m1>\d{1,2})\.?\s*[-–—]\s*"
                 r"(?P<d2>\d{1,2})\.(?P<m2>\d{1,2})\.?",
                 text,
             )
-            if not numeric:
+            if not match:
                 return None, None
-            d1, m1, d2, m2 = numeric.group("d1", "m1", "d2", "m2")
+            d1, m1, d2, m2 = match.group("d1", "m1", "d2", "m2")
             month1, month2 = int(m1), int(m2)
 
-    year1 = explicit_year or today.year
-    year2 = year1 + (1 if month2 < month1 else 0)
+    # In Latvian catalogues the year is often printed only after the end date:
+    # "17.11. - 04.01.2027". Treat it as the end year, not the start year.
+    end_year_match = re.search(r"\b(20\d{2})\b", text[match.end():match.end() + 12])
+    start_year_match = re.search(r"\b(20\d{2})\b", text[:match.start()])
+    if end_year_match:
+        year2 = int(end_year_match.group(1))
+        year1 = year2 - (1 if month2 < month1 else 0)
+    elif start_year_match:
+        year1 = int(start_year_match.group(1))
+        year2 = year1 + (1 if month2 < month1 else 0)
+    else:
+        year1 = today.year
+        year2 = year1 + (1 if month2 < month1 else 0)
+
     try:
-        start = date(year1, month1, int(d1))
-        end = date(year2, month2, int(d2))
+        start_date = date(year1, month1, int(d1))
+        end_date = date(year2, month2, int(d2))
     except ValueError:
         return None, None
-    if end < start:
+    if end_date < start_date:
         return None, None
-    return start.isoformat(), end.isoformat()
-
+    return start_date.isoformat(), end_date.isoformat()
 
 def campaign_dates_from_soup(
     soup: BeautifulSoup,
