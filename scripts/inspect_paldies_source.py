@@ -17,8 +17,33 @@ URLS = [
 ]
 
 
-def describe_page(url: str) -> None:
-    response = requests.get(url, headers=HEADERS, timeout=30)
+def inspect_all_paldies_offers(session: requests.Session) -> None:
+    url = "https://www.maxima.lv/ajax-paldies-login-offers"
+    response = session.get(url, headers=HEADERS, timeout=45)
+    print(f"\n===== AJAX {url} =====")
+    print(f"status={response.status_code} final_url={response.url} content_type={response.headers.get('content-type')} bytes={len(response.content)}")
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    product_images = [
+        image for image in soup.find_all("img")
+        if (image.get("alt") or "").strip()
+        and (image.get("alt") or "").strip().casefold() not in {"paldies", "image", "maxima"}
+    ]
+    names = [(image.get("alt") or "").strip() for image in product_images]
+    unique_names = list(dict.fromkeys(names))
+    print(f"product_images={len(product_images)} unique_alt_names={len(unique_names)}")
+    print("first_names=", unique_names[:12])
+    print("last_names=", unique_names[-5:])
+    print("links=", [
+        {"text": a.get_text(" ", strip=True)[:80], "href": urljoin(url, a["href"])}
+        for a in soup.find_all("a", href=True)[:12]
+    ])
+    if not product_images:
+        print("response_excerpt=", re.sub(r"\s+", " ", response.text)[:1800])
+
+
+def describe_page(url: str, session: requests.Session) -> None:
+    response = session.get(url, headers=HEADERS, timeout=30)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     print(f"\n===== PAGE {url} =====")
@@ -93,5 +118,7 @@ def describe_page(url: str) -> None:
 
 
 if __name__ == "__main__":
+    session = requests.Session()
+    inspect_all_paldies_offers(session)
     for page_url in URLS:
-        describe_page(page_url)
+        describe_page(page_url, session)
