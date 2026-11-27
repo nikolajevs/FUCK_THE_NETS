@@ -9,6 +9,7 @@ Currently supported:
 | Maxima  | `scripts/scrape_maxima.py` | `data/offers.json`      | Production (daily GH Actions) |
 | Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
+| Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 
 ---
 
@@ -89,6 +90,41 @@ Output: `data/top-offers.json` (refreshed daily by the same workflow as Maxima).
 
 ---
 
+## Lidl (lidl.lv)
+
+Lidl's Latvian storefront has no structured product feed (the leaflet API returns
+`products: []`), so offers are read from the weekly booklet **PDF text layer** with
+word coordinates — the same approach as Mego.
+
+- Booklet discovery: the landing page
+  `https://www.lidl.lv/c/lv-LV/akciju-bukleti/s10024390` links to every active
+  leaflet viewer `/l/lv/akciju-buklets/<slug>/ar/0`.
+- Metadata + PDF: `GET https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=<slug>&region_id=0&region_code=0`
+  returns the booklet name, offer validity dates and a direct `pdfUrl`.
+
+Extraction per page:
+
+- the large sale price (text height ≥ 28 pt) anchors a product card; columns are
+  clustered from anchor x positions, and the name is the word block above/left of
+  the anchor within its column;
+- a small decimal to the **right** of the anchor is the crossed-out regular price;
+  unit prices (`1 kg = 16,14 €`) live inside the name block and are ignored;
+- `Ar Lidl Plus` near the card sets `requiresCard` with `cardName: "Lidl Plus"`.
+
+Quality gate: only cards with a clean name and a finite sale price are promoted to
+`offers`; empty/short/merged names (≥ 2 brand acronyms, > 7 words, repeated words),
+marketing copy and date banners go to `reviewOffers` and are **not shown**. Regular
+prices are kept only when confidently detected, otherwise `null`, so a discount is
+never derived from a unit price. Template pages (`Product name`, `XXX`) are skipped.
+
+```bash
+python scripts/scrape_lidl.py
+```
+
+Output: `data/lidl-offers.json` (refreshed daily by the same workflow as Maxima).
+
+---
+
 ## Product identity and grouping
 
 Shared logic in `scripts/product_identity.py`:
@@ -125,5 +161,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima and top! data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima, top! and Lidl data and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
