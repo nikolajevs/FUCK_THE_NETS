@@ -23,37 +23,6 @@ jobs:
           python-version: "3.12"
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4 pymupdf
-      - name: Diagnose current brochure cells (temporary)
-        run: |
-          python - <<'PY'
-          import requests
-          import pymupdf
-          from scripts.scrape_maxima import (
-              _pdf_page_cells, _clean_pdf_product_name, _looks_like_pdf_product_description,
-              _pdf_price_quality,
-          )
-          urls = {
-              "weekly": ("https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_16Y5.pdf", [1, 2]),
-              "black-friday": ("https://www.maxima.lv/uploads/releases/pdf/MAXIMA_BLACK-FRIDAY_2026_x8pM.pdf", [0, 1]),
-              "roja": ("https://www.maxima.lv/uploads/releases/pdf/MAXIMA_Roja_2026_vdeN.pdf", [0]),
-          }
-          for label, (url, page_numbers) in urls.items():
-              response = requests.get(url, timeout=60)
-              response.raise_for_status()
-              document = pymupdf.open(stream=response.content, filetype="pdf")
-              for page_number in page_numbers:
-                  page = document[page_number]
-                  print(f"CELLS_PAGE {label} {page_number + 1}")
-                  for row, col, raw in _pdf_page_cells(page):
-                      name = _clean_pdf_product_name(raw)
-                      price_info = _pdf_price_quality(raw)
-                      print(
-                          f"CELLS_ITEM {label} page={page_number + 1} row={row} col={col} "
-                          f"looks={_looks_like_pdf_product_description(name)} "
-                          f"name={name!r} price={price_info[:3]} issues={price_info[3]}"
-                      )
-              document.close()
-          PY
       - name: Validate scraper syntax
         run: python -m py_compile scripts/scrape_maxima.py
       - name: Run scraper tests

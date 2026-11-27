@@ -894,6 +894,8 @@ def _cluster_values(values: list[float], tolerance: float) -> list[list[float]]:
 
 def _looks_like_pdf_product_description(text: str) -> bool:
     folded = " ".join(text.casefold().split())
+    if re.match(r"^\d+\s+(?:izmērs\b|gab\.?\s*iepak\.?\b|iepak\.?\s*gab\.?\b)", folded):
+        return False
     if len(re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)) < 2:
         return False
     if any(term in folded for term in (
@@ -913,6 +915,8 @@ def _is_pdf_product_title_seed(text: str) -> bool:
     """Recognize product-name blocks even when package details and prices are separate."""
     value = " ".join(text.replace("\xa0", " ").split())
     folded = value.casefold()
+    if re.match(r"^\d+\s+(?:izmērs\b|gab\.?\s*iepak\.?\b|iepak\.?\s*gab\.?\b)", folded):
+        return False
     words = re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)
     if not words or len(words) > 14 or len(value) > 180:
         return False
@@ -929,7 +933,6 @@ def _is_pdf_product_title_seed(text: str) -> bool:
     if re.search(r"\b(?:akcijas cena|iepriekšējā cena|piedāvājuma cena|atlaide)\b", folded):
         return False
     return True
-
 
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
@@ -968,7 +971,7 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
 
 
 def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
-    """Find product starts while keeping wrapped lines of one card in the same row."""
+    """Find product starts inside text blocks, splitting only real product columns."""
     anchors: list[tuple[float, float]] = []
     split_gap = max(44, width * 0.08)
     for block in candidates:
@@ -981,9 +984,6 @@ def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[floa
             anchors.append((float(block[0]), float(block[1])))
             continue
 
-        # A text block may contain several wrapped lines. Use each line to locate
-        # product starts horizontally, but anchor all lines at the block's top.
-        # This prevents one card with 4 text lines from becoming 4 separate grid rows.
         lines: dict[int, list[tuple]] = defaultdict(list)
         for word in block_words:
             lines[int(word[6])].append(word)
@@ -993,31 +993,62 @@ def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[floa
             segment: list[tuple] = []
             for word in line_words:
                 if segment and float(word[0]) - float(segment[-1][2]) > split_gap:
-                    anchors.append((float(segment[0][0]), block_top))
+                    segment_text = " ".join(str(item[4]) for item in segment)
+                    if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                        anchors.append((float(segment[0][0]), block_top))
                     segment = []
                 segment.append(word)
             if segment:
-                anchors.append((float(segment[0][0]), block_top))
+                segment_text = " ".join(str(item[4]) for item in segment)
+                if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                    anchors.append((float(segment[0][0]), block_top))
 
-    # Wrapped lines usually repeat the same x-origin; collapse those duplicates
-    # before building the page grid.
     unique: list[tuple[float, float]] = []
     for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
-        if not any(abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 8 for seen_x, seen_y in unique):
+        if not any(
+            abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 8
+            for seen_x, seen_y in unique
+        ):
             unique.append((x, y))
     return unique
 
 
 def _pdf_words_in_rect(words, left: float, top: float, right: float, bottom: float) -> str:
-    """Extract individual positioned words, avoiding whole-block spill across card borders."""
+    """Extract words within one card, preserving each PDF text block's reading order."""
     selected = [
         word for word in words
         if left <= (float(word[0]) + float(word[2])) / 2 < right
         and top <= (float(word[1]) + float(word[3])) / 2 < bottom
     ]
-    selected.sort(key=lambda word: (float(word[1]), float(word[0])))
-    return " ".join(str(word[4]) for word in selected)
+    blocks: dict[int, list[tuple]] = defaultdict(list)
+    for word in selected:
+        blocks[int(word[5])].append(word)
 
+    parts: list[str] = []
+    for block_number in sorted(blocks):
+        block_words = sorted(
+            blocks[block_number],
+            key=lambda word: (int(word[6]), int(word[7])),
+        )
+        parts.extend(str(word[4]) for word in block_words)
+    return " ".join(parts)
+
+
+def _pdf_row_bounds(
+    candidates, centre_y: float, page_height: float, row_tolerance: float
+) -> tuple[float, float]:
+    """Bound a row around product descriptions, not an arbitrary fraction of page height."""
+    row_blocks = [
+        block for block in candidates
+        if abs(float(block[1]) - centre_y) <= row_tolerance
+    ]
+    if not row_blocks:
+        return max(0, centre_y - 40), min(page_height, centre_y + 70)
+    top_padding = max(28, page_height * 0.035)
+    bottom_padding = max(42, page_height * 0.05)
+    top = max(0, min(float(block[1]) for block in row_blocks) - top_padding)
+    bottom = min(page_height, max(float(block[3]) for block in row_blocks) + bottom_padding)
+    return top, bottom
 
 def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
     """Conservative grid extraction with word-level clipping for multi-column price blocks."""
@@ -1046,17 +1077,9 @@ def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
     results: list[tuple[int, int, str]] = []
 
     for row_index, centre_y in enumerate(y_centres):
-        if len(y_centres) == 1:
-            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
-        else:
-            top = max(
-                0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
-            ) if row_index else max(0, centre_y - (y_centres[1] - centre_y) * 0.52)
-            bottom = min(
-                height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
-            ) if row_index < len(y_centres) - 1 else min(
-                height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52
-            )
+        top, bottom = _pdf_row_bounds(
+            descriptions, centre_y, height, max(55, height * 0.105)
+        )
 
         for column_index in range(columns):
             left = column_index * width / columns
@@ -1102,17 +1125,9 @@ def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
     results: list[tuple[int, int, str]] = []
 
     for row_index, centre_y in enumerate(y_centres):
-        if len(y_centres) == 1:
-            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
-        else:
-            top = max(
-                0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
-            ) if row_index else max(0, centre_y - (y_centres[1] - centre_y) * 0.52)
-            bottom = min(
-                height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
-            ) if row_index < len(y_centres) - 1 else min(
-                height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52
-            )
+        top, bottom = _pdf_row_bounds(
+            candidates, centre_y, height, max(55, height * 0.105)
+        )
 
         for column_index in range(columns):
             left = column_index * width / columns
