@@ -78,10 +78,27 @@ def product_id(name: str, unit: str | None = None) -> str:
 def prices_from(text: str) -> list[float]:
     """Read shelf prices, excluding €/kg and €/l unit prices."""
     cleaned = re.sub(
-        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?|rull\w*)\b",
+        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?|rull\w*|pāri|pāris)\b",
         " ", text, flags=re.IGNORECASE,
     )
     cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", cleaned)
+    # Product sizes and pack quantities can resemble shelf prices:
+    # 0,33L -> €0.33, 42gab -> €1.42, S7 17+kg -> €7.17,
+    # and age/size ranges such as "3 12+" or "35-38, 39-42".
+    cleaned = re.sub(
+        r"\bS\s*\d{1,2}\s+\d{1,2}(?:\s*[-–]\s*\d{1,2})?\s*\+?\s*kg\b",
+        " ",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    cleaned = re.sub(
+        r"\b\d{1,3}(?:[,.]\s*\d{1,3})?\s*(?:kg|g|ml|l|gab\.?|gb)\b",
+        " ",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    cleaned = re.sub(r"\b\d{1,2}\s+\d{1,2}\+(?!\d)", " ", cleaned)
+    cleaned = re.sub(r"\b\d{2}\s*[-–]\s*\d{2}\b", " ", cleaned)
     # Pampers and other diaper packs encode size and weight as "S7 17+kg"
     # or "S5 11-17kg". Without removing this, "7 17" is falsely read as €7.17.
     cleaned = re.sub(

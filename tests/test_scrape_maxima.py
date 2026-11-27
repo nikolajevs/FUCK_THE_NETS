@@ -120,6 +120,23 @@ class MaximaScraperTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(prices_from(text), expected)
 
+    def test_pack_volume_count_and_size_ranges_are_not_mistaken_for_shelf_prices(self):
+        cases = [
+            ("Dzēriens OKF Big Ball Grape 0,34L D 2 49 2 99", [2.49, 2.99]),
+            ("Enerģ.d.RED BULL Festive Edition 0,25L D 1 79 2 49", [1.79, 2.49]),
+            ("Kaps.tr.m.maš. SOMAT Exc.Prem.5in1 42gb. 1 42 2 99", [1.42, 2.99]),
+            ("Kazas piena mais. KABRITA 3 12+ 800g 14 99 19 99", [14.99, 19.99]),
+            ("Veļ.mazg.līdz.PERSIL Regular 88m.r.3,96L 3 96 8 99", [3.96, 8.99]),
+            ("Sporta zeķes PUMA QUARTER izmēri 35-38, 39-42, 43-46 5 49 8 99", [5.49, 8.99]),
+        ]
+        for text, expected in cases:
+            with self.subTest(text=text):
+                self.assertEqual(prices_from(text), expected)
+
+    def test_price_per_pair_is_not_mistaken_for_shelf_price(self):
+        text = "Zeķes 1 iepak./2 pāri (0,18 €/pāri) 3 99 5 49"
+        self.assertEqual(prices_from(text), [3.99, 5.49])
+
     def test_unit_price_per_piece_is_not_mistaken_for_shelf_price(self):
         text = "Zobu birste (0,99 €/gab.); (1,49 €/gab.) 3 99 4 99"
         self.assertEqual(prices_from(text), [3.99, 4.99])
