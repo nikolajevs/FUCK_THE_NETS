@@ -740,6 +740,54 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(len(reviews), 1)
         self.assertIn("product_name_ambiguous", reviews[0]["quality"]["issues"])
 
+    def test_pdf_parser_splits_stacked_products_inside_one_text_block(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        # One PDF text block contains two product cards in the same column.
+        # Each product title and its two prices occupy separate text lines.
+        page.insert_textbox(
+            fitz.Rect(20, 100, 260, 260),
+            "Coffee Set KITCHEN 1 gab.\n"
+            "9 99 21 99\n"
+            "Tablecloth HOME 1 gab.\n"
+            "14 99 24 99",
+            fontsize=10,
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+
+        self.assertEqual(len(offers), 2)
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-weekly": 1})
+        by_name = {offer["name"]: offer for offer in offers}
+        self.assertEqual(
+            (by_name["Coffee Set KITCHEN 1 gab."]["price"],
+             by_name["Coffee Set KITCHEN 1 gab."]["regularPrice"]),
+            (9.99, 21.99),
+        )
+        self.assertEqual(
+            (by_name["Tablecloth HOME 1 gab."]["price"],
+             by_name["Tablecloth HOME 1 gab."]["regularPrice"]),
+            (14.99, 24.99),
+        )
+
     def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
         import pymupdf as fitz
 
