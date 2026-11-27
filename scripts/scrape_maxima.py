@@ -968,7 +968,7 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
 
 
 def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
-    """Find product starts inside PDF blocks, even when one block spans adjacent columns."""
+    """Find product starts while keeping wrapped lines of one card in the same row."""
     anchors: list[tuple[float, float]] = []
     split_gap = max(44, width * 0.08)
     for block in candidates:
@@ -981,20 +981,31 @@ def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[floa
             anchors.append((float(block[0]), float(block[1])))
             continue
 
+        # A text block may contain several wrapped lines. Use each line to locate
+        # product starts horizontally, but anchor all lines at the block's top.
+        # This prevents one card with 4 text lines from becoming 4 separate grid rows.
         lines: dict[int, list[tuple]] = defaultdict(list)
         for word in block_words:
             lines[int(word[6])].append(word)
+        block_top = float(block[1])
         for line_words in lines.values():
             line_words.sort(key=lambda word: float(word[0]))
             segment: list[tuple] = []
             for word in line_words:
                 if segment and float(word[0]) - float(segment[-1][2]) > split_gap:
-                    anchors.append((float(segment[0][0]), float(segment[0][1])))
+                    anchors.append((float(segment[0][0]), block_top))
                     segment = []
                 segment.append(word)
             if segment:
-                anchors.append((float(segment[0][0]), float(segment[0][1])))
-    return anchors
+                anchors.append((float(segment[0][0]), block_top))
+
+    # Wrapped lines usually repeat the same x-origin; collapse those duplicates
+    # before building the page grid.
+    unique: list[tuple[float, float]] = []
+    for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
+        if not any(abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 8 for seen_x, seen_y in unique):
+            unique.append((x, y))
+    return unique
 
 
 def _pdf_words_in_rect(words, left: float, top: float, right: float, bottom: float) -> str:
@@ -1313,6 +1324,8 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
                 item = dict(observation)
                 item.setdefault("offerId", f"legacy:{old_key}")
                 if (item.get("sourceId"), item.get("source")) in misattributed_pdf_sources:
+                    continue
+                if str(item.get("sourceProductId", "")).startswith("pdf:"):
                     continue
                 if item.get("date") and isinstance(item.get("price"), (int, float)):
                     entry["observations"].append(item)
