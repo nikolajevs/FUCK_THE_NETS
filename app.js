@@ -11,7 +11,7 @@ function priceHistoryMarkup(offer){
   if(!points.length)return '<p class="history-note">Cenu vēsture vēl nav savākta.</p>';
   const first=points[0],last=points[points.length-1];
   if(points.length===1){
-    const usual=Number.isFinite(last.regularPrice)?' · Parastā cena: '+money(last.regularPrice):"";
+    const usual=Number.isFinite(last.regularPrice)?' · Cena bez PALDIES / parastā cena: '+money(last.regularPrice):"";
     return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>Pirmais novērojums: '+escapeHtml(formatDate(last.date))+usual+'</span></div><p class="history-note">Pašlaik ir tikai viens mērījums. Pēc nākamajiem ikdienas atjauninājumiem šeit būs redzamas cenu izmaiņas.</p>';
   }
 
@@ -30,7 +30,7 @@ function priceHistoryMarkup(offer){
     const value=min+(max-min)*index/3,yy=y(value);
     return '<line class="chart-grid" x1="'+left+'" y1="'+yy+'" x2="'+(width-right)+'" y2="'+yy+'"/><text class="chart-axis" x="'+(left-9)+'" y="'+(yy+4)+'" text-anchor="end">'+escapeHtml(money(value))+'</text>';
   }).join("");
-  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+"+pointPriceLabel+" "+money(point.price))+'</title></circle>').join("");
+  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+": "+pointPriceLabel+" "+money(point.price))+'</title></circle>').join("");
   const regularCircles=points.map((point,index)=>Number.isFinite(point.regularPrice)?'<circle class="chart-point regular-point" cx="'+x(index)+'" cy="'+y(point.regularPrice)+'" r="3"><title>'+escapeHtml(formatDate(point.date)+": parastā cena "+money(point.regularPrice))+'</title></circle>':"").join("");
   const difference=last.price-first.price;
   const percent=first.price?difference/first.price*100:0;
