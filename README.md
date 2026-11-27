@@ -1,77 +1,85 @@
-# Maxima Latvia offers aggregator
+# Latvia supermarket offers aggregator
 
-A static website for collecting and comparing Maxima Latvia promotional offers.
+Static site and collectors for promotional offers from Latvian supermarket chains.
 
-## Current collection sources
+Currently supported:
 
-The daily collector reads:
+| Store   | Scraper                    | Data file               | Status                        |
+|---------|----------------------------|-------------------------|-------------------------------|
+| Maxima  | `scripts/scrape_maxima.py` | `data/offers.json`      | Production (daily GH Actions) |
+| Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
 
-- Weekly offers: \`https://www.maxima.lv/piedavajumi/\`
-- Well Done Premium: \`https://www.maxima.lv/premium\`
-- The complete PALDIES-card catalogue, selected through the official \`Ar PALDIES karti\` filter on \`https://www.maxima.lv/piedavajumi/\`
-- Every currently active brochure linked from \`https://www.maxima.lv/bukleti/\`, including special campaigns, seasonal catalogues, book festivals and store-opening leaflets.
+---
 
-### Active brochure collection
+## Maxima
 
-The scraper discovers brochure cards dynamically from the official catalogue index. For every active brochure it resolves its own detail page, date range, PDF link and published store scope.
+Collects:
 
-PDF files are downloaded and parsed with PyMuPDF. Product names and prices may be grouped into text blocks that cross multiple brochure columns. The parser splits horizontally merged product blocks by word coordinates, excludes packaging/size labels from card detection, derives row bounds from product descriptions, and preserves each PDF block's reading order when matching sale and previous prices. Explicit PALDIES-card conditions are retained as separate price fields instead of treating every PDF price as an ordinary shelf price. When a PDF item matches a verified product ID from Maxima's full PALDIES AJAX catalogue, the official card and regular prices take precedence over imperfect PDF text extraction. The Well Done Premium pages are detected from their section heading, repeated Black Friday pages inside the weekly PDF are not imported twice, and product titles polluted by store-event, size-label, trailing price-fragment or multiple-item text are routed to manual review. A page may be assigned to a specific campaign inside a combined weekly PDF (for example, Well Done Premium or Grāmatu festivāls). Store-specific catalogues retain their published store description and location rather than being presented as nationwide offers.
+- Weekly offers — https://www.maxima.lv/piedavajumi/
+- Well Done Premium — https://www.maxima.lv/premium
+- Full PALDIES-card catalogue (AJAX pagination)
+- All active brochures from https://www.maxima.lv/bukleti/ (PDF + store scope)
 
-The scraper records the PDF page, brochure URL, dates, source product position, store scope and price-quality checks. Product cards that cannot be parsed unambiguously are stored in \`reviewOffers\` rather than silently treated as verified.
+PDF parsing uses PyMuPDF with word coordinates, column splitting, PALDIES price precedence, and a review queue for ambiguous cards. Product identity is conservative (normalized tokens + package size, no fuzzy merge).
 
-Each active brochure has a \`complete\` flag. It is true only when the brochure PDF is present and at least one product page was successfully parsed. Catalogue summaries are printed during each run so missed or empty brochures can be identified.
+```bash
+python scripts/scrape_maxima.py
+```
 
-The PALDIES collector uses Maxima's own \`/ajax/salesloadmore\` endpoint. It reads the filter ID from the page instead of assuming it is fixed, then downloads all result pages in batches of up to 75 using the endpoint's \`offset\` parameter.
+---
 
-For every run, it checks the server-reported \`totalItems\`, the number of cards on each page, and the uniqueness of each source product ID. If a page is missing, repeats products, or the final number of unique products differs from the server total, the scraper fails rather than publishing a partial PALDIES catalogue.
+## Mego
 
-The collector does not infer a city, store-specific availability or store format when the official page does not state it.
+Collects active PDF booklets from https://mego.lv/akcijas-un-piedavajumi/ (WordPress page + DFLIP embeds).
+
+- Discovers current weekly / campaign PDFs and date ranges
+- Parses with word coordinates; handles cent-style prices (`129` → €1.29) and multi-column layout
+- Flags `requiresCard` / `onlyInApp` when detected
+- Ambiguous names go to `reviewOffers`
+
+```bash
+python scripts/scrape_mego.py
+```
+
+Output: `data/mego-offers.json`
+
+---
 
 ## Product identity and grouping
 
-Offers are preserved as separate variants, including their campaign, source URL, dates, PALDIES requirement, prices and store formats. Product cards are grouped using a conservative normalized identity:
+Shared logic in `scripts/product_identity.py`:
 
-- Latvian diacritics and punctuation are normalized.
-- Word order and capitalization do not affect a match.
-- Package sizes are normalized (for example, 1 kg and 1000 g).
-- Different package sizes and flavour names remain separate.
-- No fuzzy matching is used to merge products automatically.
+- Latvian diacritics and punctuation normalized
+- Word order / capitalization ignored
+- Package sizes normalized (1 kg ≡ 1000 g)
+- Different sizes and flavours stay separate
 
-The output keeps both formats:
+Output shapes:
 
-- \`offers\`: flat source-level offer variants.
-- \`products\`: grouped products, each containing all matching \`offers\` variants.
-- \`reviewOffers\`: collected cards whose prices or product details need manual review.
+- `offers` — flat source-level variants
+- `products` — grouped by identity
+- `reviewOffers` — needs manual check
 
-This allows the same product to appear in more than one campaign without losing the source-level price, PALDIES requirement or availability details.
+## Price history (Maxima)
 
-## Price history
-
-Price history is keyed by canonical product identity. Each product keeps:
-
-- \`observations\`: one record per source offer and day.
-- \`points\`: one daily point using the lowest verified price observed across collected variants.
-
-The previous name-keyed history is migrated into canonical product history by the scraper. The chart therefore shows the lowest verified observed price per day, while the separate offer variants retain campaign-level detail. Review offers are kept in the feed but excluded from verified price history until their prices are unambiguous.
+Keyed by canonical product identity. Daily point = lowest verified price that day. Review offers are excluded until prices are clean.
 
 ## Local preview
 
-Run any static HTTP server from the repository root:
-
-\`\`\`bash
+```bash
 python3 -m http.server 8000
-\`\`\`
+```
 
-Then open \`http://localhost:8000\`.
+Open http://localhost:8000
 
 ## Tests
 
-Run parser, identity, PALDIES pagination and PDF extraction tests:
-
-\`\`\`bash
+```bash
 python -m unittest discover -s tests -v
-\`\`\`
+```
 
 ## GitHub Pages
 
-In repository Settings → Pages, set the build and deployment source to **GitHub Actions**. The workflow \`.github/workflows/maxima.yml\` publishes the static site after a successful data refresh. You can also start it from Actions → Update Maxima offers and deploy → Run workflow.
+Settings → Pages → source **GitHub Actions**.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima data and deploys.  
+Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
