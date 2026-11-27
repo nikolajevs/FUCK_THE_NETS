@@ -1104,6 +1104,21 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
     old_products = history_data.get("products", {})
     products: dict[str, dict] = {}
 
+    # The first PDF-import run parsed three differently named URLs containing
+    # identical combined weekly brochures. Its fallback attribution incorrectly
+    # copied non-WDP pages into the WDP and book-festival histories. Remove only
+    # those PDF observations; the corrected run below re-adds the real sections.
+    misattributed_pdf_sources = {
+        (
+            "maxima-book-festival",
+            "https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_ViXL.pdf",
+        ),
+        (
+            "maxima-well-done-premium",
+            "https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_6zq0.pdf",
+        ),
+    }
+
     def get_entry(canonical_id: str, name: str, package_size: str = "") -> dict:
         return products.setdefault(canonical_id, {
             "productId": canonical_id,
@@ -1127,6 +1142,8 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
             for observation in observations:
                 item = dict(observation)
                 item.setdefault("offerId", f"legacy:{old_key}")
+                if (item.get("sourceId"), item.get("source")) in misattributed_pdf_sources:
+                    continue
                 if item.get("date") and isinstance(item.get("price"), (int, float)):
                     entry["observations"].append(item)
         else:
@@ -1222,6 +1239,12 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
                 "checkedAt": best.get("checkedAt"),
             })
         entry["points"] = points
+
+    # Drop empty records left behind by a history-source cleanup.
+    products = {
+        canonical_id: entry for canonical_id, entry in products.items()
+        if entry["observations"]
+    }
 
     return {
         "updatedAt": observed_at.isoformat(timespec="seconds"),
