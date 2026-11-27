@@ -1,0 +1,188 @@
+{
+  "updatedAt": "2026-11-27T08:24:19+00:00",
+  "source": "https://www.maxima.lv/piedavajumi/",
+  "products": {
+    "biezpiena-sierins-karums-45-g-dazadi-veidi": {
+      "productId": "biezpiena-sierins-karums-45-g-dazadi-veidi",
+      "name": "Biezpiena sieriņš KĀRUMS, 45 g, dažādi veidi",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.29,
+          "regularPrice": 0.52,
+          "discountPercent": 44,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "biezpiens-zemaitijos-1-kg-9-fasets": {
+      "productId": "biezpiens-zemaitijos-1-kg-9-fasets",
+      "name": "Biezpiens ŽEMAITIJOS, 1 kg, 9%, fasēts",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.59,
+          "regularPrice": 6.89,
+          "discountPercent": 48,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "cukgalas-skinkis-bez-kaula-un-adas-1-kg": {
+      "productId": "cukgalas-skinkis-bez-kaula-un-adas-1-kg",
+      "name": "Cūkgaļas šķiņķis bez kaula un ādas, 1 kg",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.79,
+          "regularPrice": 5.49,
+          "discountPercent": 49,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "hurma-persimon-1-kg": {
+      "productId": "hurma-persimon-1-kg",
+      "name": "Hurma PERSIMON, 1 kg",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "discountPercent": 50,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "kartupeli-1-kg": {
+      "productId": "kartupeli-1-kg",
+      "name": "Kartupeļi, 1 kg",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 0.19,
+          "regularPrice": 0.45,
+          "discountPercent": 58,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "mini-fuet-desu-izlase-well-done-premium-320-g": {
+      "productId": "mini-fuet-desu-izlase-well-done-premium-320-g",
+      "name": "Mini Fuet desu izlase WELL DONE PREMIUM, 320 g",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "discountPercent": 42,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g": {
+      "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
+      "name": "Olīvas pildītas ar apelsīniem WELL DONE PREMIUM, 360 g",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 3.29,
+          "regularPrice": 4.49,
+          "discountPercent": 27,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "plumju-tomati-1-kg": {
+      "productId": "plumju-tomati-1-kg",
+      "name": "Plūmju tomāti, 1 kg",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 2.39,
+          "regularPrice": 3.79,
+          "discountPercent": 37,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "siers-ar-trifelem-well-done-premium-180-g": {
+      "productId": "siers-ar-trifelem-well-done-premium-180-g",
+      "name": "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 4.49,
+          "regularPrice": 4.99,
+          "discountPercent": 10,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "skabais-krejums-valmiera-450-g-20": {
+      "productId": "skabais-krejums-valmiera-450-g-20",
+      "name": "Skābais krējums VALMIERA, 450 g, 20%",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.49,
+          "regularPrice": 2.39,
+          "discountPercent": 38,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "smiltis-kaku-tualetei-lovett-5-l-cementejosas": {
+      "productId": "smiltis-kaku-tualetei-lovett-5-l-cementejosas",
+      "name": "Smiltis kaķu tualetei LOVETT, 5 l, cementējošas",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.99,
+          "regularPrice": 3.49,
+          "discountPercent": 43,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu": {
+      "productId": "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu",
+      "name": "Sālā uzkoda PRINGLES, 165 g, oriģinālā vai ar skābā krējuma un sīpolu garšu",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 1.89,
+          "regularPrice": 2.29,
+          "discountPercent": 17,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    },
+    "varaviksnes-forele-1-kg-kidata": {
+      "productId": "varaviksnes-forele-1-kg-kidata",
+      "name": "Varavīksnes forele, 1 kg, ķīdāta",
+      "unit": null,
+      "points": [
+        {
+          "date": "2026-11-27",
+          "price": 6.99,
+          "regularPrice": 11.99,
+          "discountPercent": 42,
+          "checkedAt": "2026-11-27T08:24:19+00:00"
+        }
+      ]
+    }
+  }
+}
