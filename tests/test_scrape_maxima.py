@@ -253,7 +253,7 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
 
     def test_parse_catalogue_pdf_extracts_product_price_pair(self):
-        import fitz
+        import pymupdf as fitz
 
         document = fitz.open()
         page = document.new_page(width=600, height=800)
@@ -285,6 +285,48 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(bananas["discountPercent"], 34)
         self.assertEqual(cheese["pdfPage"], 1)
         self.assertEqual(cheese["validFrom"], "2026-11-24")
+
+    def test_pdf_parser_joins_separate_title_and_price_blocks_and_detects_paldies(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(35, 205, 230, 230),
+            "Siers STRACCIATELLA WELL DONE PREMIUM",
+        )
+        page.insert_textbox(
+            fitz.Rect(35, 238, 230, 315),
+            "150 g\nCena ar Paldies karti 1 79\nParastā cena 1 99",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-well-done-premium",
+            "name": "Well Done Premium",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 1)
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-well-done-premium": 1})
+        offer = offers[0]
+        self.assertAlmostEqual(offer["price"], 1.79)
+        self.assertAlmostEqual(offer["regularPrice"], 1.99)
+        self.assertTrue(offer["requiresPaldies"])
+        self.assertEqual(offer["paldiesPrice"], 1.79)
+        self.assertEqual(offer["priceWithoutPaldies"], 1.99)
+        self.assertNotIn("Cena ar", offer["name"])
+        self.assertEqual(offer["quality"]["priceStatus"], "verified")
 
     def test_detect_all_explicit_store_formats(self):
         text = "Piedāvājums spēkā visos MAXIMA X, XX un XXX veikalos"

@@ -884,8 +884,38 @@ def _looks_like_pdf_product_description(text: str) -> bool:
     return has_package or "grāmata" in folded or "grāmatu" in folded
 
 
+def _is_pdf_product_title_seed(text: str) -> bool:
+    """Recognize product-name blocks even when package details and prices are separate."""
+    value = " ".join(text.replace("\xa0", " ").split())
+    folded = value.casefold()
+    words = re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)
+    if not words or len(words) > 14 or len(value) > 180:
+        return False
+    if any(term in folded for term in (
+        "piedāvājums spēkā", "preču daudzums ierobežots",
+        "cena pie preces", "ar aktuālo preču piedāvājumu",
+        "black friday", "cenu festivāls", "veikalos:",
+        "well done premium", "produktu piedāvājumi",
+        "pārtikas un ikdienas preču piedāvājumi",
+        "augļi un dārzeņi", "grāmatu festivāls",
+        "saldēto produktu piedāvājumi", "cenu un marķējumu skaidrojums",
+    )):
+        return False
+    if re.search(r"\b(?:akcijas cena|iepriekšējā cena|piedāvājuma cena|atlaide)\b", folded):
+        return False
+    return True
+
+
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
+    value = re.sub(
+        r"\b(?:akcijas cena|piedāvājuma cena|cena ar paldies karti|cena bez paldies kartes|"
+        r"cena ar paldies|cena bez paldies|parastā cena|iepriekšējā cena|paldies karte|"
+        r"cena par kilogramu|cena par kg)\b:?\s*",
+        " ",
+        value,
+        flags=re.IGNORECASE,
+    )
     value = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", value, flags=re.IGNORECASE)
     value = re.sub(r"\d{1,3}[,.]\d{2}\s*€?", " ", value)
     value = re.sub(r"(?<!\d)\d{1,3}\s+\d{2}(?!\d)", " ", value)
@@ -913,54 +943,63 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
 
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Split a brochure page into its product cells using text-block geometry."""
+    """Split a brochure page into priced product cells, including split text blocks."""
     blocks = page.get_text("blocks")
-    descriptions = [
+    candidates = [
         block for block in blocks
         if _looks_like_pdf_product_description(block[4])
+        or _is_pdf_product_title_seed(block[4])
     ]
-    if not descriptions:
+    if not candidates:
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
-    x_clusters = _cluster_values([float(block[0]) for block in descriptions], max(24, width * 0.07))
-    y_clusters = _cluster_values([float(block[1]) for block in descriptions], max(55, height * 0.105))
+    x_tolerance = max(30, width * 0.10)
+    y_tolerance = max(48, height * 0.085)
+    x_clusters = _cluster_values([float(block[0]) for block in candidates], x_tolerance)
+    y_clusters = _cluster_values([float(block[1]) for block in candidates], y_tolerance)
     if not x_clusters or not y_clusters:
         return []
 
     x_centres = [sum(group) / len(group) for group in x_clusters]
     y_centres = [sum(group) / len(group) for group in y_clusters]
-    columns = len(x_centres)
     results: list[tuple[int, int, str]] = []
 
     for row_index, centre_y in enumerate(y_centres):
         if len(y_centres) == 1:
-            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
+            top = max(0, centre_y - height * 0.23)
+            bottom = min(height, centre_y + height * 0.23)
         else:
-            top = max(0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52) if row_index else max(
-                0, centre_y - (y_centres[1] - centre_y) * 0.52
+            top = max(
+                0,
+                centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
+                if row_index else centre_y - (y_centres[1] - centre_y) * 0.52,
             )
-            bottom = min(height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52) if row_index < len(
-                y_centres
-            ) - 1 else min(height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52)
+            bottom = min(
+                height,
+                centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
+                if row_index < len(y_centres) - 1
+                else centre_y + (centre_y - y_centres[row_index - 1]) * 0.52,
+            )
 
-        for column_index in range(columns):
-            left = column_index * width / columns
-            right = (column_index + 1) * width / columns
+        for column_index, centre_x in enumerate(x_centres):
+            left = 0 if column_index == 0 else (x_centres[column_index - 1] + centre_x) / 2
+            right = width if column_index == len(x_centres) - 1 else (centre_x + x_centres[column_index + 1]) / 2
+            cell_candidates = [
+                block for block in candidates
+                if left <= float(block[0]) < right
+                and abs(float(block[1]) - centre_y) <= max(65, height * 0.11)
+            ]
+            if not cell_candidates:
+                continue
+
             rect = fitz.Rect(left, top, right, bottom)
             cell_text = page.get_text("text", clip=rect, sort=True)
-            if not cell_text.strip():
-                continue
-            cell_descriptions = [
-                block for block in descriptions
-                if left <= float(block[0]) < right
-                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
-            ]
-            if not cell_descriptions:
+            # Pure category banners (for example -50% on selected goods) are not SKUs.
+            if not cell_text.strip() or not prices_from(cell_text):
                 continue
             results.append((row_index + 1, column_index + 1, cell_text))
     return results
-
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
     folded = page_text.casefold()
@@ -1041,6 +1080,12 @@ def parse_catalogue_pdf(
                 ) else "unknown",
                 "issues": issues,
             }
+            paldies_marker = bool(re.search(
+                r"(?:cena\s+ar\s+paldies|paldies\s+karte|ar\s+paldies\s+kart)",
+                cell_text,
+                flags=re.IGNORECASE,
+            ))
+            requires_paldies = paldies_marker or page_catalogue["id"] == "maxima-well-done-premium"
             offer = {
                 "offerId": offer_id,
                 "sourceId": page_catalogue["id"],
@@ -1054,12 +1099,12 @@ def parse_catalogue_pdf(
                 "image": image,
                 "price": price,
                 "regularPrice": regular,
-                "paldiesPrice": None,
-                "priceWithoutPaldies": None,
+                "paldiesPrice": price if requires_paldies else None,
+                "priceWithoutPaldies": regular if requires_paldies else None,
                 "unit": None,
                 "discountPercent": discount,
-                "requiresPaldies": False,
-                "paldis": False,
+                "requiresPaldies": requires_paldies,
+                "paldis": requires_paldies,
                 "validFrom": valid_from,
                 "validUntil": valid_until,
                 "city": page_catalogue.get("city"),
