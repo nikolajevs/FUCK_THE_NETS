@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#146b3a">
+  <meta name="description" content="Maxima veikalu piedāvājumi Latvijā vienuviet.">
+  <title>Maxima piedāvājumi Latvijā</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap header-inner">
+      <a class="brand" href="./" aria-label="Sākums"><span class="brand-mark">M</span><span>Atlaides<span class="brand-sub">LATVIJA</span></span></a>
+      <span class="header-note">Maxima piedāvājumi</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro">
+      <p class="eyebrow">IEPIRKUMI GUDRĀK</p>
+      <h1>Maxima atlaides<br><span>vienuviet.</span></h1>
+      <p class="lead">Meklē un salīdzini aktuālos piedāvājumus Latvijas Maxima veikalos.</p>
+    </section>
+    <section class="filters" aria-label="Piedāvājumu filtri">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Meklēt preci vai zīmolu…" autocomplete="off"></label>
+      <label class="select-label"><span>Pilsēta</span><select id="city"><option value="">Visas pilsētas</option></select></label>
+      <label class="select-label"><span>Kārtošana</span><select id="sort"><option value="discount">Lielākā atlaide</option><option value="price">Zemākā cena</option><option value="name">Nosaukums A–Z</option></select></label>
+    </section>
+    <div class="results-head"><h2>Aktuālie piedāvājumi</h2><span id="count" class="count">0 piedāvājumi</span></div>
+    <div id="offers" class="grid" aria-live="polite"></div>
+    <div id="empty" class="empty" hidden><div class="empty-icon">%</div><h3>Piedāvājumi vēl nav pievienoti</h3><p>Kad būs pārbaudīti dati, tie parādīsies šeit.</p></div>
+    <footer><span>Dati tiek publicēti tikai ar norādītu avotu un derīguma termiņu.</span><span id="updated"></span></footer>
+  </main>
+</body>
+</html>
