@@ -4,17 +4,28 @@ A static website for collecting and comparing Maxima Latvia promotional offers.
 
 ## Current collection sources
 
-The daily collector reads three offer sources:
+The daily collector reads:
 
 - Weekly offers: \`https://www.maxima.lv/piedavajumi/\`
 - Well Done Premium: \`https://www.maxima.lv/premium\`
 - The complete PALDIES-card catalogue, selected through the official \`Ar PALDIES karti\` filter on \`https://www.maxima.lv/piedavajumi/\`
+- Every currently active brochure linked from \`https://www.maxima.lv/bukleti/\`, including special campaigns, seasonal catalogues, book festivals and store-opening leaflets.
+
+### Active brochure collection
+
+The scraper discovers brochure cards dynamically from the official catalogue index. For every active brochure it resolves its own detail page, date range, PDF link and published store scope.
+
+PDF files are downloaded and parsed with PyMuPDF. Product text is separated by page layout, then prices and comparable prices are read from each product cell. A page may be assigned to a specific campaign inside a combined weekly PDF (for example, Well Done Premium or Grāmatu festivāls). Store-specific catalogues retain their published store description and location rather than being presented as nationwide offers.
+
+The scraper records the PDF page, brochure URL, dates, source product position, store scope and price-quality checks. Product cards that cannot be parsed unambiguously are stored in \`reviewOffers\` rather than silently treated as verified.
+
+Each active brochure has a \`complete\` flag. It is true only when the brochure PDF is present and at least one product page was successfully parsed. Catalogue summaries are printed during each run so missed or empty brochures can be identified.
 
 The PALDIES collector uses Maxima's own \`/ajax/salesloadmore\` endpoint. It reads the filter ID from the page instead of assuming it is fixed, then downloads all result pages in batches of up to 75 using the endpoint's \`offset\` parameter.
 
 For every run, it checks the server-reported \`totalItems\`, the number of cards on each page, and the uniqueness of each source product ID. If a page is missing, repeats products, or the final number of unique products differs from the server total, the scraper fails rather than publishing a partial PALDIES catalogue.
 
-The weekly and Well Done Premium campaign dates and store scope are resolved from each campaign's own brochure detail page. PALDIES offer dates are read from each individual product card's date interval. The collector does not infer a city, store-specific availability or store format when the official page does not state it.
+The collector does not infer a city, store-specific availability or store format when the official page does not state it.
 
 ## Product identity and grouping
 
@@ -55,7 +66,7 @@ Then open \`http://localhost:8000\`.
 
 ## Tests
 
-Run parser, identity and PALDIES pagination tests:
+Run parser, identity, PALDIES pagination and PDF extraction tests:
 
 \`\`\`bash
 python -m unittest discover -s tests -v
