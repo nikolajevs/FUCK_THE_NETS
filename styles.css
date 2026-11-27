@@ -107,6 +107,7 @@ button, select { cursor: pointer; }
 .retailer-tag.mego { background: #edf1fb; color: #455b9a; }
 .retailer-tag.top { background: #fdecec; color: #c1121f; }
 .retailer-tag.lidl { background: #fff3c4; color: #0050aa; }
+.retailer-tag.rimi { background: #fbe9eb; color: #a6192e; }
 .product-heading h3 { margin: 0; color: #23352a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
 .product-meta { margin: 4px 0 0; color: #87938a; font-size: 9px; }
 .best-price { display: flex; justify-content: space-between; align-items: end; gap: 10px; margin-top: 14px; padding: 11px 12px; border-radius: 10px; background: #f5f9f5; }
