@@ -1089,7 +1089,7 @@ class MaximaScraperTests(unittest.TestCase):
                 y = 90 + row_index * 220 + column_index * 4
                 page.insert_textbox(
                     fitz.Rect(x, y, x + 160, y + 75),
-                    f"Product {column_index + 1}-{row_index + 1} 1 gab.\\n"
+                    f"Product {column_index + 1}-{row_index + 1} 1 gab.\n"
                     f"{1 + column_index * 3 + row_index}.99 {9 + column_index * 3 + row_index}.99",
                     fontsize=9,
                 )
