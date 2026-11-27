@@ -25,6 +25,8 @@ jobs:
         run: pip install requests beautifulsoup4
       - name: Validate scraper syntax
         run: python -m py_compile scripts/scrape_maxima.py
+      - name: Run scraper tests
+        run: python -m unittest discover -s tests -v
       - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
       - name: Commit refreshed data
