@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Conservative collector for public Maxima Latvia offer cards."""
+"""Collect public Maxima Latvia offers and maintain a daily price history."""
 from __future__ import annotations
 
 import json
 import re
 import sys
+import unicodedata
 from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urljoin
@@ -14,20 +15,27 @@ from bs4 import BeautifulSoup
 
 URL = "https://www.maxima.lv/piedavajumi/"
 OUT = Path("data/offers.json")
+HISTORY_OUT = Path("data/price-history.json")
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; LatviaOffersBot/1.0; +https://github.com/nikolajevs/FUCK_THE_NETS)"
 }
-# Maxima sometimes renders prices as separate whole/euro-cent text nodes.
-PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
-DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
+PRICE_TOKEN_RE = re.compile(r"(?<!\\d)(\\d{1,3})(?:[,.]\\s*|\\s+)(\\d{2})(?!\\d)")
+DISCOUNT_RE = re.compile(r"-\\s*(\\d{1,2})\\s*%")
 DATE_RE = re.compile(
-    r"(\d{1,2})[.](\d{1,2})[.]?\s*[-–]\s*(\d{1,2})[.](\d{1,2})[.]?(?:\s*(\d{4}))?"
+    r"(\\d{1,2})[.](\\d{1,2})[.]?\\s*[-–]\\s*(\\d{1,2})[.](\\d{1,2})[.]?(?:\\s*(\\d{4}))?"
 )
+IGNORED_NAMES = {"not found", "paldies", "image", "maxima"}
+IGNORED_PROMOTIONS = {"adventes kalendāriem", "rotaļlietām (izņemot konstruktoriem lego)"}
+
+
+def product_id(name: str, unit: str | None = None) -> str:
+    raw = unicodedata.normalize("NFKD", f"{name} {unit or ''}").encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", raw.lower()).strip("-")[:100]
 
 
 def prices_from(text: str) -> list[float]:
     # Remove unit prices like "(3,31 €/kg)" so they are not mistaken for shelf prices.
-    cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", text)
+    cleaned = re.sub(r"\\([^)]*€\\s*/\\s*[^)]*\\)", " ", text)
     values = [
         int(euros) + int(cents) / 100
         for euros, cents in PRICE_TOKEN_RE.findall(cleaned)
@@ -55,6 +63,15 @@ def offer_dates(text: str):
         return None, None
 
 
+def load_json(path: Path, default):
+    if not path.exists():
+        return default
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return default
+
+
 def main():
     response = requests.get(URL, headers=HEADERS, timeout=30)
     response.raise_for_status()
@@ -65,7 +82,7 @@ def main():
 
     for img in soup.find_all("img"):
         name = (img.get("alt") or "").strip()
-        if len(name) < 4 or name.lower() in {"paldies", "image", "maxima"}:
+        if len(name) < 4 or name.casefold() in IGNORED_NAMES | IGNORED_PROMOTIONS:
             continue
 
         node = img
@@ -74,8 +91,10 @@ def main():
             if node is None:
                 break
             card_text = node.get_text(" ", strip=True)
+            # Avoid accidentally pairing a generic campaign banner with the next product's price.
+            image_count = len(node.find_all("img")) if hasattr(node, "find_all") else 1
             prices = prices_from(card_text)
-            if prices and len(card_text) < 1800:
+            if prices and len(card_text) < 1200 and image_count <= 2:
                 candidates.append((len(card_text), card_text, prices, node))
             node = node.parent
 
@@ -93,8 +112,9 @@ def main():
         image = urljoin(URL, image_src) if image_src else None
         link = card.find("a", href=True)
         source = urljoin(URL, link["href"]) if link else URL
-
-        found[(name.casefold(), price)] = {
+        pid = product_id(name)
+        found[pid] = {
+            "productId": pid,
             "name": name,
             "brand": None,
             "image": image,
@@ -113,18 +133,55 @@ def main():
 
     offers = sorted(found.values(), key=lambda item: (item["name"].casefold(), item["price"]))
     if not offers:
-        raise RuntimeError(
-            "No priced product cards detected; refusing to overwrite the existing feed."
-        )
+        raise RuntimeError("No priced product cards detected; refusing to overwrite the existing feed.")
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    # Keep old products in the history even when they are no longer on the current offers page.
+    history_data = load_json(HISTORY_OUT, {"updatedAt": None, "products": {}})
+    products = history_data.get("products", {})
+    observed_at = datetime.now().astimezone()
+    observed_date = observed_at.date().isoformat()
+
+    for offer in offers:
+        pid = offer["productId"]
+        product = products.setdefault(pid, {
+            "productId": pid,
+            "name": offer["name"],
+            "unit": offer.get("unit"),
+            "points": [],
+        })
+        product["name"] = offer["name"]
+        product["unit"] = offer.get("unit")
+        point = {
+            "date": observed_date,
+            "price": offer["price"],
+            "regularPrice": offer.get("regularPrice"),
+            "discountPercent": offer.get("discountPercent"),
+            "checkedAt": observed_at.isoformat(timespec="seconds"),
+        }
+        # One observation per product per day. A manual rerun updates today's point.
+        product["points"] = [p for p in product.get("points", []) if p.get("date") != observed_date]
+        product["points"].append(point)
+        product["points"].sort(key=lambda p: p.get("date", ""))
+
+    history_payload = {
+        "updatedAt": observed_at.isoformat(timespec="seconds"),
+        "source": URL,
+        "products": products,
+    }
+    HISTORY_OUT.parent.mkdir(parents=True, exist_ok=True)
+    HISTORY_OUT.write_text(
+        json.dumps(history_payload, ensure_ascii=False, indent=2) + "\\n",
+        encoding="utf-8",
+    )
+
     payload = {
         "source": URL,
-        "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "updatedAt": observed_at.isoformat(timespec="seconds"),
         "offers": offers,
     }
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Saved {len(offers)} offers to {OUT}")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    print(f"Saved {len(offers)} current offers and price history for {len(products)} products")
 
 
 if __name__ == "__main__":
