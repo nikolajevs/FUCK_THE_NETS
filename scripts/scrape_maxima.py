@@ -937,6 +937,19 @@ def _is_pdf_product_title_seed(text: str) -> bool:
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
     value = re.sub(
+        r"^\d{1,2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\\.?|iepak\\.?)\\b)",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
+    value = re.sub(
+        r"((?:\d+(?:[,.]\d+)?\s*(?:kg|g|ml|l|gab\\.?)))\s+\d{1,2}$",
+        r"\1",
+        value,
+        flags=re.IGNORECASE,
+    )
+    value = re.sub(r"\bWELL\s+PREMIUM\b", "WELL DONE PREMIUM", value, flags=re.IGNORECASE)
+    value = re.sub(
         r"\b(?:akcijas cena|piedāvājuma cena|cena ar paldies karti|cena bez paldies kartes|"
         r"cena ar paldies|cena bez paldies|parastā cena|iepriekšējā cena|paldies karte|"
         r"cena par kilogramu|cena par kg)\b:?\s*",
@@ -1229,6 +1242,13 @@ def parse_catalogue_pdf(
             name_folded = name.casefold()
             name_issues: list[str] = []
             if (
+                page_catalogue["id"] == "maxima-well-done-premium"
+                and page_index == 1
+                and regular is None
+                and price >= 15
+            ):
+                name_issues.append("unit_price_suspected")
+            if (
                 ";" in name
                 or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
                 or any(term in name_folded for term in (
@@ -1489,6 +1509,37 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
     }
 
 
+def reconcile_paldies_prices(
+    pdf_offers: list[dict],
+    paldies_offers: list[dict],
+) -> int:
+    """Replace PDF PALDIES prices with exact-product prices from the official AJAX catalogue."""
+    paldies_by_product: dict[str, dict] = {}
+    for offer in paldies_offers:
+        if offer.get("quality", {}).get("priceStatus") != "verified":
+            continue
+        canonical_id = offer.get("canonicalProductId")
+        if canonical_id:
+            paldies_by_product[canonical_id] = offer
+
+    reconciled = 0
+    for offer in pdf_offers:
+        if not offer.get("requiresPaldies"):
+            continue
+        source = paldies_by_product.get(offer.get("canonicalProductId"))
+        if source is None:
+            continue
+        offer["price"] = source.get("price")
+        offer["regularPrice"] = source.get("regularPrice")
+        offer["paldiesPrice"] = source.get("paldiesPrice", source.get("price"))
+        offer["priceWithoutPaldies"] = source.get(
+            "priceWithoutPaldies", source.get("regularPrice")
+        )
+        offer["discountPercent"] = source.get("discountPercent")
+        reconciled += 1
+    return reconciled
+
+
 def main():
     session = requests.Session()
     # The weekly offers page exposes the active campaign cards and their own brochure links.
@@ -1588,6 +1639,10 @@ def main():
                 catalogue_id, {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
             )["pdfPages"] += page_count
 
+
+    reconciled_paldies = reconcile_paldies_prices(catalogue_offers, paldies_offers)
+    if reconciled_paldies:
+        print(f"Reconciled {reconciled_paldies} brochure prices against the official PALDIES catalogue")
 
     # PDF variants that duplicate the same product/price already collected from its
     # HTML campaign page are redundant. Keep new catalogue entries and price values.

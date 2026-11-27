@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
+    _clean_pdf_product_name,
+    reconcile_paldies_prices,
     _catalogue_for_pdf_page,
     collect_paldies_catalog,
     discover_active_catalogues,
@@ -291,6 +293,41 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(catalogues[0]["name"], "Black Friday cenu festivāls")
         self.assertEqual(catalogues[0]["pdfSources"], ["https://www.maxima.lv/uploads/test.pdf"])
         self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
+
+    def test_pdf_product_name_removes_card_ordinal_and_trailing_price_fragment(self):
+        value = _clean_pdf_product_name(
+            "2 Riekstu maisījums WELL PREMIUM 210 g, sāļais"
+        )
+        self.assertEqual(value, "Riekstu maisījums WELL DONE PREMIUM 210 g, sāļais")
+
+        value = _clean_pdf_product_name("Mini Fuet izlase WELL PREMIUM 320 g 11")
+        self.assertEqual(value, "Mini Fuet izlase WELL DONE PREMIUM 320 g")
+
+    def test_reconcile_pdf_paldies_prices_from_official_catalogue(self):
+        pdf_offers = [{
+            "canonicalProductId": "product-123",
+            "sourceId": "maxima-well-done-premium",
+            "requiresPaldies": True,
+            "price": 7.99,
+            "regularPrice": None,
+            "paldiesPrice": 7.99,
+            "priceWithoutPaldies": None,
+            "discountPercent": None,
+        }]
+        paldies_offers = [{
+            "canonicalProductId": "product-123",
+            "price": 5.99,
+            "regularPrice": 7.99,
+            "paldiesPrice": 5.99,
+            "priceWithoutPaldies": 7.99,
+            "discountPercent": 25,
+            "quality": {"priceStatus": "verified"},
+        }]
+        count = reconcile_paldies_prices(pdf_offers, paldies_offers)
+        self.assertEqual(count, 1)
+        self.assertEqual(pdf_offers[0]["price"], 5.99)
+        self.assertEqual(pdf_offers[0]["regularPrice"], 7.99)
+        self.assertEqual(pdf_offers[0]["discountPercent"], 25)
 
     def test_well_done_page_is_detected_with_one_text_mention(self):
         weekly = {"id": "maxima-weekly", "name": "Iknedēļas piedāvājums"}
