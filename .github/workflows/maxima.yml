@@ -47,6 +47,12 @@ jobs:
                           f"bbox=({block[0]:.1f},{block[1]:.1f},{block[2]:.1f},{block[3]:.1f}) "
                           f"text={value!r}"
                       )
+              for word_number, word in enumerate(page.get_text("words"), 1):
+                  print(
+                      f"PDFWORD {label} page={page_number + 1} word={word_number} "
+                      f"bbox=({word[0]:.1f},{word[1]:.1f},{word[2]:.1f},{word[3]:.1f}) "
+                      f"text={word[4]!r}"
+                  )
               document.close()
           PY
       - name: Validate scraper syntax
