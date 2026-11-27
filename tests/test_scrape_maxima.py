@@ -973,6 +973,51 @@ class MaximaScraperTests(unittest.TestCase):
         _, _, _, issues = price_quality([1.00, 2.00, 3.00], "1,00 2,00 3,00")
         self.assertIn("ambiguous_multiple_price_values", issues)
 
+    def test_pdf_parser_splits_inline_bullet_separated_products(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        # Two complete offer cards are laid out on one PDF text line.
+        # Bullet glyphs are the only reliable boundary between the cards.
+        page.insert_text(
+            fitz.Point(20, 220),
+            "1. • Cepšanas komplekts 1 iepak./3 gab. 9,99 €; 21,99 € "
+            "• Galdauts 1 gab., 148x250 cm 14,99 €; 24,99 €",
+            fontsize=8,
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+
+        self.assertEqual(
+            len(offers),
+            2,
+            f"offers={[(o['name'], o['price'], o['regularPrice']) for o in offers]!r}; "
+            f"reviews={[(o['name'], o['quality']['issues']) for o in reviews]!r}",
+        )
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-weekly": 1})
+        by_name = {offer["name"]: offer for offer in offers}
+        baking = next(value for name, value in by_name.items() if name.startswith("Cepšanas komplekts"))
+        tablecloth = next(value for name, value in by_name.items() if name.startswith("Galdauts"))
+        self.assertEqual((baking["price"], baking["regularPrice"]), (9.99, 21.99))
+        self.assertEqual((tablecloth["price"], tablecloth["regularPrice"]), (14.99, 24.99))
+
 
 if __name__ == "__main__":
     unittest.main()
