@@ -1319,7 +1319,7 @@ def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
 
 
 def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
-    """Create one rectangle per product using neighbouring title anchors as boundaries."""
+    """Split brochure grids by clustered columns and the next title in each column."""
     blocks = page.get_text("blocks")
     candidates = [
         block for block in blocks
@@ -1336,53 +1336,61 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     if not anchors:
         return []
 
-    anchors = sorted(anchors, key=lambda point: (point[1], point[0]))
-    column_tolerance = max(34, width * 0.085)
-    row_tolerance = max(48, height * 0.09)
-    results: list[tuple[int, int, str]] = []
-    row_levels = sorted({round(y, 1) for _, y in anchors})
-    column_levels = sorted({round(x, 1) for x, _ in anchors})
+    # A product's title can be indented differently from its neighbours. Cluster
+    # starts into brochure columns first, instead of using a narrow x-distance
+    # from one title as the definition of its entire column.
+    x_clusters = _cluster_values(
+        [x for x, _ in anchors],
+        max(28, width * 0.07),
+    )
+    if not x_clusters:
+        return []
+    x_centres = [sum(group) / len(group) for group in x_clusters]
+    anchor_columns = [
+        min(range(len(x_centres)), key=lambda index: abs(x - x_centres[index]))
+        for x, _ in anchors
+    ]
 
-    for x, y in anchors:
-        # Products stacked in the same column bound each other's vertical area.
+    # Cluster y positions so slightly staggered titles in a row still share
+    # a row number for diagnostics, while vertical boundaries remain column-local.
+    y_clusters = _cluster_values(
+        [y for _, y in anchors],
+        max(28, height * 0.045),
+    )
+    y_centres = [sum(group) / len(group) for group in y_clusters]
+
+    results: list[tuple[int, int, str]] = []
+    for anchor_index, (x, y) in enumerate(anchors):
+        column_index = anchor_columns[anchor_index]
         same_column_y = sorted(
             other_y
-            for other_x, other_y in anchors
-            if abs(other_x - x) <= column_tolerance and abs(other_y - y) > 2
+            for other_index, (_, other_y) in enumerate(anchors)
+            if anchor_columns[other_index] == column_index
+            and abs(other_y - y) > 3
         )
         next_y = min((value for value in same_column_y if value > y), default=None)
-        top = max(float(rect.y0), y - 2)
-        bottom = min(float(rect.y1), next_y - 2 if next_y is not None else float(rect.y1))
+        top = max(float(rect.y0), y - 3)
+        bottom = min(float(rect.y1), next_y - 3 if next_y is not None else float(rect.y1))
         if bottom <= top:
             continue
 
-        # Products side-by-side in the same visual row bound their horizontal area.
-        same_row_x = sorted(
-            other_x
-            for other_x, other_y in anchors
-            if abs(other_y - y) <= row_tolerance
-            and abs(other_x - x) > column_tolerance
-        )
-        previous_x = max((value for value in same_row_x if value < x), default=None)
-        next_x = min((value for value in same_row_x if value > x), default=None)
-        left = max(float(rect.x0), (previous_x + x) / 2 if previous_x is not None else float(rect.x0))
-        right = min(float(rect.x1), (x + next_x) / 2 if next_x is not None else float(rect.x1))
-        if right <= left:
-            continue
-
+        # MAXIMA brochures use regular multi-column product grids. Equal-width
+        # column bounds are more stable than bisecting the starts of left-aligned
+        # product titles (which would cut the names off).
+        left = float(rect.x0) + column_index * width / len(x_centres)
+        right = float(rect.x0) + (column_index + 1) * width / len(x_centres)
         cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
         if cell_text.strip() and prices_from(cell_text):
-            row_number = row_levels.index(round(y, 1)) + 1
-            column_number = column_levels.index(round(x, 1)) + 1
-            results.append((row_number, column_number, cell_text))
+            row_number = min(
+                range(len(y_centres)),
+                key=lambda index: abs(y - y_centres[index]),
+            ) + 1
+            results.append((row_number, column_index + 1, cell_text))
 
-    # A few anchors can share the same cell after PDF line wrapping. Keep one
-    # record per geometric rectangle to avoid duplicate imports.
     unique: dict[tuple[int, int, str], tuple[int, int, str]] = {}
     for item in results:
         unique[(item[0], item[1], " ".join(item[2].split()))] = item
     return list(unique.values())
-
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
     """Use geometric splitting only to resolve a real multi-price merge."""
