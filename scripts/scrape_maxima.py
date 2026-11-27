@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import sys
 import unicodedata
@@ -418,6 +419,233 @@ def _has_explicit_shelf_price(text: str, price: float) -> bool:
         if abs(value - price) < 0.005:
             return True
     return False
+
+
+def _has_explicit_unit_price_badge(text: str) -> bool:
+    """Recognize a standalone Maxima price badge next to a single shelf price."""
+    return bool(re.search(r"\b(?:zila\s+cena|zema\s+cena)\b", text, re.IGNORECASE))
+
+
+def _unit_price_values(text: str) -> list[tuple[float, str]]:
+    """Read explicit €/kg, €/l, or per-100 unit rates from product annotations."""
+    label_re = re.compile(r"€\s*/\s*(?P<unit>100\s*g|100\s*ml|kg|l)\b", re.IGNORECASE)
+    result: list[tuple[float, str]] = []
+    for opening in re.finditer(r"\(", text):
+        closing = text.find(")", opening.end())
+        annotation = text[opening.end():closing if closing >= 0 else len(text)]
+        labels = list(label_re.finditer(annotation))
+        if not labels:
+            continue
+        numbers = list(PRICE_TOKEN_RE.finditer(annotation))
+        if not numbers:
+            continue
+
+        units = [re.sub(r"\s+", "", label.group("unit")).casefold() for label in labels]
+        if len(set(units)) == 1:
+            unit = units[0]
+            for number in numbers:
+                prefix = annotation[max(0, number.start() - 7):number.start()]
+                if re.search(r"\bno\s*$", prefix, re.IGNORECASE):
+                    continue
+                value = float(number.group(0).replace(" ", "").replace(",", "."))
+                result.append((value, unit))
+            continue
+
+        used: set[int] = set()
+        for label, unit in zip(labels, units):
+            preceding = [
+                (index, number) for index, number in enumerate(numbers)
+                if index not in used and number.end() <= label.start()
+            ]
+            if not preceding:
+                continue
+            index, number = preceding[-1]
+            used.add(index)
+            prefix = annotation[max(0, number.start() - 7):number.start()]
+            if re.search(r"\bno\s*$", prefix, re.IGNORECASE):
+                continue
+            value = float(number.group(0).replace(" ", "").replace(",", "."))
+            result.append((value, unit))
+    return result
+
+
+def _package_quantities_for_unit(text: str, unit: str) -> list[float]:
+    """Convert package weights or volumes to the denominator used by a unit rate."""
+    product_text = re.sub(r"\([^)]*€\s*/[^)]*(?:\)|$)", " ", text, flags=re.IGNORECASE)
+    if unit in {"kg", "100g"}:
+        multipacks = re.findall(
+            r"(?<!\d)(\d+(?:[,.]\d+)?)\s*[x×]\s*(\d+(?:[,.]\d+)?)\s*(kg|g)\b",
+            product_text,
+            flags=re.IGNORECASE,
+        )
+        if multipacks:
+            amounts = [
+                float(count.replace(",", "."))
+                * float(size.replace(",", "."))
+                * (1000 if size_unit.casefold() == "kg" else 1)
+                for count, size, size_unit in multipacks
+            ]
+        else:
+            sizes = re.findall(
+                r"(?<!\d)(\d+(?:[,.]\d+)?)\s*(kg|g)\b",
+                product_text,
+                flags=re.IGNORECASE,
+            )
+            amounts = [
+                float(size.replace(",", ".")) * (1000 if size_unit.casefold() == "kg" else 1)
+                for size, size_unit in sizes
+            ]
+        if unit == "kg":
+            amounts = [amount / 1000 for amount in amounts]
+        else:
+            amounts = [amount / 100 for amount in amounts]
+    else:
+        multipacks = re.findall(
+            r"(?<!\d)(\d+(?:[,.]\d+)?)\s*[x×]\s*(\d+(?:[,.]\d+)?)\s*(l|ml)\b",
+            product_text,
+            flags=re.IGNORECASE,
+        )
+        if multipacks:
+            amounts = [
+                float(count.replace(",", "."))
+                * float(size.replace(",", "."))
+                * (1000 if size_unit.casefold() == "l" else 1)
+                for count, size, size_unit in multipacks
+            ]
+        else:
+            sizes = re.findall(
+                r"(?<!\d)(\d+(?:[,.]\d+)?)\s*(l|ml)\b",
+                product_text,
+                flags=re.IGNORECASE,
+            )
+            amounts = [
+                float(size.replace(",", ".")) * (1000 if size_unit.casefold() == "l" else 1)
+                for size, size_unit in sizes
+            ]
+        if unit == "l":
+            amounts = [amount / 1000 for amount in amounts]
+        else:
+            amounts = [amount / 100 for amount in amounts]
+    return list(dict.fromkeys(amount for amount in amounts if amount > 0))
+
+
+def _expected_shelf_prices_from_unit_rates(text: str) -> list[float]:
+    expected = {
+        round(unit_price * quantity + 1e-9, 2)
+        for unit_price, unit in _unit_price_values(text)
+        for quantity in _package_quantities_for_unit(text, unit)
+    }
+    return sorted(expected)
+
+
+def _has_shelf_price_matching_unit_price(text: str, price: float) -> bool:
+    """Confirm a shelf price when the printed unit rate and package size agree."""
+    return any(
+        abs(expected - price) <= 0.02
+        for expected in _expected_shelf_prices_from_unit_rates(text)
+    )
+
+
+def _pdf_has_paldies_price_box_pair(page, price: float, regular: float) -> bool:
+    """Recognize Maxima's red PALDIES box stacked over a white-on-blue price box."""
+    if fitz is None or page is None:
+        return False
+
+    digits: dict[int, list[tuple[str, tuple[float, ...], float]]] = defaultdict(list)
+    for block in page.get_text("dict").get("blocks", []):
+        for line in block.get("lines", []):
+            for span in line.get("spans", []):
+                text = str(span.get("text", "")).strip()
+                try:
+                    size = float(span.get("size", 0))
+                    color = int(span.get("color", -1))
+                    bbox = tuple(float(value) for value in span.get("bbox", ()))
+                except (TypeError, ValueError):
+                    continue
+                if len(bbox) != 4 or color not in {0xE3000B, 0xFFFFFF}:
+                    continue
+                if size >= 35 and re.fullmatch(r"\d{1,3}", text):
+                    digits.setdefault(color, []).append((text, bbox, size))
+                elif 13 <= size < 35 and re.fullmatch(r"\d{2}", text):
+                    digits.setdefault(color + 1, []).append((text, bbox, size))
+
+    def labels_for(color: int) -> list[tuple[float, tuple[float, ...]]]:
+        mains = digits.get(color, [])
+        fractions = digits.get(color + 1, [])
+        labels: list[tuple[float, tuple[float, ...]]] = []
+        for whole, main_box, _ in mains:
+            nearby = [
+                (fraction_box, fraction)
+                for fraction, fraction_box, _ in fractions
+                if abs(fraction_box[0] - main_box[0]) <= 45
+                and abs(fraction_box[1] - main_box[1]) <= 50
+            ]
+            if not nearby:
+                continue
+            fraction_box, fraction = min(
+                nearby,
+                key=lambda item: (
+                    abs(item[0][0] - main_box[0])
+                    + 0.25 * abs(item[0][1] - main_box[1])
+                ),
+            )
+            labels.append((
+                round(int(whole) + int(fraction) / 100, 2),
+                (
+                    min(main_box[0], fraction_box[0]),
+                    min(main_box[1], fraction_box[1]),
+                    max(main_box[2], fraction_box[2]),
+                    max(main_box[3], fraction_box[3]),
+                ),
+            ))
+        return labels
+
+    red_labels = labels_for(0xE3000B)
+    white_labels = labels_for(0xFFFFFF)
+    for red_price, red_box in red_labels:
+        if abs(red_price - price) > 0.005:
+            continue
+        for white_price, white_box in white_labels:
+            if (
+                abs(white_price - regular) <= 0.005
+                and abs(red_box[0] - white_box[0]) <= 20
+                and 10 <= white_box[1] - red_box[1] <= 55
+            ):
+                return True
+    return False
+
+
+def _recover_shelf_pair_from_orphaned_price(
+    text: str, observed_price: float
+) -> tuple[float, float, int] | None:
+    """Recover a clipped promo price when its leading digit and unit math agree."""
+    expected_prices = _expected_shelf_prices_from_unit_rates(text)
+    if len(expected_prices) != 1:
+        return None
+    expected_price = expected_prices[0]
+    if expected_price >= observed_price:
+        return None
+
+    orphan_pattern = re.compile(
+        r"(?<!\d)(\d{1,3}[,.]\s*\d{2}|\d{1,3}\s+\d{2})(?!\d)\s+(\d)(?!\d)"
+    )
+    has_matching_leading_digit = False
+    for match in orphan_pattern.finditer(text):
+        old_price = float(re.sub(r"\s+", "", match.group(1)).replace(",", "."))
+        if (
+            abs(old_price - observed_price) <= 0.005
+            and int(match.group(2)) == int(expected_price)
+        ):
+            has_matching_leading_digit = True
+            break
+    if not has_matching_leading_digit:
+        return None
+
+    discount = round((1 - expected_price / observed_price) * 100)
+    printed_match = DISCOUNT_RE.search(text)
+    if printed_match and abs(int(printed_match.group(1)) - discount) > 1:
+        return None
+    return expected_price, observed_price, int(printed_match.group(1)) if printed_match else discount
 
 
 def stable_offer_id(
@@ -962,6 +1190,29 @@ def _is_pdf_product_title_seed(text: str) -> bool:
     """Recognize product-name blocks even when package details and prices are separate."""
     value = " ".join(text.replace("\xa0", " ").split())
     folded = value.casefold()
+    # Price captions and promo badges are sometimes merged with product text in
+    # PDF reading order. They must not create extra columns or card boundaries.
+    if folded in {
+        "jaunums", "zila cena", "zema cena", "zila cena zema cena",
+        "oriģināli", "produktos", "no",
+    }:
+        return False
+    if folded.startswith((
+        "vairāk ", "piedāvājumu veikalā", "lētāk, tāpēc", "regulārā cena",
+        "veikals ", "enerģijas dzērienu pārmērīga lietošana",
+        "izraisa negatīvu ietekmi",
+    )):
+        return False
+    if folded.startswith("zila ") and "cena" in folded:
+        return False
+    if re.fullmatch(r"no\s*-?\s*\d{1,3}(?:(?:[,.]\s*|\s+)\d{2})?\s*%?", folded):
+        return False
+    if re.match(r"^\d{1,3}[,.]\s*\d{2}\s+-\s*\d{1,2}\s*%\s+", folded):
+        return False
+    if re.match(r"^\d{1,2}\s+[a-zāčēģīķļņōŗšūž]", folded) and not re.search(
+        r"\b(?:kg|g|ml|l|gab\.?|iepak\.?)\b", folded
+    ):
+        return False
     if _is_pdf_dimension_annotation(folded):
         return False
     if re.match(r"^\d+\s+(?:izmērs\b|gab\.?\s*iepak\.?\b|iepak\.?\s*gab\.?\b)", folded):
@@ -1043,6 +1294,18 @@ def _clean_pdf_product_name(text: str) -> str:
     value = re.sub(r"-\s*\d{1,2}\s*%", " ", value)
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
+    value = re.sub(
+        r"\b(?:zila\s+cena|zema\s+cena|jaunums)\b",
+        " ",
+        value,
+        flags=re.IGNORECASE,
+    )
+    value = re.sub(
+        r"\bvairāk\b.*?\bpiedāvājumu\s+veikalā\s+ar\b",
+        " ",
+        value,
+        flags=re.IGNORECASE,
+    )
     value = re.sub(r"\s+", " ", value).strip(" -;,:.")
     # Price tokens may be removed above, exposing a detached unit label at the end.
     value = re.sub(
@@ -1415,7 +1678,42 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     rect = page.rect
     width, height = float(rect.width), float(rect.height)
     words = page.get_text("words", sort=True)
-    anchors = _pdf_description_anchors_by_line(candidates, words, width)
+    page_text = page.get_text("text")
+    has_opening_banner = bool(re.search(
+        r"\b(?:atklāšana|darba\s+laiks\s+atklāšanas\s+dienā)\b",
+        page_text,
+        flags=re.IGNORECASE,
+    ))
+    has_store_map = (
+        "maxima x" in page_text.casefold()
+        and len(re.findall(
+            r"\b[a-zāčēģīķļņōŗšūž-]+\s+iel\w*\b",
+            page_text,
+            flags=re.IGNORECASE,
+        )) >= 4
+    )
+    # Keep title-only anchors close to real package descriptions. Brochure
+    # maps, store-opening banners, and footer labels can look like titles but
+    # sit far from any priced product card.
+    description_candidates = [
+        block for block in candidates
+        if _looks_like_pdf_product_description(block[4])
+    ]
+    all_anchors = _pdf_description_anchors_by_line(candidates, words, width)
+    description_anchors = _pdf_description_anchors_by_line(
+        description_candidates, words, width
+    )
+    if description_anchors and (has_opening_banner or has_store_map):
+        anchors = [
+            anchor for anchor in all_anchors
+            if any(
+                abs(anchor[0] - description[0]) <= max(35, width * 0.08)
+                and abs(anchor[1] - description[1]) <= max(38, height * 0.045)
+                for description in description_anchors
+            )
+        ]
+    else:
+        anchors = all_anchors
     if not anchors:
         return []
 
@@ -1429,10 +1727,6 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     if not x_clusters:
         return []
     x_centres = [sum(group) / len(group) for group in x_clusters]
-    anchor_columns = [
-        min(range(len(x_centres)), key=lambda index: abs(x - x_centres[index]))
-        for x, _ in anchors
-    ]
 
     # Cluster y positions so slightly staggered titles in a row still share
     # a row number for diagnostics, while vertical boundaries remain column-local.
@@ -1445,6 +1739,37 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
         re.fullmatch(r"[•·▪●◦]+", str(word[4]).strip())
         for word in words
     )
+    if not has_bullet_separators:
+        # Product descriptions can be indented within a card, while merged
+        # price/name blocks can add anchors between the real card columns. Infer
+        # the grid width from the fullest visual title row, then use equal-width
+        # card bounds so each price box stays with its adjacent description.
+        row_groups = _cluster_values(
+            [y for _, y in anchors],
+            max(45, height * 0.07),
+        )
+        row_counts: list[int] = []
+        for row_group in row_groups:
+            row_xs = sorted(
+                x for x, y in anchors
+                if any(abs(y - row_y) < 0.01 for row_y in row_group)
+            )
+            distinct_xs: list[float] = []
+            for x in row_xs:
+                if not distinct_xs or x - distinct_xs[-1] >= max(18, width * 0.07):
+                    distinct_xs.append(x)
+            row_counts.append(len(distinct_xs))
+
+        inferred_columns = max(row_counts, default=0)
+        if inferred_columns >= 2:
+            x_centres = [
+                (index + 0.5) * width / inferred_columns
+                for index in range(inferred_columns)
+            ]
+    anchor_columns = [
+        min(range(len(x_centres)), key=lambda index: abs(x - x_centres[index]))
+        for x, _ in anchors
+    ]
     anchor_rows = [
         min(range(len(y_centres)), key=lambda index: abs(y - y_centres[index]))
         for _, y in anchors
@@ -1459,12 +1784,26 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
             if anchor_columns[other_index] == column_index
             and abs(other_y - y) > 3
         )
+        previous_y = max((value for value in same_column_y if value < y), default=None)
         next_y = min((value for value in same_column_y if value > y), default=None)
-        top = max(float(rect.y0), y - 3)
+        window = max(90, height * 0.12)
+        if previous_y is not None and y - previous_y < max(55, height * 0.1):
+            # Titles stacked tightly in one text column share a block; the
+            # previous card's price line must stay above the next title.
+            top = max(float(rect.y0), y - 3)
+        else:
+            top = max(
+                float(rect.y0),
+                # Opening-event pages have a large banner immediately above
+                # the first product row. Keep its copy outside those cards;
+                # regular brochures still use the wider price-above-title window.
+                y - (max(14, height * 0.018) if has_opening_banner else window),
+                previous_y + 3 if previous_y is not None else float(rect.y0),
+            )
         bottom = min(
             float(rect.y1),
             next_y - 3 if next_y is not None else float(rect.y1),
-            y + max(90, height * 0.12),
+            y + window,
         )
         if bottom <= top:
             continue
@@ -1505,7 +1844,7 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     return list(unique.values())
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Use geometric splitting only to resolve a real multi-price merge."""
+    """Choose the PDF cell layout that preserves clean price and product pairs."""
     legacy = _pdf_page_cells_legacy(page)
     recovered = _pdf_page_cells_split(page)
     geometry = _pdf_page_cells_geometry(page)
@@ -1520,11 +1859,60 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
     def usable_count(cells: list[tuple[int, int, str]]) -> int:
         return sum(1 <= len(prices_from(text)) <= 2 for _, _, text in cells)
 
+    def product_description_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(
+            _looks_like_pdf_product_description(text)
+            and _pdf_price_quality(text)[0] is not None
+            and "ambiguous_multiple_price_values" not in _pdf_price_quality(text)[3]
+            for _, _, text in cells
+        )
+
+    def leaked_opening_copy_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(
+            len(re.findall(
+                r"(?:atklāšan|darba\s+laiks|\b\d{1,2}:\d{2}\b)",
+                text,
+                flags=re.IGNORECASE,
+            ))
+            for _, _, text in cells
+        )
+
+    def leaked_map_copy_count(cells: list[tuple[int, int, str]]) -> int:
+        return sum(
+            len(re.findall(r"\b[a-zāčēģīķļņōŗšūž-]+\s+iel\w*\b", text, flags=re.IGNORECASE))
+            for _, _, text in cells
+        )
+
     def dimension_count(cells: list[tuple[int, int, str]]) -> int:
         return sum(
             bool(re.search(r"\b\d+(?:[,.]\d+)?\s*(?:cm|mm)\b", text, re.IGNORECASE))
             for _, _, text in cells
         )
+
+    def unit_only_count(cells: list[tuple[int, int, str]]) -> int:
+        count = 0
+        for _, _, text in cells:
+            prices = prices_from(text)
+            has_unit_label = bool(re.search(
+                r"(?:€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)|"
+                r"/\s*(?:kg|l|100\s*g|100\s*ml))",
+                text,
+                flags=re.IGNORECASE,
+            ))
+            if (
+                has_unit_label
+                and len(prices) <= 1
+                and not (
+                    len(prices) == 1
+                    and (
+                        _has_explicit_shelf_price(text, prices[0])
+                        or _has_explicit_unit_price_badge(text)
+                        or _has_shelf_price_matching_unit_price(text, prices[0])
+                    )
+                )
+            ):
+                count += 1
+        return count
 
     # Prefer geometry when it recovers more priceable cards without increasing
     # ambiguity, or when it preserves the same clean cards and adds isolated
@@ -1533,12 +1921,154 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         geometry_ambiguous < baseline_ambiguous
         and usable_count(geometry) >= usable_count(baseline)
     ) or (
+        geometry_ambiguous <= baseline_ambiguous
+        and leaked_opening_copy_count(geometry) < leaked_opening_copy_count(baseline)
+        and product_description_count(geometry) > product_description_count(baseline)
+    ) or (
+        geometry_ambiguous <= baseline_ambiguous
+        and leaked_map_copy_count(geometry) < leaked_map_copy_count(baseline)
+        and product_description_count(geometry) > product_description_count(baseline)
+    ) or (
         geometry_ambiguous == baseline_ambiguous == 0
         and usable_count(geometry) >= usable_count(baseline)
         and dimension_count(geometry) > dimension_count(baseline)
+    ) or (
+        geometry_ambiguous <= baseline_ambiguous
+        and usable_count(geometry) >= usable_count(baseline)
+        and unit_only_count(geometry) < unit_only_count(baseline)
     ):
         return geometry
     return baseline
+
+
+def _pdf_review_crop_box(
+    page, name: str, row_number: int, column_number: int, column_count: int
+) -> list[float]:
+    """Locate a product-card crop from its title and the parser's grid coordinates."""
+    rect = page.rect
+    width, height = float(rect.width), float(rect.height)
+    column_count = max(1, column_count)
+    left = float(rect.x0) + (column_number - 1) * width / column_count
+    right = float(rect.x0) + column_number * width / column_count
+    words = page.get_text("words", sort=True)
+
+    def tokens(value: str) -> list[str]:
+        folded = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
+        return re.findall(r"[a-z0-9]+", folded.casefold())
+
+    target_tokens = [token for token in tokens(name) if len(token) > 1 and not token.isdigit()]
+    lines: dict[tuple[int, int], list[tuple]] = defaultdict(list)
+    for word in words:
+        x = (float(word[0]) + float(word[2])) / 2
+        if left <= x <= right:
+            lines[(int(word[5]), int(word[6]))].append(word)
+
+    title_lines: list[tuple[float, float, float, str]] = []
+    matching_lines: list[tuple[int, float, float, float, str]] = []
+    for line_words in lines.values():
+        line_words.sort(key=lambda word: (float(word[0]), int(word[7])))
+        line_text = " ".join(str(word[4]) for word in line_words)
+        line_tokens = set(tokens(line_text))
+        if not (_is_pdf_product_title_seed(line_text) or _looks_like_pdf_product_description(line_text)):
+            continue
+        x0 = min(float(word[0]) for word in line_words)
+        y0 = min(float(word[1]) for word in line_words)
+        y1 = max(float(word[3]) for word in line_words)
+        title_lines.append((y0, y1, x0, line_text))
+        matches = sum(token in line_tokens for token in target_tokens)
+        if matches:
+            matching_lines.append((matches, y0, y1, x0, line_text))
+
+    if matching_lines:
+        row_centres = [
+            sum(group) / len(group)
+            for group in _cluster_values(
+                [(top + bottom) / 2 for top, bottom, _, _ in title_lines],
+                max(28, height * 0.045),
+            )
+        ]
+        expected_y = (
+            row_centres[min(max(row_number - 1, 0), len(row_centres) - 1)]
+            if row_centres else height / 2
+        )
+        _, title_top, title_bottom, _, _ = max(
+            matching_lines,
+            key=lambda item: (item[0], -abs(item[1] - expected_y)),
+        )
+        title_y = (title_top + title_bottom) / 2
+    elif title_lines:
+        y_centres = sorted((top + bottom) / 2 for top, bottom, _, _ in title_lines)
+        row_index = min(max(row_number - 1, 0), len(y_centres) - 1)
+        title_y = y_centres[row_index]
+    else:
+        title_y = float(rect.y0) + height * min(max(row_number, 1), 8) / 9
+
+    title_centres = sorted({(top + bottom) / 2 for top, bottom, _, _ in title_lines})
+    previous_y = max((value for value in title_centres if value < title_y - 4), default=None)
+    next_y = min((value for value in title_centres if value > title_y + 4), default=None)
+    top_padding = min(90.0, max(48.0, (title_y - previous_y) * 0.65)) if previous_y is not None else 90.0
+    bottom_padding = min(160.0, max(72.0, (next_y - title_y) * 0.65)) if next_y is not None else 160.0
+    top = max(float(rect.y0), title_y - top_padding)
+    bottom = min(float(rect.y1), title_y + bottom_padding)
+    return [left, top, right, bottom]
+
+
+def carry_forward_qwen_review_suggestions(
+    review_offers: list[dict], previous_review_offers: list[dict]
+) -> int:
+    """Keep local vision notes only when the exact reviewed PDF evidence persists."""
+    previous_by_evidence: dict[tuple[str, str, str], dict] = {}
+    for offer in previous_review_offers:
+        evidence = offer.get("reviewEvidence") or {}
+        suggestion = evidence.get("visionAssist")
+        digest = evidence.get("pdfSha256")
+        raw_text = evidence.get("rawCellText")
+        if isinstance(suggestion, dict) and isinstance(digest, str) and isinstance(raw_text, str):
+            previous_by_evidence[(str(offer.get("offerId", "")), digest, raw_text)] = suggestion
+
+    carried = 0
+    for offer in review_offers:
+        evidence = offer.get("reviewEvidence") or {}
+        key = (
+            str(offer.get("offerId", "")),
+            str(evidence.get("pdfSha256", "")),
+            str(evidence.get("rawCellText", "")),
+        )
+        if key in previous_by_evidence and "visionAssist" not in evidence:
+            evidence["visionAssist"] = previous_by_evidence[key]
+            offer["reviewEvidence"] = evidence
+            carried += 1
+    return carried
+
+
+def export_pending_qwen_reviews(
+    directory: str | Path,
+    downloaded_pdfs: dict[str, dict],
+    review_offers: list[dict],
+) -> int:
+    """Write only new PDF review cards and their source PDFs for the local workflow step."""
+    target_dir = Path(directory)
+    by_digest: dict[str, list[dict]] = defaultdict(list)
+    for offer in review_offers:
+        evidence = offer.get("reviewEvidence") or {}
+        digest = evidence.get("pdfSha256")
+        if (
+            isinstance(digest, str)
+            and digest in downloaded_pdfs
+            and "visionAssist" not in evidence
+        ):
+            by_digest[digest].append(offer)
+
+    target_dir.mkdir(parents=True, exist_ok=True)
+    pending_count = 0
+    for digest, offers in by_digest.items():
+        (target_dir / f"{digest}.pdf").write_bytes(downloaded_pdfs[digest]["content"])
+        (target_dir / f"{digest}.json").write_text(
+            json.dumps(offers, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        pending_count += len(offers)
+    return pending_count
 
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
@@ -1592,6 +2122,7 @@ def parse_catalogue_pdf(
         raise RuntimeError("PyMuPDF is required to collect Maxima brochure PDFs")
 
     today = today or date.today()
+    pdf_digest = hashlib.sha256(pdf_bytes).hexdigest()
     document = fitz.open(stream=pdf_bytes, filetype="pdf")
     offers_by_id: dict[str, dict] = {}
     reviews_by_id: dict[str, dict] = {}
@@ -1614,6 +2145,7 @@ def parse_catalogue_pdf(
         cells = _pdf_page_cells(page)
         if not cells:
             continue
+        page_column_count = max((column for _, column, _ in cells), default=1)
         page_counts[page_catalogue["id"]] += 1
 
         page_dates = offer_dates(page_text, today=today)
@@ -1655,10 +2187,24 @@ def parse_catalogue_pdf(
                     flags=re.IGNORECASE,
                 ))
                 shelf_prices = prices_from(product_text)
+                if has_unit_price_label and len(shelf_prices) == 1:
+                    recovered_pair = _recover_shelf_pair_from_orphaned_price(
+                        product_text, shelf_prices[0]
+                    )
+                    if recovered_pair:
+                        price, regular, discount = recovered_pair
+                        shelf_prices = [price, regular]
                 if (
                     has_unit_price_label
                     and len(shelf_prices) <= 1
-                    and not (len(shelf_prices) == 1 and _has_explicit_shelf_price(product_text, price))
+                    and not (
+                        len(shelf_prices) == 1
+                        and (
+                            _has_explicit_shelf_price(product_text, price)
+                            or _has_explicit_unit_price_badge(product_text)
+                            or _has_shelf_price_matching_unit_price(product_text, price)
+                        )
+                    )
                 ):
                     issues.append("unit_price_only_or_misaligned")
 
@@ -1717,6 +2263,21 @@ def parse_catalogue_pdf(
                     product_text,
                     flags=re.IGNORECASE,
                 ))
+                if (
+                    not paldies_marker
+                    and regular is not None
+                    and has_unit_price_label
+                    and _has_shelf_price_matching_unit_price(product_text, price)
+                    and _has_shelf_price_matching_unit_price(product_text, regular)
+                ):
+                    # Some opening flyers render the small PALDIES badge as
+                    # artwork. The red current-price digits and white regular
+                    # price digits remain in the PDF text layer; require both
+                    # amounts to agree with the printed unit rates before
+                    # treating that visual price-box pattern as a marker.
+                    paldies_marker = _pdf_has_paldies_price_box_pair(
+                        page, price, regular
+                    )
                 requires_paldies = (
                     paldies_marker
                     or page_catalogue["id"] == "maxima-well-done-premium"
@@ -1762,6 +2323,14 @@ def parse_catalogue_pdf(
                         "rawCellText": " ".join(product_text.split())[:600],
                         "parsedName": name,
                         "parsedPrices": prices_from(product_text),
+                        "pdfSha256": pdf_digest,
+                        "pdfCrop": _pdf_review_crop_box(
+                            page,
+                            name,
+                            row_number,
+                            column_number,
+                            page_column_count,
+                        ),
                     }
                 existing = offers_by_id.get(offer_id) or reviews_by_id.get(offer_id)
                 if existing and existing["quality"]["priceStatus"] == "verified" and quality["priceStatus"] == "review":
@@ -2083,6 +2652,7 @@ def reconcile_paldies_prices(
 
 
 def main():
+    previous_review_offers = load_json(OUT, {}).get("reviewOffers", [])
     session = requests.Session()
     # The weekly offers page exposes the active campaign cards and their own brochure links.
     campaign_index_response = session.get(CAMPAIGNS[0]["url"], headers=HEADERS, timeout=30)
@@ -2195,6 +2765,19 @@ def main():
             f"Moved {len(reconciliation_reviews)} PALDIES-reconciliation offers "
             "from verified PDF data to manual review"
         )
+
+    carried_suggestions = carry_forward_qwen_review_suggestions(
+        catalogue_reviews, previous_review_offers
+    )
+    if carried_suggestions:
+        print(f"Kept {carried_suggestions} Qwen3-VL notes for unchanged PDF cards")
+
+    qwen_pending_dir = os.environ.get("QWEN_PENDING_DIR", "").strip()
+    if qwen_pending_dir:
+        pending_count = export_pending_qwen_reviews(
+            qwen_pending_dir, downloaded_pdfs, catalogue_reviews
+        )
+        print(f"Exported {pending_count} new PDF review cards for local Qwen")
 
     # PDF variants that duplicate the same product/price already collected from its
     # HTML campaign page are redundant. Keep new catalogue entries and price values.

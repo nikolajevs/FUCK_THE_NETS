@@ -22,6 +22,8 @@ Collects:
 
 PDF parsing uses PyMuPDF with word coordinates, column splitting, PALDIES price precedence, and a review queue for ambiguous cards. Product identity is conservative (normalized tokens + package size, no fuzzy merge).
 
+When a newly published brochure contains ambiguous product cards, GitHub Actions downloads the public Qwen3-VL-4B GGUF weights, builds CPU-only `llama-mtmd-cli`, and reviews only the affected card crops. The model and projector are cached; no Hugging Face token or inference API is used. Qwen notes are attached to review evidence only and never promote prices into the verified feed. If local inference fails, the regular scrape and deployment continue.
+
 ```bash
 python scripts/scrape_maxima.py
 ```
