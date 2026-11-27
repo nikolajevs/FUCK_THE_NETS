@@ -1,8 +1,9 @@
 import unittest
-from datetime import date
+from datetime import date, datetime, timezone
 
 from bs4 import BeautifulSoup
 
+from scripts.product_identity import product_identity
 from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
@@ -13,6 +14,7 @@ from scripts.scrape_maxima import (
     reconcile_paldies_prices,
     partition_review_offers,
     build_review_summary,
+    carry_forward_qwen_review_suggestions,
     _catalogue_for_pdf_page,
     collect_paldies_catalog,
     discover_active_catalogues,
@@ -22,6 +24,8 @@ from scripts.scrape_maxima import (
     parse_paldies_card,
     prices_from,
     price_quality,
+    rebuild_history,
+    repair_cp1251_utf8_mojibake,
     _has_explicit_shelf_price,
     _has_shelf_price_matching_unit_price,
     _recover_shelf_pair_from_orphaned_price,
@@ -34,6 +38,96 @@ from scripts.scrape_maxima import (
 
 
 class MaximaScraperTests(unittest.TestCase):
+    def test_repairs_cp1251_utf8_mojibake_in_pdf_product_names(self):
+        self.assertEqual(
+            repair_cp1251_utf8_mojibake("ApelsД«nu Еѕeleja"),
+            "Apelsīnu želeja",
+        )
+        self.assertEqual(
+            repair_cp1251_utf8_mojibake("AromДЃtiskДЃ svece"),
+            "Aromātiskā svece",
+        )
+        self.assertEqual(
+            repair_cp1251_utf8_mojibake("Сыр 200 g"),
+            "Сыр 200 g",
+        )
+        self.assertEqual(
+            _clean_pdf_product_name("ApelsД«nu Еѕeleja 180 g 5,99 € 9,99 €"),
+            "Apelsīnu želeja 180 g",
+        )
+
+    def test_rebuild_history_migrates_mojibake_to_correct_product_identity(self):
+        broken_name = "ApelsД«nu Еѕeleja 180 g"
+        fixed_name = "Apelsīnu želeja 180 g"
+        old_identity = product_identity(broken_name)
+        old_id = old_identity["canonicalProductId"]
+        rebuilt = rebuild_history(
+            {
+                "products": {
+                    old_id: {
+                        "canonicalProductId": old_id,
+                        "name": broken_name,
+                        "observations": [{
+                            "date": "2026-11-26",
+                            "offerId": "legacy:broken-card",
+                            "price": 5.99,
+                        }],
+                    },
+                },
+            },
+            [],
+            datetime(2026, 11, 27, tzinfo=timezone.utc),
+        )
+
+        fixed_id = product_identity(fixed_name)["canonicalProductId"]
+        self.assertEqual(list(rebuilt["products"]), [fixed_id])
+        self.assertEqual(rebuilt["products"][fixed_id]["name"], fixed_name)
+        self.assertEqual(rebuilt["products"][fixed_id]["points"][0]["price"], 5.99)
+
+    def test_qwen_suggestions_carry_forward_only_for_identical_pdf_evidence(self):
+        note = {"decision": "unclear", "reason": "same card"}
+        previous = [{
+            "offerId": "card-1",
+            "reviewEvidence": {
+                "pdfSha256": "same-pdf",
+                "rawCellText": "same text",
+                "visionAssist": note,
+            },
+        }]
+        exact_match = {
+            "offerId": "card-1",
+            "reviewEvidence": {"pdfSha256": "same-pdf", "rawCellText": "same text"},
+        }
+        changed_pdf = {
+            "offerId": "card-1",
+            "reviewEvidence": {"pdfSha256": "new-pdf", "rawCellText": "same text"},
+        }
+        changed_text = {
+            "offerId": "card-1",
+            "reviewEvidence": {"pdfSha256": "same-pdf", "rawCellText": "new text"},
+        }
+        already_reviewed = {
+            "offerId": "card-1",
+            "reviewEvidence": {
+                "pdfSha256": "same-pdf",
+                "rawCellText": "same text",
+                "visionAssist": {"decision": "resolved"},
+            },
+        }
+
+        carried = carry_forward_qwen_review_suggestions(
+            [exact_match, changed_pdf, changed_text, already_reviewed], previous
+        )
+
+        self.assertEqual(carried, 1)
+        self.assertEqual(exact_match["reviewEvidence"]["visionAssist"], note)
+        self.assertNotIn("visionAssist", changed_pdf["reviewEvidence"])
+        self.assertNotIn("visionAssist", changed_text["reviewEvidence"])
+        self.assertEqual(
+            already_reviewed["reviewEvidence"]["visionAssist"],
+            {"decision": "resolved"},
+        )
+
     def test_prices_ignore_unit_price_and_parse_split_digits(self):
         text = "Olīvas 360 g (9,14 €/kg); (12,47 €/kg) 3 29 4 49"
         self.assertEqual(prices_from(text), [3.29, 4.49])
