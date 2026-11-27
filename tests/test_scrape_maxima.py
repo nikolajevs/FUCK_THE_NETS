@@ -7,6 +7,7 @@ from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
     _clean_pdf_product_name,
+    _is_pdf_dimension_annotation,
     _looks_like_pdf_product_description,
     _is_pdf_product_title_seed,
     reconcile_paldies_prices,
@@ -798,6 +799,70 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(
             (tablecloth["price"], tablecloth["regularPrice"]),
             (14.99, 24.99),
+        )
+
+    def test_pdf_parser_separates_stacked_christmas_cards_and_attaches_sizes(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=567, height=779)
+        cards = [
+            ("Christmas LED decor A 1 gab.", "5 49\n11 99", 40,
+             "Christmas decor A 1 gab.", "11 59\n28 99", 59),
+            ("Christmas LED decor B 1 gab., 40 LED", "12 99\n29 99", 50,
+             "Christmas decor B 1 gab.", "12 69\n30 99", 48),
+            ("Christmas LED decor C 1 gab., 75 LED", "17 99\n44 99", 60,
+             "Christmas decor C 1 gab.", "21 99\n54 99", 60),
+        ]
+        for column, (led_name, led_price, led_size, decor_name, decor_price, decor_size) in enumerate(cards):
+            left = 24 + column * 181
+            page.insert_textbox(
+                fitz.Rect(left, 204, left + 130, 248), led_name, fontsize=9
+            )
+            page.insert_textbox(
+                fitz.Rect(left + 100, 193, left + 178, 281), led_price, fontsize=12
+            )
+            page.insert_textbox(
+                fitz.Rect(left, 324, left + 40, 355), f"cm\n{led_size}", fontsize=8
+            )
+            page.insert_textbox(
+                fitz.Rect(left, 388, left + 130, 432), decor_name, fontsize=9
+            )
+            page.insert_textbox(
+                fitz.Rect(left + 100, 377, left + 178, 465), decor_price, fontsize=12
+            )
+            page.insert_textbox(
+                fitz.Rect(left, 512, left + 40, 543), f"cm\n{decor_size}", fontsize=8
+            )
+
+        payload = document.tobytes()
+        document.close()
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+
+        self.assertFalse(_is_pdf_dimension_annotation("Christmas LED decor 40 cm"))
+        self.assertTrue(_is_pdf_dimension_annotation("10 cm 40 cm 59 cm"))
+        self.assertEqual(reviews, [])
+        self.assertEqual(len(offers), 6)
+        by_name = {offer["name"]: offer for offer in offers}
+        self.assertIn("Christmas LED decor A 1 gab. 40 cm", by_name)
+        self.assertIn("Christmas LED decor B 1 gab., 40 LED 50 cm", by_name)
+        self.assertIn("Christmas LED decor C 1 gab., 75 LED 60 cm", by_name)
+        self.assertEqual(
+            (by_name["Christmas LED decor A 1 gab. 40 cm"]["price"],
+             by_name["Christmas LED decor A 1 gab. 40 cm"]["regularPrice"]),
+            (5.49, 11.99),
         )
 
     def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
