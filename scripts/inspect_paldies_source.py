@@ -157,13 +157,39 @@ def inspect_filtered_paldies(session: requests.Session) -> None:
         print("ITEM_STRUCT", item.attrs, [(img.get("alt"), img.get("src")) for img in item.find_all("img")[:4]])
 
     asset_url = "https://www.maxima.lv/js/front/pages/offers/offers.js?1793968385"
-    asset = session.get(asset_url, headers=HEADERS, timeout=30)
-    print("OFFERS_JS", asset.status_code, len(asset.content))
-    js = asset.text
-    for term in ("ajax-load-more-url", "totalProducts", "load-more", "offset", "skip"):
-        positions = [m.start() for m in re.finditer(re.escape(term), js, flags=re.IGNORECASE)]
-        for position in positions[:3]:
-            print("OFFERS_JS_CONTEXT", term, re.sub(r"\s+", " ", js[max(0, position-500):position+1100]))
+    asset_urls = [
+        "https://www.maxima.lv/js/front/offers.js?1793968385",
+        "https://www.maxima.lv/js/front/pages/offers/offers.js?1793968385",
+        "https://www.maxima.lv/js/front/app/offers.js?1793968385",
+    ]
+    for asset_url in asset_urls:
+        asset = session.get(asset_url, headers=HEADERS, timeout=30)
+        print("OFFERS_JS", asset_url, asset.status_code, len(asset.content))
+        js = asset.text
+        for term in ("ajax-load-more-url", "totalProducts", "lv-load-more", "offset", "skip", "loadMore", "salesloadmore"):
+            positions = [m.start() for m in re.finditer(re.escape(term), js, flags=re.IGNORECASE)]
+            for position in positions[:3]:
+                print("OFFERS_JS_CONTEXT", asset_url, term,
+                      re.sub(r"\s+", " ", js[max(0, position-550):position+1200]))
+
+    # Probe typical paging parameters without changing the source filter.
+    for key, value in (("offset", "75"), ("page", "2"), ("start", "75"),
+                       ("skip", "75"), ("pageNumber", "2"), ("from", "75")):
+        candidate_params = [
+            ("filters[]", "18"), ("sort_by", "newest"), ("limit", "75"), ("ajax", "1"),
+            (key, value),
+        ]
+        candidate = session.get(ajax_url, params=candidate_params, headers=headers, timeout=45)
+        try:
+            candidate_json = candidate.json()
+            candidate_html = candidate_json.get("html", "")
+            candidate_soup = BeautifulSoup(candidate_html, "html.parser")
+            ids = [node.get("data-product-id") for node in candidate_soup.select(".item[data-product-id]")[:3]]
+            print("PAGE_PROBE", key, value, "status", candidate.status_code,
+                  "total", candidate_json.get("totalItems"), "first_ids", ids)
+        except (ValueError, AttributeError):
+            print("PAGE_PROBE", key, value, "status", candidate.status_code,
+                  "response", re.sub(r"\s+", " ", candidate.text)[:300])
 
 def describe_page(url: str, session: requests.Session) -> None:
     response = session.get(url, headers=HEADERS, timeout=30)
