@@ -1050,6 +1050,14 @@ def _clean_pdf_product_name(text: str) -> str:
     value = re.sub(r"^[•·€\s]+", "", value)
     return value
 
+def _pdf_cell_starts_with_price(text: str) -> bool:
+    """Detect PDF cells where a price was extracted before the product title."""
+    return bool(re.match(
+        r"^\\s*\\d{1,3}(?:[,.]\\s*\\d{2}|\\s+\\d{2})(?:\\s*€)?\\s+",
+        text,
+    ))
+
+
 def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | None, list[str]]:
     prices = prices_from(text)
     if len(prices) == 2 and prices[0] > prices[1]:
@@ -1469,6 +1477,12 @@ def parse_catalogue_pdf(
             price, regular, discount, issues = _pdf_price_quality(cell_text)
             if price is None:
                 continue
+
+            # Some brochure pages emit the shelf-price text before the product
+            # title. A single price in that order may belong to a neighbouring
+            # card; keep it for review instead of publishing a guessed match.
+            if _pdf_cell_starts_with_price(cell_text):
+                issues.append("price_before_product_name")
 
             # If a cell contains a unit-price label but only one number survived
             # geometric extraction, that number may be €/kg or €/l rather than
