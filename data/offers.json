@@ -1,9 +1,9 @@
 {
   "source": "https://www.maxima.lv/piedavajumi/",
   "campaign": "Iknedēļas piedāvājums",
-  "updatedAt": "2026-11-27T08:47:34+00:00",
-  "validFrom": null,
-  "validUntil": null,
+  "updatedAt": "2026-11-27T08:48:27+00:00",
+  "validFrom": "2026-11-17",
+  "validUntil": "2027-01-04",
   "storeFormats": [
     "X",
     "XX",
@@ -24,8 +24,8 @@
       "discountPercent": 44,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -36,10 +36,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -57,8 +57,8 @@
       "discountPercent": 48,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -69,10 +69,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -90,8 +90,8 @@
       "discountPercent": 49,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -102,10 +102,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -123,8 +123,8 @@
       "discountPercent": 50,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -135,10 +135,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -156,8 +156,8 @@
       "discountPercent": 58,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -168,10 +168,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -182,15 +182,15 @@
       "brand": null,
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//mini-fuet-desu-izlase-well-done-premium-00015-1120145123.png?1795179083",
       "price": 6.99,
-      "regularPrice": null,
+      "regularPrice": 11.99,
       "paldiesPrice": 6.99,
-      "priceWithoutPaldies": null,
+      "priceWithoutPaldies": 11.99,
       "unit": null,
-      "discountPercent": null,
+      "discountPercent": 42,
       "requiresPaldies": true,
       "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -201,14 +201,12 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
+        "priceStatus": "verified",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
+        "issues": []
       }
     },
     {
@@ -217,15 +215,15 @@
       "brand": null,
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//olivas-pilditas-ar-apelsiniem-well-done-premium-00013-1120145123.png?1795179083",
       "price": 3.29,
-      "regularPrice": null,
+      "regularPrice": 4.49,
       "paldiesPrice": 3.29,
-      "priceWithoutPaldies": null,
+      "priceWithoutPaldies": 4.49,
       "unit": null,
-      "discountPercent": null,
+      "discountPercent": 27,
       "requiresPaldies": true,
       "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -236,14 +234,12 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
+        "priceStatus": "verified",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
+        "issues": []
       }
     },
     {
@@ -259,8 +255,8 @@
       "discountPercent": 37,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -271,10 +267,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -285,15 +281,15 @@
       "brand": null,
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//siers-ar-trifelem-well-done-premium-00014-1120145123.png?1795179083",
       "price": 4.49,
-      "regularPrice": null,
+      "regularPrice": 4.99,
       "paldiesPrice": 4.49,
-      "priceWithoutPaldies": null,
+      "priceWithoutPaldies": 4.99,
       "unit": null,
-      "discountPercent": null,
+      "discountPercent": 10,
       "requiresPaldies": true,
       "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -304,14 +300,12 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
+        "priceStatus": "verified",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
+        "issues": []
       }
     },
     {
@@ -327,8 +321,8 @@
       "discountPercent": 38,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -339,10 +333,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -360,8 +354,8 @@
       "discountPercent": 43,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -372,10 +366,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -393,8 +387,8 @@
       "discountPercent": 17,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -405,10 +399,10 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
@@ -426,8 +420,8 @@
       "discountPercent": 42,
       "requiresPaldies": false,
       "paldis": false,
-      "validFrom": null,
-      "validUntil": null,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
       "city": null,
       "store": "Maxima",
       "storeFormats": [
@@ -438,120 +432,14 @@
       "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
       "campaign": "Iknedēļas piedāvājums",
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
+      "checkedAt": "2026-11-27T08:48:27+00:00",
       "quality": {
         "priceStatus": "verified",
-        "dateStatus": "unknown",
+        "dateStatus": "verified",
         "storeScopeStatus": "verified",
         "issues": []
       }
     }
   ],
-  "reviewOffers": [
-    {
-      "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g",
-      "name": "Olīvas pildītas ar apelsīniem WELL DONE PREMIUM, 360 g",
-      "brand": null,
-      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//olivas-pilditas-ar-apelsiniem-well-done-premium-00013-1120145123.png?1795179083",
-      "price": 3.29,
-      "regularPrice": null,
-      "paldiesPrice": 3.29,
-      "priceWithoutPaldies": null,
-      "unit": null,
-      "discountPercent": null,
-      "requiresPaldies": true,
-      "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "storeFormats": [
-        "X",
-        "XX",
-        "XXX"
-      ],
-      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
-      "campaign": "Iknedēļas piedāvājums",
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
-      "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
-        "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
-      }
-    },
-    {
-      "productId": "siers-ar-trifelem-well-done-premium-180-g",
-      "name": "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
-      "brand": null,
-      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//siers-ar-trifelem-well-done-premium-00014-1120145123.png?1795179083",
-      "price": 4.49,
-      "regularPrice": null,
-      "paldiesPrice": 4.49,
-      "priceWithoutPaldies": null,
-      "unit": null,
-      "discountPercent": null,
-      "requiresPaldies": true,
-      "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "storeFormats": [
-        "X",
-        "XX",
-        "XXX"
-      ],
-      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
-      "campaign": "Iknedēļas piedāvājums",
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
-      "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
-        "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
-      }
-    },
-    {
-      "productId": "mini-fuet-desu-izlase-well-done-premium-320-g",
-      "name": "Mini Fuet desu izlase WELL DONE PREMIUM, 320 g",
-      "brand": null,
-      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//mini-fuet-desu-izlase-well-done-premium-00015-1120145123.png?1795179083",
-      "price": 6.99,
-      "regularPrice": null,
-      "paldiesPrice": 6.99,
-      "priceWithoutPaldies": null,
-      "unit": null,
-      "discountPercent": null,
-      "requiresPaldies": true,
-      "paldis": true,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "storeFormats": [
-        "X",
-        "XX",
-        "XXX"
-      ],
-      "storeScopeSource": "https://www.maxima.lv/bukleti/ONUKB-W48",
-      "campaign": "Iknedēļas piedāvājums",
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:47:34+00:00",
-      "quality": {
-        "priceStatus": "review",
-        "dateStatus": "unknown",
-        "storeScopeStatus": "verified",
-        "issues": [
-          "ambiguous_multiple_price_values"
-        ]
-      }
-    }
-  ]
+  "reviewOffers": []
 }
