@@ -18,11 +18,21 @@ URLS = [
 
 
 def inspect_all_paldies_offers(session: requests.Session) -> None:
+    page_url = "https://www.maxima.lv/paldies"
+    session.get(page_url, headers=HEADERS, timeout=30)
     url = "https://www.maxima.lv/ajax-paldies-login-offers"
-    response = session.get(url, headers=HEADERS, timeout=45)
+    ajax_headers = {
+        **HEADERS,
+        "Referer": page_url,
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "*/*",
+    }
+    response = session.get(url, headers=ajax_headers, timeout=45)
     print(f"\n===== AJAX {url} =====")
     print(f"status={response.status_code} final_url={response.url} content_type={response.headers.get('content-type')} bytes={len(response.content)}")
-    response.raise_for_status()
+    if response.status_code >= 400:
+        print("error_excerpt=", re.sub(r"\s+", " ", response.text)[:2400])
+        return
     soup = BeautifulSoup(response.text, "html.parser")
     product_images = [
         image for image in soup.find_all("img")
