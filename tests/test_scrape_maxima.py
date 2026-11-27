@@ -257,10 +257,8 @@ class MaximaScraperTests(unittest.TestCase):
 
         document = fitz.open()
         page = document.new_page(width=600, height=800)
-        page.insert_text((25, 220), "Siers WELL DONE PREMIUM 180 g")
-        page.insert_text((110, 220), "3 29 4 49")
-        page.insert_text((320, 220), "Banāni 1 kg")
-        page.insert_text((405, 220), "1 19 -34% 0 79")
+        page.insert_textbox(fitz.Rect(25, 190, 180, 250), "Siers WELL DONE PREMIUM 180 g\n3 29 4 49")
+        page.insert_textbox(fitz.Rect(320, 190, 475, 250), "Banani 1 kg\n1 19 -34% 0 79")
         payload = document.tobytes()
         document.close()
 
@@ -281,7 +279,7 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(pages, {"maxima-weekly": 1})
         by_name = {offer["name"]: offer for offer in offers}
         cheese = next(offer for name, offer in by_name.items() if "Siers WELL DONE" in name)
-        bananas = next(offer for name, offer in by_name.items() if "Banāni" in name)
+        bananas = next(offer for name, offer in by_name.items() if "Banani" in name)
         self.assertEqual((cheese["price"], cheese["regularPrice"]), (3.29, 4.49))
         self.assertEqual((bananas["price"], bananas["regularPrice"]), (0.79, 1.19))
         self.assertEqual(bananas["discountPercent"], 34)
