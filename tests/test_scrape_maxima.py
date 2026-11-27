@@ -498,14 +498,18 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(reviews, [])
         self.assertNotIn("product_name_ambiguous", offers[0]["quality"]["issues"])
 
-    def test_size_label_prefix_in_product_title_requires_review(self):
+    def test_black_friday_layout_fragments_are_cleaned_before_verification(self):
         import pymupdf as fitz
 
         document = fitz.open()
         page = document.new_page(width=600, height=800)
         page.insert_textbox(
-            fitz.Rect(25, 190, 300, 275),
-            "izmērs 15+ kg ROBOROCK Q7 BF 1 gab.\n139 99 229 99",
+            fitz.Rect(25, 190, 270, 275),
+            "6 izmērs 15+ kg Putekļsūcējs robots ROBOROCK Q7 BF 1 gab., melns\\n139 99 229 99",
+        )
+        page.insert_textbox(
+            fitz.Rect(320, 190, 580, 275),
+            "Matu veidotājs vai taisnotājs DYSON 1 gab.\\n369 99 499 99 no",
         )
         payload = document.tobytes()
         document.close()
@@ -524,9 +528,17 @@ class MaximaScraperTests(unittest.TestCase):
         offers, reviews, _ = parse_catalogue_pdf(
             payload, catalogue, [catalogue], today=date(2026, 11, 27)
         )
-        self.assertEqual(offers, [])
-        self.assertEqual(len(reviews), 1)
-        self.assertIn("product_name_ambiguous", reviews[0]["quality"]["issues"])
+        self.assertEqual(len(offers), 2)
+        self.assertEqual(reviews, [])
+        by_name = {offer["name"]: offer for offer in offers}
+        robovac = next(value for name, value in by_name.items() if "ROBOROCK Q7" in name)
+        dyson = next(value for name, value in by_name.items() if "DYSON" in name)
+        self.assertEqual(robovac["name"], "Putekļsūcējs robots ROBOROCK Q7 BF 1 gab., melns")
+        self.assertEqual((robovac["price"], robovac["regularPrice"]), (139.99, 229.99))
+        self.assertEqual(dyson["name"], "Matu veidotājs vai taisnotājs DYSON 1 gab")
+        self.assertEqual((dyson["price"], dyson["regularPrice"]), (369.99, 499.99))
+        self.assertTrue(robovac["requiresPaldies"])
+        self.assertTrue(dyson["requiresPaldies"])
 
     def test_roja_event_text_in_product_title_requires_review(self):
         import pymupdf as fitz
