@@ -1281,7 +1281,7 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
 
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Choose the extraction that yields the most isolated, price-bearing product cards."""
+    """Keep the conservative parser unless geometry clearly isolates more price cards."""
     legacy = _pdf_page_cells_legacy(page)
     recovered = _pdf_page_cells_split(page)
     geometry = _pdf_page_cells_geometry(page)
@@ -1290,7 +1290,11 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         ambiguous = sum(len(prices_from(text)) > 2 for _, _, text in cells)
         return len(cells) - 0.75 * ambiguous, len(cells)
 
-    return max((geometry, recovered, legacy), key=score)
+    baseline = max((legacy, recovered), key=score)
+    # Geometry is used when it actually separates more cards or materially
+    # reduces multi-price ambiguity. Equal-scoring legacy output preserves
+    # the full title and price context of previously passing brochure layouts.
+    return geometry if score(geometry) > score(baseline) else baseline
 
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
