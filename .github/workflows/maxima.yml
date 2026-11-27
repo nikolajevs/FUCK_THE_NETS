@@ -1,6 +1,8 @@
 name: Update Maxima offers and deploy
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "17 4 * * *"
@@ -21,6 +23,8 @@ jobs:
           python-version: "3.12"
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4
+      - name: Validate scraper syntax
+        run: python -m py_compile scripts/scrape_maxima.py
       - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
       - name: Commit refreshed data
