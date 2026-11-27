@@ -356,18 +356,27 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(reviews[0]["reviewEvidence"]["parsedPrices"], [5.16])
 
     def test_reconcile_pdf_paldies_prices_from_official_catalogue(self):
+        scope = {
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+        }
         pdf_offers = [{
             "canonicalProductId": "product-123",
             "sourceId": "maxima-well-done-premium",
             "requiresPaldies": True,
+            **scope,
             "price": 7.99,
             "regularPrice": None,
             "paldiesPrice": 7.99,
             "priceWithoutPaldies": None,
             "discountPercent": None,
+            "quality": {"priceStatus": "verified", "issues": []},
         }]
         paldies_offers = [{
             "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
             "price": 5.99,
             "regularPrice": 7.99,
             "paldiesPrice": 5.99,
@@ -380,6 +389,107 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(pdf_offers[0]["price"], 5.99)
         self.assertEqual(pdf_offers[0]["regularPrice"], 7.99)
         self.assertEqual(pdf_offers[0]["discountPercent"], 25)
+
+    def test_reconcile_refuses_different_paldies_dates_or_store_formats(self):
+        scope = {
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX"],
+        }
+        pdf_offer = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 7.99,
+            "quality": {"priceStatus": "verified", "issues": []},
+        }
+        source = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 5.99,
+            "regularPrice": 7.99,
+            "discountPercent": 25,
+            "quality": {"priceStatus": "verified"},
+        }
+
+        date_mismatch = {**source, "validFrom": "2026-11-25"}
+        self.assertEqual(
+            reconcile_paldies_prices([dict(pdf_offer)], [date_mismatch]),
+            0,
+        )
+        self.assertEqual(pdf_offer["price"], 7.99)
+
+        format_mismatch = {**source, "storeFormats": ["XXX"]}
+        offer_copy = dict(pdf_offer)
+        self.assertEqual(
+            reconcile_paldies_prices([offer_copy], [format_mismatch]),
+            0,
+        )
+        self.assertEqual(offer_copy["price"], 7.99)
+
+    def test_reconcile_marks_conflicting_paldies_prices_for_review(self):
+        scope = {
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+        }
+        offer = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 7.99,
+            "quality": {"priceStatus": "verified", "issues": []},
+        }
+        source = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 5.99,
+            "regularPrice": 7.99,
+            "discountPercent": 25,
+            "quality": {"priceStatus": "verified"},
+        }
+        conflicting = {**source, "price": 6.29}
+
+        self.assertEqual(
+            reconcile_paldies_prices([offer], [source, conflicting]),
+            0,
+        )
+        self.assertEqual(offer["price"], 7.99)
+        self.assertEqual(offer["quality"]["priceStatus"], "review")
+        self.assertIn("ambiguous_paldies_prices", offer["quality"]["issues"])
+
+    def test_reconcile_marks_paldies_discount_mismatch_for_review(self):
+        scope = {
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+        }
+        offer = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 7.99,
+            "quality": {"priceStatus": "verified", "issues": []},
+        }
+        source = {
+            "canonicalProductId": "product-123",
+            "requiresPaldies": True,
+            **scope,
+            "price": 5.99,
+            "regularPrice": 7.99,
+            "discountPercent": 20,
+            "quality": {"priceStatus": "verified"},
+        }
+
+        self.assertEqual(reconcile_paldies_prices([offer], [source]), 0)
+        self.assertEqual(offer["price"], 7.99)
+        self.assertEqual(offer["quality"]["priceStatus"], "review")
+        self.assertIn(
+            "paldies_discount_percent_mismatch",
+            offer["quality"]["issues"],
+        )
 
     def test_well_done_page_is_detected_with_one_text_mention(self):
         weekly = {"id": "maxima-weekly", "name": "Iknedēļas piedāvājums"}
