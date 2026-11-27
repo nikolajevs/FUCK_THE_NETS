@@ -123,6 +123,30 @@ def campaign_dates(page_text: str, campaign_name: str = CAMPAIGN_NAME,
     return None, None
 
 
+
+def campaign_dates_from_soup(soup: BeautifulSoup, page_text: str,
+                              today: date | None = None) -> tuple[str | None, str | None]:
+    """Prefer the smallest DOM container holding the weekly heading and its own date."""
+    candidates: list[tuple[int, int, tuple[str | None, str | None]]] = []
+    for text_node in soup.find_all(string=lambda value: value and CAMPAIGN_NAME.casefold() in str(value).casefold()):
+        node = text_node.parent
+        for depth in range(1, 8):
+            if not isinstance(node, Tag):
+                break
+            container_text = node.get_text(" ", strip=True)
+            if len(container_text) <= 500:
+                title_match = re.search(re.escape(CAMPAIGN_NAME), container_text, flags=re.IGNORECASE)
+                if title_match:
+                    tail = container_text[title_match.end():title_match.end() + 140]
+                    dates = offer_dates(tail, today=today)
+                    if dates != (None, None):
+                        candidates.append((len(container_text), depth, dates))
+            node = node.parent
+    if candidates:
+        return min(candidates, key=lambda item: (item[0], item[1]))[2]
+    # Fall back to the tight text window only when the DOM does not expose a card wrapper.
+    return campaign_dates(page_text, today=today)
+
 def store_formats_from_text(text: str) -> list[str]:
     """Return only formats explicitly named in the campaign's store-scope sentence."""
     formats: set[str] = set()
@@ -268,7 +292,7 @@ def main():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     page_text = soup.get_text(" ", strip=True)
-    valid_from, valid_until = campaign_dates(page_text)
+    valid_from, valid_until = campaign_dates_from_soup(soup, page_text)
     brochure_url = find_weekly_brochure_url(soup)
     store_formats, store_scope_source = fetch_campaign_store_formats(session, brochure_url)
 
