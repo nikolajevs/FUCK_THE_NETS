@@ -3,22 +3,6 @@
   "updatedAt": "2026-11-27T08:24:19+00:00",
   "offers": [
     {
-      "name": "Adventes kalendāriem",
-      "brand": null,
-      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//adventes-kalendariem-00001-1120145154.png?1795179114",
-      "price": 1.49,
-      "regularPrice": 2.39,
-      "unit": null,
-      "discountPercent": 50,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "paldis": false,
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
-    },
-    {
       "name": "Biezpiena sieriņš KĀRUMS, 45 g, dažādi veidi",
       "brand": null,
       "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//biezpiena-sierins-karums-00006-1120145122.png?1795179082",
@@ -32,7 +16,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "biezpiena-sierins-karums-45-g-dazadi-veidi"
     },
     {
       "name": "Biezpiens ŽEMAITIJOS, 1 kg, 9%, fasēts",
@@ -48,7 +33,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "biezpiens-zemaitijos-1-kg-9-fasets"
     },
     {
       "name": "Cūkgaļas šķiņķis bez kaula un ādas, 1 kg",
@@ -64,7 +50,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "cukgalas-skinkis-bez-kaula-un-adas-1-kg"
     },
     {
       "name": "Hurma PERSIMON, 1 kg",
@@ -80,7 +67,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "hurma-persimon-1-kg"
     },
     {
       "name": "Kartupeļi, 1 kg",
@@ -96,7 +84,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "kartupeli-1-kg"
     },
     {
       "name": "Mini Fuet desu izlase WELL DONE PREMIUM, 320 g",
@@ -112,23 +101,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
-    },
-    {
-      "name": "Not found",
-      "brand": null,
-      "image": "https://www.maxima.lv/images/front/layout/not-found-icon.svg",
-      "price": 1.49,
-      "regularPrice": 2.39,
-      "unit": null,
-      "discountPercent": 50,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "paldis": false,
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "mini-fuet-desu-izlase-well-done-premium-320-g"
     },
     {
       "name": "Olīvas pildītas ar apelsīniem WELL DONE PREMIUM, 360 g",
@@ -144,7 +118,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "olivas-pilditas-ar-apelsiniem-well-done-premium-360-g"
     },
     {
       "name": "Plūmju tomāti, 1 kg",
@@ -160,23 +135,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
-    },
-    {
-      "name": "Rotaļlietām (izņemot konstruktoriem LEGO)",
-      "brand": null,
-      "image": "https://www.maxima.lv/uploads/sale/2026/sales_page/11/20//rotallietam-iznemot-konstruktoriem-lego-00009-1120145123.png?1795179083",
-      "price": 1.49,
-      "regularPrice": 2.39,
-      "unit": null,
-      "discountPercent": 50,
-      "validFrom": null,
-      "validUntil": null,
-      "city": null,
-      "store": "Maxima",
-      "paldis": false,
-      "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "plumju-tomati-1-kg"
     },
     {
       "name": "Siers ar trifelēm WELL DONE PREMIUM, 180 g",
@@ -192,7 +152,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "siers-ar-trifelem-well-done-premium-180-g"
     },
     {
       "name": "Skābais krējums VALMIERA, 450 g, 20%",
@@ -208,7 +169,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "skabais-krejums-valmiera-450-g-20"
     },
     {
       "name": "Smiltis kaķu tualetei LOVETT, 5 l, cementējošas",
@@ -224,7 +186,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "smiltis-kaku-tualetei-lovett-5-l-cementejosas"
     },
     {
       "name": "Sālā uzkoda PRINGLES, 165 g, oriģinālā vai ar skābā krējuma un sīpolu garšu",
@@ -240,7 +203,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "sala-uzkoda-pringles-165-g-originala-vai-ar-skaba-krejuma-un-sipolu-garsu"
     },
     {
       "name": "Varavīksnes forele, 1 kg, ķīdāta",
@@ -256,7 +220,8 @@
       "store": "Maxima",
       "paldis": false,
       "source": "https://www.maxima.lv/piedavajumi/",
-      "checkedAt": "2026-11-27T08:24:19+00:00"
+      "checkedAt": "2026-11-27T08:24:19+00:00",
+      "productId": "varaviksnes-forele-1-kg-kidata"
     }
   ]
 }
