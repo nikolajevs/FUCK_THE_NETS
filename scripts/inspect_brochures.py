@@ -75,7 +75,18 @@ def main():
                 print("PDF_META", {"url": pdf_url, "status": pdf_response.status_code,
                                    "bytes": len(pdf_response.content), "pages": len(doc),
                                    "textChars": len(all_text)})
-                print("PDF_TEXT_SAMPLE", re.sub(r"\s+", " ", all_text)[:5500])
+                print("PDF_TEXT_SAMPLE", re.sub(r"\s+", " ", all_text)[:1800])
+                for page_number in range(min(len(doc), 3)):
+                    page = doc[page_number]
+                    blocks = sorted(page.get_text("blocks"), key=lambda b: (round(b[1], 1), round(b[0], 1)))
+                    print("PDF_PAGE_BLOCKS", pdf_url, page_number + 1, {
+                        "width": page.rect.width, "height": page.rect.height,
+                        "blocks": [
+                            {"box": [round(v, 1) for v in block[:4]],
+                             "text": re.sub(r"\s+", " ", block[4])[:220]}
+                            for block in blocks[:45]
+                        ],
+                    })
             except Exception as exc:
                 print("PDF_ERROR", pdf_url, type(exc).__name__, str(exc)[:400])
 
