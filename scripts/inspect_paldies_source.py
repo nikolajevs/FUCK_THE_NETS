@@ -173,7 +173,8 @@ def inspect_filtered_paldies(session: requests.Session) -> None:
                       re.sub(r"\s+", " ", js[max(0, position-550):position+1200]))
 
     # Probe typical paging parameters without changing the source filter.
-    for key, value in (("offset", "75"), ("page", "2"), ("start", "75"),
+    for key, value in (("offset", "0"), ("offset", "75"), ("offset", "150"),
+                       ("offset", "225"), ("page", "2"), ("start", "75"),
                        ("skip", "75"), ("pageNumber", "2"), ("from", "75")):
         candidate_params = [
             ("filters[]", "18"), ("sort_by", "newest"), ("limit", "75"), ("ajax", "1"),
@@ -184,9 +185,13 @@ def inspect_filtered_paldies(session: requests.Session) -> None:
             candidate_json = candidate.json()
             candidate_html = candidate_json.get("html", "")
             candidate_soup = BeautifulSoup(candidate_html, "html.parser")
-            ids = [node.get("data-product-id") for node in candidate_soup.select(".item[data-product-id]")[:3]]
+            ids = [
+                node.get("data-product-id")
+                for node in candidate_soup.select(".item[data-product-id]")
+            ]
             print("PAGE_PROBE", key, value, "status", candidate.status_code,
-                  "total", candidate_json.get("totalItems"), "first_ids", ids)
+                  "total", candidate_json.get("totalItems"), "count", len(ids),
+                  "first_ids", ids[:5], "last_ids", ids[-5:])
         except (ValueError, AttributeError):
             print("PAGE_PROBE", key, value, "status", candidate.status_code,
                   "response", re.sub(r"\s+", " ", candidate.text)[:300])
