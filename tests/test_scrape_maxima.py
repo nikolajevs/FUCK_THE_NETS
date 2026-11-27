@@ -43,6 +43,19 @@ class MaximaScraperTests(unittest.TestCase):
             ("2026-11-24", "2026-11-30"),
         )
 
+
+    def test_numeric_new_year_range_year_after_end_date(self):
+        self.assertEqual(
+            offer_dates("17.11. - 04.01.2027", today=date(2026, 11, 27)),
+            ("2026-11-17", "2027-01-04"),
+        )
+
+    def test_named_month_new_year_range_year_after_end_date(self):
+        self.assertEqual(
+            offer_dates("17. novembris - 4. janvāris 2027", today=date(2026, 11, 27)),
+            ("2026-11-17", "2027-01-04"),
+        )
+
     def test_campaign_dates_are_read_from_matching_dom_card(self):
         html = """
         <div class="campaign"><h2>Black Friday cenu festivāls</h2><p>26.-30. novembris</p></div>
