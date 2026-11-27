@@ -902,6 +902,9 @@ def _looks_like_pdf_product_description(text: str) -> bool:
         "piedāvājums spēkā", "preču daudzums ierobežots",
         "cena pie preces", "ar aktuālo preču piedāvājumu",
         "black friday", "cenu festivāls", "veikalos:",
+        "cenas ir pārbaudītas", "kontrolpirkumiem",
+        "cenu salīdzinājums", "neņemot vērā mazumtirgotāju",
+        "reklāmas izplatīšanas laikā", "salīdzinājumā iekļautie produkti",
     )):
         return False
     has_package = bool(re.search(
@@ -928,6 +931,9 @@ def _is_pdf_product_title_seed(text: str) -> bool:
         "pārtikas un ikdienas preču piedāvājumi",
         "augļi un dārzeņi", "grāmatu festivāls",
         "saldēto produktu piedāvājumi", "cenu un marķējumu skaidrojums",
+        "cenas ir pārbaudītas", "kontrolpirkumiem",
+        "cenu salīdzinājums", "neņemot vērā mazumtirgotāju",
+        "reklāmas izplatīšanas laikā", "salīdzinājumā iekļautie produkti",
     )):
         return False
     if re.search(r"\b(?:akcijas cena|iepriekšējā cena|piedāvājuma cena|atlaide)\b", folded):
@@ -966,6 +972,15 @@ def _clean_pdf_product_name(text: str) -> str:
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
     value = re.sub(r"\s+", " ", value).strip(" -;,:.")
+    # Removing a price fragment can expose a second, clipped two-digit price
+    # suffix at the beginning of the remaining title (for example "49 Bļoda").
+    # Keep one-digit quantity labels and explicit multi-pack labels intact.
+    value = re.sub(
+        r"^\d{2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
     return value
 
 def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | None, list[str]]:
@@ -1238,6 +1253,18 @@ def parse_catalogue_pdf(
             if price is None:
                 continue
 
+            # If a cell contains a unit-price label but only one number survived
+            # geometric extraction, that number may be €/kg or €/l rather than
+            # the product's shelf price. Keep it out of the verified feed.
+            has_unit_price_label = bool(re.search(
+                r"(?:€\\s*/\\s*(?:kg|l|100\\s*g|100\\s*ml|gab\\.?|rull\\w*)|"
+                r"/\\s*(?:kg|l|100\\s*g|100\\s*ml))",
+                cell_text,
+                flags=re.IGNORECASE,
+            ))
+            if has_unit_price_label and len(prices_from(cell_text)) <= 1:
+                issues.append("unit_price_only_or_misaligned")
+
             # A plausible price pair is not enough when neighbouring cards or
             # store-event copy leaked into the product title.
             name_folded = name.casefold()
@@ -1333,6 +1360,12 @@ def parse_catalogue_pdf(
                 "checkedAt": observed_at,
                 "quality": quality,
             }
+            if issues:
+                offer["reviewEvidence"] = {
+                    "rawCellText": " ".join(cell_text.split())[:600],
+                    "parsedName": name,
+                    "parsedPrices": prices_from(cell_text),
+                }
             existing = offers_by_id.get(offer_id) or reviews_by_id.get(offer_id)
             if existing and existing["quality"]["priceStatus"] == "verified" and quality["priceStatus"] == "review":
                 continue
