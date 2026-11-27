@@ -1013,7 +1013,7 @@ def _clean_pdf_product_name(text: str) -> str:
     # final zero immediately before the product title (for example
     # "0,45 0 Kartupeļi 1 kg"). Remove only that orphaned leading zero.
     if starts_with_price:
-        value = re.sub(r"^0\s+(?=[A-Za-zĀČĒĢĪĶĻŅŌŖŠŪŽ])", "", value)
+        value = re.sub(r"^\s*0\s+(?=[A-Za-zĀČĒĢĪĶĻŅŌŖŠŪŽ])", "", value)
     value = re.sub(r"-\s*\d{1,2}\s*%", " ", value)
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
