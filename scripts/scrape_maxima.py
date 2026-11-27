@@ -1121,11 +1121,13 @@ def _pdf_description_anchors_by_line(
             line_words.sort(key=lambda word: (float(word[0]), int(word[7])))
             segment: list[tuple] = []
             segments: list[list[tuple]] = []
+            bullet_separated = False
             for word in line_words:
-                token = str(word[4]).strip()
+                token = str(word[4]).strip().strip(";,:")
                 # Bullet glyphs are reliable separators between product cards
                 # when PDF extraction places several offers on one text line.
                 if re.fullmatch(r"[•·▪●◦]+", token):
+                    bullet_separated = True
                     if segment:
                         segments.append(segment)
                         segment = []
@@ -1140,8 +1142,16 @@ def _pdf_description_anchors_by_line(
             for segment in segments:
                 segment_text = " ".join(str(item[4]).lstrip("•·▪●◦") for item in segment)
                 if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                    segment_left = min(float(item[0]) for item in segment)
+                    segment_right = max(float(item[2]) for item in segment)
+                    # In a bullet-separated inline row, use each card's centre
+                    # so the midpoint between anchors falls on the separator.
+                    anchor_x = (
+                        (segment_left + segment_right) / 2
+                        if bullet_separated else segment_left
+                    )
                     anchors.append((
-                        min(float(item[0]) for item in segment),
+                        anchor_x,
                         min(float(item[1]) for item in segment),
                     ))
 
