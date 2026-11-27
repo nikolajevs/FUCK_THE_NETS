@@ -312,7 +312,7 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(value, "Bļoda AURORA ROYAL WHITE 1 gab., Ø15 cm")
 
         multi_pack = _clean_pdf_product_name("3 IEPAK. Zeķes SEVEN LEMON 1 gab.")
-        self.assertEqual(multi_pack, "3 IEPAK. Zeķes SEVEN LEMON 1 gab.")
+        self.assertEqual(multi_pack, "3 IEPAK. Zeķes SEVEN LEMON 1 gab")
 
     def test_price_comparison_legal_copy_is_not_a_product_candidate(self):
         text = (
