@@ -24,7 +24,9 @@ jobs:
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4 pymupdf
       - name: Validate scraper syntax
-        run: python -m py_compile scripts/scrape_maxima.py
+        run: |
+          python -m py_compile scripts/scrape_maxima.py
+          python -m py_compile scripts/scrape_top.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
       - name: Validate frontend JavaScript
@@ -33,6 +35,9 @@ jobs:
         run: python scripts/scrape_maxima.py
         env:
           QWEN_PENDING_DIR: ${{ runner.temp }}/maxima-qwen-pending
+      - name: Collect top! offers
+        continue-on-error: true
+        run: python scripts/scrape_top.py
       - name: Check for new PDF review cards
         id: qwen-pending
         shell: bash
@@ -132,9 +137,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/offers.json data/price-history.json
+          if [ -f data/top-offers.json ]; then git add data/top-offers.json; fi
           if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima offers and price history"
+            git commit -m "Update Maxima and top! offers and price history"
             git push
           fi
 

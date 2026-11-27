@@ -26,6 +26,7 @@ function normalizedStore(value) {
   const folded = name.toLocaleLowerCase("lv");
   if (folded.includes("maxima")) return { key: "maxima", name: "Maxima" };
   if (folded.includes("mego")) return { key: "mego", name: "Mego" };
+  if (folded.includes("top")) return { key: "top", name: "Top!" };
   return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
 }
 
@@ -216,7 +217,7 @@ function offerVariantMarkup(offer) {
   const store = normalizedStore(offer.storeName || offer.store);
   const tags = [];
   if (offer.requiresPaldies) tags.push('<span class="condition-tag strong">PALDIES karte</span>');
-  else if (offer.requiresCard) tags.push('<span class="condition-tag strong">Klienta karte</span>');
+  else if (offer.requiresCard) tags.push('<span class="condition-tag strong">' + escapeHtml(offer.cardName ? offer.cardName + " karte" : "Klienta karte") + '</span>');
   if (offer.onlyInApp) tags.push('<span class="condition-tag strong">Tikai lietotnē</span>');
   if (!tags.length) tags.push('<span class="condition-tag">Bez kartes nosacījuma</span>');
   const formats = Array.isArray(offer.storeFormats) && offer.storeFormats.length
@@ -362,6 +363,7 @@ async function init() {
   const sources = [
     ["data/offers.json", "Maxima"],
     ["data/mego-offers.json", "Mego"],
+    ["data/top-offers.json", "Top!"],
   ];
   const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
   const feeds = [];

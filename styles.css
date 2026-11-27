@@ -95,6 +95,7 @@ button, select { cursor: pointer; }
 .retailer-tag { display: inline-flex; align-items: center; padding: 4px 6px; border-radius: 5px; background: #edf5ef; color: #286847; font-size: 8px; font-weight: 800; letter-spacing: .45px; text-transform: uppercase; }
 .retailer-tag.maxima { background: #e7f4ec; color: #176b46; }
 .retailer-tag.mego { background: #edf1fb; color: #455b9a; }
+.retailer-tag.top { background: #fdecec; color: #c1121f; }
 .product-heading h3 { margin: 0; color: #23352a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
 .product-meta { margin: 4px 0 0; color: #87938a; font-size: 9px; }
 .best-price { display: flex; justify-content: space-between; align-items: end; gap: 10px; margin-top: 14px; padding: 11px 12px; border-radius: 10px; background: #f5f9f5; }
