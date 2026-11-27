@@ -21,6 +21,7 @@ from scripts.scrape_maxima import (
     parse_paldies_card,
     prices_from,
     price_quality,
+    _has_explicit_shelf_price,
     store_formats_from_text,
 )
 
@@ -868,6 +869,39 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(
             store_formats_from_text("Piedāvājums spēkā MAXIMA XX veikalos"),
             ["XX"],
+        )
+
+    def test_reversed_pdf_price_order_is_normalized_to_promo_then_regular(self):
+        price, regular, discount, issues = price_quality(
+            [44.95, 6.99],
+            "Aromāta 1 gab. 44,95 6 99",
+        )
+        self.assertEqual((price, regular), (6.99, 44.95))
+        self.assertEqual(discount, 84)
+        self.assertEqual(issues, [])
+
+    def test_multi_buy_price_order_remains_ambiguous(self):
+        price, regular, discount, issues = price_quality(
+            [2.98, 1.49],
+            "Biezpiena krēms EMMA 2x 200 g 1+1 1 49",
+        )
+        self.assertEqual(price, 2.98)
+        self.assertIsNone(regular)
+        self.assertIsNone(discount)
+        self.assertIn("ambiguous_multi_buy_price_order", issues)
+
+    def test_explicit_shelf_price_is_distinguished_from_unit_price(self):
+        self.assertTrue(
+            _has_explicit_shelf_price(
+                "Apelsīnu želeja 5,87 € (9,94 €/kg)",
+                5.87,
+            )
+        )
+        self.assertFalse(
+            _has_explicit_shelf_price(
+                "Avota ūdens (0,59 €/l) 0 89",
+                0.89,
+            )
         )
 
     def test_discount_mismatch_requires_review(self):
