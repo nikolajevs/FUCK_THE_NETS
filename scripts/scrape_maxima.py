@@ -972,6 +972,18 @@ def _clean_pdf_product_name(text: str) -> str:
     value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
     value = value.replace("*", " ")
     value = re.sub(r"\s+", " ", value).strip(" -;,:.")
+    # Brochure layout can leak a neighbouring product's size label into the
+    # start of the actual title (for example "izmērs 15+ kg Putekļsūcējs...").
+    value = re.sub(
+        r"^izm(?:ērs|ers)\s+\d{1,2}\+?\s*(?:kg|g|cm|mm)\s+",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
+    # A trailing "no" is sometimes positioned after the price pair in PDF text
+    # order, although visually it belongs to the "no €X" price caption.
+    if len(prices_from(text)) >= 2:
+        value = re.sub(r"\s+no$", "", value, flags=re.IGNORECASE)
     # Removing a price fragment can expose a second, clipped two-digit price
     # suffix at the beginning of the remaining title (for example "49 Bļoda").
     # Keep one-digit quantity labels and explicit multi-pack labels intact.
