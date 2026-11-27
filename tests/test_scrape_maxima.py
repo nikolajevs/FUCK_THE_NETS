@@ -777,6 +777,8 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
         by_name = {offer["name"]: offer for offer in offers}
+        self.assertIn("Coffee Set KITCHEN 1 gab.", by_name, f"offers={offers!r}; reviews={reviews!r}")
+        self.assertIn("Tablecloth HOME 1 gab.", by_name, f"offers={offers!r}; reviews={reviews!r}")
         self.assertEqual(
             (by_name["Coffee Set KITCHEN 1 gab."]["price"],
              by_name["Coffee Set KITCHEN 1 gab."]["regularPrice"]),
@@ -855,7 +857,11 @@ class MaximaScraperTests(unittest.TestCase):
             "storeScopeSource": "https://www.maxima.lv/bukleti/test",
         }
         offers, reviews, pages = parse_catalogue_pdf(payload, catalogue, [catalogue], today=date(2026, 11, 27))
-        self.assertEqual(len(offers), 2)
+        self.assertEqual(
+            len(offers), 2,
+            f"offers={[(o['name'], o['price'], o['regularPrice'], o['quality']) for o in offers]!r}; "
+            f"reviews={[(o['name'], o['quality'], o.get('reviewEvidence')) for o in reviews]!r}",
+        )
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
         by_name = {offer["name"]: offer for offer in offers}
