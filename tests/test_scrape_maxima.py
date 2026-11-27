@@ -4,8 +4,8 @@ from datetime import date
 from bs4 import BeautifulSoup
 
 from scripts.scrape_maxima import (
-    campaign_dates,
     campaign_dates_from_soup,
+    campaign_index_metadata,
     offer_dates,
     prices_from,
     price_quality,
@@ -36,28 +36,7 @@ class MaximaScraperTests(unittest.TestCase):
 
     def test_numeric_date_range_with_explicit_year(self):
         self.assertEqual(
-            offer_dates("24.11.-30.11.2026", today=date(2026, 11, 27)),
-            ("2026-11-24", "2026-11-30"),
-        )
-
-    def test_campaign_dates_ignore_other_campaign_banners(self):
-        page = "Black Friday 26.-30. novembris Iknedēļas piedāvājums 24.-30. novembris"
-        self.assertEqual(
-            campaign_dates(page, today=date(2026, 11, 27)),
-            ("2026-11-24", "2026-11-30"),
-        )
-
-    def test_campaign_dates_skip_earlier_heading_without_date(self):
-        page = "Iknedēļas piedāvājums Filtrēt pēc kategorijas Iknedēļas piedāvājums 24.-30. novembris"
-        self.assertEqual(
-            campaign_dates(page, today=date(2026, 11, 27)),
-            ("2026-11-24", "2026-11-30"),
-        )
-
-    def test_campaign_dates_do_not_borrow_date_from_next_banner(self):
-        page = "Iknedēļas piedāvājums Filtrēt pēc kategorijas " + ("x" * 140) + "17. novembris - 4. janvāris " + "Iknedēļas piedāvājums 24.-30. novembris"
-        self.assertEqual(
-            campaign_dates(page, today=date(2026, 11, 27)),
+            offer_dates("24.11. - 30.11.2026", today=date(2026, 11, 27)),
             ("2026-11-24", "2026-11-30"),
         )
 
@@ -69,8 +48,34 @@ class MaximaScraperTests(unittest.TestCase):
         """
         soup = BeautifulSoup(html, "html.parser")
         self.assertEqual(
-            campaign_dates_from_soup(soup, soup.get_text(" "), today=date(2026, 11, 27)),
+            campaign_dates_from_soup(
+                soup, soup.get_text(" "), "Iknedēļas piedāvājums",
+                today=date(2026, 11, 27),
+            ),
             ("2026-11-24", "2026-11-30"),
+        )
+
+    def test_campaign_index_returns_dates_and_own_detail_url(self):
+        html = """
+        <div class="campaign">
+          <h1>Black Friday cenu festivāls</h1>
+          <h2>26.-30. novembris</h2>
+          <a href="/bukleti/ONUKB-W48-BF">Lasīt</a>
+        </div>
+        <div class="campaign">
+          <h1>Well Done Premium</h1>
+          <h2>24.-30. novembris</h2>
+          <a href="/bukleti/ONUKB-W48-WDP">Lasīt</a>
+        </div>
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        self.assertEqual(
+            campaign_index_metadata(soup, "Well Done Premium", today=date(2026, 11, 27)),
+            (
+                "2026-11-24",
+                "2026-11-30",
+                "https://www.maxima.lv/bukleti/ONUKB-W48-WDP",
+            ),
         )
 
     def test_detect_all_explicit_store_formats(self):
@@ -84,10 +89,7 @@ class MaximaScraperTests(unittest.TestCase):
         )
 
     def test_discount_mismatch_requires_review(self):
-        _, _, _, issues = price_quality(
-            [3.29, 4.49],
-            "3 29 4 49 -20%",
-        )
+        _, _, _, issues = price_quality([3.29, 4.49], "3 29 4 49 -20%")
         self.assertIn("discount_percent_mismatch", issues)
 
     def test_more_than_two_shelf_prices_requires_review(self):
