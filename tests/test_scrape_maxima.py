@@ -1018,10 +1018,14 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual((baking["price"], baking["regularPrice"]), (9.99, 21.99))
         self.assertEqual((tablecloth["price"], tablecloth["regularPrice"]), (14.99, 24.99))
 
-    def test_pdf_product_name_removes_zero_exposed_by_leading_price(self):
+    def test_pdf_product_name_removes_orphaned_card_digit_after_leading_price(self):
         self.assertEqual(
             _clean_pdf_product_name("0,45 0 Kartupeļi 1 kg"),
             "Kartupeļi 1 kg",
+        )
+        self.assertEqual(
+            _clean_pdf_product_name("11,99 6 Varavīksnes forele 1 kg, ķidāta"),
+            "Varavīksnes forele 1 kg, ķidāta",
         )
         self.assertEqual(
             _clean_pdf_product_name("0% Greek yogurt 400 g 0,45 €"),
