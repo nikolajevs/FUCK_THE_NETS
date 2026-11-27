@@ -11,7 +11,7 @@ Currently supported:
 | Vesko   | `scripts/scrape_vesko.py`  | `data/vesko-offers.json`| Production (PDF booklet)      |
 | Aibe    | `scripts/scrape_aibe.py`   | `data/aibe-offers.json` | Production (SSR cards)        |
 | Citro   | `scripts/scrape_citro.py`  | `data/citro-offers.json`| Production (PDF newspaper)    |
-| Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Catalogue link (image prices) |
+| Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Production (vision prices)    |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
@@ -82,11 +82,17 @@ Four more Latvian chains, each read from its own published source:
   anchored on the large cent sale price; the ALL-CAPS name sits to the right
   (standard cards) or below (fruit & vegetable cards). Regular-price ranges
   keep their lower bound.
-- **Spar** (`spar.lv/akcijas/`) — the DearPDF newspaper keeps names and the
-  validity period as text but renders **prices as images**, so individual
-  prices cannot be verified. Mirroring LaTS's image-only newspaper, Spar is
-  recorded as a catalogue link with its printed period rather than a priced
-  feed.
+- **Spar** (`spar.lv/akcijas/`) — the DearPDF newspaper keeps names, sizes and
+  the validity period as text but renders **prices as images**. Product names
+  are reconstructed from the text layer into per-card candidates; each page is
+  rendered to PNG and the project's two-layer vision stack reads the price
+  badges: **Gemini Flash-Lite** first (shared daily budget ledger with Maxima,
+  ≤8 requests/run), then the existing local **Qwen3-VL** llama.cpp build for
+  pages Gemini could not resolve (`--qwen-review`). Guards keep it conservative:
+  names must come from the text layer, prices are sanity-ranged, the printed
+  discount badge must agree with the sale/regular pair, "N for X€" bundle
+  totals are divided locally, alcohol is dropped and anything inconsistent goes
+  to `reviewOffers`. Without any vision layer it degrades to a catalogue link.
 
 All four drop alcoholic products (matching LaTS/Rimi/top!) and send ambiguous
 cards to `reviewOffers`. The site shows a **"Akciju bukleti"** strip listing
