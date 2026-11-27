@@ -16,6 +16,11 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 try:
+    import fitz
+except ImportError:  # The scraper reports a clear error if the PDF dependency is absent.
+    fitz = None
+
+try:
     from scripts.product_identity import build_product_groups, product_identity
 except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
     from product_identity import build_product_groups, product_identity
@@ -815,7 +820,6 @@ def discover_active_catalogues(
         detail_text = detail_soup.get_text(" ", strip=True)
         formats, scope_source = fetch_campaign_store_formats(session, detail_url)
         if not formats:
-            formats.update if False else None
             explicit_format = re.search(r"\bMAXIMA\s+(XXX|XX|X)\b", detail_text, flags=re.IGNORECASE)
             if explicit_format:
                 formats = [explicit_format.group(1).upper()]
@@ -974,10 +978,8 @@ def parse_catalogue_pdf(
     today: date | None = None,
 ) -> tuple[list[dict], list[dict], dict[str, int]]:
     """Extract product/price cells from an active Maxima brochure PDF."""
-    try:
-        import fitz
-    except ImportError as exc:
-        raise RuntimeError("PyMuPDF is required to collect Maxima brochure PDFs") from exc
+    if fitz is None:
+        raise RuntimeError("PyMuPDF is required to collect Maxima brochure PDFs")
 
     today = today or date.today()
     document = fitz.open(stream=pdf_bytes, filetype="pdf")
@@ -1255,6 +1257,105 @@ def main():
 
     if not paldies_metadata["complete"]:
         raise RuntimeError("PALDIES catalogue did not pass completeness verification")
+    # Discover every currently active brochure from Maxima's catalogue index.
+    today = date.today()
+    active_catalogues = discover_active_catalogues(session, brochure_index, today)
+    catalogue_offers: list[dict] = []
+    catalogue_reviews: list[dict] = []
+    catalogue_stats: dict[str, dict] = {
+        item["id"]: {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+        for item in active_catalogues
+    }
+
+    # Several brochure cards may point to the same combined weekly PDF. Download and
+    # parse each unique PDF once, then identify the relevant campaign from each page.
+    seen_pdf_urls: set[str] = set()
+    for catalogue in active_catalogues:
+        for pdf_url in catalogue.get("pdfSources", []):
+            if pdf_url in seen_pdf_urls:
+                continue
+            seen_pdf_urls.add(pdf_url)
+            try:
+                pdf_response = session.get(pdf_url, headers=HEADERS, timeout=120)
+                pdf_response.raise_for_status()
+                pdf_offers, pdf_reviews, page_counts = parse_catalogue_pdf(
+                    pdf_response.content, catalogue, active_catalogues, today=today
+                )
+            except Exception as exc:
+                catalogue["complete"] = False
+                print(f"Warning: could not collect PDF {pdf_url}: {exc}", file=sys.stderr)
+                continue
+
+            catalogue_offers.extend(pdf_offers)
+            catalogue_reviews.extend(pdf_reviews)
+            for catalogue_id, page_count in page_counts.items():
+                catalogue_stats.setdefault(
+                    catalogue_id, {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+                )["pdfPages"] += page_count
+
+    # PDF variants that duplicate the same product/price already collected from its
+    # HTML campaign page are redundant. Keep new catalogue entries and price values.
+    existing_offer_keys = {
+        (
+            item.get("sourceId"),
+            item.get("canonicalProductId"),
+            item.get("price"),
+            item.get("regularPrice"),
+            item.get("validFrom"),
+            item.get("validUntil"),
+        )
+        for item in all_offers
+    }
+    for offer in catalogue_offers:
+        key = (
+            offer.get("sourceId"),
+            offer.get("canonicalProductId"),
+            offer.get("price"),
+            offer.get("regularPrice"),
+            offer.get("validFrom"),
+            offer.get("validUntil"),
+        )
+        if key in existing_offer_keys:
+            continue
+        all_offers.append(offer)
+        existing_offer_keys.add(key)
+        catalogue_stats.setdefault(
+            offer["sourceId"], {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+        )["verifiedOffers"] += 1
+
+    existing_review_keys = {
+        (
+            item.get("sourceId"),
+            item.get("canonicalProductId"),
+            item.get("price"),
+            item.get("regularPrice"),
+            item.get("validFrom"),
+            item.get("validUntil"),
+        )
+        for item in all_reviews
+    }
+    for offer in catalogue_reviews:
+        key = (
+            offer.get("sourceId"),
+            offer.get("canonicalProductId"),
+            offer.get("price"),
+            offer.get("regularPrice"),
+            offer.get("validFrom"),
+            offer.get("validUntil"),
+        )
+        if key in existing_review_keys:
+            continue
+        all_reviews.append(offer)
+        existing_review_keys.add(key)
+        catalogue_stats.setdefault(
+            offer["sourceId"], {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+        )["reviewOffers"] += 1
+
+    for catalogue in active_catalogues:
+        catalogue.update(catalogue_stats.get(
+            catalogue["id"], {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+        ))
+
     if not all_offers:
         raise RuntimeError("No verified product offers detected; refusing to overwrite the feed.")
 
@@ -1296,6 +1397,9 @@ def main():
             "paldiesExpected": paldies_metadata["expectedOffers"],
             "paldiesCollected": paldies_metadata["collectedProducts"],
             "paldiesPages": paldies_metadata["pages"],
+            "activeCatalogues": len(active_catalogues),
+            "catalogueOffers": sum(item["verifiedOffers"] for item in active_catalogues),
+            "catalogueReviewOffers": sum(item["reviewOffers"] for item in active_catalogues),
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -1304,9 +1408,13 @@ def main():
         encoding="utf-8",
     )
 
+    catalogue_offer_count = sum(item["verifiedOffers"] for item in active_catalogues)
+    catalogue_review_count = sum(item["reviewOffers"] for item in active_catalogues)
     print(
         f"Saved {len(offers)} offer variants grouped into {len(grouped_products)} products; "
         f"{len(review_offers)} variants need review; "
+        f"{len(active_catalogues)} active brochures, {catalogue_offer_count} verified PDF offers "
+        f"and {catalogue_review_count} PDF items need review; "
         f"history contains {len(history_payload['products'])} canonical products"
     )
 
