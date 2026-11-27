@@ -23,6 +23,9 @@ from scripts.scrape_maxima import (
     prices_from,
     price_quality,
     _has_explicit_shelf_price,
+    _has_shelf_price_matching_unit_price,
+    _recover_shelf_pair_from_orphaned_price,
+    _pdf_has_paldies_price_box_pair,
     _pdf_page_cells_geometry,
     _split_pdf_cell_by_bullets,
     _pdf_cell_starts_with_price,
@@ -339,6 +342,55 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertFalse(_looks_like_pdf_product_description(text))
         self.assertFalse(_is_pdf_product_title_seed(text))
 
+    def test_promotional_price_labels_are_not_product_title_anchors(self):
+        for text in (
+            "JAUNUMS",
+            "ZILA CENA ZEMA CENA",
+            "no-30%",
+            "2,09 -33% Marcipāna batoniņš",
+            "Vairāk DOBELE putraimu pārslu piedāvājumu veikalā ar",
+        ):
+            with self.subTest(text=text):
+                self.assertFalse(_is_pdf_product_title_seed(text))
+
+    def test_single_shelf_price_can_be_confirmed_by_package_unit_rate(self):
+        self.assertTrue(
+            _has_shelf_price_matching_unit_price(
+                "Kafija 500 g (16,98 €/kg) 8 49", 8.49
+            )
+        )
+        self.assertTrue(
+            _has_shelf_price_matching_unit_price(
+                "Tunzivs 1 iepak./8x 80 g (18,73 €/kg; 31,23 €/kg) 11 99",
+                11.99,
+            )
+        )
+        self.assertFalse(
+            _has_shelf_price_matching_unit_price(
+                "Mini Fuet 320 g (21,84 37,47 €/kg) 21,84", 21.84
+            )
+        )
+        self.assertEqual(
+            _recover_shelf_pair_from_orphaned_price(
+                "Skābais krējums 450 g (3,31 €/kg) 2,39 1",
+                2.39,
+            ),
+            (1.49, 2.39, 38),
+        )
+        self.assertEqual(
+            _recover_shelf_pair_from_orphaned_price(
+                "Biezpiena sieriņš 45 g (6,44 €/kg) 0,52 0",
+                0.52,
+            ),
+            (0.29, 0.52, 44),
+        )
+        self.assertIsNone(
+            _recover_shelf_pair_from_orphaned_price(
+                "Biezpiena sieriņš 45 g (6,44 €/kg) 0,52 1",
+                0.52,
+            )
+        )
+
     def test_unit_price_only_cell_is_sent_to_review_with_evidence(self):
         import pymupdf as fitz
 
@@ -370,6 +422,52 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertIn("unit_price_only_or_misaligned", reviews[0]["quality"]["issues"])
         self.assertIn("5 16 /kg", reviews[0]["reviewEvidence"]["rawCellText"])
         self.assertEqual(reviews[0]["reviewEvidence"]["parsedPrices"], [5.16])
+
+    def test_unit_price_badge_confirms_single_visible_shelf_price(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 300, 275),
+            "Kafija PAULIG 500 g (16,98 €/kg) 8 49 ZILA CENA ZEMA CENA",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/weekly",
+            "detailSource": "https://www.maxima.lv/bukleti/weekly",
+            "pdfSources": ["https://www.maxima.lv/uploads/weekly.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/weekly",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 1)
+        self.assertEqual(offers[0]["price"], 8.49)
+        self.assertEqual(reviews, [])
+
+    def test_pdf_price_box_colours_detect_paldies_pair(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=300, height=300)
+        red = (227 / 255, 0, 11 / 255)
+        white = (1, 1, 1)
+        page.insert_text((30, 100), "0", fontsize=50, color=red)
+        page.insert_text((62, 90), "69", fontsize=18, color=red)
+        page.insert_text((34, 150), "1", fontsize=50, color=white)
+        page.insert_text((53, 130), "29", fontsize=18, color=white)
+
+        self.assertTrue(_pdf_has_paldies_price_box_pair(page, 0.69, 1.29))
+        self.assertFalse(_pdf_has_paldies_price_box_pair(page, 0.69, 1.39))
+        document.close()
 
     def test_partition_review_offers_excludes_downgraded_items_from_verified_feed(self):
         verified = {"offerId": "verified-1", "quality": {"priceStatus": "verified"}}
@@ -1171,6 +1269,63 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertTrue(
             all(len(prices_from(text)) == 2 for _, _, text in cells),
             f"unexpected merged cells: {cells!r}",
+        )
+
+    def test_pdf_geometry_keeps_price_boxes_with_indented_titles(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        cards = [
+            (25, "Coffee Alpha 500 g", "1 19 1 69"),
+            (225, "Coffee Beta 400 g", "1 19 1 89"),
+            (425, "Coffee Gamma 300 g", "1 19 1 99"),
+        ]
+        for x, title, prices in cards:
+            page.insert_text((x, 205), title, fontsize=9)
+            # The red/current price box sits above and to the right of the title.
+            page.insert_text((x + 118, 190), prices, fontsize=10)
+        page.insert_text((365, 208), "ZILA CENA ZEMA CENA", fontsize=8)
+
+        cells = _pdf_page_cells_geometry(page)
+        document.close()
+
+        self.assertEqual(len(cells), 3, f"cells={cells!r}")
+        expected_prices = {
+            "Alpha": [1.19, 1.69],
+            "Beta": [1.19, 1.89],
+            "Gamma": [1.19, 1.99],
+        }
+        for _, _, text in cells:
+            product = next((name for name in expected_prices if f"Coffee {name}" in text), None)
+            self.assertIsNotNone(product, f"missing product title: {text!r}")
+            self.assertEqual(prices_from(text), expected_prices[product])
+
+    def test_pdf_geometry_ignores_opening_banner_before_product_grid(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_text((35, 285), "Opening 10:00-22:00", fontsize=10)
+        cards = [
+            (35, 314, "Mayo Francis 250 g", "2.76 /kg; 5.16 /kg", "0.69 1.29"),
+            (310, 314, "Cheese Dzintars 200 g", "4.95 /kg; 11.75 /kg", "0.99 2.35"),
+            (35, 568, "Chicken breast 1 kg", "", "5.99 8.49"),
+            (310, 568, "Cat food Gourmet 85 g", "4.12 /kg; 11.18 /kg", "0.35 0.95"),
+        ]
+        for x, y, title, rates, prices in cards:
+            page.insert_text((x, y), title, fontsize=10)
+            if rates:
+                page.insert_text((x, y + 13), rates, fontsize=10)
+            page.insert_text((x + 175, y + 20), prices, fontsize=10)
+
+        cells = _pdf_page_cells_geometry(page)
+        document.close()
+
+        self.assertEqual(len(cells), 4, f"cells={cells!r}")
+        self.assertTrue(
+            all("Opening" not in text for _, _, text in cells),
+            f"opening banner leaked into a card: {cells!r}",
         )
 
     def test_pdf_bullet_split_requires_complete_pairs_for_each_product(self):
