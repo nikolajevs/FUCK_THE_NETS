@@ -8,6 +8,7 @@ Currently supported:
 |---------|----------------------------|-------------------------|-------------------------------|
 | Maxima  | `scripts/scrape_maxima.py` | `data/offers.json`      | Production (daily GH Actions) |
 | Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
+| Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 
 ---
 
@@ -52,6 +53,42 @@ Output: `data/mego-offers.json`
 
 ---
 
+## Top! (etop.lv)
+
+Collects the full promotion catalogue of the top! chain from the public JSON API
+behind its Angular storefront — no PDF parsing required:
+
+- `GET https://etop.lv/v1/Promotions/GetActivePromotions` — active booklets
+  (weekly `top! buklets` and `Lielo veikalu top! buklets`) with direct PDF links
+  and validity periods;
+- `POST https://etop.lv/v1/Products/GetPromotionProducts` with
+  `{"page": N, "pageSize": 200}` — every discounted product with prices, brand,
+  EAN, product image and per-product validity dates (paged until `hasMore=false`).
+
+Price handling:
+
+- regular discounts (`discountType 3`): sale price + the lower bound of the
+  regular-price range (`regPriceMin`, prices vary by store format);
+- `top! cena` (`discountType 9`): the loyalty price becomes the sale price, the
+  non-card price becomes the regular price, and the offer is flagged
+  `requiresCard` with `cardName: "mans top!"`;
+- everyday low prices (`Zemā cena`, private label) and the lowest-price
+  guarantee (`Zemākā cena`) are kept without a crossed-out regular price.
+
+Validity dates are converted from UTC instants to Europe/Riga local dates
+(EU DST rules, no external tz database); the API end instant is exclusive.
+Alcoholic products are not part of the feed (only 0% beer/cider variants are).
+Offers are matched to booklets by local validity dates; `top! cena`, `Zemā cena`
+and `Zemākā cena` form their own campaigns.
+
+```bash
+python scripts/scrape_top.py
+```
+
+Output: `data/top-offers.json` (refreshed daily by the same workflow as Maxima).
+
+---
+
 ## Product identity and grouping
 
 Shared logic in `scripts/product_identity.py`:
@@ -88,5 +125,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima and top! data and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
