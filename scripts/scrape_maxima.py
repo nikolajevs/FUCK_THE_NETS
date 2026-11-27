@@ -749,6 +749,340 @@ def collect_paldies_catalog(
     return offers, reviews, metadata
 
 
+def _catalogue_id(title: str) -> str:
+    folded = title.casefold()
+    if "iknedēļas piedāvājums" in folded:
+        return "maxima-weekly"
+    if "well done premium" in folded:
+        return "maxima-well-done-premium"
+    if "grāmatu festivāls" in folded:
+        return "maxima-book-festival"
+    slug = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
+    slug = re.sub(r"[^a-z0-9]+", "-", slug.lower()).strip("-")
+    return f"maxima-catalogue-{slug or hashlib.sha1(title.encode()).hexdigest()[:8]}"
+
+
+def discover_active_catalogues(
+    session: requests.Session,
+    index_soup: BeautifulSoup,
+    today: date,
+) -> list[dict]:
+    """Discover every currently active brochure from Maxima's own catalogue index."""
+    discovered: dict[str, dict] = {}
+    for anchor in index_soup.find_all("a", href=True):
+        detail_url = urljoin(BROCHURES_URL, anchor["href"])
+        if "/bukleti/" not in detail_url or detail_url.rstrip("/") == BROCHURES_URL.rstrip("/"):
+            continue
+
+        candidates: list[tuple[int, int, Tag, str, str, str]] = []
+        node: Tag | None = anchor
+        for depth in range(1, 10):
+            node = node.parent if isinstance(node.parent, Tag) else None
+            if node is None:
+                break
+            heading = node.find(["h1", "h2", "h3", "h4"])
+            if not isinstance(heading, Tag):
+                continue
+            title = heading.get_text(" ", strip=True)
+            card_text = node.get_text(" ", strip=True)
+            if not title or len(card_text) > 1600:
+                continue
+            valid_from, valid_until = offer_dates(card_text, today=today)
+            if valid_from and valid_until:
+                candidates.append((len(card_text), depth, node, title, valid_from, valid_until))
+
+        if not candidates or detail_url in discovered:
+            continue
+        _, _, card, title, valid_from, valid_until = min(
+            candidates, key=lambda item: (item[0], item[1])
+        )
+        if not (valid_from <= today.isoformat() <= valid_until):
+            continue
+
+        try:
+            response = session.get(detail_url, headers=HEADERS, timeout=30)
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            print(f"Warning: could not read active Maxima catalogue {detail_url}: {exc}", file=sys.stderr)
+            continue
+
+        detail_soup = BeautifulSoup(response.text, "html.parser")
+        pdf_urls = list(dict.fromkeys(
+            urljoin(detail_url, link["href"])
+            for link in detail_soup.find_all("a", href=True)
+            if ".pdf" in link["href"].casefold()
+        ))
+        detail_text = detail_soup.get_text(" ", strip=True)
+        formats, scope_source = fetch_campaign_store_formats(session, detail_url)
+        if not formats:
+            formats.update if False else None
+            explicit_format = re.search(r"\bMAXIMA\s+(XXX|XX|X)\b", detail_text, flags=re.IGNORECASE)
+            if explicit_format:
+                formats = [explicit_format.group(1).upper()]
+
+        store_match = re.search(
+            r"MAXIMA\s+veikalā\s+(.{2,100}?)(?:\.|Preču daudzums|Atpakaļ|$)",
+            detail_text,
+            flags=re.IGNORECASE,
+        )
+        store_description = store_match.group(1).strip(" ,") if store_match else None
+        city = "Roja" if store_description and "roj" in store_description.casefold() else None
+        source_id = _catalogue_id(title)
+        discovered[detail_url] = {
+            "id": source_id,
+            "name": title,
+            "source": detail_url,
+            "detailSource": detail_url,
+            "pdfSources": pdf_urls,
+            "validFrom": valid_from,
+            "validUntil": valid_until,
+            "storeFormats": formats,
+            "storeScopeSource": scope_source or (detail_url if store_description else None),
+            "storeDescription": store_description,
+            "city": city,
+            "verifiedOffers": 0,
+            "reviewOffers": 0,
+            "pdfPages": 0,
+            "complete": bool(pdf_urls),
+        }
+
+    return sorted(discovered.values(), key=lambda item: (item["validFrom"], item["name"].casefold()))
+
+
+def _cluster_values(values: list[float], tolerance: float) -> list[list[float]]:
+    clusters: list[list[float]] = []
+    for value in sorted(values):
+        if not clusters or value - sum(clusters[-1]) / len(clusters[-1]) > tolerance:
+            clusters.append([value])
+        else:
+            clusters[-1].append(value)
+    return clusters
+
+
+def _looks_like_pdf_product_description(text: str) -> bool:
+    folded = " ".join(text.casefold().split())
+    if len(re.findall(r"[a-zāčēģīķļņōŗšūž]{2,}", folded)) < 2:
+        return False
+    if any(term in folded for term in (
+        "piedāvājums spēkā", "preču daudzums ierobežots",
+        "cena pie preces", "ar aktuālo preču piedāvājumu",
+        "black friday", "cenu festivāls", "veikalos:",
+    )):
+        return False
+    has_package = bool(re.search(
+        r"\b\d+(?:[,.]\d+)?\s*(?:kg|g|ml|l|gab\.?|ruļļi|rullis|pāri|cm|mm)\b",
+        folded,
+    ))
+    return has_package or "grāmata" in folded or "grāmatu" in folded
+
+
+def _clean_pdf_product_name(text: str) -> str:
+    value = " ".join(text.replace("\xa0", " ").split())
+    value = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\d{1,3}[,.]\d{2}\s*€?", " ", value)
+    value = re.sub(r"(?<!\d)\d{1,3}\s+\d{2}(?!\d)", " ", value)
+    value = re.sub(r"-\s*\d{1,2}\s*%", " ", value)
+    value = re.sub(r"\b\d{1,2}\.\d{1,2}\.\s*[-–—]\s*\d{1,2}\.\d{1,2}\.?\d{0,4}\b", " ", value)
+    value = value.replace("*", " ")
+    value = re.sub(r"\s+", " ", value).strip(" -;,:.")
+    return value
+
+
+def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | None, list[str]]:
+    prices = prices_from(text)
+    if len(prices) == 2 and prices[0] > prices[1]:
+        unit_values = [
+            float(match.group(1).replace(",", "."))
+            for match in re.finditer(
+                r"(\d{1,3}[,.]\d{2})\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)",
+                text,
+                flags=re.IGNORECASE,
+            )
+        ]
+        if DISCOUNT_RE.search(text) or (len(unit_values) >= 2 and unit_values[0] < unit_values[1]):
+            prices.reverse()
+    return price_quality(prices, text)
+
+
+def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
+    """Split a brochure page into its product cells using text-block geometry."""
+    blocks = page.get_text("blocks")
+    descriptions = [
+        block for block in blocks
+        if _looks_like_pdf_product_description(block[4])
+    ]
+    if not descriptions:
+        return []
+
+    width, height = float(page.rect.width), float(page.rect.height)
+    x_clusters = _cluster_values([float(block[0]) for block in descriptions], max(24, width * 0.07))
+    y_clusters = _cluster_values([float(block[1]) for block in descriptions], max(55, height * 0.105))
+    if not x_clusters or not y_clusters:
+        return []
+
+    x_centres = [sum(group) / len(group) for group in x_clusters]
+    y_centres = [sum(group) / len(group) for group in y_clusters]
+    columns = len(x_centres)
+    results: list[tuple[int, int, str]] = []
+
+    for row_index, centre_y in enumerate(y_centres):
+        if len(y_centres) == 1:
+            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
+        else:
+            top = max(0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52) if row_index else max(
+                0, centre_y - (y_centres[1] - centre_y) * 0.52
+            )
+            bottom = min(height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52) if row_index < len(
+                y_centres
+            ) - 1 else min(height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52)
+
+        for column_index in range(columns):
+            left = column_index * width / columns
+            right = (column_index + 1) * width / columns
+            rect = fitz.Rect(left, top, right, bottom)
+            cell_text = page.get_text("text", clip=rect, sort=True)
+            if not cell_text.strip():
+                continue
+            cell_descriptions = [
+                block for block in descriptions
+                if left <= float(block[0]) < right
+                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
+            ]
+            if not cell_descriptions:
+                continue
+            results.append((row_index + 1, column_index + 1, cell_text))
+    return results
+
+
+def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
+    folded = page_text.casefold()
+    if "grāmatu festivāls" in folded:
+        match = next((item for item in catalogues if "grāmatu festivāls" in item["name"].casefold()), None)
+        if match:
+            return match
+    if folded.count("well done premium") >= 3:
+        match = next((item for item in catalogues if "well done premium" in item["name"].casefold()), None)
+        if match:
+            return match
+    return fallback
+
+
+def parse_catalogue_pdf(
+    pdf_bytes: bytes,
+    catalogue: dict,
+    all_catalogues: list[dict],
+    today: date | None = None,
+) -> tuple[list[dict], list[dict], dict[str, int]]:
+    """Extract product/price cells from an active Maxima brochure PDF."""
+    try:
+        import fitz
+    except ImportError as exc:
+        raise RuntimeError("PyMuPDF is required to collect Maxima brochure PDFs") from exc
+
+    today = today or date.today()
+    document = fitz.open(stream=pdf_bytes, filetype="pdf")
+    offers_by_id: dict[str, dict] = {}
+    reviews_by_id: dict[str, dict] = {}
+    page_counts: dict[str, int] = defaultdict(int)
+    observed_at = datetime.now().astimezone().isoformat(timespec="seconds")
+
+    for page_index, page in enumerate(document):
+        page_text = page.get_text("text", sort=True)
+        page_catalogue = _catalogue_for_pdf_page(page_text, all_catalogues, catalogue)
+        cells = _pdf_page_cells(page)
+        if not cells:
+            continue
+        page_counts[page_catalogue["id"]] += 1
+
+        page_dates = offer_dates(page_text, today=today)
+        validity_warning = "piedāvājumu periods var būt atšķirīgs" in page_text.casefold()
+        if page_dates != (None, None):
+            valid_from, valid_until = page_dates
+            date_status = "verified"
+        elif validity_warning:
+            valid_from, valid_until = None, None
+            date_status = "unknown"
+        else:
+            valid_from, valid_until = page_catalogue["validFrom"], page_catalogue["validUntil"]
+            date_status = "verified" if valid_from and valid_until else "unknown"
+
+        for row_number, column_number, cell_text in cells:
+            name = _clean_pdf_product_name(cell_text)
+            if not name or not _looks_like_pdf_product_description(name):
+                continue
+            price, regular, discount, issues = _pdf_price_quality(cell_text)
+            if price is None:
+                continue
+
+            identity = product_identity(name)
+            image = None
+            source_product_id = f"pdf:{page_index + 1}:{row_number}:{column_number}"
+            offer_id = stable_offer_id(
+                page_catalogue["id"],
+                identity["canonicalProductId"],
+                image,
+                page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
+                page_catalogue.get("storeFormats", []),
+                False,
+                source_product_id,
+            )
+            quality = {
+                "priceStatus": "review" if issues else "verified",
+                "dateStatus": date_status,
+                "storeScopeStatus": "verified" if (
+                    page_catalogue.get("storeFormats") or page_catalogue.get("storeDescription")
+                ) else "unknown",
+                "issues": issues,
+            }
+            offer = {
+                "offerId": offer_id,
+                "sourceId": page_catalogue["id"],
+                "sourceProductId": source_product_id,
+                "productId": product_id(name),
+                "canonicalProductId": identity["canonicalProductId"],
+                "identityKey": identity["identityKey"],
+                "packageSize": identity["packageSize"],
+                "name": name,
+                "brand": None,
+                "image": image,
+                "price": price,
+                "regularPrice": regular,
+                "paldiesPrice": None,
+                "priceWithoutPaldies": None,
+                "unit": None,
+                "discountPercent": discount,
+                "requiresPaldies": False,
+                "paldis": False,
+                "validFrom": valid_from,
+                "validUntil": valid_until,
+                "city": page_catalogue.get("city"),
+                "store": page_catalogue.get("storeDescription") or "Maxima",
+                "storeFormats": page_catalogue.get("storeFormats", []),
+                "storeScopeSource": page_catalogue.get("storeScopeSource"),
+                "campaign": page_catalogue["name"],
+                "campaignSource": page_catalogue["detailSource"],
+                "source": page_catalogue.get("pdfSources", [page_catalogue["source"]])[0],
+                "pdfPage": page_index + 1,
+                "checkedAt": observed_at,
+                "quality": quality,
+            }
+            existing = offers_by_id.get(offer_id) or reviews_by_id.get(offer_id)
+            if existing and existing["quality"]["priceStatus"] == "verified" and quality["priceStatus"] == "review":
+                continue
+            if quality["priceStatus"] == "review":
+                reviews_by_id[offer_id] = offer
+            else:
+                offers_by_id[offer_id] = offer
+                reviews_by_id.pop(offer_id, None)
+
+    document.close()
+    return (
+        sorted(offers_by_id.values(), key=lambda item: (item["name"].casefold(), item["price"])),
+        sorted(reviews_by_id.values(), key=lambda item: (item["name"].casefold(), item["price"])),
+        dict(page_counts),
+    )
+
+
 def load_json(path: Path, default):
     if not path.exists():
         return default
