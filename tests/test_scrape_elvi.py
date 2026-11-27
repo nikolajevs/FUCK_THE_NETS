@@ -1,8 +1,10 @@
 import unittest
 
+import scripts.scrape_elvi as elvi
 from scripts.scrape_elvi import (
     END_OF_LIST_RE,
     card_to_offer,
+    fetch_offers,
     parse_cards,
     parse_catalogues,
     parse_detail,
@@ -217,6 +219,43 @@ class OfferConversionTests(unittest.TestCase):
     def test_weak_name_goes_to_review(self):
         offer = card_to_offer(parse_one(card(name="AB", detail="")), None, None)
         self.assertEqual(offer["reviewReason"], "weak_name")
+
+
+class FetchOffersTests(unittest.TestCase):
+    """AJAX pagination must degrade gracefully when admin-ajax.php 403s."""
+
+    def setUp(self):
+        self._delay = elvi.PAGE_DELAY
+        elvi.PAGE_DELAY = 0
+        self.ssr = ('<span>Spēkā no 2026-11-11 līdz 2026-12-01</span>'
+                    + card(pid="1") + card(pid="2", name="MAIZE", detail=""))
+
+    def tearDown(self):
+        elvi.PAGE_DELAY = self._delay
+
+    def test_ajax_403_keeps_ssr_cards(self):
+        def ajax(sess, offset):
+            raise RuntimeError("ELVI AJAX offset 0 failed after 3 attempts: 403")
+        cards, vf, vu, _ = fetch_offers(None, page_fetcher=lambda s, u: self.ssr,
+                                        ajax_fetcher=ajax)
+        self.assertEqual([c["id"] for c in cards], ["1", "2"])
+        self.assertEqual((vf, vu), ("2026-11-11", "2026-12-01"))
+
+    def test_ajax_403_without_ssr_cards_raises(self):
+        def ajax(sess, offset):
+            raise RuntimeError("403")
+        with self.assertRaises(RuntimeError):
+            fetch_offers(None, page_fetcher=lambda s, u: "<div>blocked</div>",
+                         ajax_fetcher=ajax)
+
+    def test_ajax_extends_and_deduplicates(self):
+        pages = {0: card(pid="2", name="MAIZE", detail="") + card(pid="3", name="PIENS", detail=""),
+                 16: card(pid="4", name="SIERS", detail="")}
+        def ajax(sess, offset):
+            return pages.get(offset, '<script>$(".load-more").hide();</script>')
+        cards, *_ = fetch_offers(None, page_fetcher=lambda s, u: self.ssr,
+                                 ajax_fetcher=ajax)
+        self.assertEqual([c["id"] for c in cards], ["1", "2", "3", "4"])
 
 
 class EndOfListTests(unittest.TestCase):
