@@ -975,10 +975,12 @@ def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[floa
     anchors: list[tuple[float, float]] = []
     split_gap = max(44, width * 0.08)
     for block in candidates:
-        block_number = int(block[5]) if len(block) > 5 else None
+        # Match by coordinates rather than block_no: PyMuPDF may renumber
+        # blocks when one extraction uses sort=True and another does not.
         block_words = [
             word for word in words
-            if block_number is not None and int(word[5]) == block_number
+            if float(block[0]) - 1 <= (float(word[0]) + float(word[2])) / 2 <= float(block[2]) + 1
+            and float(block[1]) - 1 <= (float(word[1]) + float(word[3])) / 2 <= float(block[3]) + 1
         ]
         if not block_words:
             anchors.append((float(block[0]), float(block[1])))
@@ -1044,8 +1046,8 @@ def _pdf_row_bounds(
     ]
     if not row_blocks:
         return max(0, centre_y - 40), min(page_height, centre_y + 70)
-    top_padding = max(28, page_height * 0.035)
-    bottom_padding = max(42, page_height * 0.05)
+    top_padding = max(32, page_height * 0.04)
+    bottom_padding = max(68, page_height * 0.085)
     top = max(0, min(float(block[1]) for block in row_blocks) - top_padding)
     bottom = min(page_height, max(float(block[3]) for block in row_blocks) + bottom_padding)
     return top, bottom
