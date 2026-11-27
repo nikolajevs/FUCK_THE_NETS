@@ -37,7 +37,7 @@ function priceHistoryMarkup(offer){
   const trend=difference>.001?"price-up":difference<-.001?"price-down":"price-flat";
   const trendText=difference>.001?"Akcijas cena pieaugusi":difference<-.001?"Akcijas cena samazinājusies":"Akcijas cena nav mainījusies";
   const regularLine=regular.filter(Number.isFinite).length>1?'<polyline class="chart-line regular-line" points="'+regularCoordinates+'"/>':"";
-  const legend='<div class="chart-legend"><span><i class="legend-swatch promo-swatch"></i>Akcijas cena</span><span><i class="legend-swatch regular-swatch"></i>Parastā cena</span></div>';
+  const legend='<div class="chart-legend"><span><i class="legend-swatch promo-swatch"></i>'+escapeHtml(priceLabel)+'</span><span><i class="legend-swatch regular-swatch"></i>Parastā cena</span></div>';
   return '<div class="history-summary"><strong>'+money(last.price)+'</strong><span>'+escapeHtml(formatDate(first.date))+' → '+escapeHtml(formatDate(last.date))+'</span><b class="'+trend+'">'+(difference>0?"+":"")+money(difference)+' ('+(percent>0?"+":"")+percent.toFixed(1)+'%)</b></div>'+legend+'<div class="chart-wrap"><svg class="price-chart" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="Akcijas un parastās cenas izmaiņas laikā">'+grid+regularLine+'<polyline class="chart-line" points="'+promoCoordinates+'"/>'+regularCircles+promoCircles+'<text class="chart-date" x="'+left+'" y="'+(height-12)+'">'+escapeHtml(formatDate(first.date))+'</text><text class="chart-date" x="'+(width-right)+'" y="'+(height-12)+'" text-anchor="end">'+escapeHtml(formatDate(last.date))+'</text></svg></div><p class="history-note">'+trendText+'. Dati tiek vākti no ikdienas Maxima piedāvājumu pārbaudēm, nevis no pilna veikala cenu arhīva.</p>';
 }
 
