@@ -19,9 +19,9 @@ HISTORY_OUT = Path("data/price-history.json")
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; LatviaOffersBot/1.0; +https://github.com/nikolajevs/FUCK_THE_NETS)"
 }
-PRICE_TOKEN_RE = re.compile(r"(?<!\\d)(\\d{1,3})(?:[,.]\\s*|\\s+)(\\d{2})(?!\\d)")
-DISCOUNT_RE = re.compile(r"-\\s*(\\d{1,2})\\s*%")
-DATE_RE = re.compile(
+PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
+DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
+DATE_RE = re.compile(r"(\d{1,2})[.](\d{1,2})[.]?\s*[-–]\s*(\d{1,2})[.](\d{1,2})[.]?(?:\s*(\d{4}))?")
     r"(\\d{1,2})[.](\\d{1,2})[.]?\\s*[-–]\\s*(\\d{1,2})[.](\\d{1,2})[.]?(?:\\s*(\\d{4}))?"
 )
 IGNORED_NAMES = {"not found", "paldies", "image", "maxima"}
@@ -35,7 +35,7 @@ def product_id(name: str, unit: str | None = None) -> str:
 
 def prices_from(text: str) -> list[float]:
     # Remove unit prices like "(3,31 €/kg)" so they are not mistaken for shelf prices.
-    cleaned = re.sub(r"\\([^)]*€\\s*/\\s*[^)]*\\)", " ", text)
+    cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", text)
     values = [
         int(euros) + int(cents) / 100
         for euros, cents in PRICE_TOKEN_RE.findall(cleaned)
