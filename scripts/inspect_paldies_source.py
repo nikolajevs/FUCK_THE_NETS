@@ -33,7 +33,33 @@ def inspect_all_paldies_offers(session: requests.Session) -> None:
     if response.status_code >= 400:
         print("error_excerpt=", re.sub(r"\s+", " ", response.text)[:2400])
         return
-    soup = BeautifulSoup(response.text, "html.parser")
+    try:
+        payload = response.json()
+    except ValueError:
+        payload = response.text
+    print("payload_type=", type(payload).__name__)
+    if isinstance(payload, dict):
+        print("payload_keys=", list(payload.keys()))
+        for key, value in payload.items():
+            if isinstance(value, str):
+                print("payload_field=", key, "type=str", "length=", len(value),
+                      "excerpt=", re.sub(r"\s+", " ", value)[:700])
+            elif isinstance(value, list):
+                print("payload_field=", key, "type=list", "length=", len(value),
+                      "sample=", str(value[:2])[:500])
+            else:
+                print("payload_field=", key, "type=", type(value).__name__,
+                      "value=", str(value)[:500])
+        html_candidates = [
+            value for value in payload.values()
+            if isinstance(value, str) and ("<" in value or "offer-item" in value)
+        ]
+        markup = max(html_candidates, key=len) if html_candidates else ""
+    elif isinstance(payload, str):
+        markup = payload
+    else:
+        markup = ""
+    soup = BeautifulSoup(markup, "html.parser")
     product_images = [
         image for image in soup.find_all("img")
         if (image.get("alt") or "").strip()
@@ -44,12 +70,8 @@ def inspect_all_paldies_offers(session: requests.Session) -> None:
     print(f"product_images={len(product_images)} unique_alt_names={len(unique_names)}")
     print("first_names=", unique_names[:12])
     print("last_names=", unique_names[-5:])
-    print("links=", [
-        {"text": a.get_text(" ", strip=True)[:80], "href": urljoin(url, a["href"])}
-        for a in soup.find_all("a", href=True)[:12]
-    ])
     if not product_images:
-        print("response_excerpt=", re.sub(r"\s+", " ", response.text)[:1800])
+        print("response_excerpt=", re.sub(r"\s+", " ", markup or response.text)[:1800])
 
 
 def describe_page(url: str, session: requests.Session) -> None:
