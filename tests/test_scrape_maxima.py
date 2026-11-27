@@ -293,13 +293,12 @@ class MaximaScraperTests(unittest.TestCase):
 
     def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
         import pymupdf as fitz
-        from scripts.scrape_maxima import _pdf_page_cells
 
         document = fitz.open()
         page = document.new_page(width=600, height=800)
-        page.insert_textbox(fitz.Rect(20, 180, 180, 215), "Siers 180 g")
-        page.insert_textbox(fitz.Rect(220, 180, 380, 215), "Dzēriens 1 l")
-        page.insert_textbox(fitz.Rect(420, 180, 580, 215), "Eļļa 1 l")
+        page.insert_textbox(fitz.Rect(20, 180, 180, 215), "Yellow Cheese 180 g")
+        page.insert_textbox(fitz.Rect(220, 180, 380, 215), "Soda Drink 1 l")
+        page.insert_textbox(fitz.Rect(420, 180, 580, 215), "Olive Oil 1 l")
         merged_prices = (
             "6 99 14 99" + (" " * 40)
             + "20 99 44 99" + (" " * 40)
@@ -320,20 +319,16 @@ class MaximaScraperTests(unittest.TestCase):
             "storeFormats": ["X", "XX", "XXX"],
             "storeScopeSource": "https://www.maxima.lv/bukleti/test",
         }
-        debug_document = fitz.open(stream=payload, filetype="pdf")
-        print("WIDE_PRICE_CELLS", _pdf_page_cells(debug_document[0]))
-        debug_document.close()
         offers, reviews, pages = parse_catalogue_pdf(
             payload, catalogue, [catalogue], today=date(2026, 11, 27)
         )
-        print('WIDE_PRICE_OFFERS', [(o['name'], o['price'], o['regularPrice']) for o in offers], 'reviews=', [(o['name'], o['quality']['issues']) for o in reviews])
         self.assertEqual(len(offers), 3)
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
         expected = {
-            "Siers 180 g": (6.99, 14.99),
-            "Dzēriens 1 l": (20.99, 44.99),
-            "Eļļa 1 l": (19.99, 49.99),
+            "Yellow Cheese 180 g": (6.99, 14.99),
+            "Soda Drink 1 l": (20.99, 44.99),
+            "Olive Oil 1 l": (19.99, 49.99),
         }
         for offer in offers:
             self.assertEqual(
