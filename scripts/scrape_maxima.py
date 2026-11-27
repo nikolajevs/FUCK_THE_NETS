@@ -170,7 +170,7 @@ def main():
     }
     HISTORY_OUT.parent.mkdir(parents=True, exist_ok=True)
     HISTORY_OUT.write_text(
-        json.dumps(history_payload, ensure_ascii=False, indent=2) + "\\n",
+        json.dumps(history_payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
 
@@ -180,7 +180,7 @@ def main():
         "offers": offers,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Saved {len(offers)} current offers and price history for {len(products)} products")
 
 
