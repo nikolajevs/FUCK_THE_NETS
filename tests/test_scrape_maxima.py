@@ -1130,6 +1130,20 @@ class MaximaScraperTests(unittest.TestCase):
         incomplete = "• Baking Set 1 gab. 9,99 €; 21,99 € • Tablecloth 1 gab. 14,99 €; 24,99 €; 29,99 €"
         self.assertEqual(_split_pdf_cell_by_bullets(incomplete), [incomplete])
 
+    def test_paired_unit_prices_are_removed_only_when_shelf_prices_remain(self):
+        self.assertEqual(
+            prices_from(
+                "Maltā kafija MERRILD IN 400 g (12,48 19,98 €/kg) 1 49 3 19"
+            ),
+            [1.49, 3.19],
+        )
+        # If no shelf-price tokens remain, preserve the current conservative
+        # review evidence rather than treating a unit price as a sale price.
+        self.assertEqual(
+            prices_from("Mini Fuet WELL DONE 320 g (21,84 37,47 €/kg) 11"),
+            [21.84],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
