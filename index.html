@@ -105,11 +105,15 @@
       <div class="results-head">
         <div>
           <p class="section-kicker">IZVĒLIES IZDEVĪGĀKO</p>
-          <h2 id="results-title">Piedāvājumu salīdzinājums</h2>
+          <h2 id="results-title" tabindex="-1">Piedāvājumu salīdzinājums</h2>
         </div>
         <div id="count" class="count" aria-live="polite">Ielādē…</div>
       </div>
       <div id="offers" class="grid" aria-live="polite"></div>
+      <nav id="pagination" class="pagination" aria-label="Lapas" hidden>
+        <p id="pageSummary" class="page-summary" aria-live="polite"></p>
+        <div id="pageControls" class="page-controls"></div>
+      </nav>
       <div id="empty" class="empty" hidden>
         <div class="empty-icon" aria-hidden="true">⌕</div>
         <h3 id="emptyTitle">Neko neatradām</h3>

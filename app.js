@@ -6,6 +6,9 @@ const state = {
   campaignOptions: [],
   updates: [],
   selectedStore: "",
+  page: 1,
+  pageSize: 24,
+  pageCount: 1,
 };
 
 const money = value => new Intl.NumberFormat("lv-LV", {
@@ -265,6 +268,51 @@ function renderProduct(product) {
     + '</article>';
 }
 
+function renderPagination(itemCount) {
+  const pagination = document.querySelector("#pagination");
+  const controls = document.querySelector("#pageControls");
+  pagination.hidden = state.pageCount <= 1;
+  if (state.pageCount <= 1) {
+    controls.innerHTML = "";
+    document.querySelector("#pageSummary").textContent = "";
+    return;
+  }
+
+  const start = (state.page - 1) * state.pageSize + 1;
+  const end = Math.min(state.page * state.pageSize, itemCount);
+  document.querySelector("#pageSummary").textContent = "Rāda "
+    + start.toLocaleString("lv-LV") + "–" + end.toLocaleString("lv-LV")
+    + " no " + itemCount.toLocaleString("lv-LV") + " produktiem";
+
+  const visiblePages = new Set([1, state.pageCount]);
+  for (let page = Math.max(2, state.page - 1); page <= Math.min(state.pageCount - 1, state.page + 1); page++) {
+    visiblePages.add(page);
+  }
+  if (state.page <= 4) {
+    for (let page = 2; page <= Math.min(state.pageCount - 1, 5); page++) visiblePages.add(page);
+  }
+  if (state.page >= state.pageCount - 3) {
+    for (let page = Math.max(2, state.pageCount - 4); page < state.pageCount; page++) visiblePages.add(page);
+  }
+
+  const pages = [...visiblePages].sort((a, b) => a - b);
+  const pageButtons = [];
+  let previous = 0;
+  for (const page of pages) {
+    if (previous && page - previous > 1) pageButtons.push('<span class="page-ellipsis" aria-hidden="true">…</span>');
+    pageButtons.push('<button class="page-button' + (page === state.page ? ' current' : '')
+      + '" type="button" data-page="' + page + '" aria-label="Lapa ' + page + '"'
+      + (page === state.page ? ' aria-current="page"' : '') + '>' + page + '</button>');
+    previous = page;
+  }
+
+  controls.innerHTML = '<button class="page-button page-step" type="button" data-page="prev" aria-label="Iepriekšējā lapa"'
+    + (state.page === 1 ? ' disabled' : '') + '>‹</button>'
+    + pageButtons.join("")
+    + '<button class="page-button page-step" type="button" data-page="next" aria-label="Nākamā lapa"'
+    + (state.page === state.pageCount ? ' disabled' : '') + '>›</button>';
+}
+
 function activeFilters() {
   const parsePrice = selector => {
     const value = document.querySelector(selector).value.trim();
@@ -285,7 +333,8 @@ function activeFilters() {
   };
 }
 
-function render() {
+function render({ resetPage = true } = {}) {
+  if (resetPage) state.page = 1;
   const filters = activeFilters();
   const products = [];
   for (const product of state.products) {
@@ -311,7 +360,12 @@ function render() {
   });
 
   const offerCount = products.reduce((sum, product) => sum + product.offers.length, 0);
-  document.querySelector("#offers").innerHTML = products.map(renderProduct).join("");
+  state.pageCount = Math.max(1, Math.ceil(products.length / state.pageSize));
+  state.page = Math.min(state.page, state.pageCount);
+  const firstItem = (state.page - 1) * state.pageSize;
+  const pageProducts = products.slice(firstItem, firstItem + state.pageSize);
+  document.querySelector("#offers").innerHTML = pageProducts.map(renderProduct).join("");
+  renderPagination(products.length);
   document.querySelector("#count").textContent = products.length + " produkti · " + offerCount + " piedāvājumi";
 
   const empty = document.querySelector("#empty");
@@ -430,6 +484,24 @@ document.querySelector("#storeFilters").addEventListener("click", event => {
   state.selectedStore = button.dataset.store;
   renderStoreFilters();
   render();
+});
+
+document.querySelector("#pagination").addEventListener("click", event => {
+  const button = event.target.closest("button[data-page]");
+  if (!button || button.disabled) return;
+  const requestedPage = button.dataset.page === "prev"
+    ? state.page - 1
+    : button.dataset.page === "next"
+      ? state.page + 1
+      : Number(button.dataset.page);
+  state.page = Math.max(1, Math.min(requestedPage, state.pageCount));
+  render({ resetPage: false });
+  const heading = document.querySelector("#results-title");
+  heading.focus({ preventScroll: true });
+  heading.scrollIntoView({
+    block: "start",
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+  });
 });
 
 document.querySelector("#offers").addEventListener("error", event => {
