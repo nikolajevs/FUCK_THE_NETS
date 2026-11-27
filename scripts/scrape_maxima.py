@@ -114,7 +114,9 @@ def campaign_dates(page_text: str, campaign_name: str = CAMPAIGN_NAME,
     """Use the date range adjacent to the weekly-offer heading, not another banner."""
     matches = list(re.finditer(re.escape(campaign_name), page_text, flags=re.IGNORECASE))
     for match in matches:
-        nearby_text = page_text[match.end():match.end() + 300]
+        # Keep the window tight: the page contains several adjacent campaign banners.
+        # A wider window can accidentally assign the gift-catalog dates to weekly offers.
+        nearby_text = page_text[match.end():match.end() + 100]
         dates = offer_dates(nearby_text, today=today)
         if dates != (None, None):
             return dates
