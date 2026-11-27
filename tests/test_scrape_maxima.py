@@ -291,6 +291,51 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(catalogues[0]["pdfSources"], ["https://www.maxima.lv/uploads/test.pdf"])
         self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
 
+    def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(fitz.Rect(20, 180, 180, 215), "Siers 180 g")
+        page.insert_textbox(fitz.Rect(220, 180, 380, 215), "Dzēriens 1 l")
+        page.insert_textbox(fitz.Rect(420, 180, 580, 215), "Eļļa 1 l")
+        merged_prices = (
+            "6 99 14 99" + (" " * 40)
+            + "20 99 44 99" + (" " * 40)
+            + "19 99 49 99"
+        )
+        page.insert_text(fitz.Point(25, 245), merged_prices, fontname="cour", fontsize=8)
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 3)
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-weekly": 1})
+        expected = {
+            "Siers 180 g": (6.99, 14.99),
+            "Dzēriens 1 l": (20.99, 44.99),
+            "Eļļa 1 l": (19.99, 49.99),
+        }
+        for offer in offers:
+            self.assertEqual(
+                (offer["price"], offer["regularPrice"]),
+                expected[offer["name"]],
+            )
+
     def test_parse_catalogue_pdf_extracts_product_price_pair(self):
         import pymupdf as fitz
 

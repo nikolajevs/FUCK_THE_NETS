@@ -967,8 +967,49 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
     return price_quality(prices, text)
 
 
+def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
+    """Find product starts inside PDF blocks, even when one block spans adjacent columns."""
+    anchors: list[tuple[float, float]] = []
+    split_gap = max(44, width * 0.08)
+    for block in candidates:
+        block_number = int(block[5]) if len(block) > 5 else None
+        block_words = [
+            word for word in words
+            if block_number is not None and int(word[5]) == block_number
+        ]
+        if not block_words:
+            anchors.append((float(block[0]), float(block[1])))
+            continue
+
+        lines: dict[int, list[tuple]] = defaultdict(list)
+        for word in block_words:
+            lines[int(word[6])].append(word)
+        for line_words in lines.values():
+            line_words.sort(key=lambda word: float(word[0]))
+            segment: list[tuple] = []
+            for word in line_words:
+                if segment and float(word[0]) - float(segment[-1][2]) > split_gap:
+                    anchors.append((float(segment[0][0]), float(segment[0][1])))
+                    segment = []
+                segment.append(word)
+            if segment:
+                anchors.append((float(segment[0][0]), float(segment[0][1])))
+    return anchors
+
+
+def _pdf_words_in_rect(words, left: float, top: float, right: float, bottom: float) -> str:
+    """Extract individual positioned words, avoiding whole-block spill across card borders."""
+    selected = [
+        word for word in words
+        if left <= (float(word[0]) + float(word[2])) / 2 < right
+        and top <= (float(word[1]) + float(word[3])) / 2 < bottom
+    ]
+    selected.sort(key=lambda word: (float(word[1]), float(word[0])))
+    return " ".join(str(word[4]) for word in selected)
+
+
 def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
-    """Original, conservative brochure grid parser retained as the primary strategy."""
+    """Conservative grid extraction with word-level clipping for multi-column price blocks."""
     blocks = page.get_text("blocks")
     descriptions = [
         block for block in blocks
@@ -978,8 +1019,13 @@ def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
-    x_clusters = _cluster_values([float(block[0]) for block in descriptions], max(24, width * 0.07))
-    y_clusters = _cluster_values([float(block[1]) for block in descriptions], max(55, height * 0.105))
+    words = page.get_text("words", sort=True)
+    anchors = _pdf_description_anchors(descriptions, words, width)
+    if not anchors:
+        return []
+
+    x_clusters = _cluster_values([point[0] for point in anchors], max(24, width * 0.07))
+    y_clusters = _cluster_values([point[1] for point in anchors], max(55, height * 0.105))
     if not x_clusters or not y_clusters:
         return []
 
@@ -1004,21 +1050,21 @@ def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
         for column_index in range(columns):
             left = column_index * width / columns
             right = (column_index + 1) * width / columns
-            rect = fitz.Rect(left, top, right, bottom)
-            cell_text = page.get_text("text", clip=rect, sort=True)
-            cell_descriptions = [
-                block for block in descriptions
-                if left <= float(block[0]) < right
-                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
+            cell_anchors = [
+                point for point in anchors
+                if left <= point[0] < right
+                and abs(point[1] - centre_y) <= max(55, height * 0.105)
             ]
-            if not cell_descriptions or not cell_text.strip():
+            if not cell_anchors:
                 continue
-            results.append((row_index + 1, column_index + 1, cell_text))
+            cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
+            if cell_text.strip():
+                results.append((row_index + 1, column_index + 1, cell_text))
     return results
 
 
 def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
-    """Fallback grid parser for brochures where title, package and price are separate blocks."""
+    """Fallback grid extraction for brochures with separate title/package text blocks."""
     blocks = page.get_text("blocks")
     candidates = [
         block for block in blocks
@@ -1029,8 +1075,13 @@ def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
-    x_clusters = _cluster_values([float(block[0]) for block in candidates], max(24, width * 0.07))
-    y_clusters = _cluster_values([float(block[1]) for block in candidates], max(55, height * 0.105))
+    words = page.get_text("words", sort=True)
+    anchors = _pdf_description_anchors(candidates, words, width)
+    if not anchors:
+        return []
+
+    x_clusters = _cluster_values([point[0] for point in anchors], max(24, width * 0.07))
+    y_clusters = _cluster_values([point[1] for point in anchors], max(55, height * 0.105))
     if not x_clusters or not y_clusters:
         return []
 
@@ -1055,21 +1106,22 @@ def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
         for column_index in range(columns):
             left = column_index * width / columns
             right = (column_index + 1) * width / columns
-            rect = fitz.Rect(left, top, right, bottom)
-            cell_text = page.get_text("text", clip=rect, sort=True)
-            cell_candidates = [
-                block for block in candidates
-                if left <= float(block[0]) < right
-                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
+            cell_anchors = [
+                point for point in anchors
+                if left <= point[0] < right
+                and abs(point[1] - centre_y) <= max(55, height * 0.105)
             ]
-            if not cell_candidates or not cell_text.strip() or not prices_from(cell_text):
+            if not cell_anchors:
+                continue
+            cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
+            if not cell_text.strip() or not prices_from(cell_text):
                 continue
             results.append((row_index + 1, column_index + 1, cell_text))
     return results
 
 
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Prefer the legacy extraction; use split-block recovery only when it finds more."""
+    """Prefer conservative cells; use split-block recovery only when it finds more."""
     legacy = _pdf_page_cells_legacy(page)
     recovered = _pdf_page_cells_split(page)
     return recovered if len(recovered) > len(legacy) else legacy
