@@ -53,7 +53,7 @@ CAMPAIGNS = [
 ]
 
 PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
-DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
+MULTI_BUY_RE = re.compile(r"\\b\\d+\\s*\\+\\s*\\d+\\b|\\b(?:pērkot|iegādājoties|saņemot)\\b", re.IGNORECASE)\nDISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")
 MONTHS = {
     "janvāris": 1, "janv": 1, "februāris": 2, "febr": 2,
     "marts": 3, "mar": 3, "aprīlis": 4, "apr": 4,
@@ -364,8 +364,14 @@ def price_quality(
     if len(prices) == 2:
         if prices[1] > price:
             regular = prices[1]
+        elif MULTI_BUY_RE.search(card_text):
+            # In multi-buy promotions, two extracted values may mean a bundle
+            # price and a per-item price rather than promo/regular prices.
+            issues.append("ambiguous_multi_buy_price_order")
         else:
-            issues.append("second_price_not_higher")
+            # PDF text order is not always visual order: separate price boxes
+            # may be emitted regular-first even when the offer price is lower.
+            price, regular = sorted(prices)
     elif len(prices) > 2:
         issues.append("ambiguous_multiple_price_values")
 
@@ -383,6 +389,19 @@ def price_quality(
     if not 0.01 <= price <= 9999:
         issues.append("price_out_of_range")
     return price, regular, discount, issues
+
+
+def _has_explicit_shelf_price(text: str, price: float) -> bool:
+    """Check whether the parsed shelf price is explicitly followed by € (not €/unit)."""
+    for match in re.finditer(
+        r"(?<!\\d)(\\d{1,3}[,.]\\s*\\d{2})\\s*€(?!\\s*/)",
+        text,
+        flags=re.IGNORECASE,
+    ):
+        value = float(re.sub(r"\\s+", "", match.group(1)).replace(",", "."))
+        if abs(value - price) < 0.005:
+            return True
+    return False
 
 
 def stable_offer_id(
@@ -1275,7 +1294,12 @@ def parse_catalogue_pdf(
                 cell_text,
                 flags=re.IGNORECASE,
             ))
-            if has_unit_price_label and len(prices_from(cell_text)) <= 1:
+            shelf_prices = prices_from(cell_text)
+            if (
+                has_unit_price_label
+                and len(shelf_prices) <= 1
+                and not (len(shelf_prices) == 1 and _has_explicit_shelf_price(cell_text, price))
+            ):
                 issues.append("unit_price_only_or_misaligned")
 
             # A plausible price pair is not enough when neighbouring cards or
