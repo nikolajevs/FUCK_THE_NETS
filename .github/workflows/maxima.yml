@@ -29,6 +29,10 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate frontend JavaScript
         run: node --check app.js
+      - name: Install PDF inspection dependency
+        run: pip install pymupdf
+      - name: Inspect active brochure PDFs
+        run: python scripts/inspect_brochures.py
       - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
       - name: Commit refreshed data
