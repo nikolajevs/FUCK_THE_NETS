@@ -1039,6 +1039,7 @@ class MaximaScraperTests(unittest.TestCase):
         raw_text = "11,99 6 Varavīksnes forele 1 kg, ķidāta"
         self.assertTrue(_pdf_cell_starts_with_price(raw_text))
         self.assertFalse(_pdf_cell_starts_with_price("Varavīksnes forele 1 kg 6,99 11,99"))
+        self.assertFalse(_pdf_cell_starts_with_price("5,87 € Apelsīnu želeja 180 g"))
         self.assertEqual(
             _clean_pdf_product_name(raw_text),
             "Varavīksnes forele 1 kg, ķidāta",
