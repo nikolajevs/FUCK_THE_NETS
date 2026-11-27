@@ -26,6 +26,10 @@ HEADERS = {
 }
 OUT = Path("data/offers.json")
 HISTORY_OUT = Path("data/price-history.json")
+PALDIES_PAGE_URL = "https://www.maxima.lv/piedavajumi/"
+PALDIES_CATALOG_ID = "maxima-paldies-catalogue"
+PALDIES_CATALOG_NAME = "Piedāvājumi ar PALDIES karti"
+PALDIES_PAGE_SIZE = 75
 
 CAMPAIGNS = [
     {
@@ -37,11 +41,6 @@ CAMPAIGNS = [
         "id": "maxima-well-done-premium",
         "name": "Well Done Premium",
         "url": "https://www.maxima.lv/premium",
-    },
-    {
-        "id": "maxima-paldies-featured",
-        "name": "Piedāvājumi ar PALDIES karti",
-        "url": "https://www.maxima.lv/paldies",
     },
 ]
 
@@ -71,7 +70,7 @@ def product_id(name: str, unit: str | None = None) -> str:
 def prices_from(text: str) -> list[float]:
     """Read shelf prices, excluding €/kg and €/l unit prices."""
     cleaned = re.sub(
-        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml)\b",
+        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?)\b",
         " ", text, flags=re.IGNORECASE,
     )
     cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", cleaned)
@@ -351,6 +350,7 @@ def stable_offer_id(
     product_source: str,
     store_formats: list[str],
     requires_paldies: bool,
+    source_product_id: str | None = None,
 ) -> str:
     payload = "|".join([
         campaign_id,
@@ -359,6 +359,7 @@ def stable_offer_id(
         product_source,
         ",".join(store_formats),
         str(requires_paldies),
+        source_product_id or "",
     ])
     return hashlib.sha1(payload.encode("utf-8")).hexdigest()[:16]
 
@@ -484,6 +485,261 @@ def parse_campaign(
     return campaign_offers, campaign_reviews, metadata
 
 
+def find_paldies_filter_id(soup: BeautifulSoup) -> str:
+    """Find the official 'Ar PALDIES karti' filter instead of hard-coding its ID."""
+    for field in soup.select('input[name="filters[]"]'):
+        container = field.find_parent(class_="lv-filter-category") or field.parent
+        label = container.get_text(" ", strip=True).casefold() if isinstance(container, Tag) else ""
+        if "ar paldies karti" in label:
+            value = str(field.get("value", "")).strip()
+            if value:
+                return value
+    raise RuntimeError("Could not find the official 'Ar PALDIES karti' filter on Maxima offers page")
+
+
+def parse_paldies_card(
+    card: Tag,
+    source_url: str,
+    checked_at: str | None = None,
+) -> dict:
+    """Turn one product card from the PALDIES-filtered catalogue into an offer."""
+    source_product_id = str(card.get("data-product-id") or "").strip() or None
+    product_images = [
+        img for img in card.find_all("img")
+        if (img.get("alt") or "").strip()
+        and (img.get("alt") or "").strip().casefold() not in {"paldies", "image", "maxima"}
+    ]
+    product_image = product_images[0] if product_images else None
+    name = (product_image.get("alt") or "").strip() if product_image else ""
+    if not name:
+        name_node = card.select_one(".name, .title, h2, h3, h4")
+        name = name_node.get_text(" ", strip=True) if name_node else ""
+    issues: list[str] = []
+    if not name:
+        name = f"Maxima PALDIES product {source_product_id or 'unknown'}"
+        issues.append("product_name_not_found")
+    if not source_product_id:
+        issues.append("source_product_id_missing")
+
+    card_text = card.get_text(" ", strip=True)
+    prices = prices_from(card_text)
+    price, regular, discount, price_issues = price_quality(prices, card_text)
+    issues.extend(price_issues)
+
+    valid_from, valid_until = offer_dates(str(card.get("data-dates-interval") or ""))
+    has_marker = has_paldies_marker(card)
+    classes = card.get("class", [])
+    source_marks_paldies = "paldies-card" in classes
+    if not has_marker and not source_marks_paldies:
+        issues.append("paldies_marker_missing")
+
+    image = image_url(product_image, PALDIES_PAGE_URL) if product_image else None
+    identity = product_identity(name)
+    legacy_product_id = product_id(name)
+    offer_id = stable_offer_id(
+        PALDIES_CATALOG_ID,
+        identity["canonicalProductId"],
+        image,
+        source_url,
+        [],
+        True,
+        source_product_id,
+    )
+    quality = {
+        "priceStatus": "review" if issues else "verified",
+        "dateStatus": "verified" if valid_from and valid_until else "unknown",
+        "storeScopeStatus": "unknown",
+        "issues": issues,
+    }
+    return {
+        "offerId": offer_id,
+        "sourceId": PALDIES_CATALOG_ID,
+        "sourceProductId": source_product_id,
+        "productId": legacy_product_id,
+        "canonicalProductId": identity["canonicalProductId"],
+        "identityKey": identity["identityKey"],
+        "packageSize": identity["packageSize"],
+        "name": name,
+        "brand": None,
+        "image": image,
+        "price": price,
+        "regularPrice": regular,
+        "paldiesPrice": price,
+        "priceWithoutPaldies": regular,
+        "unit": None,
+        "discountPercent": discount,
+        "requiresPaldies": True,
+        "paldis": True,
+        "paldiesMarkerDetected": has_marker,
+        "validFrom": valid_from,
+        "validUntil": valid_until,
+        "validityText": str(card.get("data-dates-interval") or "") or None,
+        "city": None,
+        "store": "Maxima",
+        "storeFormats": [],
+        "storeScopeSource": None,
+        "campaign": PALDIES_CATALOG_NAME,
+        "campaignSource": source_url,
+        "source": source_url,
+        "checkedAt": checked_at or datetime.now().astimezone().isoformat(timespec="seconds"),
+        "quality": quality,
+    }
+
+
+def collect_paldies_catalog(
+    session: requests.Session,
+) -> tuple[list[dict], list[dict], dict]:
+    """Collect every product exposed by Maxima's PALDIES card filter, across all pages."""
+    page_response = session.get(PALDIES_PAGE_URL, headers=HEADERS, timeout=30)
+    page_response.raise_for_status()
+    page_soup = BeautifulSoup(page_response.text, "html.parser")
+    filter_id = find_paldies_filter_id(page_soup)
+
+    limit_options = []
+    limit_select = page_soup.find(id="filter_limit")
+    if isinstance(limit_select, Tag):
+        for option in limit_select.find_all("option"):
+            try:
+                value = int(option.get("value", ""))
+                if 1 <= value <= PALDIES_PAGE_SIZE:
+                    limit_options.append(value)
+            except (TypeError, ValueError):
+                continue
+    page_size = max(limit_options) if limit_options else PALDIES_PAGE_SIZE
+
+    sort_by = "newest"
+    sort_select = page_soup.find(id="filter_sort_by")
+    if isinstance(sort_select, Tag):
+        selected = sort_select.find("option", selected=True)
+        if isinstance(selected, Tag) and selected.get("value"):
+            sort_by = str(selected["value"])
+    hidden_sort = page_soup.select_one('#sales-filters-form input[name="sort_by"]')
+    if isinstance(hidden_sort, Tag) and hidden_sort.get("value"):
+        sort_by = str(hidden_sort["value"])
+
+    ajax_input = page_soup.find(id="ajax-load-more-url")
+    if not isinstance(ajax_input, Tag) or not ajax_input.get("value"):
+        raise RuntimeError("Maxima PALDIES catalogue page does not expose its AJAX endpoint")
+    ajax_url = urljoin(PALDIES_PAGE_URL, str(ajax_input["value"]))
+    source_url = PALDIES_PAGE_URL + "?" + requests.compat.urlencode({"filters[]": filter_id})
+
+    ajax_headers = {
+        **HEADERS,
+        "Referer": PALDIES_PAGE_URL,
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+    }
+
+    def fetch_page(offset: int) -> tuple[int, list[Tag]]:
+        params = [
+            ("filters[]", filter_id),
+            ("sort_by", sort_by),
+            ("limit", str(page_size)),
+            ("ajax", "1"),
+            ("offset", str(offset)),
+        ]
+        response = session.get(
+            ajax_url,
+            params=params,
+            headers=ajax_headers,
+            timeout=45,
+        )
+        response.raise_for_status()
+        try:
+            payload = response.json()
+        except ValueError as exc:
+            raise RuntimeError(f"Maxima PALDIES AJAX response is not JSON at offset {offset}") from exc
+        if not isinstance(payload, dict) or not isinstance(payload.get("html"), str):
+            raise RuntimeError(f"Maxima PALDIES AJAX response has an unexpected shape at offset {offset}")
+        try:
+            total_items = int(payload.get("totalItems", 0))
+        except (TypeError, ValueError) as exc:
+            raise RuntimeError("Maxima PALDIES AJAX response has no valid totalItems count") from exc
+        if total_items <= 0:
+            raise RuntimeError("Maxima PALDIES filter returned zero products; refusing to publish an empty catalogue")
+        result_soup = BeautifulSoup(payload["html"], "html.parser")
+        cards = [
+            card for card in result_soup.select(".item.paldies-card")
+            if isinstance(card, Tag)
+        ]
+        return total_items, cards
+
+    first_total, first_cards = fetch_page(0)
+    if not first_cards:
+        raise RuntimeError("Maxima PALDIES catalogue returned no product cards on its first page")
+
+    all_cards: list[Tag] = []
+    seen_source_ids: set[str] = set()
+    pages = 0
+    observed_at = datetime.now().astimezone().isoformat(timespec="seconds")
+
+    # Offsets are the parameter used by Maxima's own load-more endpoint.
+    for offset in range(0, first_total, page_size):
+        total_items, cards = (first_total, first_cards) if offset == 0 else fetch_page(offset)
+        if total_items != first_total:
+            raise RuntimeError(
+                f"Maxima PALDIES total changed during collection ({first_total} -> {total_items}); retry next run"
+            )
+        expected_count = min(page_size, first_total - offset)
+        if len(cards) != expected_count:
+            raise RuntimeError(
+                f"Incomplete PALDIES page at offset {offset}: expected {expected_count}, got {len(cards)}"
+            )
+
+        page_ids = [
+            str(card.get("data-product-id") or "").strip()
+            for card in cards
+        ]
+        if any(not item_id for item_id in page_ids):
+            raise RuntimeError(f"PALDIES page at offset {offset} contains a card without data-product-id")
+        if len(set(page_ids)) != len(page_ids):
+            raise RuntimeError(f"PALDIES page at offset {offset} contains duplicate product IDs")
+        overlap = seen_source_ids.intersection(page_ids)
+        if overlap:
+            raise RuntimeError(
+                f"PALDIES pagination repeated {len(overlap)} products at offset {offset}; refusing partial catalogue"
+            )
+
+        seen_source_ids.update(page_ids)
+        all_cards.extend(cards)
+        pages += 1
+
+    if len(seen_source_ids) != first_total:
+        raise RuntimeError(
+            f"PALDIES catalogue incomplete: server reports {first_total}, collected {len(seen_source_ids)} unique products"
+        )
+
+    offers: list[dict] = []
+    reviews: list[dict] = []
+    for card in all_cards:
+        offer = parse_paldies_card(card, source_url, observed_at)
+        if offer["quality"]["priceStatus"] == "verified":
+            offers.append(offer)
+        else:
+            reviews.append(offer)
+
+    metadata = {
+        "id": PALDIES_CATALOG_ID,
+        "name": PALDIES_CATALOG_NAME,
+        "source": source_url,
+        "apiSource": ajax_url,
+        "filterName": "Ar PALDIES karti",
+        "filterId": filter_id,
+        "detailSource": None,
+        "validFrom": None,
+        "validUntil": None,
+        "storeFormats": [],
+        "storeScopeSource": None,
+        "expectedOffers": first_total,
+        "collectedProducts": len(all_cards),
+        "pages": pages,
+        "verifiedOffers": len(offers),
+        "reviewOffers": len(reviews),
+        "complete": len(seen_source_ids) == first_total,
+    }
+    return offers, reviews, metadata
+
+
 def load_json(path: Path, default):
     if not path.exists():
         return default
@@ -547,6 +803,7 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
         observation = {
             "date": observation_date,
             "offerId": offer["offerId"],
+            "sourceProductId": offer.get("sourceProductId"),
             "price": offer["price"],
             "regularPrice": offer.get("regularPrice"),
             "paldiesPrice": offer.get("paldiesPrice"),
@@ -648,6 +905,13 @@ def main():
         all_reviews.extend(reviews)
         campaign_metadata.append(metadata)
 
+    paldies_offers, paldies_reviews, paldies_metadata = collect_paldies_catalog(session)
+    all_offers.extend(paldies_offers)
+    all_reviews.extend(paldies_reviews)
+    campaign_metadata.append(paldies_metadata)
+
+    if not paldies_metadata["complete"]:
+        raise RuntimeError("PALDIES catalogue did not pass completeness verification")
     if not all_offers:
         raise RuntimeError("No verified product offers detected; refusing to overwrite the feed.")
 
@@ -676,7 +940,7 @@ def main():
 
     payload = {
         "source": BROCHURES_URL,
-        "sources": [campaign["url"] for campaign in CAMPAIGNS],
+        "sources": [metadata["source"] for metadata in campaign_metadata],
         "updatedAt": observed_at.isoformat(timespec="seconds"),
         "campaigns": campaign_metadata,
         "offers": offers,
@@ -686,6 +950,9 @@ def main():
             "offerVariants": len(offers),
             "uniqueProducts": len(grouped_products),
             "reviewOffers": len(review_offers),
+            "paldiesExpected": paldies_metadata["expectedOffers"],
+            "paldiesCollected": paldies_metadata["collectedProducts"],
+            "paldiesPages": paldies_metadata["pages"],
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
