@@ -942,8 +942,58 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
     return price_quality(prices, text)
 
 
-def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Split a brochure page into priced product cells, including split text blocks."""
+def _pdf_page_cells_legacy(page) -> list[tuple[int, int, str]]:
+    """Original, conservative brochure grid parser retained as the primary strategy."""
+    blocks = page.get_text("blocks")
+    descriptions = [
+        block for block in blocks
+        if _looks_like_pdf_product_description(block[4])
+    ]
+    if not descriptions:
+        return []
+
+    width, height = float(page.rect.width), float(page.rect.height)
+    x_clusters = _cluster_values([float(block[0]) for block in descriptions], max(24, width * 0.07))
+    y_clusters = _cluster_values([float(block[1]) for block in descriptions], max(55, height * 0.105))
+    if not x_clusters or not y_clusters:
+        return []
+
+    x_centres = [sum(group) / len(group) for group in x_clusters]
+    y_centres = [sum(group) / len(group) for group in y_clusters]
+    columns = len(x_centres)
+    results: list[tuple[int, int, str]] = []
+
+    for row_index, centre_y in enumerate(y_centres):
+        if len(y_centres) == 1:
+            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
+        else:
+            top = max(
+                0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
+            ) if row_index else max(0, centre_y - (y_centres[1] - centre_y) * 0.52)
+            bottom = min(
+                height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
+            ) if row_index < len(y_centres) - 1 else min(
+                height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52
+            )
+
+        for column_index in range(columns):
+            left = column_index * width / columns
+            right = (column_index + 1) * width / columns
+            rect = fitz.Rect(left, top, right, bottom)
+            cell_text = page.get_text("text", clip=rect, sort=True)
+            cell_descriptions = [
+                block for block in descriptions
+                if left <= float(block[0]) < right
+                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
+            ]
+            if not cell_descriptions or not cell_text.strip():
+                continue
+            results.append((row_index + 1, column_index + 1, cell_text))
+    return results
+
+
+def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
+    """Fallback grid parser for brochures where title, package and price are separate blocks."""
     blocks = page.get_text("blocks")
     candidates = [
         block for block in blocks
@@ -954,52 +1004,50 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
-    x_tolerance = max(30, width * 0.10)
-    y_tolerance = max(48, height * 0.085)
-    x_clusters = _cluster_values([float(block[0]) for block in candidates], x_tolerance)
-    y_clusters = _cluster_values([float(block[1]) for block in candidates], y_tolerance)
+    x_clusters = _cluster_values([float(block[0]) for block in candidates], max(24, width * 0.07))
+    y_clusters = _cluster_values([float(block[1]) for block in candidates], max(55, height * 0.105))
     if not x_clusters or not y_clusters:
         return []
 
     x_centres = [sum(group) / len(group) for group in x_clusters]
     y_centres = [sum(group) / len(group) for group in y_clusters]
+    columns = len(x_centres)
     results: list[tuple[int, int, str]] = []
 
     for row_index, centre_y in enumerate(y_centres):
         if len(y_centres) == 1:
-            top = max(0, centre_y - height * 0.23)
-            bottom = min(height, centre_y + height * 0.23)
+            top, bottom = max(0, centre_y - height * 0.23), min(height, centre_y + height * 0.23)
         else:
             top = max(
-                0,
-                centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
-                if row_index else centre_y - (y_centres[1] - centre_y) * 0.52,
-            )
+                0, centre_y - (centre_y - y_centres[row_index - 1]) * 0.52
+            ) if row_index else max(0, centre_y - (y_centres[1] - centre_y) * 0.52)
             bottom = min(
-                height,
-                centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
-                if row_index < len(y_centres) - 1
-                else centre_y + (centre_y - y_centres[row_index - 1]) * 0.52,
+                height, centre_y + (y_centres[row_index + 1] - centre_y) * 0.52
+            ) if row_index < len(y_centres) - 1 else min(
+                height, centre_y + (centre_y - y_centres[row_index - 1]) * 0.52
             )
 
-        for column_index, centre_x in enumerate(x_centres):
-            left = 0 if column_index == 0 else (x_centres[column_index - 1] + centre_x) / 2
-            right = width if column_index == len(x_centres) - 1 else (centre_x + x_centres[column_index + 1]) / 2
+        for column_index in range(columns):
+            left = column_index * width / columns
+            right = (column_index + 1) * width / columns
+            rect = fitz.Rect(left, top, right, bottom)
+            cell_text = page.get_text("text", clip=rect, sort=True)
             cell_candidates = [
                 block for block in candidates
                 if left <= float(block[0]) < right
-                and abs(float(block[1]) - centre_y) <= max(65, height * 0.11)
+                and abs(float(block[1]) - centre_y) <= max(55, height * 0.105)
             ]
-            if not cell_candidates:
-                continue
-
-            rect = fitz.Rect(left, top, right, bottom)
-            cell_text = page.get_text("text", clip=rect, sort=True)
-            # Pure category banners (for example -50% on selected goods) are not SKUs.
-            if not cell_text.strip() or not prices_from(cell_text):
+            if not cell_candidates or not cell_text.strip() or not prices_from(cell_text):
                 continue
             results.append((row_index + 1, column_index + 1, cell_text))
     return results
+
+
+def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
+    """Prefer the legacy extraction; use split-block recovery only when it finds more."""
+    legacy = _pdf_page_cells_legacy(page)
+    recovered = _pdf_page_cells_split(page)
+    return recovered if len(recovered) > len(legacy) else legacy
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
     folded = page_text.casefold()
