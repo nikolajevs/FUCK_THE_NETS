@@ -416,6 +416,36 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(offers[0]["paldiesPrice"], 20.99)
         self.assertEqual(offers[0]["priceWithoutPaldies"], 44.99)
 
+    def test_pack_count_prefix_is_not_product_name_ambiguity(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 300, 275),
+            "3 IEPAK. Socks SEVEN LEMON 1 gab.\n4 99 6 99",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/weekly",
+            "detailSource": "https://www.maxima.lv/bukleti/weekly",
+            "pdfSources": ["https://www.maxima.lv/uploads/weekly.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/weekly",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 1)
+        self.assertEqual(reviews, [])
+        self.assertNotIn("product_name_ambiguous", offers[0]["quality"]["issues"])
+
     def test_size_label_prefix_in_product_title_requires_review(self):
         import pymupdf as fitz
 

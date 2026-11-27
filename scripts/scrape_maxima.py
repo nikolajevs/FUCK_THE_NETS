@@ -1252,7 +1252,10 @@ def parse_catalogue_pdf(
             if (
                 ";" in name
                 or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
-                or re.match(r"^\d{1,2}\s+(?!cm\b|mm\b|kg\b|g\b|ml\b|l\b)", name_folded)
+                or (
+                    re.match(r"^\d{1,2}\s+(?!cm\b|mm\b|kg\b|g\b|ml\b|l\b)", name_folded)
+                    and not re.match(r"^\d{1,2}\s+iepak", name_folded)
+                )
                 or name_folded.startswith("izm")
                 or re.search(r"\b(?:g|kg|ml|l)\s+\d{1,2}$", name_folded)
                 or name_folded.endswith(" no")
