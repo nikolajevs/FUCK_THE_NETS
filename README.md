@@ -45,6 +45,8 @@ Collects active PDF booklets from https://mego.lv/akcijas-un-piedavajumi/ (WordP
 - Parses with word coordinates; handles cent-style prices (`129` → €1.29) and multi-column layout
 - Flags `requiresCard` / `onlyInApp` when detected
 - Ambiguous names go to `reviewOffers`
+- Product photos are recovered from the PDF's embedded images (see
+  [Booklet product photos](#booklet-product-photos)) into `data/mego-img/`
 
 ```bash
 python scripts/scrape_mego.py
@@ -122,6 +124,32 @@ python scripts/scrape_lidl.py
 ```
 
 Output: `data/lidl-offers.json` (refreshed daily by the same workflow as Maxima).
+Product photos are recovered from the PDF's embedded images into `data/lidl-img/`
+(see [Booklet product photos](#booklet-product-photos)).
+
+---
+
+## Booklet product photos
+
+Maxima and top! supply product images through their APIs. Mego and Lidl only
+publish PDF booklets, but those PDFs keep a real text layer **and** place each
+product photo as a separate embedded image, so clean photos (no printed text) can
+be recovered without OCR or vision models.
+
+`scripts/booklet_images.py` matches an embedded image's placement rectangle to a
+product card:
+
+- the rectangle must stay inside the card's brochure column (page-wide banners and
+  background art span several columns and are rejected);
+- its bottom edge must sit at the sale-price block and its top inside the card's
+  vertical band;
+- tiny logos/badges are rejected by minimum dimensions; the largest qualifying
+  image wins.
+
+Matched photos are written to `data/mego-img/` / `data/lidl-img/` as
+`<offerId>.jpg|png` and referenced by `offer.image`; files no longer referenced by
+the feed are pruned on each run. Cards without a confident match simply keep no
+image (the frontend falls back to a letter placeholder).
 
 ---
 
