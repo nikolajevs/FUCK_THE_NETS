@@ -165,23 +165,12 @@ function renderStoreFilters() {
   target.innerHTML = buttons.map(store => '<button class="store-filter" type="button" data-store="'
     + escapeHtml(store.key) + '" aria-pressed="' + String(state.selectedStore === store.key) + '">'
     + escapeHtml(store.name) + '<span class="store-filter-count">' + store.count + '</span></button>').join("");
-  document.querySelector("#networkBadges").innerHTML = state.stores.map(store =>
-    '<span class="network-badge">' + escapeHtml(store.name) + '</span>'
-  ).join("");
 }
 
 function renderCampaignOptions() {
   const target = document.querySelector("#campaign");
   target.innerHTML = '<option value="">Visi bukleti</option>' + state.campaignOptions.map(option =>
     '<option value="' + escapeHtml(option.value) + '">' + escapeHtml(option.label) + '</option>'
-  ).join("");
-}
-
-function renderCityOptions() {
-  const cities = [...new Set(state.offers.map(offer => offer.city).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, "lv"));
-  document.querySelector("#city").innerHTML = '<option value="">Visas pilsētas</option>' + cities.map(city =>
-    '<option value="' + escapeHtml(city) + '">' + escapeHtml(city) + '</option>'
   ).join("");
 }
 
@@ -208,7 +197,6 @@ function offerSearchText(offer) {
 function matchesOffer(offer, filters) {
   if (state.selectedStore && offer.storeKey !== state.selectedStore) return false;
   if (filters.campaign && campaignToken(offer) !== filters.campaign) return false;
-  if (filters.city && offer.city !== filters.city) return false;
   if (filters.minPrice !== null && (!Number.isFinite(offer.price) || offer.price < filters.minPrice)) return false;
   if (filters.maxPrice !== null && (!Number.isFinite(offer.price) || offer.price > filters.maxPrice)) return false;
   if (filters.minDiscount !== null) {
@@ -335,7 +323,6 @@ function activeFilters() {
   return {
     query: document.querySelector("#search").value.trim().toLocaleLowerCase("lv"),
     campaign: document.querySelector("#campaign").value,
-    city: document.querySelector("#city").value,
     minPrice: parsePrice("#minPrice"),
     maxPrice: parsePrice("#maxPrice"),
     minDiscount: discount ? Number(discount) : null,
@@ -390,7 +377,7 @@ function render({ resetPage = true } = {}) {
 
   const clear = document.querySelector("#clearFilters");
   clear.disabled = !filters.query && !state.selectedStore && !filters.campaign
-    && !filters.city && filters.minPrice === null && filters.maxPrice === null
+    && filters.minPrice === null && filters.maxPrice === null
     && filters.minDiscount === null && !filters.condition && filters.sort === "price";
 }
 
@@ -398,9 +385,6 @@ function renderStats() {
   document.querySelector("#statStores").textContent = state.stores.length;
   document.querySelector("#statProducts").textContent = state.products.length.toLocaleString("lv-LV");
   document.querySelector("#statOffers").textContent = state.offers.length.toLocaleString("lv-LV");
-  document.querySelector("#lastUpdated").textContent = state.updates.length
-    ? state.updates.map(item => item.name + " · " + formatUpdate(item.value)).join("  /  ")
-    : "Atjauninājuma laiks nav norādīts";
   document.querySelector("#updated").textContent = state.updates.length
     ? "Datu atjauninājumi: " + state.updates.map(item => item.name + " " + formatUpdate(item.value)).join(" · ")
     : "";
@@ -506,7 +490,6 @@ async function init() {
 
   renderStoreFilters();
   renderCampaignOptions();
-  renderCityOptions();
   renderStats();
   renderCatalogues();
   render();
@@ -515,7 +498,6 @@ async function init() {
 function clearFilters() {
   document.querySelector("#search").value = "";
   document.querySelector("#campaign").value = "";
-  document.querySelector("#city").value = "";
   document.querySelector("#minPrice").value = "";
   document.querySelector("#maxPrice").value = "";
   document.querySelector("#discount").value = "";
@@ -556,7 +538,7 @@ document.querySelector("#offers").addEventListener("error", event => {
   if (event.target instanceof HTMLImageElement) event.target.hidden = true;
 }, true);
 
-["search", "campaign", "city", "minPrice", "maxPrice", "discount", "condition", "sort"]
+["search", "campaign", "minPrice", "maxPrice", "discount", "condition", "sort"]
   .forEach(id => document.querySelector("#" + id).addEventListener(id === "search" || id.endsWith("Price") ? "input" : "change", render));
 
 document.querySelector("#clearFilters").addEventListener("click", clearFilters);
