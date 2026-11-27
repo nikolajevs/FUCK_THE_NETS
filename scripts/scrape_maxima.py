@@ -1053,7 +1053,7 @@ def _clean_pdf_product_name(text: str) -> str:
 def _pdf_cell_starts_with_price(text: str) -> bool:
     """Detect PDF cells where a price was extracted before the product title."""
     return bool(re.match(
-        r"^\\s*\\d{1,3}(?:[,.]\\s*\\d{2}|\\s+\\d{2})(?:\\s*€)?\\s+",
+        r"^\s*\d{1,3}(?:[,.]\s*\d{2}|\s+\d{2})(?:\s*€)?\s+",
         text,
     ))
 
