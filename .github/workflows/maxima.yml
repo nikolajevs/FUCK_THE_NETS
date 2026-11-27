@@ -42,14 +42,41 @@ jobs:
           else
             echo "available=false" >> "$GITHUB_OUTPUT"
           fi
-      - name: Cache Qwen3-VL model files
+      - name: First-pass review with Gemini Flash-Lite
         if: steps.qwen-pending.outputs.available == 'true'
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/gemini_pdf_review.py "$RUNNER_TEMP/maxima-qwen-pending" --offers-file data/offers.json
+      - name: Check for cards left for local Qwen
+        id: qwen-local
+        shell: bash
+        run: |
+          python - <<'EOF'
+          import json, os, pathlib
+          # Count cards still lacking a vision note in the CURRENT feed, not in
+          # the pending export (which may predate carry-forward of earlier notes).
+          remaining = 0
+          try:
+              payload = json.loads(pathlib.Path("data/offers.json").read_text(encoding="utf-8"))
+              remaining = sum(
+                  1 for o in payload.get("reviewOffers", [])
+                  if not (o.get("reviewEvidence") or {}).get("visionAssist")
+              )
+          except Exception as exc:
+              print(f"cannot read offers feed: {exc}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"available={'true' if remaining else 'false'}\n")
+          print(f"{remaining} cards left for local Qwen")
+          EOF
+      - name: Cache Qwen3-VL model files
+        if: steps.qwen-local.outputs.available == 'true'
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/maxima-qwen-model
           key: qwen3-vl-4b-q4km-mmproj-q8-${{ runner.os }}-66358cb18bb6b3b1b6675aa412c7a88ef01d228f481184d13668e5201c730a0a-30ba2c7dd3127a4561b6cba9d13d0f711c91bdb38742e2f56d73c8cb596bd06d
       - name: Download public Qwen3-VL GGUF files
-        if: steps.qwen-pending.outputs.available == 'true'
+        if: steps.qwen-local.outputs.available == 'true'
         continue-on-error: true
         env:
           QWEN_MODEL_DIR: ${{ runner.temp }}/maxima-qwen-model
@@ -79,7 +106,7 @@ jobs:
             mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf \
             30ba2c7dd3127a4561b6cba9d13d0f711c91bdb38742e2f56d73c8cb596bd06d
       - name: Build CPU llama-mtmd-cli with Qwen3-VL support
-        if: steps.qwen-pending.outputs.available == 'true'
+        if: steps.qwen-local.outputs.available == 'true'
         continue-on-error: true
         env:
           LLAMA_CPP_REF: 6d8a8886fa44a4a404c58ace93052ea680193981
@@ -92,8 +119,8 @@ jobs:
           cmake --build "$RUNNER_TEMP/llama.cpp/build" --config Release \
             --parallel 4 --target llama-mtmd-cli
           echo "$RUNNER_TEMP/llama.cpp/build/bin" >> "$GITHUB_PATH"
-      - name: Review new PDF cards with local Qwen3-VL
-        if: steps.qwen-pending.outputs.available == 'true'
+      - name: Review remaining PDF cards with local Qwen3-VL
+        if: steps.qwen-local.outputs.available == 'true'
         continue-on-error: true
         env:
           QWEN_MODEL_PATH: ${{ runner.temp }}/maxima-qwen-model/Qwen3VL-4B-Instruct-Q4_K_M.gguf
@@ -104,7 +131,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/offers.json data/price-history.json
+          git add data/offers.json data/price-history.json data/gemini-usage.json
           if ! git diff --cached --quiet; then
             git commit -m "Update Maxima offers and price history"
             git push
