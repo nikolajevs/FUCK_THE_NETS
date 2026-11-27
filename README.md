@@ -12,6 +12,7 @@ Currently supported:
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
 | Elvi    | `scripts/scrape_elvi.py`   | `data/elvi-offers.json` | Production (daily GH Actions) |
+| LaTS    | `scripts/scrape_latts.py`  | `data/latts-offers.json`| Production (daily GH Actions) |
 
 ---
 
@@ -224,6 +225,45 @@ Output: `data/elvi-offers.json` (refreshed daily by the same workflow as Maxima)
 
 ---
 
+## LaTS (latts.lv / e-latts.lv)
+
+LaTS publishes its monthly newspaper ("Akciju avīze"), the charity low-price
+list ("Zīļuka zemās cenas") and the loyalty-card list ("Ar Draugu karti lētāk!")
+as image-only flipbooks on https://www.latts.lv/akciju-avize — the linked PDFs
+have no text layer, so they are recorded as catalogue links with the campaign
+period (the same approach Elvi uses for its issuu flipbook).
+
+The promoted products themselves are server-rendered by the chain's online
+store, which is the structured source:
+
+- `GET https://www.e-latts.lv/products.sale.ppl` — the "Akcijas" listing,
+  40 product cards per page, paginated with `?p=N` (highest page linked from
+  the first page).
+
+Each card (`div.-oProduct -id="…"`) supplies the full name (`a.-oTitle`, size
+and brand already included), the product URL and image, the sale price
+(`-price` attribute), the struck-through regular price (`div.-eOld`) and the
+category path (`th.-oGroupPath`). The unit price (`-ePerUnit`) and the
+refundable container deposit (`-iDepozit`) are never used as the product price.
+Alcoholic products (top-level category "Alkoholiskie dzērieni") are dropped;
+non-alcoholic beer/cider/wine are kept.
+
+The listing publishes general online sale prices: it carries no per-card
+loyalty marker and no per-product dates, so offers keep `requiresCard=False`
+and `validFrom/validUntil=None`; the newspaper period is attached to the
+catalogue links instead. A lone sale price without a reference price is kept
+(the site simply shows no discount percentage). Brand comes from the hidden
+`-brand` label, falling back to the trailing name segment ("Product, Brand")
+while rejecting package sizes and descriptors such as "sveramas".
+
+```bash
+python scripts/scrape_latts.py
+```
+
+Output: `data/latts-offers.json` (refreshed daily by the same workflow as Maxima).
+
+---
+
 ## Product identity and grouping
 
 Shared logic in `scripts/product_identity.py`:
@@ -260,5 +300,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl, Rimi and Elvi data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl, Rimi, Elvi and LaTS data and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.

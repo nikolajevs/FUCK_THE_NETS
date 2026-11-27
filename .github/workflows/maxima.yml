@@ -30,6 +30,7 @@ jobs:
           python -m py_compile scripts/scrape_lidl.py
           python -m py_compile scripts/scrape_rimi.py
           python -m py_compile scripts/scrape_elvi.py
+          python -m py_compile scripts/scrape_latts.py
           python -m py_compile scripts/booklet_images.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
@@ -51,6 +52,9 @@ jobs:
       - name: Collect ELVI offers
         continue-on-error: true
         run: python scripts/scrape_elvi.py
+      - name: Collect LaTS offers
+        continue-on-error: true
+        run: python scripts/scrape_latts.py
       - name: Check for new PDF review cards
         id: qwen-pending
         shell: bash
@@ -154,11 +158,12 @@ jobs:
           if [ -f data/lidl-offers.json ]; then git add data/lidl-offers.json; fi
           if [ -f data/rimi-offers.json ]; then git add data/rimi-offers.json; fi
           if [ -f data/elvi-offers.json ]; then git add data/elvi-offers.json; fi
+          if [ -f data/latts-offers.json ]; then git add data/latts-offers.json; fi
           if [ -d data/lidl-img ]; then git add data/lidl-img; fi
           if [ -d data/mego-img ]; then git add data/mego-img; fi
           if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima, top!, Lidl, Rimi and Elvi offers and price history"
+            git commit -m "Update Maxima, top!, Lidl, Rimi, Elvi and LaTS offers and price history"
             git push
           fi
 
