@@ -1,7 +1,7 @@
 {
   "source": "https://mego.lv/akcijas-un-piedavajumi/",
   "store": "mego",
-  "updatedAt": "2026-11-27T18:15:17+02:00",
+  "updatedAt": "2026-11-27T22:19:29+02:00",
   "catalogues": [
     {
       "id": "kas-labs-sonedel-buklets-nr-49",
@@ -117,6 +117,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-4e9de012.jpg",
       "canonicalProductId": "auzu-limor-parslas-ad538d1e650b",
       "identityKey": "auzu limor parslas|",
       "packageSize": ""
@@ -243,6 +244,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-96418e26.jpg",
       "canonicalProductId": "blasku-komplekts-9eb670a94693",
       "identityKey": "blasku komplekts|",
       "packageSize": ""
@@ -261,6 +263,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-ca0dc0d2.jpg",
       "canonicalProductId": "brokoli-pinguin-veidi-e61f56ce374d",
       "identityKey": "brokoli pinguin veidi|",
       "packageSize": ""
@@ -315,6 +318,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6150cfe8.jpg",
       "canonicalProductId": "barni-cepumi-veidi-8d4d76232471",
       "identityKey": "barni cepumi veidi|",
       "packageSize": ""
@@ -369,6 +373,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-4d40c894.jpg",
       "canonicalProductId": "cepumi-kisses-no-pichkar-polli-vai-51ff9e2e3f9e",
       "identityKey": "cepumi kisses no pichkar polli vai|",
       "packageSize": ""
@@ -477,6 +482,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-b978faf9.jpg",
       "canonicalProductId": "cala-miesnieks-muguru-rigas-skinki-411a9d47abb1",
       "identityKey": "cala miesnieks muguru rigas skinki|",
       "packageSize": ""
@@ -495,6 +501,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-0bf15e51.jpg",
       "canonicalProductId": "atdzesetas-calu-kajas-miesnieks-rigas-1695ba538260",
       "identityKey": "atdzesetas calu kajas miesnieks rigas|",
       "packageSize": ""
@@ -567,6 +574,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-2fe44979.jpg",
       "canonicalProductId": "adu-ar-cukas-miesnieks-rigas-skinkis-bd87f566d8ec",
       "identityKey": "adu ar cukas miesnieks rigas skinkis|",
       "packageSize": ""
@@ -603,6 +611,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p15-ebdcbde3.jpg",
       "canonicalProductId": "dazadi-izmeri-paris-un-veidi-121d43e8cf42",
       "identityKey": "dazadi izmeri paris un veidi|",
       "packageSize": ""
@@ -657,6 +666,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-66f5bda1.jpg",
       "canonicalProductId": "desa-teo-veidi-35d490b92c93",
       "identityKey": "desa teo veidi|",
       "packageSize": ""
@@ -675,6 +685,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-6a70e009.jpg",
       "canonicalProductId": "desa-gala-istas-receptes-varita-89043689005a",
       "identityKey": "desa gala istas receptes varita|",
       "packageSize": ""
@@ -747,6 +758,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-796b6f33.jpg",
       "canonicalProductId": "doktordesa-galsaimnieks-kurzemes-kurzemes-varita-bba1116a12bf",
       "identityKey": "doktordesa galsaimnieks kurzemes kurzemes varita|",
       "packageSize": ""
@@ -801,6 +813,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-242ebd8d.jpg",
       "canonicalProductId": "dusas-men-nivea-veidi-zeleja-794f74ac0cf4",
       "identityKey": "dusas men nivea veidi zeleja|",
       "packageSize": ""
@@ -837,6 +850,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-3a1d0fd4.jpg",
       "canonicalProductId": "aqua-dzeramais-negazets-udens-df60f82d9442",
       "identityKey": "aqua dzeramais negazets udens|",
       "packageSize": ""
@@ -855,6 +869,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-c4c06b12.jpg",
       "canonicalProductId": "dzeriens-isotonic-mangali-negazets-veidi-615cbe3d3a05",
       "identityKey": "dzeriens isotonic mangali negazets veidi|",
       "packageSize": ""
@@ -873,6 +888,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-f2faeb01.jpg",
       "canonicalProductId": "dzeriens-mangali-veidi-vitafruit-163b5e9ed36a",
       "identityKey": "dzeriens mangali veidi vitafruit|",
       "packageSize": ""
@@ -927,6 +943,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-02179000.jpg",
       "canonicalProductId": "apetito-darzeni-gero-veidi-7de2bee5db09",
       "identityKey": "apetito darzeni gero veidi|",
       "packageSize": ""
@@ -945,6 +962,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-70c7369d.jpg",
       "canonicalProductId": "darzenu-konserveti-no-salati-valdo-17b197c3dcf1",
       "identityKey": "darzenu konserveti no salati valdo|",
       "packageSize": ""
@@ -963,6 +981,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-6c7623d6.jpg",
       "canonicalProductId": "darzenu-muizkungu-no-no-no-uzkoda-veidi-f68577a7d4ad",
       "identityKey": "darzenu muizkungu no no no uzkoda veidi|",
       "packageSize": ""
@@ -999,6 +1018,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-238b2000.jpg",
       "canonicalProductId": "dynami-dzeriens-energijas-original-t-zero-50487c9e8eea",
       "identityKey": "dynami dzeriens energijas original t zero|",
       "packageSize": ""
@@ -1017,6 +1037,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-ae7bb112.jpg",
       "canonicalProductId": "br-brolio-ella-lio-rapsu-6d6e01f840b6",
       "identityKey": "br brolio ella lio rapsu|",
       "packageSize": ""
@@ -1035,6 +1056,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-65b157a8.jpg",
       "canonicalProductId": "dikanka-ella-saulespuku-veidi-ac288df5b695",
       "identityKey": "dikanka ella saulespuku veidi|",
       "packageSize": ""
@@ -1053,6 +1075,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-da0d92bc.jpg",
       "canonicalProductId": "ella-oleina-rapsu-saulespuku-vai-80eac76d0f4a",
       "identityKey": "ella oleina rapsu saulespuku vai|",
       "packageSize": ""
@@ -1071,6 +1094,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-a5c19c46.jpg",
       "canonicalProductId": "ella-perle-saulespuku-59d0fff07a1e",
       "identityKey": "ella perle saulespuku|",
       "packageSize": ""
@@ -1125,6 +1149,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-0ed036cf.jpg",
       "canonicalProductId": "ar-audumu-dazadi-glezna-led-un-veidi-6e44380c0956",
       "identityKey": "ar audumu dazadi glezna led un veidi|",
       "packageSize": ""
@@ -1161,6 +1186,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-ffcfa1c2.jpg",
       "canonicalProductId": "bella-classic-higienas-ieliknisi-panty-white-b3cc7a074303",
       "identityKey": "bella classic higienas ieliknisi panty white|",
       "packageSize": ""
@@ -1179,6 +1205,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-b13bdc83.jpg",
       "canonicalProductId": "freemore-higienas-no-no-no-no-paketes-veidi-7a6b0cdaabf9",
       "identityKey": "freemore higienas no no no no paketes veidi|",
       "packageSize": ""
@@ -1233,6 +1260,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-2e074722.jpg",
       "canonicalProductId": "ievarijums-semu-smiltserksku-7d53125bf57e",
       "identityKey": "ievarijums semu smiltserksku|",
       "packageSize": ""
@@ -1287,6 +1315,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-29537f8d.jpg",
       "canonicalProductId": "ar-baltais-grieku-jogurts-mellenem-persikiem-piens-tuk-48d5c008ea36",
       "identityKey": "ar baltais grieku jogurts mellenem persikiem piens tukuma vai|",
       "packageSize": ""
@@ -1305,6 +1334,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6ffa28f1.jpg",
       "canonicalProductId": "baltais-bez-jogurts-piedevam-piens-tukuma-turku-02f69d890cde",
       "identityKey": "baltais bez jogurts piedevam piens tukuma turku|",
       "packageSize": ""
@@ -1413,6 +1443,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-25949153.jpg",
       "canonicalProductId": "cronat-gold-jacobs-kafija-skistosa-1ee6b4153b6c",
       "identityKey": "cronat gold jacobs kafija skistosa|",
       "packageSize": ""
@@ -1449,6 +1480,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-373f8dbc.jpg",
       "canonicalProductId": "kafija-lavazza-malta-oro-45fb9057c19e",
       "identityKey": "kafija lavazza malta oro|",
       "packageSize": ""
@@ -1467,6 +1499,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-ad49452c.jpg",
       "canonicalProductId": "fbergs-kafija-lofbergs-malta-veidi-bff4f768cc6a",
       "identityKey": "fbergs kafija lofbergs malta veidi|",
       "packageSize": ""
@@ -1485,6 +1518,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-953af18d.jpg",
       "canonicalProductId": "classic-kafija-nescaf-nescafe-skistosa-f7cbd6d21c65",
       "identityKey": "classic kafija nescaf nescafe skistosa|",
       "packageSize": ""
@@ -1503,6 +1537,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-61fe3896.jpg",
       "canonicalProductId": "kafija-nescaf-nescafe-skistosa-veidi-4aff1a48f5fe",
       "identityKey": "kafija nescaf nescafe skistosa veidi|",
       "packageSize": ""
@@ -1521,6 +1556,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p0-b759ef0d.jpg",
       "canonicalProductId": "exclusive-kafija-tchibo-veidi-6d0ebefa9eff",
       "identityKey": "exclusive kafija tchibo veidi|",
       "packageSize": ""
@@ -1539,6 +1575,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d82629c4.jpg",
       "canonicalProductId": "a-kafijas-kapsulas-lavazza-mio-modo-no-no-no-veidi-4b5d36161602",
       "identityKey": "a kafijas kapsulas lavazza mio modo no no no veidi|",
       "packageSize": ""
@@ -1557,6 +1594,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-55aa78c3.jpg",
       "canonicalProductId": "jacobs-kafijas-no-pupinas-veidi-befc24e8d692",
       "identityKey": "jacobs kafijas no pupinas veidi|",
       "packageSize": ""
@@ -1575,6 +1613,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-dbf371c1.jpg",
       "canonicalProductId": "classic-kafijas-paulig-pupinas-veidi-49dfbbdbccad",
       "identityKey": "classic kafijas paulig pupinas veidi|",
       "packageSize": ""
@@ -1593,6 +1632,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-e009809e.jpg",
       "canonicalProductId": "exclusive-kafijas-pupinas-tchibo-veidi-47dc1d97d85a",
       "identityKey": "exclusive kafijas pupinas tchibo veidi|",
       "packageSize": ""
@@ -1629,6 +1669,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-d6853295.jpg",
       "canonicalProductId": "airfryer-aviko-crunch-fri-kartupeli-super-veidi-323316e19394",
       "identityKey": "airfryer aviko crunch fri kartupeli super veidi|",
       "packageSize": ""
@@ -1647,6 +1688,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-6e49f017.jpg",
       "canonicalProductId": "aviko-fri-kartupeli-original-892f5e1f5d4a",
       "identityKey": "aviko fri kartupeli original|",
       "packageSize": ""
@@ -1665,6 +1707,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-f4dbdaa1.jpg",
       "canonicalProductId": "aviko-kartupelu-pankukas-rosti-1ce7f0be344d",
       "identityKey": "aviko kartupelu pankukas rosti|",
       "packageSize": ""
@@ -1683,6 +1726,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-05e6bed9.jpg",
       "canonicalProductId": "flint-kartupelu-plaksnes-tavern-4dbcc17b7722",
       "identityKey": "flint kartupelu plaksnes tavern|",
       "packageSize": ""
@@ -1737,6 +1781,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-1e8dd39e.jpg",
       "canonicalProductId": "baltais-bio-kefirs-piens-tukuma-2be63ac3e197",
       "identityKey": "baltais bio kefirs piens tukuma|",
       "packageSize": ""
@@ -1773,6 +1818,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-461a5e1d.jpg",
       "canonicalProductId": "kecups-originalais-spilva-6fa64d909174",
       "identityKey": "kecups originalais spilva|",
       "packageSize": ""
@@ -1845,6 +1891,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-cee235be.jpg",
       "canonicalProductId": "dazadi-izlase-konfeksu-no-no-no-pergale-veidi-74b7529f595a",
       "identityKey": "dazadi izlase konfeksu no no no pergale veidi|",
       "packageSize": ""
@@ -1881,6 +1928,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-51d2e24d.jpg",
       "canonicalProductId": "dazadi-gold-gourmet-konservi-purina-veidi-7e9b84f039c2",
       "identityKey": "dazadi gold gourmet konservi purina veidi|",
       "packageSize": ""
@@ -1935,6 +1983,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-842f7a41.jpg",
       "canonicalProductId": "dazadi-konfektes-koslajamas-mentos-no-no-no-veidi-c40b8003eafa",
       "identityKey": "dazadi konfektes koslajamas mentos no no no veidi|",
       "packageSize": ""
@@ -1953,6 +2002,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-d5bb70d9.jpg",
       "canonicalProductId": "dazadi-krekeri-no-no-no-petergailis-veidi-bc1e99c07b91",
       "identityKey": "dazadi krekeri no no no petergailis veidi|",
       "packageSize": ""
@@ -1989,6 +2039,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-23c55354.jpg",
       "canonicalProductId": "baltais-krejums-piens-skabais-tukuma-88de17af0f9c",
       "identityKey": "baltais krejums piens skabais tukuma|",
       "packageSize": ""
@@ -2007,6 +2058,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-d5f8b3a9.jpg",
       "canonicalProductId": "krejums-piens-skabais-zelmas-4c77e676efb1",
       "identityKey": "krejums piens skabais zelmas|",
       "packageSize": ""
@@ -2097,6 +2149,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ff3146d1.jpg",
       "canonicalProductId": "dreamies-karums-veidi-c24216790e1e",
       "identityKey": "dreamies karums veidi|",
       "packageSize": ""
@@ -2259,6 +2312,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-b50b3f85.jpg",
       "canonicalProductId": "170-fileja-kaija-krema-lasa-no-no-no-no-sava-sula-vai-8faacd20d5e9",
       "identityKey": "170 fileja kaija krema lasa no no no no sava sula vai veidi|",
       "packageSize": ""
@@ -2313,6 +2367,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-6d0d3be4.jpg",
       "canonicalProductId": "fairy-lidzeklis-mazgasanai-trauku-veidi-cbf581cc59dc",
       "identityKey": "fairy lidzeklis mazgasanai trauku veidi|",
       "packageSize": ""
@@ -2439,6 +2494,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-538d7cff.jpg",
       "canonicalProductId": "apalisi-fazer-latvija-maizites-no-no-veidi-25c0c1b471d2",
       "identityKey": "apalisi fazer latvija maizites no no veidi|",
       "packageSize": ""
@@ -2457,6 +2513,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-95de4ee6.jpg",
       "canonicalProductId": "latvijas-maizins-maizites-maiznieks-no-veidi-29c3bd32c812",
       "identityKey": "latvijas maizins maizites maiznieks no veidi|",
       "packageSize": ""
@@ -2511,6 +2568,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-d79d3170.jpg",
       "canonicalProductId": "e-grauzdeti-makadamijas-rieksti-s-veidi-y-2d9a5f0499a1",
       "identityKey": "e grauzdeti makadamijas rieksti s veidi y|",
       "packageSize": ""
@@ -2529,6 +2587,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-c94adec0.jpg",
       "canonicalProductId": "balticovo-dazadi-makaroni-olu-veidi-3f15a62b293b",
       "identityKey": "balticovo dazadi makaroni olu veidi|",
       "packageSize": ""
@@ -2547,6 +2606,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-8ec27a39.jpg",
       "canonicalProductId": "fusilli-la-makaroni-molisana-c67520447f2e",
       "identityKey": "fusilli la makaroni molisana|",
       "packageSize": ""
@@ -2565,6 +2625,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-4dfce14c.jpg",
       "canonicalProductId": "makaroni-veidi-vivarelli-a2a911f7e569",
       "identityKey": "makaroni veidi vivarelli|",
       "packageSize": ""
@@ -2601,6 +2662,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-257bfea6.jpg",
       "canonicalProductId": "dazadi-krasa-matu-palette-veidi-2e273ac9b02f",
       "identityKey": "dazadi krasa matu palette veidi|",
       "packageSize": ""
@@ -2619,6 +2681,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-6387e3b9.jpg",
       "canonicalProductId": "liepkalni-medus-no-no-no-no-vai-ziedu-16dacce4501b",
       "identityKey": "liepkalni medus no no no no vai ziedu|",
       "packageSize": ""
@@ -2655,6 +2718,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-c2be82ab.jpg",
       "canonicalProductId": "dazadi-dobele-maisijums-miltu-no-no-no-veidi-bf9e109f6271",
       "identityKey": "dazadi dobele maisijums miltu no no no veidi|",
       "packageSize": ""
@@ -2673,6 +2737,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-30a6b845.jpg",
       "canonicalProductId": "bariba-blubo-mitra-veidi-1148444ddaea",
       "identityKey": "bariba blubo mitra veidi|",
       "packageSize": ""
@@ -2709,6 +2774,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-a71dec3c.jpg",
       "canonicalProductId": "bariba-mitra-one-purina-veidi-eb6e563a7a7f",
       "identityKey": "bariba mitra one purina veidi|",
       "packageSize": ""
@@ -2781,6 +2847,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-9b754202.jpg",
       "canonicalProductId": "merce-no-no-no-spilva-veidi-ce841708d4ba",
       "identityKey": "merce no no no spilva veidi|",
       "packageSize": ""
@@ -2799,6 +2866,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-d906fe9d.jpg",
       "canonicalProductId": "banga-kupinatas-midijas-veidi-19d6ae6dd355",
       "identityKey": "banga kupinatas midijas veidi|",
       "packageSize": ""
@@ -2835,6 +2903,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-db9f8671.jpg",
       "canonicalProductId": "atri-korean-maggi-nudeles-pagatavojamas-veidi-5dbfc826a940",
       "identityKey": "atri korean maggi nudeles pagatavojamas veidi|",
       "packageSize": ""
@@ -2871,6 +2940,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-22e22efd.jpg",
       "canonicalProductId": "balticovo-izmers-olas-zemnieku-d9251489525d",
       "identityKey": "balticovo izmers olas zemnieku|",
       "packageSize": ""
@@ -2889,6 +2959,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-fa055f7c.jpg",
       "canonicalProductId": "110-300-bez-kauliniem-kok-olivas-veidi-0bad5c89f71c",
       "identityKey": "110 300 bez kauliniem kok olivas veidi|",
       "packageSize": ""
@@ -2925,6 +2996,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-60de7782.jpg",
       "canonicalProductId": "betonita-clean-kitty-pakaisi-3f48f745c3ff",
       "identityKey": "betonita clean kitty pakaisi|",
       "packageSize": ""
@@ -3033,6 +3105,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-383469a3.jpg",
       "canonicalProductId": "kukas-pamatne-pavlova-62007692b17b",
       "identityKey": "kukas pamatne pavlova|",
       "packageSize": ""
@@ -3069,6 +3142,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-2585eb6b.jpg",
       "canonicalProductId": "games-ghetto-miesnieks-mini-pelmeni-rigas-9e1730559580",
       "identityKey": "games ghetto miesnieks mini pelmeni rigas|",
       "packageSize": ""
@@ -3123,6 +3197,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-114876ee.jpg",
       "canonicalProductId": "ariols-mazulisi-pelmeni-74f6fce0ce47",
       "identityKey": "ariols mazulisi pelmeni|",
       "packageSize": ""
@@ -3195,6 +3270,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-5cdf5855.jpg",
       "canonicalProductId": "dazadi-dzeriens-llermilch-mullermilch-no-piena-veidi-b4061479b185",
       "identityKey": "dazadi dzeriens llermilch mullermilch no piena veidi|",
       "packageSize": ""
@@ -3249,6 +3325,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-746d7566.jpg",
       "canonicalProductId": "2-3-4-6-baltais-lauku-piens-piens-tukuma-aa28a734b8b7",
       "identityKey": "2 3 4 6 baltais lauku piens piens tukuma|",
       "packageSize": ""
@@ -3285,6 +3362,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-89e93fe2.jpg",
       "canonicalProductId": "dazadi-estrella-popkorns-veidi-fde5790bac92",
       "identityKey": "dazadi estrella popkorns veidi|",
       "packageSize": ""
@@ -3357,6 +3435,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-9bbb71e0.jpg",
       "canonicalProductId": "gold-rozines-d8c4b8a9feb1",
       "identityKey": "gold rozines|",
       "packageSize": ""
@@ -3501,6 +3580,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-aad5f15a.jpg",
       "canonicalProductId": "baltija-konusa-no-no-no-saldejums-vafelu-veidi-0f815e94666b",
       "identityKey": "baltija konusa no no no saldejums vafelu veidi|",
       "packageSize": ""
@@ -3537,6 +3617,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-1db4f932.jpg",
       "canonicalProductId": "saldejums-tio-veidi-fd0d50a64856",
       "identityKey": "saldejums tio veidi|",
       "packageSize": ""
@@ -3591,6 +3672,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-e56e9402.jpg",
       "canonicalProductId": "bc-ceptas-dazadi-lobitas-saulespuku-seklas-veidi-df476acfec57",
       "identityKey": "bc ceptas dazadi lobitas saulespuku seklas veidi|",
       "packageSize": ""
@@ -3627,6 +3709,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-374acea1.jpg",
       "canonicalProductId": "dazadi-maretti-sausmaizites-veidi-cbba1e8a9416",
       "identityKey": "dazadi maretti sausmaizites veidi|",
       "packageSize": ""
@@ -3645,6 +3728,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-7f83f27a.jpg",
       "canonicalProductId": "nature-sausmaizites-selga-veidi-3ac86e7afef7",
       "identityKey": "nature sausmaizites selga veidi|",
       "packageSize": ""
@@ -3663,6 +3747,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-fc471fcb.jpg",
       "canonicalProductId": "brokastis-dazadi-kellogg-no-no-no-no-s-sausas-veidi-10d483cfa62e",
       "identityKey": "brokastis dazadi kellogg no no no no s sausas veidi|",
       "packageSize": ""
@@ -3681,6 +3766,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-eb5d4c21.jpg",
       "canonicalProductId": "brokastis-fitness-granola-nestl-nestle-no-no-sausas-ve-8c1ca57983a4",
       "identityKey": "brokastis fitness granola nestl nestle no no sausas veidi|",
       "packageSize": ""
@@ -3699,6 +3785,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-4c9a8c54.jpg",
       "canonicalProductId": "brokastis-nesquik-nestl-nestle-no-no-no-sausas-veidi-7095444774e3",
       "identityKey": "brokastis nesquik nestl nestle no no no sausas veidi|",
       "packageSize": ""
@@ -3717,6 +3804,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-489e846b.jpg",
       "canonicalProductId": "gala-konservi-meatful-sauteta-veidi-58f5aeb731ab",
       "identityKey": "gala konservi meatful sauteta veidi|",
       "packageSize": ""
@@ -3753,6 +3841,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-3ad8b4ab.jpg",
       "canonicalProductId": "elegant-pasabahce-servesanas-trauks-veidi-dfb3efd88ee3",
       "identityKey": "elegant pasabahce servesanas trauks veidi|",
       "packageSize": ""
@@ -3807,6 +3896,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-f40ea348.jpg",
       "canonicalProductId": "dese-fileja-silku-tradicionala-22d0ef01ec90",
       "identityKey": "dese fileja silku tradicionala|",
       "packageSize": ""
@@ -3843,6 +3933,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-5231476f.jpg",
       "canonicalProductId": "bocmano-fileja-silku-veidi-zigmas-48bd7886532e",
       "identityKey": "bocmano fileja silku veidi zigmas|",
       "packageSize": ""
@@ -3861,6 +3952,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9b3bd8bc.jpg",
       "canonicalProductId": "lisner-smerins-veidi-3f1ffb740354",
       "identityKey": "lisner smerins veidi|",
       "packageSize": ""
@@ -3915,6 +4007,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ca0599c2.jpg",
       "canonicalProductId": "collection-h-s-svecu-turetajs-9a6a1aa4194d",
       "identityKey": "collection h s svecu turetajs|",
       "packageSize": ""
@@ -4077,6 +4170,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-67bbcf48.jpg",
       "canonicalProductId": "family-grite-kartas-papirs-rulli-rullis-tualetes-7f673b735f15",
       "identityKey": "family grite kartas papirs rulli rullis tualetes|",
       "packageSize": ""
@@ -4095,6 +4189,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9ba13fef.jpg",
       "canonicalProductId": "112-160-banga-tuncis-veidi-5a28112b630a",
       "identityKey": "112 160 banga tuncis veidi|",
       "packageSize": ""
@@ -4113,6 +4208,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d3b3f0fa.jpg",
       "canonicalProductId": "auglu-loyd-teja-veidi-c824cc80c7a2",
       "identityKey": "auglu loyd teja veidi|",
       "packageSize": ""
@@ -4131,6 +4227,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-a9400467.jpg",
       "canonicalProductId": "dazadi-mozums-no-no-teja-veidi-759a30eee045",
       "identityKey": "dazadi mozums no no teja veidi|",
       "packageSize": ""
@@ -4149,6 +4246,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-0da04542.jpg",
       "canonicalProductId": "ajax-fiesta-floral-lidzeklis-tirisanas-bb6a18c59ea7",
       "identityKey": "ajax fiesta floral lidzeklis tirisanas|",
       "packageSize": ""
@@ -4311,6 +4409,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-8f52f1e7.jpg",
       "canonicalProductId": "azzurra-dazadi-felce-mikstinatajs-veidi-velas-87c105754ac9",
       "identityKey": "azzurra dazadi felce mikstinatajs veidi velas|",
       "packageSize": ""
@@ -4329,6 +4428,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-020ea835.jpg",
       "canonicalProductId": "mayeri-mikstinatajs-no-no-no-veidi-velas-314a26977623",
       "identityKey": "mayeri mikstinatajs no no no veidi velas|",
       "packageSize": ""
@@ -4401,6 +4501,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-cba0cbd4.jpg",
       "canonicalProductId": "filejas-gabalini-gaume-meatful-taizemiesu-vistas-73b8ff213a0f",
       "identityKey": "filejas gabalini gaume meatful taizemiesu vistas|",
       "packageSize": ""
@@ -4455,6 +4556,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-05496b02.jpg",
       "canonicalProductId": "laima-veidi-zefirs-45ecfb73a9e0",
       "identityKey": "laima veidi zefirs|",
       "packageSize": ""
@@ -4473,6 +4575,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-e98ab5e6.jpg",
       "canonicalProductId": "aizkraukles-ar-garsu-ielas-saldumi-tornu-vanilas-zefir-8f7154716542",
       "identityKey": "aizkraukles ar garsu ielas saldumi tornu vanilas zefirs|",
       "packageSize": ""
@@ -4509,6 +4612,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-4ae23158.jpg",
       "canonicalProductId": "azzurra-felce-veidi-ziepes-263750b8a91f",
       "identityKey": "azzurra felce veidi ziepes|",
       "packageSize": ""
@@ -4545,6 +4649,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-515d0aa0.jpg",
       "canonicalProductId": "colgate-no-no-pasta-total-veidi-zobu-dccfa80abf3c",
       "identityKey": "colgate no no pasta total veidi zobu|",
       "packageSize": ""
@@ -4563,6 +4668,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-3e902023.jpg",
       "canonicalProductId": "kok-no-no-no-veidi-zupa-22e3203d0ea5",
       "identityKey": "kok no no no veidi zupa|",
       "packageSize": ""
@@ -4581,6 +4687,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-040254a7.jpg",
       "canonicalProductId": "dazadi-kronis-no-no-no-no-veidi-zupa-841ec0910673",
       "identityKey": "dazadi kronis no no no no veidi zupa|",
       "packageSize": ""
@@ -4599,6 +4706,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-45763687.jpg",
       "canonicalProductId": "no-no-no-no-podravka-veidi-zupa-d2db8137d55c",
       "identityKey": "no no no no podravka veidi zupa|",
       "packageSize": ""
@@ -4653,6 +4761,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-5bb63603.jpg",
       "canonicalProductId": "byte-cipsi-dazadi-kartupelu-o-veidi-6fde84de6447",
       "identityKey": "byte cipsi dazadi kartupelu o veidi|",
       "packageSize": ""
@@ -4671,6 +4780,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-85c13732.jpg",
       "canonicalProductId": "cipsi-garnelu-maria-no-no-no-santa-veidi-cc2fd1c37e3a",
       "identityKey": "cipsi garnelu maria no no no santa veidi|",
       "packageSize": ""
@@ -4689,6 +4799,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-6611bd56.jpg",
       "canonicalProductId": "cipsi-dazadi-ekstruderi-estrella-no-uzkoda-vai-veidi-8ae5b73bb9da",
       "identityKey": "cipsi dazadi ekstruderi estrella no uzkoda vai veidi|",
       "packageSize": ""
@@ -4725,6 +4836,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-c2a71196.jpg",
       "canonicalProductId": "head-sampuns-shoulders-veidi-5852c42f62f6",
       "identityKey": "head sampuns shoulders veidi|",
       "packageSize": ""
@@ -4743,6 +4855,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-4e83eb8e.jpg",
       "canonicalProductId": "balzams-dazadi-gliss-no-no-no-sampuns-schwarzkopf-vai-9a2d50be548a",
       "identityKey": "balzams dazadi gliss no no no sampuns schwarzkopf vai veidi|",
       "packageSize": ""
@@ -4851,6 +4964,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-94ed76fe.jpg",
       "canonicalProductId": "no-no-no-pergale-sokolade-veidi-44c688cb9785",
       "identityKey": "no no no pergale sokolade veidi|",
       "packageSize": ""
@@ -4905,6 +5019,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-c746d85d.jpg",
       "canonicalProductId": "konfektes-pure-sokolades-trifeles-veidi-164f00c02c94",
       "identityKey": "konfektes pure sokolades trifeles veidi|",
       "packageSize": ""
@@ -4977,6 +5092,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-227278ed.jpg",
       "canonicalProductId": "haribo-konfektes-no-no-no-veidi-zelejas-22e0e19679a7",
       "identityKey": "haribo konfektes no no no veidi zelejas|",
       "packageSize": ""
@@ -4995,6 +5111,7 @@
       "validFrom": "2026-11-30",
       "validUntil": "2026-12-06",
       "store": "mego",
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-8bb55f18.jpg",
       "canonicalProductId": "jelly-konfektes-roshen-zelejas-1b766811b0bc",
       "identityKey": "jelly konfektes roshen zelejas|",
       "packageSize": ""
@@ -5146,7 +5263,7 @@
         "Auzu pārslas LIMOR"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-4e9de012.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-4e9de012",
@@ -5162,6 +5279,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-4e9de012.jpg",
           "canonicalProductId": "auzu-limor-parslas-ad538d1e650b",
           "identityKey": "auzu limor parslas|",
           "packageSize": ""
@@ -5419,7 +5537,7 @@
         "BLAŠĶU KOMPLEKTS"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-96418e26.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p14-96418e26",
@@ -5435,6 +5553,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-96418e26.jpg",
           "canonicalProductId": "blasku-komplekts-9eb670a94693",
           "identityKey": "blasku komplekts|",
           "packageSize": ""
@@ -5458,7 +5577,7 @@
         "BROKOĻI PINGUIN veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-ca0dc0d2.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-ca0dc0d2",
@@ -5474,6 +5593,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-ca0dc0d2.jpg",
           "canonicalProductId": "brokoli-pinguin-veidi-e61f56ce374d",
           "identityKey": "brokoli pinguin veidi|",
           "packageSize": ""
@@ -5575,7 +5695,7 @@
         "Cepumi BARNI veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6150cfe8.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-6150cfe8",
@@ -5591,6 +5711,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6150cfe8.jpg",
           "canonicalProductId": "barni-cepumi-veidi-8d4d76232471",
           "identityKey": "barni cepumi veidi|",
           "packageSize": ""
@@ -5692,7 +5813,7 @@
         "CEPUMI KISSES vai POLLI Pichkar no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-4d40c894.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p6-4d40c894",
@@ -5708,6 +5829,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-4d40c894.jpg",
           "canonicalProductId": "cepumi-kisses-no-pichkar-polli-vai-51ff9e2e3f9e",
           "identityKey": "cepumi kisses no pichkar polli vai|",
           "packageSize": ""
@@ -5926,7 +6048,7 @@
         "Cāļa šķiņķi RĪGAS MIESNIEKS muguru"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-b978faf9.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-b978faf9",
@@ -5942,6 +6064,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-b978faf9.jpg",
           "canonicalProductId": "cala-miesnieks-muguru-rigas-skinki-411a9d47abb1",
           "identityKey": "cala miesnieks muguru rigas skinki|",
           "packageSize": ""
@@ -5965,7 +6088,7 @@
         "CĀĻU KĀJAS RĪGAS MIESNIEKS atdzesētas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-0bf15e51.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p7-0bf15e51",
@@ -5981,6 +6104,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-0bf15e51.jpg",
           "canonicalProductId": "atdzesetas-calu-kajas-miesnieks-rigas-1695ba538260",
           "identityKey": "atdzesetas calu kajas miesnieks rigas|",
           "packageSize": ""
@@ -6121,7 +6245,7 @@
         "CŪKAS ŠĶIŅĶIS RĪGAS MIESNIEKS ar ādu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-2fe44979.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p7-2fe44979",
@@ -6137,6 +6261,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-2fe44979.jpg",
           "canonicalProductId": "adu-ar-cukas-miesnieks-rigas-skinkis-bd87f566d8ec",
           "identityKey": "adu ar cukas miesnieks rigas skinkis|",
           "packageSize": ""
@@ -6199,7 +6324,7 @@
         "dažādi veidi un izmēri pāris"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p15-ebdcbde3.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p15-ebdcbde3",
@@ -6215,6 +6340,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p15-ebdcbde3.jpg",
           "canonicalProductId": "dazadi-izmeri-paris-un-veidi-121d43e8cf42",
           "identityKey": "dazadi izmeri paris un veidi|",
           "packageSize": ""
@@ -6316,7 +6442,7 @@
         "DESA TEO veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-66f5bda1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-66f5bda1",
@@ -6332,6 +6458,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-66f5bda1.jpg",
           "canonicalProductId": "desa-teo-veidi-35d490b92c93",
           "identityKey": "desa teo veidi|",
           "packageSize": ""
@@ -6355,7 +6482,7 @@
         "DESA ĪSTĀS RECEPTES vārīta Gaļa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-6a70e009.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p7-6a70e009",
@@ -6371,6 +6498,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-6a70e009.jpg",
           "canonicalProductId": "desa-gala-istas-receptes-varita-89043689005a",
           "identityKey": "desa gala istas receptes varita|",
           "packageSize": ""
@@ -6511,7 +6639,7 @@
         "DOKTORDESA KURZEMES vārīta Kurzemes Gaļsaimnieks"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-796b6f33.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p7-796b6f33",
@@ -6527,6 +6655,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p7-796b6f33.jpg",
           "canonicalProductId": "doktordesa-galsaimnieks-kurzemes-kurzemes-varita-bba1116a12bf",
           "identityKey": "doktordesa galsaimnieks kurzemes kurzemes varita|",
           "packageSize": ""
@@ -6608,7 +6737,7 @@
         "DUŠAS ŽELEJA NIVEA MEN* veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-242ebd8d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-242ebd8d",
@@ -6624,6 +6753,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-242ebd8d.jpg",
           "canonicalProductId": "dusas-men-nivea-veidi-zeleja-794f74ac0cf4",
           "identityKey": "dusas men nivea veidi zeleja|",
           "packageSize": ""
@@ -6686,7 +6816,7 @@
         "Dzeramais ūdens AQUA negāzēts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-3a1d0fd4.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-3a1d0fd4",
@@ -6702,6 +6832,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-3a1d0fd4.jpg",
           "canonicalProductId": "aqua-dzeramais-negazets-udens-df60f82d9442",
           "identityKey": "aqua dzeramais negazets udens|",
           "packageSize": ""
@@ -6725,7 +6856,7 @@
         "DZĒRIENS MANGAĻI ISOTONIC negāzēts, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-c4c06b12.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-c4c06b12",
@@ -6741,6 +6872,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-c4c06b12.jpg",
           "canonicalProductId": "dzeriens-isotonic-mangali-negazets-veidi-615cbe3d3a05",
           "identityKey": "dzeriens isotonic mangali negazets veidi|",
           "packageSize": ""
@@ -6764,7 +6896,7 @@
         "DZĒRIENS MANGAĻI VITAFRUIT veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-f2faeb01.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-f2faeb01",
@@ -6780,6 +6912,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-f2faeb01.jpg",
           "canonicalProductId": "dzeriens-mangali-veidi-vitafruit-163b5e9ed36a",
           "identityKey": "dzeriens mangali veidi vitafruit|",
           "packageSize": ""
@@ -6881,7 +7014,7 @@
         "DĀRZEŅI GERO APETITO veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-02179000.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-02179000",
@@ -6897,6 +7030,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-02179000.jpg",
           "canonicalProductId": "apetito-darzeni-gero-veidi-7de2bee5db09",
           "identityKey": "apetito darzeni gero veidi|",
           "packageSize": ""
@@ -6920,7 +7054,7 @@
         "DĀRZEŅU SALĀTI VALDO konservēti no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-70c7369d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-70c7369d",
@@ -6936,6 +7070,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-70c7369d.jpg",
           "canonicalProductId": "darzenu-konserveti-no-salati-valdo-17b197c3dcf1",
           "identityKey": "darzenu konserveti no salati valdo|",
           "packageSize": ""
@@ -6959,7 +7094,7 @@
         "DĀRZEŅU UZKODA MUIŽKUNGU veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-6c7623d6.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-6c7623d6",
@@ -6975,6 +7110,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-6c7623d6.jpg",
           "canonicalProductId": "darzenu-muizkungu-no-no-no-uzkoda-veidi-f68577a7d4ad",
           "identityKey": "darzenu muizkungu no no no uzkoda veidi|",
           "packageSize": ""
@@ -7037,7 +7173,7 @@
         "ENERĢIJAS DZĒRIENS DYNAMI:T Original Zero"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-238b2000.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-238b2000",
@@ -7053,6 +7189,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-238b2000.jpg",
           "canonicalProductId": "dynami-dzeriens-energijas-original-t-zero-50487c9e8eea",
           "identityKey": "dynami dzeriens energijas original t zero|",
           "packageSize": ""
@@ -7076,7 +7213,7 @@
         "EĻĻA BR BRÖLIO LIO rapšu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-ae7bb112.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-ae7bb112",
@@ -7092,6 +7229,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-ae7bb112.jpg",
           "canonicalProductId": "br-brolio-ella-lio-rapsu-6d6e01f840b6",
           "identityKey": "br brolio ella lio rapsu|",
           "packageSize": ""
@@ -7115,7 +7253,7 @@
         "EĻĻA DIKAŅKA saulespuķu veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-65b157a8.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p0-65b157a8",
@@ -7131,6 +7269,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-65b157a8.jpg",
           "canonicalProductId": "dikanka-ella-saulespuku-veidi-ac288df5b695",
           "identityKey": "dikanka ella saulespuku veidi|",
           "packageSize": ""
@@ -7154,7 +7293,7 @@
         "EĻĻA OLEINA rapšu vai saulespuķu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-da0d92bc.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-da0d92bc",
@@ -7170,6 +7309,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-da0d92bc.jpg",
           "canonicalProductId": "ella-oleina-rapsu-saulespuku-vai-80eac76d0f4a",
           "identityKey": "ella oleina rapsu saulespuku vai|",
           "packageSize": ""
@@ -7193,7 +7333,7 @@
         "Eļļa PĒRLE saulespuķu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-a5c19c46.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-a5c19c46",
@@ -7209,6 +7349,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-a5c19c46.jpg",
           "canonicalProductId": "ella-perle-saulespuku-59d0fff07a1e",
           "identityKey": "ella perle saulespuku|",
           "packageSize": ""
@@ -7310,7 +7451,7 @@
         "GLEZNA ar audumu un LED dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-0ed036cf.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-0ed036cf",
@@ -7326,6 +7467,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-0ed036cf.jpg",
           "canonicalProductId": "ar-audumu-dazadi-glezna-led-un-veidi-6e44380c0956",
           "identityKey": "ar audumu dazadi glezna led un veidi|",
           "packageSize": ""
@@ -7388,7 +7530,7 @@
         "HIGIĒNAS IELIKNĪŠI BELLA Panty Classic, White"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-ffcfa1c2.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-ffcfa1c2",
@@ -7404,6 +7546,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-ffcfa1c2.jpg",
           "canonicalProductId": "bella-classic-higienas-ieliknisi-panty-white-b3cc7a074303",
           "identityKey": "bella classic higienas ieliknisi panty white|",
           "packageSize": ""
@@ -7427,7 +7570,7 @@
         "HIGIĒNAS PAKETES FREEMORE* no veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-b13bdc83.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-b13bdc83",
@@ -7443,6 +7586,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-b13bdc83.jpg",
           "canonicalProductId": "freemore-higienas-no-no-no-no-paketes-veidi-7a6b0cdaabf9",
           "identityKey": "freemore higienas no no no no paketes veidi|",
           "packageSize": ""
@@ -7544,7 +7688,7 @@
         "IEVĀRĪJUMS SEMU smiltsērkšķu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-2e074722.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-2e074722",
@@ -7560,6 +7704,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-2e074722.jpg",
           "canonicalProductId": "ievarijums-semu-smiltserksku-7d53125bf57e",
           "identityKey": "ievarijums semu smiltserksku|",
           "packageSize": ""
@@ -7661,7 +7806,7 @@
         "JOGURTS BALTAIS GRIEĶU ar mellenēm vai persikiem Tukuma Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-29537f8d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p5-29537f8d",
@@ -7677,6 +7822,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-29537f8d.jpg",
           "canonicalProductId": "ar-baltais-grieku-jogurts-mellenem-persikiem-piens-tuk-48d5c008ea36",
           "identityKey": "ar baltais grieku jogurts mellenem persikiem piens tukuma vai|",
           "packageSize": ""
@@ -7700,7 +7846,7 @@
         "Jogurts BALTAIS TURKU bez piedevām Tukuma Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6ffa28f1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-6ffa28f1",
@@ -7716,6 +7862,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-6ffa28f1.jpg",
           "canonicalProductId": "baltais-bez-jogurts-piedevam-piens-tukuma-turku-02f69d890cde",
           "identityKey": "baltais bez jogurts piedevam piens tukuma turku|",
           "packageSize": ""
@@ -7934,7 +8081,7 @@
         "KAFIJA JACOBS Cronat Gold šķīstošā"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-25949153.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-25949153",
@@ -7950,6 +8097,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-25949153.jpg",
           "canonicalProductId": "cronat-gold-jacobs-kafija-skistosa-1ee6b4153b6c",
           "identityKey": "cronat gold jacobs kafija skistosa|",
           "packageSize": ""
@@ -8012,7 +8160,7 @@
         "KAFIJA LAVAZZA ORO maltā"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-373f8dbc.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-373f8dbc",
@@ -8028,6 +8176,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-373f8dbc.jpg",
           "canonicalProductId": "kafija-lavazza-malta-oro-45fb9057c19e",
           "identityKey": "kafija lavazza malta oro|",
           "packageSize": ""
@@ -8051,7 +8200,7 @@
         "KAFIJA LÖFBERGS FBERGS maltā, veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-ad49452c.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p0-ad49452c",
@@ -8067,6 +8216,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p0-ad49452c.jpg",
           "canonicalProductId": "fbergs-kafija-lofbergs-malta-veidi-bff4f768cc6a",
           "identityKey": "fbergs kafija lofbergs malta veidi|",
           "packageSize": ""
@@ -8090,7 +8240,7 @@
         "KAFIJA NESCAF NESCAFÉ Classic šķīstošā"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-953af18d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-953af18d",
@@ -8106,6 +8256,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-953af18d.jpg",
           "canonicalProductId": "classic-kafija-nescaf-nescafe-skistosa-f7cbd6d21c65",
           "identityKey": "classic kafija nescaf nescafe skistosa|",
           "packageSize": ""
@@ -8129,7 +8280,7 @@
         "KAFIJA NESCAF NESCAFÉ šķīstošā, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-61fe3896.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-61fe3896",
@@ -8145,6 +8296,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-61fe3896.jpg",
           "canonicalProductId": "kafija-nescaf-nescafe-skistosa-veidi-4aff1a48f5fe",
           "identityKey": "kafija nescaf nescafe skistosa veidi|",
           "packageSize": ""
@@ -8168,7 +8320,7 @@
         "KAFIJA TCHIBO Exclusive veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p0-b759ef0d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p0-b759ef0d",
@@ -8184,6 +8336,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p0-b759ef0d.jpg",
           "canonicalProductId": "exclusive-kafija-tchibo-veidi-6d0ebefa9eff",
           "identityKey": "exclusive kafija tchibo veidi|",
           "packageSize": ""
@@ -8207,7 +8360,7 @@
         "KAFIJAS KAPSULAS LAVAZZA A Modo Mio, veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d82629c4.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-d82629c4",
@@ -8223,6 +8376,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d82629c4.jpg",
           "canonicalProductId": "a-kafijas-kapsulas-lavazza-mio-modo-no-no-no-veidi-4b5d36161602",
           "identityKey": "a kafijas kapsulas lavazza mio modo no no no veidi|",
           "packageSize": ""
@@ -8246,7 +8400,7 @@
         "KAFIJAS PUPIŅAS JACOBS veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-55aa78c3.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-55aa78c3",
@@ -8262,6 +8416,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-55aa78c3.jpg",
           "canonicalProductId": "jacobs-kafijas-no-pupinas-veidi-befc24e8d692",
           "identityKey": "jacobs kafijas no pupinas veidi|",
           "packageSize": ""
@@ -8285,7 +8440,7 @@
         "KAFIJAS PUPIŅAS PAULIG Classic, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-dbf371c1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-dbf371c1",
@@ -8301,6 +8456,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-dbf371c1.jpg",
           "canonicalProductId": "classic-kafijas-paulig-pupinas-veidi-49dfbbdbccad",
           "identityKey": "classic kafijas paulig pupinas veidi|",
           "packageSize": ""
@@ -8324,7 +8480,7 @@
         "KAFIJAS PUPIŅAS TCHIBO Exclusive, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-e009809e.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-e009809e",
@@ -8340,6 +8496,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-e009809e.jpg",
           "canonicalProductId": "exclusive-kafijas-pupinas-tchibo-veidi-47dc1d97d85a",
           "identityKey": "exclusive kafijas pupinas tchibo veidi|",
           "packageSize": ""
@@ -8402,7 +8559,7 @@
         "KARTUPEĻI FRĪ AVIKO AIRFRYER Super Crunch! veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-d6853295.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-d6853295",
@@ -8418,6 +8575,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-d6853295.jpg",
           "canonicalProductId": "airfryer-aviko-crunch-fri-kartupeli-super-veidi-323316e19394",
           "identityKey": "airfryer aviko crunch fri kartupeli super veidi|",
           "packageSize": ""
@@ -8441,7 +8599,7 @@
         "KARTUPEĻI FRĪ AVIKO Original +"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-6e49f017.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-6e49f017",
@@ -8457,6 +8615,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-6e49f017.jpg",
           "canonicalProductId": "aviko-fri-kartupeli-original-892f5e1f5d4a",
           "identityKey": "aviko fri kartupeli original|",
           "packageSize": ""
@@ -8480,7 +8639,7 @@
         "KARTUPEĻU PANKŪKAS AVIKO RÖSTI"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-f4dbdaa1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-f4dbdaa1",
@@ -8496,6 +8655,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-f4dbdaa1.jpg",
           "canonicalProductId": "aviko-kartupelu-pankukas-rosti-1ce7f0be344d",
           "identityKey": "aviko kartupelu pankukas rosti|",
           "packageSize": ""
@@ -8519,7 +8679,7 @@
         "Kartupeļu plāksnes FLINT TAVERN"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-05e6bed9.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-05e6bed9",
@@ -8535,6 +8695,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-05e6bed9.jpg",
           "canonicalProductId": "flint-kartupelu-plaksnes-tavern-4dbcc17b7722",
           "identityKey": "flint kartupelu plaksnes tavern|",
           "packageSize": ""
@@ -8636,7 +8797,7 @@
         "KEFĪRS BALTAIS BIO Tukuma Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-1e8dd39e.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p5-1e8dd39e",
@@ -8652,6 +8813,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-1e8dd39e.jpg",
           "canonicalProductId": "baltais-bio-kefirs-piens-tukuma-2be63ac3e197",
           "identityKey": "baltais bio kefirs piens tukuma|",
           "packageSize": ""
@@ -8714,7 +8876,7 @@
         "KEČUPS SPILVA Oriģinālais"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-461a5e1d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-461a5e1d",
@@ -8730,6 +8892,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-461a5e1d.jpg",
           "canonicalProductId": "kecups-originalais-spilva-6fa64d909174",
           "identityKey": "kecups originalais spilva|",
           "packageSize": ""
@@ -8870,7 +9033,7 @@
         "KONFEKŠU IZLASE PERGALĒ dažādi veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-cee235be.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-cee235be",
@@ -8886,6 +9049,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-cee235be.jpg",
           "canonicalProductId": "dazadi-izlase-konfeksu-no-no-no-pergale-veidi-74b7529f595a",
           "identityKey": "dazadi izlase konfeksu no no no pergale veidi|",
           "packageSize": ""
@@ -8948,7 +9112,7 @@
         "KONSERVI GOURMET GOLD dažādi veidi Purina,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-51d2e24d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p14-51d2e24d",
@@ -8964,6 +9128,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p14-51d2e24d.jpg",
           "canonicalProductId": "dazadi-gold-gourmet-konservi-purina-veidi-7e9b84f039c2",
           "identityKey": "dazadi gold gourmet konservi purina veidi|",
           "packageSize": ""
@@ -9065,7 +9230,7 @@
         "KOŠĻĀJAMĀS KONFEKTES MENTOS dažādi veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-842f7a41.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-842f7a41",
@@ -9081,6 +9246,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-842f7a41.jpg",
           "canonicalProductId": "dazadi-konfektes-koslajamas-mentos-no-no-no-veidi-c40b8003eafa",
           "identityKey": "dazadi konfektes koslajamas mentos no no no veidi|",
           "packageSize": ""
@@ -9104,7 +9270,7 @@
         "KREKERI PĒTERGAILIS dažādi veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-d5bb70d9.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-d5bb70d9",
@@ -9120,6 +9286,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-d5bb70d9.jpg",
           "canonicalProductId": "dazadi-krekeri-no-no-no-petergailis-veidi-bc1e99c07b91",
           "identityKey": "dazadi krekeri no no no petergailis veidi|",
           "packageSize": ""
@@ -9182,7 +9349,7 @@
         "Krējums BALTAIS skābais, Tukuma Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-23c55354.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-23c55354",
@@ -9198,6 +9365,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-23c55354.jpg",
           "canonicalProductId": "baltais-krejums-piens-skabais-tukuma-88de17af0f9c",
           "identityKey": "baltais krejums piens skabais tukuma|",
           "packageSize": ""
@@ -9221,7 +9389,7 @@
         "KRĒJUMS ZELMAS PIENS skābais,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-d5f8b3a9.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p5-d5f8b3a9",
@@ -9237,6 +9405,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-d5f8b3a9.jpg",
           "canonicalProductId": "krejums-piens-skabais-zelmas-4c77e676efb1",
           "identityKey": "krejums piens skabais zelmas|",
           "packageSize": ""
@@ -9416,7 +9585,7 @@
         "KĀRUMS DREAMIES veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ff3146d1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-ff3146d1",
@@ -9432,6 +9601,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ff3146d1.jpg",
           "canonicalProductId": "dreamies-karums-veidi-c24216790e1e",
           "identityKey": "dreamies karums veidi|",
           "packageSize": ""
@@ -9727,7 +9897,7 @@
         "LAŠA FILEJA KAIJA savā sulā vai krēmā veidi 170/no no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-b50b3f85.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-b50b3f85",
@@ -9743,6 +9913,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-b50b3f85.jpg",
           "canonicalProductId": "170-fileja-kaija-krema-lasa-no-no-no-no-sava-sula-vai-8faacd20d5e9",
           "identityKey": "170 fileja kaija krema lasa no no no no sava sula vai veidi|",
           "packageSize": ""
@@ -9844,7 +10015,7 @@
         "LĪDZEKLIS FAIRY trauku mazgāšanai veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-6d0d3be4.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-6d0d3be4",
@@ -9860,6 +10031,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-6d0d3be4.jpg",
           "canonicalProductId": "fairy-lidzeklis-mazgasanai-trauku-veidi-cbf581cc59dc",
           "identityKey": "fairy lidzeklis mazgasanai trauku veidi|",
           "packageSize": ""
@@ -10117,7 +10289,7 @@
         "MAIZĪTES APALĪŠI veidi no Fazer Latvija no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-538d7cff.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p6-538d7cff",
@@ -10133,6 +10305,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-538d7cff.jpg",
           "canonicalProductId": "apalisi-fazer-latvija-maizites-no-no-veidi-25c0c1b471d2",
           "identityKey": "apalisi fazer latvija maizites no no veidi|",
           "packageSize": ""
@@ -10156,7 +10329,7 @@
         "MAIZĪTES MAIZIŅŠ veidi Latvijas Maiznieks no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-95de4ee6.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p6-95de4ee6",
@@ -10172,6 +10345,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-95de4ee6.jpg",
           "canonicalProductId": "latvijas-maizins-maizites-maiznieks-no-veidi-29c3bd32c812",
           "identityKey": "latvijas maizins maizites maiznieks no veidi|",
           "packageSize": ""
@@ -10273,7 +10447,7 @@
         "MAKADĀMIJAS RIEKSTI Y.E.S. grauzdēti veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-d79d3170.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-d79d3170",
@@ -10289,6 +10463,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-d79d3170.jpg",
           "canonicalProductId": "e-grauzdeti-makadamijas-rieksti-s-veidi-y-2d9a5f0499a1",
           "identityKey": "e grauzdeti makadamijas rieksti s veidi y|",
           "packageSize": ""
@@ -10312,7 +10487,7 @@
         "MAKARONI BALTICOVO olu, dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-c94adec0.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-c94adec0",
@@ -10328,6 +10503,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-c94adec0.jpg",
           "canonicalProductId": "balticovo-dazadi-makaroni-olu-veidi-3f15a62b293b",
           "identityKey": "balticovo dazadi makaroni olu veidi|",
           "packageSize": ""
@@ -10351,7 +10527,7 @@
         "Makaroni LA MOLISANA Fusilli"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-8ec27a39.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-8ec27a39",
@@ -10367,6 +10543,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-8ec27a39.jpg",
           "canonicalProductId": "fusilli-la-makaroni-molisana-c67520447f2e",
           "identityKey": "fusilli la makaroni molisana|",
           "packageSize": ""
@@ -10390,7 +10567,7 @@
         "MAKARONI VIVARELLI veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-4dfce14c.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-4dfce14c",
@@ -10406,6 +10583,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-4dfce14c.jpg",
           "canonicalProductId": "makaroni-veidi-vivarelli-a2a911f7e569",
           "identityKey": "makaroni veidi vivarelli|",
           "packageSize": ""
@@ -10468,7 +10646,7 @@
         "MATU KRĀSA PALETTE* dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-257bfea6.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-257bfea6",
@@ -10484,6 +10662,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-257bfea6.jpg",
           "canonicalProductId": "dazadi-krasa-matu-palette-veidi-2e273ac9b02f",
           "identityKey": "dazadi krasa matu palette veidi|",
           "packageSize": ""
@@ -10507,7 +10686,7 @@
         "MEDUS LIEPKALNI no ziedu vai no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-6387e3b9.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-6387e3b9",
@@ -10523,6 +10702,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-6387e3b9.jpg",
           "canonicalProductId": "liepkalni-medus-no-no-no-no-vai-ziedu-16dacce4501b",
           "identityKey": "liepkalni medus no no no no vai ziedu|",
           "packageSize": ""
@@ -10585,7 +10765,7 @@
         "MILTU MAISĪJUMS DOBELE dažādi veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-c2be82ab.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-c2be82ab",
@@ -10601,6 +10781,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-c2be82ab.jpg",
           "canonicalProductId": "dazadi-dobele-maisijums-miltu-no-no-no-veidi-bf9e109f6271",
           "identityKey": "dazadi dobele maisijums miltu no no no veidi|",
           "packageSize": ""
@@ -10624,7 +10805,7 @@
         "Mitrā barība BLUBO veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-30a6b845.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-30a6b845",
@@ -10640,6 +10821,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-30a6b845.jpg",
           "canonicalProductId": "bariba-blubo-mitra-veidi-1148444ddaea",
           "identityKey": "bariba blubo mitra veidi|",
           "packageSize": ""
@@ -10702,7 +10884,7 @@
         "MITRĀ BARĪBA ONE veidi, Purina"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-a71dec3c.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-a71dec3c",
@@ -10718,6 +10900,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-a71dec3c.jpg",
           "canonicalProductId": "bariba-mitra-one-purina-veidi-eb6e563a7a7f",
           "identityKey": "bariba mitra one purina veidi|",
           "packageSize": ""
@@ -10858,7 +11041,7 @@
         "MĒRCE SPILVA veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-9b754202.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-9b754202",
@@ -10874,6 +11057,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-9b754202.jpg",
           "canonicalProductId": "merce-no-no-no-spilva-veidi-ce841708d4ba",
           "identityKey": "merce no no no spilva veidi|",
           "packageSize": ""
@@ -10897,7 +11081,7 @@
         "MĪDIJAS BANGA kūpinātas, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-d906fe9d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-d906fe9d",
@@ -10913,6 +11097,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-d906fe9d.jpg",
           "canonicalProductId": "banga-kupinatas-midijas-veidi-19d6ae6dd355",
           "identityKey": "banga kupinatas midijas veidi|",
           "packageSize": ""
@@ -10975,7 +11160,7 @@
         "NŪDELES MAGGI Korean ātri pagatavojamas veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-db9f8671.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-db9f8671",
@@ -10991,6 +11176,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-db9f8671.jpg",
           "canonicalProductId": "atri-korean-maggi-nudeles-pagatavojamas-veidi-5dbfc826a940",
           "identityKey": "atri korean maggi nudeles pagatavojamas veidi|",
           "packageSize": ""
@@ -11053,7 +11239,7 @@
         "OLAS ZEMNIEKU izmērs Balticovo"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-22e22efd.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p5-22e22efd",
@@ -11069,6 +11255,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p5-22e22efd.jpg",
           "canonicalProductId": "balticovo-izmers-olas-zemnieku-d9251489525d",
           "identityKey": "balticovo izmers olas zemnieku|",
           "packageSize": ""
@@ -11092,7 +11279,7 @@
         "OLĪVAS KOK bez kauliņiem veidi 300/110"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-fa055f7c.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-fa055f7c",
@@ -11108,6 +11295,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-fa055f7c.jpg",
           "canonicalProductId": "110-300-bez-kauliniem-kok-olivas-veidi-0bad5c89f71c",
           "identityKey": "110 300 bez kauliniem kok olivas veidi|",
           "packageSize": ""
@@ -11170,7 +11358,7 @@
         "PAKAIŠI KITTY CLEAN betonīta"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-60de7782.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-60de7782",
@@ -11186,6 +11374,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-60de7782.jpg",
           "canonicalProductId": "betonita-clean-kitty-pakaisi-3f48f745c3ff",
           "identityKey": "betonita clean kitty pakaisi|",
           "packageSize": ""
@@ -11404,7 +11593,7 @@
         "PAVLOVA KŪKAS PAMATNE"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-383469a3.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p6-383469a3",
@@ -11420,6 +11609,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p6-383469a3.jpg",
           "canonicalProductId": "kukas-pamatne-pavlova-62007692b17b",
           "identityKey": "kukas pamatne pavlova|",
           "packageSize": ""
@@ -11482,7 +11672,7 @@
         "PELMEŅI GHETTO GAMES Mini Rīgas Miesnieks"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-2585eb6b.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-2585eb6b",
@@ -11516,6 +11706,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-2585eb6b.jpg",
           "canonicalProductId": "games-ghetto-miesnieks-mini-pelmeni-rigas-9e1730559580",
           "identityKey": "games ghetto miesnieks mini pelmeni rigas|",
           "packageSize": ""
@@ -11579,7 +11770,7 @@
         "PELMEŅI MAZULĪŠI Ariols"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-114876ee.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-114876ee",
@@ -11595,6 +11786,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-114876ee.jpg",
           "canonicalProductId": "ariols-mazulisi-pelmeni-74f6fce0ce47",
           "identityKey": "ariols mazulisi pelmeni|",
           "packageSize": ""
@@ -11735,7 +11927,7 @@
         "PIENA DZĒRIENS MÜLLERMILCH LLERMILCH dažādi veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-5cdf5855.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p5-5cdf5855",
@@ -11751,6 +11943,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-5cdf5855.jpg",
           "canonicalProductId": "dazadi-dzeriens-llermilch-mullermilch-no-piena-veidi-b4061479b185",
           "identityKey": "dazadi dzeriens llermilch mullermilch no piena veidi|",
           "packageSize": ""
@@ -11852,7 +12045,7 @@
         "PIENS BALTAIS LAUKU 3,6–4,2% Tukuma Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-746d7566.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p5-746d7566",
@@ -11868,6 +12061,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p5-746d7566.jpg",
           "canonicalProductId": "2-3-4-6-baltais-lauku-piens-piens-tukuma-aa28a734b8b7",
           "identityKey": "2 3 4 6 baltais lauku piens piens tukuma|",
           "packageSize": ""
@@ -11930,7 +12124,7 @@
         "POPKORNS ESTRELLA dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-89e93fe2.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-89e93fe2",
@@ -11946,6 +12140,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-89e93fe2.jpg",
           "canonicalProductId": "dazadi-estrella-popkorns-veidi-fde5790bac92",
           "identityKey": "dazadi estrella popkorns veidi|",
           "packageSize": ""
@@ -12086,7 +12281,7 @@
         "Rozīnes GOLD"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-9bbb71e0.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-9bbb71e0",
@@ -12102,6 +12297,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-9bbb71e0.jpg",
           "canonicalProductId": "gold-rozines-d8c4b8a9feb1",
           "identityKey": "gold rozines|",
           "packageSize": ""
@@ -12398,7 +12594,7 @@
         "SALDĒJUMS BALTIJA vafeļu konusā veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-aad5f15a.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-aad5f15a",
@@ -12414,6 +12610,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-aad5f15a.jpg",
           "canonicalProductId": "baltija-konusa-no-no-no-saldejums-vafelu-veidi-0f815e94666b",
           "identityKey": "baltija konusa no no no saldejums vafelu veidi|",
           "packageSize": ""
@@ -12476,7 +12673,7 @@
         "SALDĒJUMS TIO veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-1db4f932.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p8-1db4f932",
@@ -12492,6 +12689,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p8-1db4f932.jpg",
           "canonicalProductId": "saldejums-tio-veidi-fd0d50a64856",
           "identityKey": "saldejums tio veidi|",
           "packageSize": ""
@@ -12593,7 +12791,7 @@
         "SAULESPUĶU SĒKLAS BC lobītas, ceptas dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-e56e9402.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-e56e9402",
@@ -12609,6 +12807,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-e56e9402.jpg",
           "canonicalProductId": "bc-ceptas-dazadi-lobitas-saulespuku-seklas-veidi-df476acfec57",
           "identityKey": "bc ceptas dazadi lobitas saulespuku seklas veidi|",
           "packageSize": ""
@@ -12671,7 +12870,7 @@
         "SAUSMAIZĪTES MARETTI dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-374acea1.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p6-374acea1",
@@ -12687,6 +12886,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-374acea1.jpg",
           "canonicalProductId": "dazadi-maretti-sausmaizites-veidi-cbba1e8a9416",
           "identityKey": "dazadi maretti sausmaizites veidi|",
           "packageSize": ""
@@ -12710,7 +12910,7 @@
         "SAUSMAIZĪTES SELGA Nature, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-7f83f27a.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-7f83f27a",
@@ -12726,6 +12926,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-7f83f27a.jpg",
           "canonicalProductId": "nature-sausmaizites-selga-veidi-3ac86e7afef7",
           "identityKey": "nature sausmaizites selga veidi|",
           "packageSize": ""
@@ -12749,7 +12950,7 @@
         "SAUSĀS BROKASTIS KELLOGG'S no dažādi veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-fc471fcb.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-fc471fcb",
@@ -12765,6 +12966,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-fc471fcb.jpg",
           "canonicalProductId": "brokastis-dazadi-kellogg-no-no-no-no-s-sausas-veidi-10d483cfa62e",
           "identityKey": "brokastis dazadi kellogg no no no no s sausas veidi|",
           "packageSize": ""
@@ -12788,7 +12990,7 @@
         "SAUSĀS BROKASTIS NESTL NESTLÉ Fitness Granola no veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-eb5d4c21.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-eb5d4c21",
@@ -12804,6 +13006,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-eb5d4c21.jpg",
           "canonicalProductId": "brokastis-fitness-granola-nestl-nestle-no-no-sausas-ve-8c1ca57983a4",
           "identityKey": "brokastis fitness granola nestl nestle no no sausas veidi|",
           "packageSize": ""
@@ -12827,7 +13030,7 @@
         "SAUSĀS BROKASTIS NESTL NESTLÉ Nesquik, veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-4c9a8c54.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-4c9a8c54",
@@ -12843,6 +13046,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-4c9a8c54.jpg",
           "canonicalProductId": "brokastis-nesquik-nestl-nestle-no-no-no-sausas-veidi-7095444774e3",
           "identityKey": "brokastis nesquik nestl nestle no no no sausas veidi|",
           "packageSize": ""
@@ -12866,7 +13070,7 @@
         "Sautēta gaļa MEATFUL konservi, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-489e846b.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-489e846b",
@@ -12882,6 +13086,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-489e846b.jpg",
           "canonicalProductId": "gala-konservi-meatful-sauteta-veidi-58f5aeb731ab",
           "identityKey": "gala konservi meatful sauteta veidi|",
           "packageSize": ""
@@ -12944,7 +13149,7 @@
         "SERVĒŠANAS TRAUKS PASABAHCE Elegant, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-3ad8b4ab.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-3ad8b4ab",
@@ -12960,6 +13165,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-3ad8b4ab.jpg",
           "canonicalProductId": "elegant-pasabahce-servesanas-trauks-veidi-dfb3efd88ee3",
           "identityKey": "elegant pasabahce servesanas trauks veidi|",
           "packageSize": ""
@@ -13061,7 +13267,7 @@
         "Siļķu fileja DESĖ Tradicionālā"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-f40ea348.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p2-f40ea348",
@@ -13077,6 +13283,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p2-f40ea348.jpg",
           "canonicalProductId": "dese-fileja-silku-tradicionala-22d0ef01ec90",
           "identityKey": "dese fileja silku tradicionala|",
           "packageSize": ""
@@ -13139,7 +13346,7 @@
         "SIĻĶU FILEJA ZIGMAS BOCMANO veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-5231476f.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-5231476f",
@@ -13155,6 +13362,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-5231476f.jpg",
           "canonicalProductId": "bocmano-fileja-silku-veidi-zigmas-48bd7886532e",
           "identityKey": "bocmano fileja silku veidi zigmas|",
           "packageSize": ""
@@ -13178,7 +13386,7 @@
         "SMĒRIŅŠ LISNER veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9b3bd8bc.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-9b3bd8bc",
@@ -13194,6 +13402,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9b3bd8bc.jpg",
           "canonicalProductId": "lisner-smerins-veidi-3f1ffb740354",
           "identityKey": "lisner smerins veidi|",
           "packageSize": ""
@@ -13295,7 +13504,7 @@
         "SVEČU TURĒTĀJS H&S Collection"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ca0599c2.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p14-ca0599c2",
@@ -13311,6 +13520,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p14-ca0599c2.jpg",
           "canonicalProductId": "collection-h-s-svecu-turetajs-9a6a1aa4194d",
           "identityKey": "collection h s svecu turetajs|",
           "packageSize": ""
@@ -13607,7 +13817,7 @@
         "TUALETES PAPĪRS GRITE FAMILY kārtas, ruļļi rullis"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-67bbcf48.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-230ec30f",
@@ -13641,6 +13851,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-67bbcf48.jpg",
           "canonicalProductId": "family-grite-kartas-papirs-rulli-rullis-tualetes-7f673b735f15",
           "identityKey": "family grite kartas papirs rulli rullis tualetes|",
           "packageSize": ""
@@ -13665,7 +13876,7 @@
         "TUNCIS BANGA veidi 160/112"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9ba13fef.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p8-9ba13fef",
@@ -13681,6 +13892,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p8-9ba13fef.jpg",
           "canonicalProductId": "112-160-banga-tuncis-veidi-5a28112b630a",
           "identityKey": "112 160 banga tuncis veidi|",
           "packageSize": ""
@@ -13704,7 +13916,7 @@
         "TĒJA LOYD augļu, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d3b3f0fa.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-d3b3f0fa",
@@ -13720,6 +13932,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-d3b3f0fa.jpg",
           "canonicalProductId": "auglu-loyd-teja-veidi-c824cc80c7a2",
           "identityKey": "auglu loyd teja veidi|",
           "packageSize": ""
@@ -13743,7 +13956,7 @@
         "TĒJA MOŽUMS no dažādi veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-a9400467.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-a9400467",
@@ -13759,6 +13972,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-a9400467.jpg",
           "canonicalProductId": "dazadi-mozums-no-no-teja-veidi-759a30eee045",
           "identityKey": "dazadi mozums no no teja veidi|",
           "packageSize": ""
@@ -13782,7 +13996,7 @@
         "TĪRĪŠANAS LĪDZEKLIS AJAX Floral Fiesta"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-0da04542.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-0da04542",
@@ -13798,6 +14012,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-0da04542.jpg",
           "canonicalProductId": "ajax-fiesta-floral-lidzeklis-tirisanas-bb6a18c59ea7",
           "identityKey": "ajax fiesta floral lidzeklis tirisanas|",
           "packageSize": ""
@@ -14113,7 +14328,7 @@
         "VEĻAS MĪKSTINĀTĀJS FELCE AZZURRA* dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-8f52f1e7.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-8f52f1e7",
@@ -14129,6 +14344,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-8f52f1e7.jpg",
           "canonicalProductId": "azzurra-dazadi-felce-mikstinatajs-veidi-velas-87c105754ac9",
           "identityKey": "azzurra dazadi felce mikstinatajs veidi velas|",
           "packageSize": ""
@@ -14152,7 +14368,7 @@
         "VEĻAS MĪKSTINĀTĀJS MAYERI* veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-020ea835.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-020ea835",
@@ -14168,6 +14384,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-020ea835.jpg",
           "canonicalProductId": "mayeri-mikstinatajs-no-no-no-veidi-velas-314a26977623",
           "identityKey": "mayeri mikstinatajs no no no veidi velas|",
           "packageSize": ""
@@ -14308,7 +14525,7 @@
         "VISTAS FILEJAS GABALIŅI MEATFUL taizemiešu gaumē"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-cba0cbd4.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p7-cba0cbd4",
@@ -14324,6 +14541,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p7-cba0cbd4.jpg",
           "canonicalProductId": "filejas-gabalini-gaume-meatful-taizemiesu-vistas-73b8ff213a0f",
           "identityKey": "filejas gabalini gaume meatful taizemiesu vistas|",
           "packageSize": ""
@@ -14425,7 +14643,7 @@
         "ZEFĪRS LAIMA veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-05496b02.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p11-05496b02",
@@ -14441,6 +14659,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p11-05496b02.jpg",
           "canonicalProductId": "laima-veidi-zefirs-45ecfb73a9e0",
           "identityKey": "laima veidi zefirs|",
           "packageSize": ""
@@ -14464,7 +14683,7 @@
         "ZEFĪRS TORŅU IELAS ar vaniļas garšu Aizkraukles Saldumi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-e98ab5e6.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p6-e98ab5e6",
@@ -14480,6 +14699,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p6-e98ab5e6.jpg",
           "canonicalProductId": "aizkraukles-ar-garsu-ielas-saldumi-tornu-vanilas-zefir-8f7154716542",
           "identityKey": "aizkraukles ar garsu ielas saldumi tornu vanilas zefirs|",
           "packageSize": ""
@@ -14542,7 +14762,7 @@
         "ZIEPES FELCE AZZURRA veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-4ae23158.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-4ae23158",
@@ -14558,6 +14778,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-4ae23158.jpg",
           "canonicalProductId": "azzurra-felce-veidi-ziepes-263750b8a91f",
           "identityKey": "azzurra felce veidi ziepes|",
           "packageSize": ""
@@ -14620,7 +14841,7 @@
         "ZOBU PASTA COLGATE* no Total, veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-515d0aa0.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-515d0aa0",
@@ -14636,6 +14857,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-515d0aa0.jpg",
           "canonicalProductId": "colgate-no-no-pasta-total-veidi-zobu-dccfa80abf3c",
           "identityKey": "colgate no no pasta total veidi zobu|",
           "packageSize": ""
@@ -14659,7 +14881,7 @@
         "ZUPA KOK veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-3e902023.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p9-3e902023",
@@ -14675,6 +14897,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p9-3e902023.jpg",
           "canonicalProductId": "kok-no-no-no-veidi-zupa-22e3203d0ea5",
           "identityKey": "kok no no no veidi zupa|",
           "packageSize": ""
@@ -14698,7 +14921,7 @@
         "ZUPA KRONIS no dažādi veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-040254a7.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-040254a7",
@@ -14714,6 +14937,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-040254a7.jpg",
           "canonicalProductId": "dazadi-kronis-no-no-no-no-veidi-zupa-841ec0910673",
           "identityKey": "dazadi kronis no no no no veidi zupa|",
           "packageSize": ""
@@ -14737,7 +14961,7 @@
         "ZUPA PODRAVKA no veidi no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-45763687.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-45763687",
@@ -14753,6 +14977,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-45763687.jpg",
           "canonicalProductId": "no-no-no-no-podravka-veidi-zupa-d2db8137d55c",
           "identityKey": "no no no no podravka veidi zupa|",
           "packageSize": ""
@@ -14854,7 +15079,7 @@
         "ČIPSI O'BYTE kartupeļu dažādi veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-5bb63603.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-5bb63603",
@@ -14870,6 +15095,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-5bb63603.jpg",
           "canonicalProductId": "byte-cipsi-dazadi-kartupelu-o-veidi-6fde84de6447",
           "identityKey": "byte cipsi dazadi kartupelu o veidi|",
           "packageSize": ""
@@ -14893,7 +15119,7 @@
         "ČIPSI SANTA MARIA garneļu veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-85c13732.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p9-85c13732",
@@ -14909,6 +15135,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p9-85c13732.jpg",
           "canonicalProductId": "cipsi-garnelu-maria-no-no-no-santa-veidi-cc2fd1c37e3a",
           "identityKey": "cipsi garnelu maria no no no santa veidi|",
           "packageSize": ""
@@ -14932,7 +15159,7 @@
         "ČIPSI, UZKODA vai EKSTRŪDERI ESTRELLA dažādi veidi no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-6611bd56.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p11-6611bd56",
@@ -14948,6 +15175,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p11-6611bd56.jpg",
           "canonicalProductId": "cipsi-dazadi-ekstruderi-estrella-no-uzkoda-vai-veidi-8ae5b73bb9da",
           "identityKey": "cipsi dazadi ekstruderi estrella no uzkoda vai veidi|",
           "packageSize": ""
@@ -15010,7 +15238,7 @@
         "ŠAMPŪNS HEAD& SHOULDERS veidi,"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-c2a71196.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p13-c2a71196",
@@ -15026,6 +15254,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p13-c2a71196.jpg",
           "canonicalProductId": "head-sampuns-shoulders-veidi-5852c42f62f6",
           "identityKey": "head sampuns shoulders veidi|",
           "packageSize": ""
@@ -15049,7 +15278,7 @@
         "ŠAMPŪNS vai BALZAMS GLISS dažādi veidi Schwarzkopf no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-4e83eb8e.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p13-4e83eb8e",
@@ -15065,6 +15294,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p13-4e83eb8e.jpg",
           "canonicalProductId": "balzams-dazadi-gliss-no-no-no-sampuns-schwarzkopf-vai-9a2d50be548a",
           "identityKey": "balzams dazadi gliss no no no sampuns schwarzkopf vai veidi|",
           "packageSize": ""
@@ -15283,7 +15513,7 @@
         "ŠOKOLĀDE PERGALĒ veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-94ed76fe.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-94ed76fe",
@@ -15299,6 +15529,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-94ed76fe.jpg",
           "canonicalProductId": "no-no-no-pergale-sokolade-veidi-44c688cb9785",
           "identityKey": "no no no pergale sokolade veidi|",
           "packageSize": ""
@@ -15400,7 +15631,7 @@
         "ŠOKOLĀDES KONFEKTES PŪRE Trifeles, veidi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-c746d85d.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-48-p10-c746d85d",
@@ -15416,6 +15647,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-48-p10-c746d85d.jpg",
           "canonicalProductId": "konfektes-pure-sokolades-trifeles-veidi-164f00c02c94",
           "identityKey": "konfektes pure sokolades trifeles veidi|",
           "packageSize": ""
@@ -15556,7 +15788,7 @@
         "ŽELEJAS KONFEKTES HARIBO veidi, no no no"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-227278ed.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-227278ed",
@@ -15572,6 +15804,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-227278ed.jpg",
           "canonicalProductId": "haribo-konfektes-no-no-no-veidi-zelejas-22e0e19679a7",
           "identityKey": "haribo konfektes no no no veidi zelejas|",
           "packageSize": ""
@@ -15595,7 +15828,7 @@
         "ŽELEJAS KONFEKTES JELLY Roshen"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-8bb55f18.jpg",
       "offers": [
         {
           "offerId": "mego-kas-labs-sonedel-buklets-nr-49-p10-8bb55f18",
@@ -15611,6 +15844,7 @@
           "validFrom": "2026-11-30",
           "validUntil": "2026-12-06",
           "store": "mego",
+          "image": "data/mego-img/mego-kas-labs-sonedel-buklets-nr-49-p10-8bb55f18.jpg",
           "canonicalProductId": "jelly-konfektes-roshen-zelejas-1b766811b0bc",
           "identityKey": "jelly konfektes roshen zelejas|",
           "packageSize": ""

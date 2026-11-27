@@ -27,6 +27,11 @@ try:
 except ModuleNotFoundError:
     from product_identity import build_product_groups, product_identity
 
+try:
+    from scripts.booklet_images import prune_images, save_product_photo
+except ModuleNotFoundError:
+    from booklet_images import prune_images, save_product_photo
+
 OFFERS_PAGE = "https://mego.lv/akcijas-un-piedavajumi/"
 WP_API = "https://mego.lv/wp-json/wp/v2/pages?slug=akcijas-un-piedavajumi"
 HEADERS = {
@@ -215,7 +220,7 @@ def _is_size_word(word, words: list[tuple]) -> bool:
     return following in units | {"x", "×"} or previous in {"x", "×"}
 
 
-def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
+def _extract_from_page(page, page_num: int, booklet: dict, img_dir: Path | None = None) -> tuple[list[dict], list[dict]]:
     """Coordinate-aware extraction for one Mego PDF page."""
     words = page.get_text("words", sort=True)  # x0,y0,x1,y1,word,block,line,word_no
     if not words:
@@ -258,6 +263,7 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
         else:
             x_clusters[-1].append(cx)
     x_centres = [sum(group) / len(group) for group in x_clusters]
+    x_bounds = [0.0] + [(x_centres[i] + x_centres[i + 1]) / 2 for i in range(len(x_centres) - 1)] + [width]
     assigned = [
         (*item, min(range(len(x_centres)), key=lambda index: abs(item[0] - x_centres[index])))
         for item in price_items
@@ -385,12 +391,18 @@ def _extract_from_page(page, page_num: int, booklet: dict) -> tuple[list[dict], 
             offer["reviewReason"] = "weak_name"
             reviews.append(offer)
         else:
+            if img_dir is not None:
+                photo = save_product_photo(page, x_bounds[column_index], x_bounds[column_index + 1],
+                                           min_cy - 20, max_cy + 10, min_cy - 90,
+                                           img_dir, offer["offerId"])
+                if photo:
+                    offer["image"] = photo
             offers.append(offer)
 
     return offers, reviews
 
 
-def extract_offers_from_pdf(pdf_path: Path, booklet: dict) -> tuple[list[dict], list[dict]]:
+def extract_offers_from_pdf(pdf_path: Path, booklet: dict, img_dir: Path | None = None) -> tuple[list[dict], list[dict]]:
     """Extract offers from Mego PDF using word coordinates. Returns (verified, review)."""
     if fitz is None:
         raise RuntimeError("PyMuPDF (fitz) is required for PDF parsing")
@@ -399,12 +411,13 @@ def extract_offers_from_pdf(pdf_path: Path, booklet: dict) -> tuple[list[dict], 
     all_offers: list[dict] = []
     all_review: list[dict] = []
 
-    for page_num, page in enumerate(doc):
-        offers, review = _extract_from_page(page, page_num, booklet)
-        all_offers.extend(offers)
-        all_review.extend(review)
-
-    doc.close()
+    try:
+        for page_num, page in enumerate(doc):
+            offers, review = _extract_from_page(page, page_num, booklet, img_dir)
+            all_offers.extend(offers)
+            all_review.extend(review)
+    finally:
+        doc.close()
     return all_offers, all_review
 
 
@@ -441,9 +454,12 @@ def main() -> None:
 
         print(f"Parsing {pdf_path.name} ...")
         try:
-            offers, review = extract_offers_from_pdf(pdf_path, booklet)
+            offers, review = extract_offers_from_pdf(pdf_path, booklet, Path("data/mego-img"))
         finally:
-            pdf_path.unlink(missing_ok=True)
+            try:
+                pdf_path.unlink(missing_ok=True)
+            except OSError:
+                pass
         print(f"  -> {len(offers)} offers, {len(review)} need review")
         all_offers.extend(offers)
         all_review.extend(review)
@@ -464,6 +480,7 @@ def main() -> None:
 
     # Reuse Maxima product grouping for now
     products = build_product_groups(offers) if offers else []
+    prune_images(Path("data/mego-img"), {o["image"] for o in offers if o.get("image")})
 
     observed_at = datetime.now().astimezone()
     payload = {

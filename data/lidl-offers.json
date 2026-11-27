@@ -1,7 +1,7 @@
 {
   "source": "https://www.lidl.lv/c/lv-LV/akciju-bukleti/s10024390",
   "store": "lidl",
-  "updatedAt": "2026-11-27T20:07:40+00:00",
+  "updatedAt": "2026-11-27T22:24:20+02:00",
   "catalogues": [
     {
       "id": "aktualais-akciju-buklets-piedavajumi-no-23-11",
@@ -103,6 +103,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p7-a1542f9f.jpg",
       "canonicalProductId": "2x-brilles-esmara-lasisanai-3f3a86bad7db",
       "identityKey": "2x brilles esmara lasisanai|",
       "packageSize": ""
@@ -139,6 +140,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p23-0f9562aa.jpg",
       "canonicalProductId": "a-b-c-lexibook-racijas-talkies-walkie-1b1c7a26dfae",
       "identityKey": "a b c lexibook racijas talkies walkie|",
       "packageSize": ""
@@ -157,6 +159,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p5-87ac7f29.jpg",
       "canonicalProductId": "a-b-c-lexibook-racijas-talkies-walkie-1b1c7a26dfae",
       "identityKey": "a b c lexibook racijas talkies walkie|",
       "packageSize": ""
@@ -229,6 +232,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p19-e97925d4.jpg",
       "canonicalProductId": "a-b-gultas-vela-53ecab891218",
       "identityKey": "a b gultas vela|",
       "packageSize": ""
@@ -320,6 +324,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-7da96646.jpg",
       "canonicalProductId": "akvile-dabigais-mineraludens-bb28b12aece2",
       "identityKey": "akvile dabigais mineraludens|",
       "packageSize": ""
@@ -357,6 +362,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-8870e73d.jpg",
       "canonicalProductId": "alesto-dateles-zavetas-1c8b91e89f0e",
       "identityKey": "alesto dateles zavetas|",
       "packageSize": ""
@@ -375,6 +381,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-ee989c5e.png",
       "canonicalProductId": "aloe-alvejas-dzeriens-original-ac30db6710bc",
       "identityKey": "aloe alvejas dzeriens original|",
       "packageSize": ""
@@ -411,6 +418,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p30-381eed66.jpg",
       "canonicalProductId": "akrila-b-c-crelando-krasas-27980989bc6f",
       "identityKey": "akrila b c crelando krasas|",
       "packageSize": ""
@@ -447,6 +455,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p15-72bebb37.jpg",
       "canonicalProductId": "b-dalas-sievietem-viriesiem-3d9d48a180f3",
       "identityKey": "b dalas sievietem viriesiem|",
       "packageSize": ""
@@ -501,6 +510,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p13-ee99ef9d.jpg",
       "canonicalProductId": "bambusa-kemme-01bb87d27bbe",
       "identityKey": "bambusa kemme|",
       "packageSize": ""
@@ -520,6 +530,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-630b22c1.png",
       "canonicalProductId": "auksti-baroni-kupinata-pavedere-dface7c0aa2a",
       "identityKey": "auksti baroni kupinata pavedere|",
       "packageSize": ""
@@ -538,6 +549,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-93ef7a4f.png",
       "canonicalProductId": "bauska-cala-desa-galas-7b59109294aa",
       "identityKey": "bauska cala desa galas|",
       "packageSize": ""
@@ -628,6 +640,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-6ec289b0.jpg",
       "canonicalProductId": "belbake-cukura-glazuras-36b2403f547a",
       "identityKey": "belbake cukura glazuras|",
       "packageSize": ""
@@ -664,6 +677,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-091bad7d.jpg",
       "canonicalProductId": "belbake-garsvielu-maisijums-piparkukam-8fc3a8b5fdc2",
       "identityKey": "belbake garsvielu maisijums piparkukam|",
       "packageSize": ""
@@ -736,6 +750,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-017b099b.jpg",
       "canonicalProductId": "belbake-kalifornijas-mandeles-3825c54974e2",
       "identityKey": "belbake kalifornijas mandeles|",
       "packageSize": ""
@@ -772,6 +787,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-55deebe4.jpg",
       "canonicalProductId": "belbake-konditorejas-cd4c9a9f6466",
       "identityKey": "belbake konditorejas|",
       "packageSize": ""
@@ -790,6 +806,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p26-db5916ee.jpg",
       "canonicalProductId": "belbake-dekori-konditorejas-9d26c337277e",
       "identityKey": "belbake dekori konditorejas|",
       "packageSize": ""
@@ -808,6 +825,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p28-1afaf160.jpg",
       "canonicalProductId": "belbake-cepumu-maisijums-pagatavosanai-e255cf5ec517",
       "identityKey": "belbake cepumu maisijums pagatavosanai|",
       "packageSize": ""
@@ -826,6 +844,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-ae569b07.jpg",
       "canonicalProductId": "belbake-kukas-maisijums-pagatavosanai-sokolades-e7749a4a3ea9",
       "identityKey": "belbake kukas maisijums pagatavosanai sokolades|",
       "packageSize": ""
@@ -844,6 +863,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-6ede531b.jpg",
       "canonicalProductId": "belbake-maltas-mandeles-mandelu-skaidinas-770add7423ef",
       "identityKey": "belbake maltas mandeles mandelu skaidinas|",
       "packageSize": ""
@@ -862,6 +882,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-5f80bced.jpg",
       "canonicalProductId": "belbake-mandelu-73aa43fbeca0",
       "identityKey": "belbake mandelu|",
       "packageSize": ""
@@ -880,6 +901,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-d4f3c90b.jpg",
       "canonicalProductId": "belbake-gabalini-karameles-mikstas-sali-f34f94c22d2a",
       "identityKey": "belbake gabalini karameles mikstas sali|",
       "packageSize": ""
@@ -916,6 +938,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-12382f9a.jpg",
       "canonicalProductId": "aniss-belbake-zvaigznu-954d15960b65",
       "identityKey": "aniss belbake zvaigznu|",
       "packageSize": ""
@@ -952,6 +975,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-49777e4b.jpg",
       "canonicalProductId": "belbake-gabalini-sokolades-e92843964c22",
       "identityKey": "belbake gabalini sokolades|",
       "packageSize": ""
@@ -970,6 +994,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-34b149e9.jpg",
       "canonicalProductId": "bellarom-garsviela-kafijas-85c39ded0983",
       "identityKey": "bellarom garsviela kafijas|",
       "packageSize": ""
@@ -1043,6 +1068,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-b8ea766d.jpg",
       "canonicalProductId": "bumbieri-conference-4a9fa7d2450a",
       "identityKey": "bumbieri conference|",
       "packageSize": ""
@@ -1079,6 +1105,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-e508ff5a.jpg",
       "canonicalProductId": "apelsinu-cappy-nektars-c75edf0392b0",
       "identityKey": "apelsinu cappy nektars|",
       "packageSize": ""
@@ -1097,6 +1124,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p22-d55956a7.png",
       "canonicalProductId": "casdon-dyson-puteklsucejs-rotalu-95aef22463e1",
       "identityKey": "casdon dyson puteklsucejs rotalu|",
       "packageSize": ""
@@ -1115,6 +1143,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p4-ee58d16e.jpg",
       "canonicalProductId": "casdon-dyson-puteklsucejs-rotalu-95aef22463e1",
       "identityKey": "casdon dyson puteklsucejs rotalu|",
       "packageSize": ""
@@ -1170,6 +1199,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p22-95131c5f.jpg",
       "canonicalProductId": "combino-ziemassvetku-bd50b848a48f",
       "identityKey": "combino ziemassvetku|",
       "packageSize": ""
@@ -1188,6 +1218,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-c80df707.jpg",
       "canonicalProductId": "combino-makaroni-ziemassvetku-7ec2449bf2a1",
       "identityKey": "combino makaroni ziemassvetku|",
       "packageSize": ""
@@ -1206,6 +1237,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-ce641837.jpg",
       "canonicalProductId": "crivit-paris-sievietem-zabaki-ziemas-950c80a91124",
       "identityKey": "crivit paris sievietem zabaki ziemas|",
       "packageSize": ""
@@ -1242,6 +1274,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-604a5916.jpg",
       "canonicalProductId": "cukuroti-gabalini-ingvera-506dd867f9d4",
       "identityKey": "cukuroti gabalini ingvera|",
       "packageSize": ""
@@ -1278,6 +1311,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-d29a6523.jpg",
       "canonicalProductId": "dateles-medjool-541e053b909e",
       "identityKey": "dateles medjool|",
       "packageSize": ""
@@ -1296,6 +1330,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p11-9fd4569b.jpg",
       "canonicalProductId": "6-7-attistosa-dalas-koka-lupilu-puzle-41645e1c6cae",
       "identityKey": "6 7 attistosa dalas koka lupilu puzle|",
       "packageSize": ""
@@ -1332,6 +1367,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-22e69b44.jpg",
       "canonicalProductId": "attistosa-dalas-koka-lupilu-montessori-puzle-84d35f96b2dc",
       "identityKey": "attistosa dalas koka lupilu montessori puzle|",
       "packageSize": ""
@@ -1405,6 +1441,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-7ee76c5a.jpg",
       "canonicalProductId": "augstaka-deluxe-labuma-olivella-b07d1ba3bf3d",
       "identityKey": "augstaka deluxe labuma olivella|",
       "packageSize": ""
@@ -1441,6 +1478,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-7b5f70b4.jpg",
       "canonicalProductId": "atlantija-auksti-deluxe-fileja-kupinata-lasa-2b73a7e4778b",
       "identityKey": "atlantija auksti deluxe fileja kupinata lasa|",
       "packageSize": ""
@@ -1459,6 +1497,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-9afd2b3e.png",
       "canonicalProductId": "avokado-deluxe-ella-9d2bb8999e69",
       "identityKey": "avokado deluxe ella|",
       "packageSize": ""
@@ -1567,6 +1606,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p21-ae3393cb.jpg",
       "canonicalProductId": "cukgalas-deluxe-salami-b09085f97f1c",
       "identityKey": "cukgalas deluxe salami|",
       "packageSize": ""
@@ -1585,6 +1625,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-a025d7fb.jpg",
       "canonicalProductId": "cukgalas-deluxe-uzkodu-793eff5d246e",
       "identityKey": "cukgalas deluxe uzkodu|",
       "packageSize": ""
@@ -1603,6 +1644,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-2038dcff.jpg",
       "canonicalProductId": "aknu-cuku-deluxe-karamelizetiem-pastete-sipoliem-728a728ed3ff",
       "identityKey": "aknu cuku deluxe karamelizetiem pastete sipoliem|",
       "packageSize": ""
@@ -1675,6 +1717,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-cbc2faf0.jpg",
       "canonicalProductId": "deluxe-deserts-85659047bc92",
       "identityKey": "deluxe deserts|",
       "packageSize": ""
@@ -1711,6 +1754,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-66f3e5b9.png",
       "canonicalProductId": "deluxe-ella-piedevam-287b3fae46ec",
       "identityKey": "deluxe ella piedevam|",
       "packageSize": ""
@@ -1729,6 +1773,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p30-169bf268.jpg",
       "canonicalProductId": "astonkaja-deluxe-ella-karpaco-marinets-699a1ecdd8dd",
       "identityKey": "astonkaja deluxe ella karpaco marinets|",
       "packageSize": ""
@@ -1765,6 +1810,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p36-aeb4d563.jpg",
       "canonicalProductId": "asorti-deluxe-galas-uzkodu-2062fb8d354d",
       "identityKey": "asorti deluxe galas uzkodu|",
       "packageSize": ""
@@ -1801,6 +1847,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-6a84bb28.jpg",
       "canonicalProductId": "deluxe-grauzdetas-mandeles-fe5c76582545",
       "identityKey": "deluxe grauzdetas mandeles|",
       "packageSize": ""
@@ -1837,6 +1884,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-a896e051.jpg",
       "canonicalProductId": "deluxe-dzirnavinas-himalaju-sals-7305603cd6d7",
       "identityKey": "deluxe dzirnavinas himalaju sals|",
       "packageSize": ""
@@ -1891,6 +1939,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-43cbf269.jpg",
       "canonicalProductId": "deluxe-gnocchi-kartupelu-klimpas-33d413906461",
       "identityKey": "deluxe gnocchi kartupelu klimpas|",
       "packageSize": ""
@@ -1909,6 +1958,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-f747ee59.jpg",
       "canonicalProductId": "deluxe-konfektes-pistacijam-riekstu-sokoladi-b11911c5d332",
       "identityKey": "deluxe konfektes pistacijam riekstu sokoladi|",
       "packageSize": ""
@@ -1927,6 +1977,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p33-f959cb3a.jpg",
       "canonicalProductId": "deluxe-deserts-kartainais-mascarpone-sieru-8110284f6712",
       "identityKey": "deluxe deserts kartainais mascarpone sieru|",
       "packageSize": ""
@@ -1945,6 +1996,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-fd3b4aa5.jpg",
       "canonicalProductId": "deluxe-grozini-kartainas-miklas-sviesta-ced592c7eb44",
       "identityKey": "deluxe grozini kartainas miklas sviesta|",
       "packageSize": ""
@@ -1981,6 +2033,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-b416ee45.jpg",
       "canonicalProductId": "deluxe-maizes-standzinas-12182d2c6311",
       "identityKey": "deluxe maizes standzinas|",
       "packageSize": ""
@@ -1999,6 +2052,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-7703941d.jpg",
       "canonicalProductId": "deluxe-makaroni-94eb8bbb7585",
       "identityKey": "deluxe makaroni|",
       "packageSize": ""
@@ -2035,6 +2089,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p4-84985b3c.jpg",
       "canonicalProductId": "bumbieru-deluxe-kekss-mini-panettone-sukadem-74c6247feaf1",
       "identityKey": "bumbieru deluxe kekss mini panettone sukadem|",
       "packageSize": ""
@@ -2053,6 +2108,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-158438b3.jpg",
       "canonicalProductId": "deluxe-kremu-maizites-miklas-pistaciju-736159294ec7",
       "identityKey": "deluxe kremu maizites miklas pistaciju|",
       "packageSize": ""
@@ -2161,6 +2217,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p6-d439ec9c.jpg",
       "canonicalProductId": "deluxe-kekss-panettone-a811acace00a",
       "identityKey": "deluxe kekss panettone|",
       "packageSize": ""
@@ -2233,6 +2290,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p37-cdaf8ea2.jpg",
       "canonicalProductId": "deluxe-garnelem-garnelu-panzerotti-pildijumu-vezveidig-9b25e7ef4d0f",
       "identityKey": "deluxe garnelem garnelu panzerotti pildijumu vezveidigo|",
       "packageSize": ""
@@ -2341,6 +2399,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-4891cf14.jpg",
       "canonicalProductId": "deluxe-pistaciju-saldejums-91edf3ec78bd",
       "identityKey": "deluxe pistaciju saldejums|",
       "packageSize": ""
@@ -2377,6 +2436,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-f492370b.jpg",
       "canonicalProductId": "deluxe-rieksti-sokolade-9f5a08a32213",
       "identityKey": "deluxe rieksti sokolade|",
       "packageSize": ""
@@ -2395,6 +2455,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-6b748bb3.jpg",
       "canonicalProductId": "deluxe-salami-f5efb776c968",
       "identityKey": "deluxe salami|",
       "packageSize": ""
@@ -2449,6 +2510,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p38-8c842f66.jpg",
       "canonicalProductId": "deluxe-deserts-saldejuma-4b8afacbc413",
       "identityKey": "deluxe deserts saldejuma|",
       "packageSize": ""
@@ -2540,6 +2602,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-d8494670.jpg",
       "canonicalProductId": "deluxe-gredzeni-sipolu-709aaea67712",
       "identityKey": "deluxe gredzeni sipolu|",
       "packageSize": ""
@@ -2594,6 +2657,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-5bb2773b.png",
       "canonicalProductId": "deluxe-merce-tomatu-d2a8b5b162c6",
       "identityKey": "deluxe merce tomatu|",
       "packageSize": ""
@@ -2612,6 +2676,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-bbcb90da.png",
       "canonicalProductId": "deluxe-majoneze-trifelu-d4e2b2e60377",
       "identityKey": "deluxe majoneze trifelu|",
       "packageSize": ""
@@ -2666,6 +2731,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-94145429.jpg",
       "canonicalProductId": "deluxe-grauzdini-uzkodu-f3e05802ee80",
       "identityKey": "deluxe grauzdini uzkodu|",
       "packageSize": ""
@@ -2774,6 +2840,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p15-3a54840d.png",
       "canonicalProductId": "catnijs-deluxe-66db54001038",
       "identityKey": "catnijs deluxe|",
       "packageSize": ""
@@ -2828,6 +2895,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-d99cda2e.jpg",
       "canonicalProductId": "deluxe-pildijumu-sokolades-sufle-b0f22bef612b",
       "identityKey": "deluxe pildijumu sokolades sufle|",
       "packageSize": ""
@@ -2846,6 +2914,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-ac521216.png",
       "canonicalProductId": "deluxe-ella-kirbju-seklu-stirijas-1c89b4492c70",
       "identityKey": "deluxe ella kirbju seklu stirijas|",
       "packageSize": ""
@@ -2938,6 +3007,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p8-ab2e55db.png",
       "canonicalProductId": "dulano-salami-skeles-703732ff1aaa",
       "identityKey": "dulano salami skeles|",
       "packageSize": ""
@@ -3010,6 +3080,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-acf2ba0b.jpg",
       "canonicalProductId": "bikses-esmara-platam-sievietem-staram-velveta-86cc3dde16b4",
       "identityKey": "bikses esmara platam sievietem staram velveta|",
       "packageSize": ""
@@ -3046,6 +3117,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-8b7c9525.png",
       "canonicalProductId": "dzeramais-everest-gazets-udens-9e4d867a30ad",
       "identityKey": "dzeramais everest gazets udens|",
       "packageSize": ""
@@ -3136,6 +3208,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-0e011c41.png",
       "canonicalProductId": "cepumi-favorina-mandelu-miklas-smilsu-9d270e80a1fb",
       "identityKey": "cepumi favorina mandelu miklas smilsu|",
       "packageSize": ""
@@ -3190,6 +3263,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-b5b3e504.png",
       "canonicalProductId": "favorina-miksta-muzikala-rotallieta-02be3dc8afcb",
       "identityKey": "favorina miksta muzikala rotallieta|",
       "packageSize": ""
@@ -3208,6 +3282,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p27-ed7f1e38.png",
       "canonicalProductId": "favorina-miksta-muzikala-rotallieta-02be3dc8afcb",
       "identityKey": "favorina miksta muzikala rotallieta|",
       "packageSize": ""
@@ -3226,6 +3301,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-3eb8a680.jpg",
       "canonicalProductId": "favorina-mikstas-pildijumu-piparkukas-226b2d1988e0",
       "identityKey": "favorina mikstas pildijumu piparkukas|",
       "packageSize": ""
@@ -3244,6 +3320,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-51ed0233.jpg",
       "canonicalProductId": "favorina-mikstas-piparkukas-sokolade-353f73bb24ba",
       "identityKey": "favorina mikstas piparkukas sokolade|",
       "packageSize": ""
@@ -3280,6 +3357,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p26-d0c0dd30.jpg",
       "canonicalProductId": "bumbinas-favorina-piena-sokolades-189e90030426",
       "identityKey": "bumbinas favorina piena sokolades|",
       "packageSize": ""
@@ -3298,6 +3376,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-40052656.jpg",
       "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
       "identityKey": "favorina figurina piena sokolades|",
       "packageSize": ""
@@ -3316,6 +3395,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p25-6c2379a0.jpg",
       "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
       "identityKey": "favorina figurina piena sokolades|",
       "packageSize": ""
@@ -3334,6 +3414,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-8255bd24.jpg",
       "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
       "identityKey": "favorina figurina piena sokolades|",
       "packageSize": ""
@@ -3352,6 +3433,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p25-d04e08f6.jpg",
       "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
       "identityKey": "favorina figurina piena sokolades|",
       "packageSize": ""
@@ -3550,6 +3632,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-8a07cbd6.png",
       "canonicalProductId": "favorina-figurinas-sokolades-54bf86cc64ef",
       "identityKey": "favorina figurinas sokolades|",
       "packageSize": ""
@@ -3640,6 +3723,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p27-f0e51d39.jpg",
       "canonicalProductId": "asorti-favorina-konfeksu-zelejas-09f571fd7d4d",
       "identityKey": "asorti favorina konfeksu zelejas|",
       "packageSize": ""
@@ -3712,6 +3796,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-5ca51587.jpg",
       "canonicalProductId": "fileja-merci-skeles-vinegreta-a9335714d51e",
       "identityKey": "fileja merci skeles vinegreta|",
       "packageSize": ""
@@ -3748,6 +3833,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-902223fb.jpg",
       "canonicalProductId": "floralys-papirs-tualetes-ebe63f92fb81",
       "identityKey": "floralys papirs tualetes|",
       "packageSize": ""
@@ -3785,6 +3871,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-a1c11866.jpg",
       "canonicalProductId": "formil-lidzeklis-mazgasanas-universals-4ae66d8583ae",
       "identityKey": "formil lidzeklis mazgasanas universals|",
       "packageSize": ""
@@ -3857,6 +3944,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-96374dd2.jpg",
       "canonicalProductId": "gamavita-krekeri-230a0720b5a8",
       "identityKey": "gamavita krekeri|",
       "packageSize": ""
@@ -3875,6 +3963,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-ea4de494.jpg",
       "canonicalProductId": "gamavita-sausmaizites-017c0d7f9f8d",
       "identityKey": "gamavita sausmaizites|",
       "packageSize": ""
@@ -3893,6 +3982,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p7-9169b226.jpg",
       "canonicalProductId": "cepamdesinas-galas-2c2e699fc6cf",
       "identityKey": "cepamdesinas galas|",
       "packageSize": ""
@@ -3965,6 +4055,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-2b228954.png",
       "canonicalProductId": "hellmann-kecups-klasiskais-s-9cdb0601d009",
       "identityKey": "hellmann kecups klasiskais s|",
       "packageSize": ""
@@ -3983,6 +4074,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-6be635ee.jpg",
       "canonicalProductId": "hellmann-majoneze-s-e29d4ec67515",
       "identityKey": "hellmann majoneze s|",
       "packageSize": ""
@@ -4019,6 +4111,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-bbec5bef.jpg",
       "canonicalProductId": "d-gross-j-konfektes-sokolades-c629b20c98c1",
       "identityKey": "d gross j konfektes sokolades|",
       "packageSize": ""
@@ -4037,6 +4130,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-a4b676fc.jpg",
       "canonicalProductId": "d-gross-j-konfeksu-sokolades-f110b6a58725",
       "identityKey": "d gross j konfeksu sokolades|",
       "packageSize": ""
@@ -4055,6 +4149,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-670c6cf8.jpg",
       "canonicalProductId": "3in1-dzeriens-jacobs-kafijas-skistosas-aecaf26d2dbe",
       "identityKey": "3in1 dzeriens jacobs kafijas skistosas|",
       "packageSize": ""
@@ -4127,6 +4222,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p25-30d149d3.jpg",
       "canonicalProductId": "bez-jogurts-laktozes-f3ad32a363d2",
       "identityKey": "bez jogurts laktozes|",
       "packageSize": ""
@@ -4145,6 +4241,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-611c8d24.jpg",
       "canonicalProductId": "jerikas-roze-882fe5269190",
       "identityKey": "jerikas roze|",
       "packageSize": ""
@@ -4163,6 +4260,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-0ddb5de4.jpg",
       "canonicalProductId": "absorbetajs-k2r-krasu-8fd7ea69decb",
       "identityKey": "absorbetajs k2r krasu|",
       "packageSize": ""
@@ -4199,6 +4297,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p31-98307eb2.jpg",
       "canonicalProductId": "baltkaju-garneles-kaluri-ed0724f7c350",
       "identityKey": "baltkaju garneles kaluri|",
       "packageSize": ""
@@ -4235,6 +4334,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-e673e533.png",
       "canonicalProductId": "kania-kiploku-parslas-e5a4c84adfcc",
       "identityKey": "kania kiploku parslas|",
       "packageSize": ""
@@ -4271,6 +4371,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d85fb21b.jpg",
       "canonicalProductId": "keramikas-pukupods-80eaf9b3b98c",
       "identityKey": "keramikas pukupods|",
       "packageSize": ""
@@ -4289,6 +4390,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-d77eafc9.jpg",
       "canonicalProductId": "cala-kikas-rullitis-siera-5071b48ca4ce",
       "identityKey": "cala kikas rullitis siera|",
       "packageSize": ""
@@ -4472,6 +4574,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p28-976dcd3e.jpg",
       "canonicalProductId": "kartainas-maizite-miklas-virtuli-fb9830fe209f",
       "identityKey": "kartainas maizite miklas virtuli|",
       "packageSize": ""
@@ -4509,6 +4612,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-7dd8caa1.jpg",
       "canonicalProductId": "l-oreal-sampuns-bdc2ab135172",
       "identityKey": "l oreal sampuns|",
       "packageSize": ""
@@ -4527,6 +4631,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-3fb74c2f.jpg",
       "canonicalProductId": "kafija-lavazza-malta-3157e8c3927b",
       "identityKey": "kafija lavazza malta|",
       "packageSize": ""
@@ -4581,6 +4686,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-32e79883.jpg",
       "canonicalProductId": "granulas-lenor-smarzu-a138d3efb75e",
       "identityKey": "granulas lenor smarzu|",
       "packageSize": ""
@@ -4599,6 +4705,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-4c4f319e.jpg",
       "canonicalProductId": "lenor-mikstinatajs-velas-295a0947b70d",
       "identityKey": "lenor mikstinatajs velas|",
       "packageSize": ""
@@ -4671,6 +4778,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-61482869.png",
       "canonicalProductId": "bio-dzeriens-gazets-kombuca-litrs-sun365-traditional-9a12f3d9c998",
       "identityKey": "bio dzeriens gazets kombuca litrs sun365 traditional|",
       "packageSize": ""
@@ -4689,6 +4797,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-41418b6d.jpg",
       "canonicalProductId": "galdauts-livarno-d25267e55085",
       "identityKey": "galdauts livarno|",
       "packageSize": ""
@@ -4942,6 +5051,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-a73079fd.jpg",
       "canonicalProductId": "automobilis-lupilu-rotalu-stumjams-supulzirdzins-0177ffaab5e5",
       "identityKey": "automobilis lupilu rotalu stumjams supulzirdzins|",
       "packageSize": ""
@@ -4997,6 +5107,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-db6698c3.jpg",
       "canonicalProductId": "garsvielu-maggi-maisijums-2434ca13819a",
       "identityKey": "garsvielu maggi maisijums|",
       "packageSize": ""
@@ -5033,6 +5144,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-84cebf13.jpg",
       "canonicalProductId": "mamma-pankukas-24b1b63b2548",
       "identityKey": "mamma pankukas|",
       "packageSize": ""
@@ -5051,6 +5163,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-47ddbcf9.jpg",
       "canonicalProductId": "mango-mikstas-skelites-652e8271e966",
       "identityKey": "mango mikstas skelites|",
       "packageSize": ""
@@ -5124,6 +5237,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-c7cb6ca7.jpg",
       "canonicalProductId": "kafijas-merrild-pupinas-4c12012f602c",
       "identityKey": "kafijas merrild pupinas|",
       "packageSize": ""
@@ -5142,6 +5256,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-1057bfed.jpg",
       "canonicalProductId": "milbona-piena-65d0412798fa",
       "identityKey": "milbona piena|",
       "packageSize": ""
@@ -5160,6 +5275,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d4ea7046.png",
       "canonicalProductId": "eglite-mini-ziemassvetku-65ad10abe186",
       "identityKey": "eglite mini ziemassvetku|",
       "packageSize": ""
@@ -5232,6 +5348,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-d27c5b42.jpg",
       "canonicalProductId": "kafija-nescafe-skistosa-1c3cdf85718e",
       "identityKey": "kafija nescafe skistosa|",
       "packageSize": ""
@@ -5269,6 +5386,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-a67841fb.png",
       "canonicalProductId": "desa-noo-puszaveta-skeles-44839f409349",
       "identityKey": "desa noo puszaveta skeles|",
       "packageSize": ""
@@ -5397,6 +5515,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p11-cf1a5cbd.jpg",
       "canonicalProductId": "jogurta-jogurts-pilos-sierins-c3cb557f23a8",
       "identityKey": "jogurta jogurts pilos sierins|",
       "packageSize": ""
@@ -5415,6 +5534,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-fddddf62.jpg",
       "canonicalProductId": "piens-pilos-2d2aa0462c93",
       "identityKey": "piens pilos|",
       "packageSize": ""
@@ -5489,6 +5609,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p0-fa30749d.png",
       "canonicalProductId": "2-3-piens-pilos-ultrapasterizets-e2f5860b8a3a",
       "identityKey": "2 3 piens pilos ultrapasterizets|",
       "packageSize": ""
@@ -5525,6 +5646,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-460fa2d0.png",
       "canonicalProductId": "mini-puansetija-29c254ec8c62",
       "identityKey": "mini puansetija|",
       "packageSize": ""
@@ -5543,6 +5665,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-c61302a6.png",
       "canonicalProductId": "krums-puansetijas-puskis-1a0fe5751107",
       "identityKey": "krums puansetijas puskis|",
       "packageSize": ""
@@ -5561,6 +5684,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-900be3dd.jpg",
       "canonicalProductId": "livarno-paklajs-pari-9fd9af7c5701",
       "identityKey": "livarno paklajs pari|",
       "packageSize": ""
@@ -5579,6 +5703,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-82588752.jpg",
       "canonicalProductId": "flisa-oderi-pari-paris-zekes-e8c6e3540b3c",
       "identityKey": "flisa oderi pari paris zekes|",
       "packageSize": ""
@@ -5616,6 +5741,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-98caea3e.jpg",
       "canonicalProductId": "dzeramais-puru-f48d9010258a",
       "identityKey": "dzeramais puru|",
       "packageSize": ""
@@ -5634,6 +5760,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-189edec2.jpg",
       "canonicalProductId": "dzeriens-gazets-rasa-2d3cf0cca16e",
       "identityKey": "dzeriens gazets rasa|",
       "packageSize": ""
@@ -5652,6 +5779,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p34-ae13d48e.jpg",
       "canonicalProductId": "puzle-ravensburger-4a9ce96714bb",
       "identityKey": "puzle ravensburger|",
       "packageSize": ""
@@ -5688,6 +5816,7 @@
       "validFrom": "2026-11-09",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-fec3b10e.jpg",
       "canonicalProductId": "pagatavosanai-risotto-a14578132bb5",
       "identityKey": "pagatavosanai risotto|",
       "packageSize": ""
@@ -5760,6 +5889,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-c0e55e44.jpg",
       "canonicalProductId": "karameli-saleks-vafeles-0f812fbf9fa8",
       "identityKey": "karameli saleks vafeles|",
       "packageSize": ""
@@ -5797,6 +5927,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-dc81919f.jpg",
       "canonicalProductId": "kiplokiem-salati-shef-d6f2f8e14fcd",
       "identityKey": "kiplokiem salati shef|",
       "packageSize": ""
@@ -5834,6 +5965,7 @@
       "validUntil": "2026-11-29",
       "store": "lidl",
       "cardName": "Lidl Plus",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-bcd4558d.jpg",
       "canonicalProductId": "solevita-sula-192657b372b7",
       "identityKey": "solevita sula|",
       "packageSize": ""
@@ -5852,6 +5984,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-1e4c03c1.jpg",
       "canonicalProductId": "masinas-mazgajamas-somat-tabletes-tirisanas-trauku-fe742046719d",
       "identityKey": "masinas mazgajamas somat tabletes tirisanas trauku|",
       "packageSize": ""
@@ -5889,6 +6022,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p35-e8789669.jpg",
       "canonicalProductId": "galda-komplekts-speles-spelu-trefl-732c204a7e1a",
       "identityKey": "galda komplekts speles spelu trefl|",
       "packageSize": ""
@@ -5943,6 +6077,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p36-06adf97a.jpg",
       "canonicalProductId": "1-9-in-komplekts-puzlu-trefl-ddf69127ab57",
       "identityKey": "1 9 in komplekts puzlu trefl|",
       "packageSize": ""
@@ -5961,6 +6096,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p18-79f3e9d2.jpg",
       "canonicalProductId": "c-meteorologiska-stacija-tronic-753905013fd7",
       "identityKey": "c meteorologiska stacija tronic|",
       "packageSize": ""
@@ -6033,6 +6169,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-d57ceffe.jpg",
       "canonicalProductId": "cukini-salatu-vinogu-b4a34cc15fa0",
       "identityKey": "cukini salatu vinogu|",
       "packageSize": ""
@@ -6069,6 +6206,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-ef81d3ca.jpg",
       "canonicalProductId": "2x-berniem-zekes-c0f72bc30f6c",
       "identityKey": "2x berniem zekes|",
       "packageSize": ""
@@ -6087,6 +6225,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-75b35e0b.jpg",
       "canonicalProductId": "3x-sievietem-viriesiem-zekes-e87a152b6c77",
       "identityKey": "3x sievietem viriesiem zekes|",
       "packageSize": ""
@@ -6105,6 +6244,7 @@
       "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-rotallietas-2026-p50-62b2ab4b.jpg",
       "canonicalProductId": "alive-interaktiva-parsteigums-pets-rotallie-ta-zuru-0ccf6129f97f",
       "identityKey": "alive interaktiva parsteigums pets rotallie ta zuru|",
       "packageSize": ""
@@ -6123,6 +6263,7 @@
       "validFrom": "2026-11-23",
       "validUntil": "2026-11-29",
       "store": "lidl",
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-3df4fa88.png",
       "canonicalProductId": "baltie-sampinjoni-07cb6d187fda",
       "identityKey": "baltie sampinjoni|",
       "packageSize": ""
@@ -6250,7 +6391,7 @@
         "2x ESMARA Brilles lasīšanai"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p7-a1542f9f.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p7-a1542f9f",
@@ -6266,6 +6407,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p7-a1542f9f.jpg",
           "canonicalProductId": "2x-brilles-esmara-lasisanai-3f3a86bad7db",
           "identityKey": "2x brilles esmara lasisanai|",
           "packageSize": ""
@@ -6328,7 +6470,7 @@
         "A B C LEXIBOOK Walkie Talkies Rācijas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p23-0f9562aa.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p23-0f9562aa",
@@ -6344,6 +6486,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p23-0f9562aa.jpg",
           "canonicalProductId": "a-b-c-lexibook-racijas-talkies-walkie-1b1c7a26dfae",
           "identityKey": "a b c lexibook racijas talkies walkie|",
           "packageSize": ""
@@ -6362,6 +6505,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p5-87ac7f29.jpg",
           "canonicalProductId": "a-b-c-lexibook-racijas-talkies-walkie-1b1c7a26dfae",
           "identityKey": "a b c lexibook racijas talkies walkie|",
           "packageSize": ""
@@ -6483,7 +6627,7 @@
         "A B Gultas veļa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p19-e97925d4.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p19-e97925d4",
@@ -6499,6 +6643,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p19-e97925d4.jpg",
           "canonicalProductId": "a-b-gultas-vela-53ecab891218",
           "identityKey": "a b gultas vela|",
           "packageSize": ""
@@ -6678,7 +6823,7 @@
         "AKVILE Dabīgais minerālūdens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-7da96646.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-7da96646",
@@ -6695,6 +6840,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-7da96646.jpg",
           "canonicalProductId": "akvile-dabigais-mineraludens-bb28b12aece2",
           "identityKey": "akvile dabigais mineraludens|",
           "packageSize": ""
@@ -6758,7 +6904,7 @@
         "ALESTO Žāvētas dateles"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-8870e73d.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-8870e73d",
@@ -6774,6 +6920,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-8870e73d.jpg",
           "canonicalProductId": "alesto-dateles-zavetas-1c8b91e89f0e",
           "identityKey": "alesto dateles zavetas|",
           "packageSize": ""
@@ -6797,7 +6944,7 @@
         "ALOE Alvejas dzēriens Original"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-ee989c5e.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-ee989c5e",
@@ -6813,6 +6960,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-ee989c5e.png",
           "canonicalProductId": "aloe-alvejas-dzeriens-original-ac30db6710bc",
           "identityKey": "aloe alvejas dzeriens original|",
           "packageSize": ""
@@ -6875,7 +7023,7 @@
         "B C CRELANDO Akrila krāsas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p30-381eed66.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p30-381eed66",
@@ -6891,6 +7039,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p30-381eed66.jpg",
           "canonicalProductId": "akrila-b-c-crelando-krasas-27980989bc6f",
           "identityKey": "akrila b c crelando krasas|",
           "packageSize": ""
@@ -6953,7 +7102,7 @@
         "B daļas sievietēm vīriešiem"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p15-72bebb37.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p15-72bebb37",
@@ -6969,6 +7118,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p15-72bebb37.jpg",
           "canonicalProductId": "b-dalas-sievietem-viriesiem-3d9d48a180f3",
           "identityKey": "b dalas sievietem viriesiem|",
           "packageSize": ""
@@ -7070,7 +7220,7 @@
         "Bambusa ķemme"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p13-ee99ef9d.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p13-ee99ef9d",
@@ -7086,6 +7236,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p13-ee99ef9d.jpg",
           "canonicalProductId": "bambusa-kemme-01bb87d27bbe",
           "identityKey": "bambusa kemme|",
           "packageSize": ""
@@ -7109,7 +7260,7 @@
         "BARONI Auksti kūpināta pavēdere"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-630b22c1.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-630b22c1",
@@ -7126,6 +7277,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-630b22c1.png",
           "canonicalProductId": "auksti-baroni-kupinata-pavedere-dface7c0aa2a",
           "identityKey": "auksti baroni kupinata pavedere|",
           "packageSize": ""
@@ -7149,7 +7301,7 @@
         "BAUSKA Cāļa gaļas desa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-93ef7a4f.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-93ef7a4f",
@@ -7165,6 +7317,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-93ef7a4f.png",
           "canonicalProductId": "bauska-cala-desa-galas-7b59109294aa",
           "identityKey": "bauska cala desa galas|",
           "packageSize": ""
@@ -7303,7 +7456,7 @@
         "BELBAKE Cukura glazūras"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-6ec289b0.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-6ec289b0",
@@ -7319,6 +7472,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-6ec289b0.jpg",
           "canonicalProductId": "belbake-cukura-glazuras-36b2403f547a",
           "identityKey": "belbake cukura glazuras|",
           "packageSize": ""
@@ -7381,7 +7535,7 @@
         "BELBAKE Garšvielu maisījums piparkūkām"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-091bad7d.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-091bad7d",
@@ -7397,6 +7551,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-091bad7d.jpg",
           "canonicalProductId": "belbake-garsvielu-maisijums-piparkukam-8fc3a8b5fdc2",
           "identityKey": "belbake garsvielu maisijums piparkukam|",
           "packageSize": ""
@@ -7517,7 +7672,7 @@
         "BELBAKE Kalifornijas mandeles"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-017b099b.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-017b099b",
@@ -7533,6 +7688,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-017b099b.jpg",
           "canonicalProductId": "belbake-kalifornijas-mandeles-3825c54974e2",
           "identityKey": "belbake kalifornijas mandeles|",
           "packageSize": ""
@@ -7595,7 +7751,7 @@
         "BELBAKE Konditorejas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-55deebe4.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-55deebe4",
@@ -7611,6 +7767,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-55deebe4.jpg",
           "canonicalProductId": "belbake-konditorejas-cd4c9a9f6466",
           "identityKey": "belbake konditorejas|",
           "packageSize": ""
@@ -7634,7 +7791,7 @@
         "BELBAKE Konditorejas dekori"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p26-db5916ee.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p26-db5916ee",
@@ -7650,6 +7807,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p26-db5916ee.jpg",
           "canonicalProductId": "belbake-dekori-konditorejas-9d26c337277e",
           "identityKey": "belbake dekori konditorejas|",
           "packageSize": ""
@@ -7673,7 +7831,7 @@
         "BELBAKE Maisījums cepumu pagatavošanai"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p28-1afaf160.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p28-1afaf160",
@@ -7689,6 +7847,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p28-1afaf160.jpg",
           "canonicalProductId": "belbake-cepumu-maisijums-pagatavosanai-e255cf5ec517",
           "identityKey": "belbake cepumu maisijums pagatavosanai|",
           "packageSize": ""
@@ -7712,7 +7871,7 @@
         "BELBAKE Maisījums šokolādes kūkas pagatavošanai"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-ae569b07.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-ae569b07",
@@ -7728,6 +7887,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-ae569b07.jpg",
           "canonicalProductId": "belbake-kukas-maisijums-pagatavosanai-sokolades-e7749a4a3ea9",
           "identityKey": "belbake kukas maisijums pagatavosanai sokolades|",
           "packageSize": ""
@@ -7751,7 +7911,7 @@
         "BELBAKE Maltas mandeles mandeļu skaidiņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-6ede531b.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p27-6ede531b",
@@ -7767,6 +7927,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-6ede531b.jpg",
           "canonicalProductId": "belbake-maltas-mandeles-mandelu-skaidinas-770add7423ef",
           "identityKey": "belbake maltas mandeles mandelu skaidinas|",
           "packageSize": ""
@@ -7790,7 +7951,7 @@
         "BELBAKE Mandeļu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-5f80bced.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-5f80bced",
@@ -7806,6 +7967,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-5f80bced.jpg",
           "canonicalProductId": "belbake-mandelu-73aa43fbeca0",
           "identityKey": "belbake mandelu|",
           "packageSize": ""
@@ -7829,7 +7991,7 @@
         "BELBAKE Mīkstās karameles gabaliņi sāli"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-d4f3c90b.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-d4f3c90b",
@@ -7845,6 +8007,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-d4f3c90b.jpg",
           "canonicalProductId": "belbake-gabalini-karameles-mikstas-sali-f34f94c22d2a",
           "identityKey": "belbake gabalini karameles mikstas sali|",
           "packageSize": ""
@@ -7907,7 +8070,7 @@
         "BELBAKE Zvaigžņu anīss"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-12382f9a.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-12382f9a",
@@ -7923,6 +8086,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p21-12382f9a.jpg",
           "canonicalProductId": "aniss-belbake-zvaigznu-954d15960b65",
           "identityKey": "aniss belbake zvaigznu|",
           "packageSize": ""
@@ -7946,7 +8110,7 @@
         "BELBAKE Šokolādes gabaliņi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-49777e4b.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p22-50af744d",
@@ -7980,6 +8144,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p27-49777e4b.jpg",
           "canonicalProductId": "belbake-gabalini-sokolades-e92843964c22",
           "identityKey": "belbake gabalini sokolades|",
           "packageSize": ""
@@ -8004,7 +8169,7 @@
         "BELLAROM Kafijas garšviela"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-34b149e9.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p18-34b149e9",
@@ -8020,6 +8185,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-34b149e9.jpg",
           "canonicalProductId": "bellarom-garsviela-kafijas-85c39ded0983",
           "identityKey": "bellarom garsviela kafijas|",
           "packageSize": ""
@@ -8161,7 +8327,7 @@
         "Bumbieri conference"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-b8ea766d.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-b8ea766d",
@@ -8177,6 +8343,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-b8ea766d.jpg",
           "canonicalProductId": "bumbieri-conference-4a9fa7d2450a",
           "identityKey": "bumbieri conference|",
           "packageSize": ""
@@ -8239,7 +8406,7 @@
         "CAPPY Apelsīnu nektārs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-e508ff5a.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-e508ff5a",
@@ -8255,6 +8422,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-e508ff5a.jpg",
           "canonicalProductId": "apelsinu-cappy-nektars-c75edf0392b0",
           "identityKey": "apelsinu cappy nektars|",
           "packageSize": ""
@@ -8278,7 +8446,7 @@
         "CASDON Dyson Rotaļu putekļsūcējs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p22-d55956a7.png",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p22-d55956a7",
@@ -8294,6 +8462,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p22-d55956a7.png",
           "canonicalProductId": "casdon-dyson-puteklsucejs-rotalu-95aef22463e1",
           "identityKey": "casdon dyson puteklsucejs rotalu|",
           "packageSize": ""
@@ -8312,6 +8481,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p4-ee58d16e.jpg",
           "canonicalProductId": "casdon-dyson-puteklsucejs-rotalu-95aef22463e1",
           "identityKey": "casdon dyson puteklsucejs rotalu|",
           "packageSize": ""
@@ -8415,7 +8585,7 @@
         "COMBINO Ziemassvētku"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p22-95131c5f.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p22-95131c5f",
@@ -8431,6 +8601,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p22-95131c5f.jpg",
           "canonicalProductId": "combino-ziemassvetku-bd50b848a48f",
           "identityKey": "combino ziemassvetku|",
           "packageSize": ""
@@ -8454,7 +8625,7 @@
         "COMBINO Ziemassvētku makaroni"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-c80df707.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-c80df707",
@@ -8470,6 +8641,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-c80df707.jpg",
           "canonicalProductId": "combino-makaroni-ziemassvetku-7ec2449bf2a1",
           "identityKey": "combino makaroni ziemassvetku|",
           "packageSize": ""
@@ -8493,7 +8665,7 @@
         "CRIVIT Ziemas zābaki sievietēm Pāris"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-ce641837.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-ce641837",
@@ -8509,6 +8681,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-ce641837.jpg",
           "canonicalProductId": "crivit-paris-sievietem-zabaki-ziemas-950c80a91124",
           "identityKey": "crivit paris sievietem zabaki ziemas|",
           "packageSize": ""
@@ -8571,7 +8744,7 @@
         "Cukuroti ingvera gabaliņi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-604a5916.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-604a5916",
@@ -8587,6 +8760,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-604a5916.jpg",
           "canonicalProductId": "cukuroti-gabalini-ingvera-506dd867f9d4",
           "identityKey": "cukuroti gabalini ingvera|",
           "packageSize": ""
@@ -8649,7 +8823,7 @@
         "Dateles Medjool"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-d29a6523.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-d29a6523",
@@ -8665,6 +8839,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p29-d29a6523.jpg",
           "canonicalProductId": "dateles-medjool-541e053b909e",
           "identityKey": "dateles medjool|",
           "packageSize": ""
@@ -8688,7 +8863,7 @@
         "daļas 6/7 LUPILU Attīstošā puzle koka"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p11-9fd4569b.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p11-9fd4569b",
@@ -8704,6 +8879,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p11-9fd4569b.jpg",
           "canonicalProductId": "6-7-attistosa-dalas-koka-lupilu-puzle-41645e1c6cae",
           "identityKey": "6 7 attistosa dalas koka lupilu puzle|",
           "packageSize": ""
@@ -8766,7 +8942,7 @@
         "daļas Montessori LUPILU Attīstošā puzle koka"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-22e69b44.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-22e69b44",
@@ -8782,6 +8958,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-22e69b44.jpg",
           "canonicalProductId": "attistosa-dalas-koka-lupilu-montessori-puzle-84d35f96b2dc",
           "identityKey": "attistosa dalas koka lupilu montessori puzle|",
           "packageSize": ""
@@ -8884,7 +9061,7 @@
         "DELUXE Augstākā labuma olīveļļa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-7ee76c5a.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p16-35f2cf04",
@@ -8919,6 +9096,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-7ee76c5a.jpg",
           "canonicalProductId": "augstaka-deluxe-labuma-olivella-b07d1ba3bf3d",
           "identityKey": "augstaka deluxe labuma olivella|",
           "packageSize": ""
@@ -8981,7 +9159,7 @@
         "DELUXE Auksti kūpināta Atlantija laša fileja"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-7b5f70b4.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-7b5f70b4",
@@ -8997,6 +9175,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-7b5f70b4.jpg",
           "canonicalProductId": "atlantija-auksti-deluxe-fileja-kupinata-lasa-2b73a7e4778b",
           "identityKey": "atlantija auksti deluxe fileja kupinata lasa|",
           "packageSize": ""
@@ -9020,7 +9199,7 @@
         "DELUXE Avokado eļļa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-9afd2b3e.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p16-9afd2b3e",
@@ -9036,6 +9215,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-9afd2b3e.png",
           "canonicalProductId": "avokado-deluxe-ella-9d2bb8999e69",
           "identityKey": "avokado deluxe ella|",
           "packageSize": ""
@@ -9215,7 +9395,7 @@
         "DELUXE Cūkgaļas salami"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p21-ae3393cb.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-33bd91b2",
@@ -9249,6 +9429,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p21-ae3393cb.jpg",
           "canonicalProductId": "cukgalas-deluxe-salami-b09085f97f1c",
           "identityKey": "cukgalas deluxe salami|",
           "packageSize": ""
@@ -9273,7 +9454,7 @@
         "DELUXE Cūkgaļas uzkodu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-a025d7fb.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-a025d7fb",
@@ -9289,6 +9470,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-a025d7fb.jpg",
           "canonicalProductId": "cukgalas-deluxe-uzkodu-793eff5d246e",
           "identityKey": "cukgalas deluxe uzkodu|",
           "packageSize": ""
@@ -9312,7 +9494,7 @@
         "DELUXE Cūku aknu pastēte karamelizētiem sīpoliem"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-2038dcff.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-2038dcff",
@@ -9328,6 +9510,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-2038dcff.jpg",
           "canonicalProductId": "aknu-cuku-deluxe-karamelizetiem-pastete-sipoliem-728a728ed3ff",
           "identityKey": "aknu cuku deluxe karamelizetiem pastete sipoliem|",
           "packageSize": ""
@@ -9409,7 +9592,7 @@
         "DELUXE Deserts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-cbc2faf0.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p38-3a32ef43",
@@ -9443,6 +9626,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-cbc2faf0.jpg",
           "canonicalProductId": "deluxe-deserts-85659047bc92",
           "identityKey": "deluxe deserts|",
           "packageSize": ""
@@ -9505,7 +9689,7 @@
         "DELUXE Eļļa piedevām"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-66f3e5b9.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p16-66f3e5b9",
@@ -9521,6 +9705,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-66f3e5b9.png",
           "canonicalProductId": "deluxe-ella-piedevam-287b3fae46ec",
           "identityKey": "deluxe ella piedevam|",
           "packageSize": ""
@@ -9544,7 +9729,7 @@
         "DELUXE Eļļā marinēts astoņkāja karpačo"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p30-169bf268.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p30-169bf268",
@@ -9560,6 +9745,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p30-169bf268.jpg",
           "canonicalProductId": "astonkaja-deluxe-ella-karpaco-marinets-699a1ecdd8dd",
           "identityKey": "astonkaja deluxe ella karpaco marinets|",
           "packageSize": ""
@@ -9622,7 +9808,7 @@
         "DELUXE Gaļas uzkodu asorti"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p36-aeb4d563.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p36-aeb4d563",
@@ -9638,6 +9824,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p36-aeb4d563.jpg",
           "canonicalProductId": "asorti-deluxe-galas-uzkodu-2062fb8d354d",
           "identityKey": "asorti deluxe galas uzkodu|",
           "packageSize": ""
@@ -9700,7 +9887,7 @@
         "DELUXE Grauzdētas mandeles"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-6a84bb28.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p24-6a84bb28",
@@ -9716,6 +9903,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p24-6a84bb28.jpg",
           "canonicalProductId": "deluxe-grauzdetas-mandeles-fe5c76582545",
           "identityKey": "deluxe grauzdetas mandeles|",
           "packageSize": ""
@@ -9757,7 +9945,7 @@
         "DELUXE Himalaju sāls dzirnaviņās"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-a896e051.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p16-a896e051",
@@ -9773,6 +9961,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-a896e051.jpg",
           "canonicalProductId": "deluxe-dzirnavinas-himalaju-sals-7305603cd6d7",
           "identityKey": "deluxe dzirnavinas himalaju sals|",
           "packageSize": ""
@@ -9874,7 +10063,7 @@
         "DELUXE Kartupeļu klimpas Gnocchi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-43cbf269.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p13-43cbf269",
@@ -9890,6 +10079,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-43cbf269.jpg",
           "canonicalProductId": "deluxe-gnocchi-kartupelu-klimpas-33d413906461",
           "identityKey": "deluxe gnocchi kartupelu klimpas|",
           "packageSize": ""
@@ -9913,7 +10103,7 @@
         "DELUXE Konfektes riekstu šokolādi pistācijām"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-f747ee59.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p32-f747ee59",
@@ -9929,6 +10119,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-f747ee59.jpg",
           "canonicalProductId": "deluxe-konfektes-pistacijam-riekstu-sokoladi-b11911c5d332",
           "identityKey": "deluxe konfektes pistacijam riekstu sokoladi|",
           "packageSize": ""
@@ -9952,7 +10143,7 @@
         "DELUXE Kārtainais deserts Mascarpone sieru"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p33-f959cb3a.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p33-f959cb3a",
@@ -9968,6 +10159,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p33-f959cb3a.jpg",
           "canonicalProductId": "deluxe-deserts-kartainais-mascarpone-sieru-8110284f6712",
           "identityKey": "deluxe deserts kartainais mascarpone sieru|",
           "packageSize": ""
@@ -9991,7 +10183,7 @@
         "DELUXE Kārtainās sviesta mīklas groziņi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-fd3b4aa5.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p14-fd3b4aa5",
@@ -10007,6 +10199,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-fd3b4aa5.jpg",
           "canonicalProductId": "deluxe-grozini-kartainas-miklas-sviesta-ced592c7eb44",
           "identityKey": "deluxe grozini kartainas miklas sviesta|",
           "packageSize": ""
@@ -10069,7 +10262,7 @@
         "DELUXE Maizes standziņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-b416ee45.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p14-b416ee45",
@@ -10085,6 +10278,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-b416ee45.jpg",
           "canonicalProductId": "deluxe-maizes-standzinas-12182d2c6311",
           "identityKey": "deluxe maizes standzinas|",
           "packageSize": ""
@@ -10108,7 +10302,7 @@
         "DELUXE Makaroni"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-7703941d.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p13-7703941d",
@@ -10124,6 +10318,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-7703941d.jpg",
           "canonicalProductId": "deluxe-makaroni-94eb8bbb7585",
           "identityKey": "deluxe makaroni|",
           "packageSize": ""
@@ -10186,7 +10381,7 @@
         "DELUXE Mini Kēkss Panettone bumbieru sukādēm"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p4-84985b3c.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p4-84985b3c",
@@ -10202,6 +10397,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p4-84985b3c.jpg",
           "canonicalProductId": "bumbieru-deluxe-kekss-mini-panettone-sukadem-74c6247feaf1",
           "identityKey": "bumbieru deluxe kekss mini panettone sukadem|",
           "packageSize": ""
@@ -10225,7 +10421,7 @@
         "DELUXE Mīklas maizītes pistāciju krēmu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-158438b3.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-158438b3",
@@ -10241,6 +10437,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-158438b3.jpg",
           "canonicalProductId": "deluxe-kremu-maizites-miklas-pistaciju-736159294ec7",
           "identityKey": "deluxe kremu maizites miklas pistaciju|",
           "packageSize": ""
@@ -10438,7 +10635,7 @@
         "DELUXE Panettone Kēkss"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p6-d439ec9c.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p6-d439ec9c",
@@ -10454,6 +10651,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p6-d439ec9c.jpg",
           "canonicalProductId": "deluxe-kekss-panettone-a811acace00a",
           "identityKey": "deluxe kekss panettone|",
           "packageSize": ""
@@ -10594,7 +10792,7 @@
         "DELUXE Panzerotti garnelēm garneļu/ vēžveidīgo pildījumu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p37-cdaf8ea2.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p37-cdaf8ea2",
@@ -10610,6 +10808,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p37-cdaf8ea2.jpg",
           "canonicalProductId": "deluxe-garnelem-garnelu-panzerotti-pildijumu-vezveidig-9b25e7ef4d0f",
           "identityKey": "deluxe garnelem garnelu panzerotti pildijumu vezveidigo|",
           "packageSize": ""
@@ -10789,7 +10988,7 @@
         "DELUXE Pistāciju saldējums"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-4891cf14.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p23-ab8a9404",
@@ -10823,6 +11022,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-4891cf14.jpg",
           "canonicalProductId": "deluxe-pistaciju-saldejums-91edf3ec78bd",
           "identityKey": "deluxe pistaciju saldejums|",
           "packageSize": ""
@@ -10886,7 +11086,7 @@
         "DELUXE Rieksti šokolādē"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-f492370b.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p18-f492370b",
@@ -10902,6 +11102,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p18-f492370b.jpg",
           "canonicalProductId": "deluxe-rieksti-sokolade-9f5a08a32213",
           "identityKey": "deluxe rieksti sokolade|",
           "packageSize": ""
@@ -10925,7 +11126,7 @@
         "DELUXE Salami"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-6b748bb3.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-6b748bb3",
@@ -10941,6 +11142,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-6b748bb3.jpg",
           "canonicalProductId": "deluxe-salami-f5efb776c968",
           "identityKey": "deluxe salami|",
           "packageSize": ""
@@ -11001,7 +11203,7 @@
         "DELUXE Saldējuma deserts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p38-8c842f66.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p38-8c842f66",
@@ -11017,6 +11219,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p38-8c842f66.jpg",
           "canonicalProductId": "deluxe-deserts-saldejuma-4b8afacbc413",
           "identityKey": "deluxe deserts saldejuma|",
           "packageSize": ""
@@ -11197,7 +11400,7 @@
         "DELUXE Sīpolu gredzeni"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-d8494670.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-d8494670",
@@ -11213,6 +11416,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p19-d8494670.jpg",
           "canonicalProductId": "deluxe-gredzeni-sipolu-709aaea67712",
           "identityKey": "deluxe gredzeni sipolu|",
           "packageSize": ""
@@ -11314,7 +11518,7 @@
         "DELUXE Tomātu mērce"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-5bb2773b.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p14-5bb2773b",
@@ -11330,6 +11534,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-5bb2773b.png",
           "canonicalProductId": "deluxe-merce-tomatu-d2a8b5b162c6",
           "identityKey": "deluxe merce tomatu|",
           "packageSize": ""
@@ -11353,7 +11558,7 @@
         "DELUXE Trifeļu majonēze"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-bbcb90da.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p14-bbcb90da",
@@ -11369,6 +11574,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-bbcb90da.png",
           "canonicalProductId": "deluxe-majoneze-trifelu-d4e2b2e60377",
           "identityKey": "deluxe majoneze trifelu|",
           "packageSize": ""
@@ -11470,7 +11676,7 @@
         "DELUXE Uzkodu grauzdiņi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-94145429.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p14-94145429",
@@ -11486,6 +11692,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p14-94145429.jpg",
           "canonicalProductId": "deluxe-grauzdini-uzkodu-f3e05802ee80",
           "identityKey": "deluxe grauzdini uzkodu|",
           "packageSize": ""
@@ -11704,7 +11911,7 @@
         "DELUXE Čatnijs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p15-3a54840d.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p15-3a54840d",
@@ -11720,6 +11927,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p15-3a54840d.png",
           "canonicalProductId": "catnijs-deluxe-66db54001038",
           "identityKey": "catnijs deluxe|",
           "packageSize": ""
@@ -11821,7 +12029,7 @@
         "DELUXE Šokolādes suflē pildījumu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-d99cda2e.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-d99cda2e",
@@ -11837,6 +12045,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-d99cda2e.jpg",
           "canonicalProductId": "deluxe-pildijumu-sokolades-sufle-b0f22bef612b",
           "identityKey": "deluxe pildijumu sokolades sufle|",
           "packageSize": ""
@@ -11860,7 +12069,7 @@
         "DELUXE Štīrijas ķirbju sēklu eļļa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-ac521216.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p16-ac521216",
@@ -11876,6 +12085,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p16-ac521216.png",
           "canonicalProductId": "deluxe-ella-kirbju-seklu-stirijas-1c89b4492c70",
           "identityKey": "deluxe ella kirbju seklu stirijas|",
           "packageSize": ""
@@ -12057,7 +12267,7 @@
         "DULANO Salami šķēlēs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p8-ab2e55db.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p8-ab2e55db",
@@ -12073,6 +12283,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p8-ab2e55db.png",
           "canonicalProductId": "dulano-salami-skeles-703732ff1aaa",
           "identityKey": "dulano salami skeles|",
           "packageSize": ""
@@ -12213,7 +12424,7 @@
         "ESMARA Velveta bikses platām starām sievietēm"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-acf2ba0b.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-acf2ba0b",
@@ -12229,6 +12440,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p8-acf2ba0b.jpg",
           "canonicalProductId": "bikses-esmara-platam-sievietem-staram-velveta-86cc3dde16b4",
           "identityKey": "bikses esmara platam sievietem staram velveta|",
           "packageSize": ""
@@ -12291,7 +12503,7 @@
         "EVEREST Gāzēts dzeramais ūdens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-8b7c9525.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-8b7c9525",
@@ -12307,6 +12519,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-8b7c9525.png",
           "canonicalProductId": "dzeramais-everest-gazets-udens-9e4d867a30ad",
           "identityKey": "dzeramais everest gazets udens|",
           "packageSize": ""
@@ -12486,7 +12699,7 @@
         "FAVORINA Mandeļu-smilšu mīklas cepumi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-0e011c41.png",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p41-0e011c41",
@@ -12502,6 +12715,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-0e011c41.png",
           "canonicalProductId": "cepumi-favorina-mandelu-miklas-smilsu-9d270e80a1fb",
           "identityKey": "cepumi favorina mandelu miklas smilsu|",
           "packageSize": ""
@@ -12603,7 +12817,7 @@
         "FAVORINA Muzikāla mīkstā rotaļlieta"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-b5b3e504.png",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p27-ed7f1e38",
@@ -12619,6 +12833,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p27-ed7f1e38.png",
           "canonicalProductId": "favorina-miksta-muzikala-rotallieta-02be3dc8afcb",
           "identityKey": "favorina miksta muzikala rotallieta|",
           "packageSize": ""
@@ -12637,6 +12852,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p41-b5b3e504.png",
           "canonicalProductId": "favorina-miksta-muzikala-rotallieta-02be3dc8afcb",
           "identityKey": "favorina miksta muzikala rotallieta|",
           "packageSize": ""
@@ -12661,7 +12877,7 @@
         "FAVORINA Mīkstās piparkūkas pildījumu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-3eb8a680.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p43-3eb8a680",
@@ -12677,6 +12893,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-3eb8a680.jpg",
           "canonicalProductId": "favorina-mikstas-pildijumu-piparkukas-226b2d1988e0",
           "identityKey": "favorina mikstas pildijumu piparkukas|",
           "packageSize": ""
@@ -12700,7 +12917,7 @@
         "FAVORINA Mīkstās piparkūkas šokolādē"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-51ed0233.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p43-51ed0233",
@@ -12716,6 +12933,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p43-51ed0233.jpg",
           "canonicalProductId": "favorina-mikstas-piparkukas-sokolade-353f73bb24ba",
           "identityKey": "favorina mikstas piparkukas sokolade|",
           "packageSize": ""
@@ -12739,7 +12957,7 @@
         "FAVORINA Piena šokolādes bumbiņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p26-d0c0dd30.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p26-d0c0dd30",
@@ -12755,6 +12973,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p26-d0c0dd30.jpg",
           "canonicalProductId": "bumbinas-favorina-piena-sokolades-189e90030426",
           "identityKey": "bumbinas favorina piena sokolades|",
           "packageSize": ""
@@ -12797,7 +13016,7 @@
         "FAVORINA Piena šokolādes figūriņa"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-40052656.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p25-6c2379a0",
@@ -12813,6 +13032,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p25-6c2379a0.jpg",
           "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
           "identityKey": "favorina figurina piena sokolades|",
           "packageSize": ""
@@ -12831,6 +13051,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-40052656.jpg",
           "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
           "identityKey": "favorina figurina piena sokolades|",
           "packageSize": ""
@@ -12849,6 +13070,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p25-d04e08f6.jpg",
           "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
           "identityKey": "favorina figurina piena sokolades|",
           "packageSize": ""
@@ -12867,6 +13089,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-8255bd24.jpg",
           "canonicalProductId": "favorina-figurina-piena-sokolades-d3b4a45e56a0",
           "identityKey": "favorina figurina piena sokolades|",
           "packageSize": ""
@@ -13241,7 +13464,7 @@
         "FAVORINA Šokolādes figūriņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-8a07cbd6.png",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p25-78de4173",
@@ -13275,6 +13498,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p39-8a07cbd6.png",
           "canonicalProductId": "favorina-figurinas-sokolades-54bf86cc64ef",
           "identityKey": "favorina figurinas sokolades|",
           "packageSize": ""
@@ -13396,7 +13620,7 @@
         "Favorina Želejas konfekšu asorti"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p27-f0e51d39.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p27-f0e51d39",
@@ -13412,6 +13636,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p27-f0e51d39.jpg",
           "canonicalProductId": "asorti-favorina-konfeksu-zelejas-09f571fd7d4d",
           "identityKey": "asorti favorina konfeksu zelejas|",
           "packageSize": ""
@@ -13532,7 +13757,7 @@
         "fileja šķēlēs vinegreta mērci"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-5ca51587.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-5ca51587",
@@ -13548,6 +13773,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p17-5ca51587.jpg",
           "canonicalProductId": "fileja-merci-skeles-vinegreta-a9335714d51e",
           "identityKey": "fileja merci skeles vinegreta|",
           "packageSize": ""
@@ -13610,7 +13836,7 @@
         "FLORALYS Tualetes papīrs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-902223fb.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-902223fb",
@@ -13626,6 +13852,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-902223fb.jpg",
           "canonicalProductId": "floralys-papirs-tualetes-ebe63f92fb81",
           "identityKey": "floralys papirs tualetes|",
           "packageSize": ""
@@ -13688,7 +13915,7 @@
         "FORMIL Universāls mazgāšanas līdzeklis"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-a1c11866.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-a1c11866",
@@ -13705,6 +13932,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-a1c11866.jpg",
           "canonicalProductId": "formil-lidzeklis-mazgasanas-universals-4ae66d8583ae",
           "identityKey": "formil lidzeklis mazgasanas universals|",
           "packageSize": ""
@@ -13845,7 +14073,7 @@
         "GAMAVITA Krekeri"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-96374dd2.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-96374dd2",
@@ -13861,6 +14089,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-96374dd2.jpg",
           "canonicalProductId": "gamavita-krekeri-230a0720b5a8",
           "identityKey": "gamavita krekeri|",
           "packageSize": ""
@@ -13884,7 +14113,7 @@
         "GAMAVITA Sausmaizītes"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-ea4de494.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-ea4de494",
@@ -13900,6 +14129,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-ea4de494.jpg",
           "canonicalProductId": "gamavita-sausmaizites-017c0d7f9f8d",
           "identityKey": "gamavita sausmaizites|",
           "packageSize": ""
@@ -13923,7 +14153,7 @@
         "gaļas cepamdesiņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p7-9169b226.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p7-9169b226",
@@ -13939,6 +14169,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p7-9169b226.jpg",
           "canonicalProductId": "cepamdesinas-galas-2c2e699fc6cf",
           "identityKey": "cepamdesinas galas|",
           "packageSize": ""
@@ -14079,7 +14310,7 @@
         "HELLMANN'S Kečups Klasiskais"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-2b228954.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-2b228954",
@@ -14095,6 +14326,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-2b228954.png",
           "canonicalProductId": "hellmann-kecups-klasiskais-s-9cdb0601d009",
           "identityKey": "hellmann kecups klasiskais s|",
           "packageSize": ""
@@ -14118,7 +14350,7 @@
         "HELLMANN'S Majonēze"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-6be635ee.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-6be635ee",
@@ -14134,6 +14366,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-6be635ee.jpg",
           "canonicalProductId": "hellmann-majoneze-s-e29d4ec67515",
           "identityKey": "hellmann majoneze s|",
           "packageSize": ""
@@ -14196,7 +14429,7 @@
         "J.D. GROSS Šokolādes konfektes"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-bbec5bef.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p32-bbec5bef",
@@ -14212,6 +14445,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p32-bbec5bef.jpg",
           "canonicalProductId": "d-gross-j-konfektes-sokolades-c629b20c98c1",
           "identityKey": "d gross j konfektes sokolades|",
           "packageSize": ""
@@ -14235,7 +14469,7 @@
         "J.D. GROSS Šokolādes konfekšu"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-a4b676fc.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-a4b676fc",
@@ -14251,6 +14485,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p20-a4b676fc.jpg",
           "canonicalProductId": "d-gross-j-konfeksu-sokolades-f110b6a58725",
           "identityKey": "d gross j konfeksu sokolades|",
           "packageSize": ""
@@ -14274,7 +14509,7 @@
         "JACOBS Šķīstošas kafijas 3in1 dzēriens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-670c6cf8.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-670c6cf8",
@@ -14290,6 +14525,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-670c6cf8.jpg",
           "canonicalProductId": "3in1-dzeriens-jacobs-kafijas-skistosas-aecaf26d2dbe",
           "identityKey": "3in1 dzeriens jacobs kafijas skistosas|",
           "packageSize": ""
@@ -14430,7 +14666,7 @@
         "jogurts bez laktozes"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p25-30d149d3.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p25-30d149d3",
@@ -14446,6 +14682,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p25-30d149d3.jpg",
           "canonicalProductId": "bez-jogurts-laktozes-f3ad32a363d2",
           "identityKey": "bez jogurts laktozes|",
           "packageSize": ""
@@ -14469,7 +14706,7 @@
         "Jērikas roze"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-611c8d24.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-611c8d24",
@@ -14485,6 +14722,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-611c8d24.jpg",
           "canonicalProductId": "jerikas-roze-882fe5269190",
           "identityKey": "jerikas roze|",
           "packageSize": ""
@@ -14508,7 +14746,7 @@
         "K2R Krāsu absorbētājs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-0ddb5de4.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-0ddb5de4",
@@ -14524,6 +14762,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-0ddb5de4.jpg",
           "canonicalProductId": "absorbetajs-k2r-krasu-8fd7ea69decb",
           "identityKey": "absorbetajs k2r krasu|",
           "packageSize": ""
@@ -14547,7 +14786,7 @@
         "KALURI Baltkāju garneles"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p31-98307eb2.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-d3f82caf",
@@ -14581,6 +14820,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p31-98307eb2.jpg",
           "canonicalProductId": "baltkaju-garneles-kaluri-ed0724f7c350",
           "identityKey": "baltkaju garneles kaluri|",
           "packageSize": ""
@@ -14643,7 +14883,7 @@
         "KANIA Ķiploku pārslas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-e673e533.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-e673e533",
@@ -14659,6 +14899,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p24-e673e533.png",
           "canonicalProductId": "kania-kiploku-parslas-e5a4c84adfcc",
           "identityKey": "kania kiploku parslas|",
           "packageSize": ""
@@ -14721,7 +14962,7 @@
         "Keramikas puķupods"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d85fb21b.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d85fb21b",
@@ -14737,6 +14978,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d85fb21b.jpg",
           "canonicalProductId": "keramikas-pukupods-80eaf9b3b98c",
           "identityKey": "keramikas pukupods|",
           "packageSize": ""
@@ -14760,7 +15002,7 @@
         "KIKAS Siera-cāļa rullītis"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-d77eafc9.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-d77eafc9",
@@ -14776,6 +15018,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-d77eafc9.jpg",
           "canonicalProductId": "cala-kikas-rullitis-siera-5071b48ca4ce",
           "identityKey": "cala kikas rullitis siera|",
           "packageSize": ""
@@ -15133,7 +15376,7 @@
         "Kārtainās Maizīte mīklas virtuļi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p28-976dcd3e.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p28-976dcd3e",
@@ -15149,6 +15392,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p28-976dcd3e.jpg",
           "canonicalProductId": "kartainas-maizite-miklas-virtuli-fb9830fe209f",
           "identityKey": "kartainas maizite miklas virtuli|",
           "packageSize": ""
@@ -15211,7 +15455,7 @@
         "L'OREAL Šampūns"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-7dd8caa1.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-7dd8caa1",
@@ -15228,6 +15472,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-7dd8caa1.jpg",
           "canonicalProductId": "l-oreal-sampuns-bdc2ab135172",
           "identityKey": "l oreal sampuns|",
           "packageSize": ""
@@ -15251,7 +15496,7 @@
         "LAVAZZA Malta kafija"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-3fb74c2f.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-3fb74c2f",
@@ -15267,6 +15512,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-3fb74c2f.jpg",
           "canonicalProductId": "kafija-lavazza-malta-3157e8c3927b",
           "identityKey": "kafija lavazza malta|",
           "packageSize": ""
@@ -15368,7 +15614,7 @@
         "LENOR Smaržu granulas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-32e79883.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-32e79883",
@@ -15384,6 +15630,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-32e79883.jpg",
           "canonicalProductId": "granulas-lenor-smarzu-a138d3efb75e",
           "identityKey": "granulas lenor smarzu|",
           "packageSize": ""
@@ -15407,7 +15654,7 @@
         "LENOR Veļas mīkstinātājs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-4c4f319e.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-4c4f319e",
@@ -15423,6 +15670,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p2-4c4f319e.jpg",
           "canonicalProductId": "lenor-mikstinatajs-velas-295a0947b70d",
           "identityKey": "lenor mikstinatajs velas|",
           "packageSize": ""
@@ -15563,7 +15811,7 @@
         "litrs Gāzēts dzēriens SUN365 Bio kombuča Traditional"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-61482869.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-61482869",
@@ -15579,6 +15827,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p15-61482869.png",
           "canonicalProductId": "bio-dzeriens-gazets-kombuca-litrs-sun365-traditional-9a12f3d9c998",
           "identityKey": "bio dzeriens gazets kombuca litrs sun365 traditional|",
           "packageSize": ""
@@ -15602,7 +15851,7 @@
         "LIVARNO Galdauts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-41418b6d.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-41418b6d",
@@ -15618,6 +15867,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-41418b6d.jpg",
           "canonicalProductId": "galdauts-livarno-d25267e55085",
           "identityKey": "galdauts livarno|",
           "packageSize": ""
@@ -16087,7 +16337,7 @@
         "LUPILU Stumjams rotaļu automobilis šūpuļzirdziņš"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-a73079fd.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-a73079fd",
@@ -16104,6 +16354,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p27-a73079fd.jpg",
           "canonicalProductId": "automobilis-lupilu-rotalu-stumjams-supulzirdzins-0177ffaab5e5",
           "identityKey": "automobilis lupilu rotalu stumjams supulzirdzins|",
           "packageSize": ""
@@ -16186,7 +16437,7 @@
         "MAGGI Garšvielu maisījums"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-db6698c3.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-db6698c3",
@@ -16202,6 +16453,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-db6698c3.jpg",
           "canonicalProductId": "garsvielu-maggi-maisijums-2434ca13819a",
           "identityKey": "garsvielu maggi maisijums|",
           "packageSize": ""
@@ -16264,7 +16516,7 @@
         "MAMMA Pankūkas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-84cebf13.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-84cebf13",
@@ -16280,6 +16532,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-84cebf13.jpg",
           "canonicalProductId": "mamma-pankukas-24b1b63b2548",
           "identityKey": "mamma pankukas|",
           "packageSize": ""
@@ -16303,7 +16556,7 @@
         "Mango Mīkstās šķēlītes"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-47ddbcf9.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-47ddbcf9",
@@ -16319,6 +16572,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p14-47ddbcf9.jpg",
           "canonicalProductId": "mango-mikstas-skelites-652e8271e966",
           "identityKey": "mango mikstas skelites|",
           "packageSize": ""
@@ -16459,7 +16713,7 @@
         "MERRILD Kafijas pupiņas"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-c7cb6ca7.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-c7cb6ca7",
@@ -16476,6 +16730,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-c7cb6ca7.jpg",
           "canonicalProductId": "kafijas-merrild-pupinas-4c12012f602c",
           "identityKey": "kafijas merrild pupinas|",
           "packageSize": ""
@@ -16499,7 +16754,7 @@
         "MILBONA piena"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-1057bfed.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-1057bfed",
@@ -16515,6 +16770,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p18-1057bfed.jpg",
           "canonicalProductId": "milbona-piena-65d0412798fa",
           "identityKey": "milbona piena|",
           "packageSize": ""
@@ -16538,7 +16794,7 @@
         "Mini Ziemassvētku eglīte"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d4ea7046.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d4ea7046",
@@ -16554,6 +16810,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-d4ea7046.png",
           "canonicalProductId": "eglite-mini-ziemassvetku-65ad10abe186",
           "identityKey": "eglite mini ziemassvetku|",
           "packageSize": ""
@@ -16694,7 +16951,7 @@
         "NESCAFÉ Šķīstošā kafija"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-d27c5b42.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-d27c5b42",
@@ -16710,6 +16967,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-d27c5b42.jpg",
           "canonicalProductId": "kafija-nescafe-skistosa-1c3cdf85718e",
           "identityKey": "kafija nescafe skistosa|",
           "packageSize": ""
@@ -16773,7 +17031,7 @@
         "NÕO Pusžāvētā desa šķēlēs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-a67841fb.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-a67841fb",
@@ -16789,6 +17047,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p26-a67841fb.png",
           "canonicalProductId": "desa-noo-puszaveta-skeles-44839f409349",
           "identityKey": "desa noo puszaveta skeles|",
           "packageSize": ""
@@ -17047,7 +17306,7 @@
         "PILOS Jogurta sieriņš jogurts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p11-cf1a5cbd.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p11-cf1a5cbd",
@@ -17064,6 +17323,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p11-cf1a5cbd.jpg",
           "canonicalProductId": "jogurta-jogurts-pilos-sierins-c3cb557f23a8",
           "identityKey": "jogurta jogurts pilos sierins|",
           "packageSize": ""
@@ -17087,7 +17347,7 @@
         "PILOS Piens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-fddddf62.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-fddddf62",
@@ -17103,6 +17363,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-fddddf62.jpg",
           "canonicalProductId": "piens-pilos-2d2aa0462c93",
           "identityKey": "piens pilos|",
           "packageSize": ""
@@ -17223,7 +17484,7 @@
         "PILOS Ultrapasterizēts piens 3,2%"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p0-fa30749d.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p0-fa30749d",
@@ -17240,6 +17501,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p0-fa30749d.png",
           "canonicalProductId": "2-3-piens-pilos-ultrapasterizets-e2f5860b8a3a",
           "identityKey": "2 3 piens pilos ultrapasterizets|",
           "packageSize": ""
@@ -17302,7 +17564,7 @@
         "Puansetija Mini"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-460fa2d0.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-460fa2d0",
@@ -17318,6 +17580,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-460fa2d0.png",
           "canonicalProductId": "mini-puansetija-29c254ec8c62",
           "identityKey": "mini puansetija|",
           "packageSize": ""
@@ -17341,7 +17604,7 @@
         "Pušķis Puansetijas krūms"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-c61302a6.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-c61302a6",
@@ -17357,6 +17620,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p30-c61302a6.png",
           "canonicalProductId": "krums-puansetijas-puskis-1a0fe5751107",
           "identityKey": "krums puansetijas puskis|",
           "packageSize": ""
@@ -17380,7 +17644,7 @@
         "pāri LIVARNO Paklājs"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-900be3dd.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-900be3dd",
@@ -17396,6 +17660,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-900be3dd.jpg",
           "canonicalProductId": "livarno-paklajs-pari-9fd9af7c5701",
           "identityKey": "livarno paklajs pari|",
           "packageSize": ""
@@ -17419,7 +17684,7 @@
         "pāri pāris zeķes flīsa oderi"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-82588752.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-82588752",
@@ -17435,6 +17700,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p17-82588752.jpg",
           "canonicalProductId": "flisa-oderi-pari-paris-zekes-e8c6e3540b3c",
           "identityKey": "flisa oderi pari paris zekes|",
           "packageSize": ""
@@ -17498,7 +17764,7 @@
         "PŪRŲ Dzeramais"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-98caea3e.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-98caea3e",
@@ -17514,6 +17780,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p10-98caea3e.jpg",
           "canonicalProductId": "dzeramais-puru-f48d9010258a",
           "identityKey": "dzeramais puru|",
           "packageSize": ""
@@ -17537,7 +17804,7 @@
         "RASA Gāzēts dzēriens"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-189edec2.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-189edec2",
@@ -17553,6 +17820,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-189edec2.jpg",
           "canonicalProductId": "dzeriens-gazets-rasa-2d3cf0cca16e",
           "identityKey": "dzeriens gazets rasa|",
           "packageSize": ""
@@ -17576,7 +17844,7 @@
         "RAVENSBURGER puzle"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p34-ae13d48e.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p34-ae13d48e",
@@ -17592,6 +17860,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p34-ae13d48e.jpg",
           "canonicalProductId": "puzle-ravensburger-4a9ce96714bb",
           "identityKey": "puzle ravensburger|",
           "packageSize": ""
@@ -17654,7 +17923,7 @@
         "Risotto pagatavošanai"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-fec3b10e.jpg",
       "offers": [
         {
           "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p13-fec3b10e",
@@ -17670,6 +17939,7 @@
           "validFrom": "2026-11-09",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-edienu-idejas-ziemassvetkiem-2026-p13-fec3b10e.jpg",
           "canonicalProductId": "pagatavosanai-risotto-a14578132bb5",
           "identityKey": "pagatavosanai risotto|",
           "packageSize": ""
@@ -17810,7 +18080,7 @@
         "SALEKS Vafeles karameli"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-c0e55e44.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-c0e55e44",
@@ -17826,6 +18096,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p27-c0e55e44.jpg",
           "canonicalProductId": "karameli-saleks-vafeles-0f812fbf9fa8",
           "identityKey": "karameli saleks vafeles|",
           "packageSize": ""
@@ -17888,7 +18159,7 @@
         "SHEF salāti ķiplokiem"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-dc81919f.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-dc81919f",
@@ -17905,6 +18176,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p12-dc81919f.jpg",
           "canonicalProductId": "kiplokiem-salati-shef-d6f2f8e14fcd",
           "identityKey": "kiplokiem salati shef|",
           "packageSize": ""
@@ -17967,7 +18239,7 @@
         "SOLEVITA sula"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-bcd4558d.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-bcd4558d",
@@ -17984,6 +18256,7 @@
           "validUntil": "2026-11-29",
           "store": "lidl",
           "cardName": "Lidl Plus",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p23-bcd4558d.jpg",
           "canonicalProductId": "solevita-sula-192657b372b7",
           "identityKey": "solevita sula|",
           "packageSize": ""
@@ -18007,7 +18280,7 @@
         "SOMAT Trauku mazgājamās mašīnas tīrīšanas tabletes"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-1e4c03c1.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-1e4c03c1",
@@ -18023,6 +18296,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p16-1e4c03c1.jpg",
           "canonicalProductId": "masinas-mazgajamas-somat-tabletes-tirisanas-trauku-fe742046719d",
           "identityKey": "masinas mazgajamas somat tabletes tirisanas trauku|",
           "packageSize": ""
@@ -18086,7 +18360,7 @@
         "spēles TREFL Galda spēļu komplekts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p35-e8789669.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p35-e8789669",
@@ -18102,6 +18376,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p35-e8789669.jpg",
           "canonicalProductId": "galda-komplekts-speles-spelu-trefl-732c204a7e1a",
           "identityKey": "galda komplekts speles spelu trefl|",
           "packageSize": ""
@@ -18203,7 +18478,7 @@
         "TREFL 9-in-1 puzļu komplekts"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p36-06adf97a.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p36-06adf97a",
@@ -18219,6 +18494,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p36-06adf97a.jpg",
           "canonicalProductId": "1-9-in-komplekts-puzlu-trefl-ddf69127ab57",
           "identityKey": "1 9 in komplekts puzlu trefl|",
           "packageSize": ""
@@ -18242,7 +18518,7 @@
         "TRONIC Meteoroloģiskā stacija C"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p18-79f3e9d2.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p18-79f3e9d2",
@@ -18258,6 +18534,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p18-79f3e9d2.jpg",
           "canonicalProductId": "c-meteorologiska-stacija-tronic-753905013fd7",
           "identityKey": "c meteorologiska stacija tronic|",
           "packageSize": ""
@@ -18398,7 +18675,7 @@
         "Vīnogu Salātu Cukīni"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-d57ceffe.jpg",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-d57ceffe",
@@ -18414,6 +18691,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-d57ceffe.jpg",
           "canonicalProductId": "cukini-salatu-vinogu-b4a34cc15fa0",
           "identityKey": "cukini salatu vinogu|",
           "packageSize": ""
@@ -18476,7 +18754,7 @@
         "Zeķes bērniem 2x"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-ef81d3ca.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-ef81d3ca",
@@ -18492,6 +18770,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-ef81d3ca.jpg",
           "canonicalProductId": "2x-berniem-zekes-c0f72bc30f6c",
           "identityKey": "2x berniem zekes|",
           "packageSize": ""
@@ -18515,7 +18794,7 @@
         "Zeķes sievietēm 3x vīriešiem"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-75b35e0b.jpg",
       "offers": [
         {
           "offerId": "lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-75b35e0b",
@@ -18531,6 +18810,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-nepartikas-precu-piedavajums-piedavajumi-no-23-11-p9-75b35e0b.jpg",
           "canonicalProductId": "3x-sievietem-viriesiem-zekes-e87a152b6c77",
           "identityKey": "3x sievietem viriesiem zekes|",
           "packageSize": ""
@@ -18554,7 +18834,7 @@
         "ZURU Interaktīva rotaļlie- Pets Alive ta-pārsteigums"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-rotallietas-2026-p50-62b2ab4b.jpg",
       "offers": [
         {
           "offerId": "lidl-rotallietas-2026-p50-62b2ab4b",
@@ -18570,6 +18850,7 @@
           "validFrom": "2026-11-02",
           "validUntil": "2026-12-27",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-rotallietas-2026-p50-62b2ab4b.jpg",
           "canonicalProductId": "alive-interaktiva-parsteigums-pets-rotallie-ta-zuru-0ccf6129f97f",
           "identityKey": "alive interaktiva parsteigums pets rotallie ta zuru|",
           "packageSize": ""
@@ -18593,7 +18874,7 @@
         "Šampinjoni baltie"
       ],
       "brand": null,
-      "image": null,
+      "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-3df4fa88.png",
       "offers": [
         {
           "offerId": "lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-3df4fa88",
@@ -18609,6 +18890,7 @@
           "validFrom": "2026-11-23",
           "validUntil": "2026-11-29",
           "store": "lidl",
+          "image": "data/lidl-img/lidl-aktualais-akciju-buklets-piedavajumi-no-23-11-p4-3df4fa88.png",
           "canonicalProductId": "baltie-sampinjoni-07cb6d187fda",
           "identityKey": "baltie sampinjoni|",
           "packageSize": ""
