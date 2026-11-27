@@ -962,6 +962,9 @@ def _is_pdf_product_title_seed(text: str) -> bool:
 
 def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
+    # PDF extraction may retain standalone card bullets inside the clipped cell.
+    value = re.sub(r"(?<!\w)[•·▪●◦]+(?!\w)", " ", value)
+    value = " ".join(value.split())
     # Brochure card numbers are often extracted as if they were part of the SKU.
     value = re.sub(
         r"^\d{1,2}\.?\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
