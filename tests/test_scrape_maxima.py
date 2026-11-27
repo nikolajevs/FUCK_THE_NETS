@@ -23,6 +23,7 @@ from scripts.scrape_maxima import (
     price_quality,
     _has_explicit_shelf_price,
     _pdf_page_cells_geometry,
+    _split_pdf_cell_by_bullets,
     _pdf_cell_starts_with_price,
     store_formats_from_text,
 )
@@ -984,8 +985,8 @@ class MaximaScraperTests(unittest.TestCase):
         # Bullet glyphs are the only reliable boundary between the cards.
         page.insert_text(
             fitz.Point(20, 220),
-            "1. • Baking Set 1 iepak./3 gab. 9,99 €; 21,99 € "
-            "• Tablecloth 1 gab., 148x250 cm 14,99 €; 24,99 €",
+            "2 1. • Baking Set 1 iepak./3 gab. 9,99 €; 21,99 € "
+            "• Tablecloth 1 gab., 148x250 cm 14,99 €; 24,99",
             fontsize=8,
         )
         payload = document.tobytes()
@@ -1106,6 +1107,28 @@ class MaximaScraperTests(unittest.TestCase):
             all(len(prices_from(text)) == 2 for _, _, text in cells),
             f"unexpected merged cells: {cells!r}",
         )
+
+    def test_pdf_bullet_split_requires_complete_pairs_for_each_product(self):
+        raw = (
+            "2 1. • Baking Set 1 iepak./3 gab. 9,99 €; 21,99 € "
+            "• Tablecloth 1 gab., 148x250 cm 14,99 €; 24,99"
+        )
+        parts = _split_pdf_cell_by_bullets(raw)
+        self.assertEqual(len(parts), 2)
+        names = [_clean_pdf_product_name(part) for part in parts]
+        self.assertEqual(names, [
+            "Baking Set 1 iepak./3 gab.",
+            "Tablecloth 1 gab., 148x250 cm",
+        ])
+        self.assertEqual([prices_from(part) for part in parts], [
+            [9.99, 21.99],
+            [14.99, 24.99],
+        ])
+
+        # A partial or noisy second card must keep the original merged cell
+        # under review instead of silently dropping or reallocating prices.
+        incomplete = "• Baking Set 1 gab. 9,99 €; 21,99 € • Tablecloth 1 gab. 14,99 €; 24,99 €; 29,99 €"
+        self.assertEqual(_split_pdf_cell_by_bullets(incomplete), [incomplete])
 
 
 if __name__ == "__main__":
