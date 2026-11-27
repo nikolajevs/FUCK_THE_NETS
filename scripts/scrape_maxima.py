@@ -986,6 +986,20 @@ def _clean_pdf_product_name(text: str) -> str:
         flags=re.IGNORECASE,
     )
     value = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", value, flags=re.IGNORECASE)
+    # Broken PDF text blocks can leave only the tail of a unit-price label
+    # (for example "€/kg; Tortiljas ..." or "... ( /kg").
+    value = re.sub(
+        r"^(?:€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)\s*[;,:-]\s*)+",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
+    value = re.sub(
+        r"\s*[;(]?\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)\s*[)]?$",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
     value = re.sub(r"\d{1,3}[,.]\d{2}\s*€?", " ", value)
     value = re.sub(r"(?<!\d)\d{1,3}\s+\d{2}(?!\d)", " ", value)
     value = re.sub(r"-\s*\d{1,2}\s*%", " ", value)
