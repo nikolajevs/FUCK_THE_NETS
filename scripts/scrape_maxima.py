@@ -38,6 +38,11 @@ CAMPAIGNS = [
         "name": "Well Done Premium",
         "url": "https://www.maxima.lv/premium",
     },
+    {
+        "id": "maxima-paldies-featured",
+        "name": "Piedāvājumi ar PALDIES karti",
+        "url": "https://www.maxima.lv/paldies",
+    },
 ]
 
 PRICE_TOKEN_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
@@ -169,21 +174,23 @@ def campaign_index_metadata(
     campaign_name: str,
     today: date | None = None,
 ) -> tuple[str | None, str | None, str | None]:
-    """Resolve a campaign's dates and its own /bukleti/ detail page from the brochure index."""
+    """Resolve dates and brochure URL using campaign headings or nearby brochure links."""
     candidates: list[tuple[int, int, str | None, str | None, str | None]] = []
+
+    # First inspect the heading and its nearest card-like ancestors.
     for heading in soup.find_all(
         lambda tag: isinstance(tag, Tag)
         and tag.name in {"h1", "h2", "h3", "h4", "p"}
-        and tag.get_text(" ", strip=True).casefold() == campaign_name.casefold()
+        and campaign_name.casefold() in tag.get_text(" ", strip=True).casefold()
     ):
         node: Tag | None = heading
-        for depth in range(1, 8):
+        for depth in range(1, 9):
             if not isinstance(node, Tag):
                 break
             container_text = node.get_text(" ", strip=True)
-            if len(container_text) <= 700 and campaign_name.casefold() in container_text.casefold():
+            if len(container_text) <= 900 and campaign_name.casefold() in container_text.casefold():
                 title_match = re.search(re.escape(campaign_name), container_text, flags=re.IGNORECASE)
-                tail = container_text[title_match.end():title_match.end() + 180] if title_match else ""
+                tail = container_text[title_match.end():title_match.end() + 220] if title_match else ""
                 valid_from, valid_until = offer_dates(tail, today=today)
                 detail_url = next(
                     (
@@ -199,6 +206,29 @@ def campaign_index_metadata(
                     )
             node = node.parent if isinstance(node.parent, Tag) else None
 
+    # Some Maxima page versions place "Lasīt" outside the heading wrapper.
+    # Walk upward from every brochure link and test its surrounding card text.
+    for anchor in soup.find_all("a", href=True):
+        if "/bukleti/" not in anchor.get("href", ""):
+            continue
+        node: Tag | None = anchor
+        for depth in range(1, 9):
+            if not isinstance(node, Tag):
+                break
+            container_text = node.get_text(" ", strip=True)
+            if len(container_text) <= 900 and campaign_name.casefold() in container_text.casefold():
+                title_match = re.search(re.escape(campaign_name), container_text, flags=re.IGNORECASE)
+                tail = container_text[title_match.end():title_match.end() + 220] if title_match else ""
+                valid_from, valid_until = offer_dates(tail, today=today)
+                candidates.append((
+                    len(container_text),
+                    depth,
+                    valid_from,
+                    valid_until,
+                    urljoin(BROCHURES_URL, anchor["href"]),
+                ))
+            node = node.parent if isinstance(node.parent, Tag) else None
+
     if not candidates:
         return None, None, None
     _, _, valid_from, valid_until, detail_url = min(
@@ -206,7 +236,6 @@ def campaign_index_metadata(
         key=lambda item: (item[0], item[1], item[4] is None),
     )
     return valid_from, valid_until, detail_url
-
 
 def store_formats_from_text(text: str) -> list[str]:
     """Return only formats explicitly named in the campaign's store-scope sentence."""
