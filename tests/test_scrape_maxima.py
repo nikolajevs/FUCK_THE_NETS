@@ -528,7 +528,11 @@ class MaximaScraperTests(unittest.TestCase):
         offers, reviews, _ = parse_catalogue_pdf(
             payload, catalogue, [catalogue], today=date(2026, 11, 27)
         )
-        self.assertEqual(len(offers), 2)
+        self.assertEqual(
+            len(offers),
+            2,
+            f"offers={[offer['name'] for offer in offers]!r}; reviews={[(item['name'], item['quality']['issues']) for item in reviews]!r}",
+        )
         self.assertEqual(reviews, [])
         by_name = {offer["name"]: offer for offer in offers}
         robovac = next(value for name, value in by_name.items() if "ROBOROCK Q7" in name)
