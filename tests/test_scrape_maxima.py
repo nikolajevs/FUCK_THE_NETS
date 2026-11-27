@@ -51,6 +51,13 @@ class MaximaScraperTests(unittest.TestCase):
             ("2026-11-24", "2026-11-30"),
         )
 
+    def test_campaign_dates_do_not_borrow_date_from_next_banner(self):
+        page = "Iknedēļas piedāvājums Filtrēt pēc kategorijas " + ("x" * 140) + "17. novembris - 4. janvāris " + "Iknedēļas piedāvājums 24.-30. novembris"
+        self.assertEqual(
+            campaign_dates(page, today=date(2026, 11, 27)),
+            ("2026-11-24", "2026-11-30"),
+        )
+
     def test_detect_all_explicit_store_formats(self):
         text = "Piedāvājums spēkā visos MAXIMA X, XX un XXX veikalos"
         self.assertEqual(store_formats_from_text(text), ["X", "XX", "XXX"])
