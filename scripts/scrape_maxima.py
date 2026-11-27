@@ -1272,31 +1272,65 @@ def main():
         for item in active_catalogues
     }
 
-    # Several brochure cards may point to the same combined weekly PDF. Download and
-    # parse each unique PDF once, then identify the relevant campaign from each page.
-    seen_pdf_urls: set[str] = set()
+    # Some brochure detail pages publish the exact same combined PDF under
+    # different URLs. Download each URL, fingerprint the bytes, and parse each
+    # distinct PDF only once. The weekly campaign is the fallback for combined
+    # brochures; explicit WDP/book-festival pages are assigned by their headings.
+    downloaded_pdfs: dict[str, dict] = {}
+    failed_pdf_catalogues: set[str] = set()
     for catalogue in active_catalogues:
         for pdf_url in catalogue.get("pdfSources", []):
-            if pdf_url in seen_pdf_urls:
-                continue
-            seen_pdf_urls.add(pdf_url)
             try:
                 pdf_response = session.get(pdf_url, headers=HEADERS, timeout=120)
                 pdf_response.raise_for_status()
-                pdf_offers, pdf_reviews, page_counts = parse_catalogue_pdf(
-                    pdf_response.content, catalogue, active_catalogues, today=today
-                )
-            except Exception as exc:
-                catalogue["complete"] = False
-                print(f"Warning: could not collect PDF {pdf_url}: {exc}", file=sys.stderr)
-                continue
+                pdf_bytes = pdf_response.content
+                digest = hashlib.sha256(pdf_bytes).hexdigest()
+                entry = downloaded_pdfs.setdefault(digest, {
+                    "content": pdf_bytes,
+                    "urls": [],
+                    "catalogues": [],
+                })
+                if pdf_url not in entry["urls"]:
+                    entry["urls"].append(pdf_url)
+                if catalogue["id"] not in entry["catalogues"]:
+                    entry["catalogues"].append(catalogue["id"])
+            except requests.RequestException as exc:
+                failed_pdf_catalogues.add(catalogue["id"])
+                print(f"Warning: could not download brochure PDF {pdf_url}: {exc}", file=sys.stderr)
 
-            catalogue_offers.extend(pdf_offers)
-            catalogue_reviews.extend(pdf_reviews)
-            for catalogue_id, page_count in page_counts.items():
-                catalogue_stats.setdefault(
-                    catalogue_id, {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
-                )["pdfPages"] += page_count
+    for digest, pdf_entry in downloaded_pdfs.items():
+        related_catalogues = [
+            catalogue for catalogue in active_catalogues
+            if catalogue["id"] in pdf_entry["catalogues"]
+        ]
+        if not related_catalogues:
+            continue
+        primary_catalogue = next(
+            (item for item in related_catalogues if item["id"] == "maxima-weekly"),
+            related_catalogues[0],
+        )
+        try:
+            pdf_offers, pdf_reviews, page_counts = parse_catalogue_pdf(
+                pdf_entry["content"],
+                primary_catalogue,
+                related_catalogues,
+                today=today,
+            )
+        except Exception as exc:
+            failed_pdf_catalogues.update(item["id"] for item in related_catalogues)
+            print(
+                f"Warning: could not parse brochure PDF {pdf_entry['urls'][0]}: {exc}",
+                file=sys.stderr,
+            )
+            continue
+
+        catalogue_offers.extend(pdf_offers)
+        catalogue_reviews.extend(pdf_reviews)
+        for catalogue_id, page_count in page_counts.items():
+            catalogue_stats.setdefault(
+                catalogue_id, {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
+            )["pdfPages"] += page_count
+
 
     # PDF variants that duplicate the same product/price already collected from its
     # HTML campaign page are redundant. Keep new catalogue entries and price values.
@@ -1360,7 +1394,11 @@ def main():
         catalogue.update(catalogue_stats.get(
             catalogue["id"], {"verifiedOffers": 0, "reviewOffers": 0, "pdfPages": 0}
         ))
-        catalogue["complete"] = bool(catalogue.get("pdfSources")) and catalogue["pdfPages"] > 0
+        catalogue["complete"] = (
+            bool(catalogue.get("pdfSources"))
+            and catalogue["pdfPages"] > 0
+            and catalogue["id"] not in failed_pdf_catalogues
+        )
         if not catalogue["complete"]:
             print(
                 f"Warning: active catalogue was not fully parsed: {catalogue['name']} "
