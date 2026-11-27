@@ -1232,7 +1232,7 @@ def parse_catalogue_pdf(
                 ";" in name
                 or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
                 or any(term in name_folded for term in (
-                    "rojā", "darba dienā", "atklāšana", "dienā",
+                    "roj", "darba dien", "atkl", "dien",
                 ))
                 or re.search(r"\b\d{1,2}:\d{2}\b", name)
                 or re.search(r"\(\s*/\s*kg", name_folded)
