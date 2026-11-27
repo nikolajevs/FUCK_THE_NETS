@@ -22,6 +22,7 @@ from scripts.scrape_maxima import (
     prices_from,
     price_quality,
     _has_explicit_shelf_price,
+    _pdf_cell_starts_with_price,
     store_formats_from_text,
 )
 
@@ -1031,6 +1032,45 @@ class MaximaScraperTests(unittest.TestCase):
             _clean_pdf_product_name("0% Greek yogurt 400 g 0,45 €"),
             "0% Greek yogurt 400 g",
         )
+
+    def test_pdf_price_before_product_title_requires_review(self):
+        import pymupdf as fitz
+
+        raw_text = "11,99 6 Varavīksnes forele 1 kg, ķidāta"
+        self.assertTrue(_pdf_cell_starts_with_price(raw_text))
+        self.assertFalse(_pdf_cell_starts_with_price("Varavīksnes forele 1 kg 6,99 11,99"))
+        self.assertEqual(
+            _clean_pdf_product_name(raw_text),
+            "Varavīksnes forele 1 kg, ķidāta",
+        )
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 280, 275),
+            raw_text,
+            fontsize=10,
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(offers, [])
+        self.assertEqual(len(reviews), 1)
+        self.assertIn("price_before_product_name", reviews[0]["quality"]["issues"])
 
 
 if __name__ == "__main__":
