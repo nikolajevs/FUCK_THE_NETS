@@ -82,6 +82,14 @@ def prices_from(text: str) -> list[float]:
         " ", text, flags=re.IGNORECASE,
     )
     cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", cleaned)
+    # Pampers and other diaper packs encode size and weight as "S7 17+kg"
+    # or "S5 11-17kg". Without removing this, "7 17" is falsely read as €7.17.
+    cleaned = re.sub(
+        r"\bS\s*\d{1,2}\s+\d{1,2}(?:\s*[-–]\s*\d{1,2})?\s*\+?\s*kg\b",
+        " ",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
     values = [
         int(euros) + int(cents) / 100
         for euros, cents in PRICE_TOKEN_RE.findall(cleaned)

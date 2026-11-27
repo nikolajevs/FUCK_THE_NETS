@@ -98,6 +98,28 @@ class MaximaScraperTests(unittest.TestCase):
 
 
 
+    def test_diaper_size_and_weight_are_not_mistaken_for_shelf_prices(self):
+        cases = [
+            (
+                "Autiņb. PAMPERS PC S7 17+kg 27gab. "
+                "(0,48 €/gab.); (0,88 €/gab.) 12 99 23 69",
+                [12.99, 23.69],
+            ),
+            (
+                "Autiņb.biks.PAMPERS PC S5 11-17kg 34gab. "
+                "(0,38 €/gab.); (0,68 €/gab.) 12 99 22 99",
+                [12.99, 22.99],
+            ),
+            (
+                "Autiņb.PAMPERS Pants S6 13-19kg 42gab. "
+                "(0,31 €/gab.); (0,57 €/gab.) 12 99 23 99",
+                [12.99, 23.99],
+            ),
+        ]
+        for text, expected in cases:
+            with self.subTest(text=text):
+                self.assertEqual(prices_from(text), expected)
+
     def test_unit_price_per_piece_is_not_mistaken_for_shelf_price(self):
         text = "Zobu birste (0,99 €/gab.); (1,49 €/gab.) 3 99 4 99"
         self.assertEqual(prices_from(text), [3.99, 4.99])
