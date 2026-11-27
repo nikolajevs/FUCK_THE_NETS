@@ -7,8 +7,10 @@ from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
     collect_paldies_catalog,
+    discover_active_catalogues,
     find_paldies_filter_id,
     offer_dates,
+    parse_catalogue_pdf,
     parse_paldies_card,
     prices_from,
     price_quality,
@@ -198,6 +200,93 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(metadata["collectedProducts"], 3)
         self.assertEqual(metadata["pages"], 2)
         self.assertTrue(metadata["complete"])
+
+
+
+    def test_discover_active_catalogues_uses_current_dates_and_pdf_links(self):
+        class FakeResponse:
+            def __init__(self, text):
+                self.text = text
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def get(self, url, headers=None, timeout=None):
+                if url == "https://www.maxima.lv/bukleti/":
+                    return FakeResponse("""
+                      <div class="campaign">
+                        <h2>Black Friday cenu festivāls</h2>
+                        <p>26.11. - 30.11.2026.</p>
+                        <a href="/bukleti/black-friday">Lasīt</a>
+                      </div>
+                      <div class="campaign">
+                        <h2>Pagājušās nedēļas akcija</h2>
+                        <p>10.11. - 16.11.2026.</p>
+                        <a href="/bukleti/old">Lasīt</a>
+                      </div>
+                    """)
+                return FakeResponse("""
+                  <h1>Black Friday cenu festivāls</h1>
+                  <p>Piedāvājums spēkā visos MAXIMA X, XX un XXX veikalos</p>
+                  <a href="/uploads/test.pdf">Lasīt PDF formātā</a>
+                """)
+
+        catalogues = discover_active_catalogues(
+            FakeSession(), BeautifulSoup("""
+              <div class="campaign">
+                <h2>Black Friday cenu festivāls</h2>
+                <p>26.11. - 30.11.2026.</p>
+                <a href="/bukleti/black-friday">Lasīt</a>
+              </div>
+              <div class="campaign">
+                <h2>Pagājušās nedēļas akcija</h2>
+                <p>10.11. - 16.11.2026.</p>
+                <a href="/bukleti/old">Lasīt</a>
+              </div>
+            """, "html.parser"),
+            date(2026, 11, 27),
+        )
+        self.assertEqual(len(catalogues), 1)
+        self.assertEqual(catalogues[0]["name"], "Black Friday cenu festivāls")
+        self.assertEqual(catalogues[0]["pdfSources"], ["https://www.maxima.lv/uploads/test.pdf"])
+        self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
+
+    def test_parse_catalogue_pdf_extracts_product_price_pair(self):
+        import fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_text((25, 220), "Siers WELL DONE PREMIUM 180 g")
+        page.insert_text((110, 220), "3 29 4 49")
+        page.insert_text((25, 420), "Banāni 1 kg")
+        page.insert_text((110, 420), "1 19 -34% 0 79")
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/test",
+            "detailSource": "https://www.maxima.lv/bukleti/test",
+            "pdfSources": ["https://www.maxima.lv/uploads/test.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/test",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(payload, catalogue, [catalogue], today=date(2026, 11, 27))
+        self.assertEqual(len(offers), 2)
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-weekly": 2})
+        by_name = {offer["name"]: offer for offer in offers}
+        cheese = next(offer for name, offer in by_name.items() if "Siers WELL DONE" in name)
+        bananas = next(offer for name, offer in by_name.items() if "Banāni" in name)
+        self.assertEqual((cheese["price"], cheese["regularPrice"]), (3.29, 4.49))
+        self.assertEqual((bananas["price"], bananas["regularPrice"]), (0.79, 1.19))
+        self.assertEqual(bananas["discountPercent"], 34)
+        self.assertEqual(cheese["pdfPage"], 1)
+        self.assertEqual(cheese["validFrom"], "2026-11-24")
 
     def test_detect_all_explicit_store_formats(self):
         text = "Piedāvājums spēkā visos MAXIMA X, XX un XXX veikalos"
