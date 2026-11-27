@@ -11,6 +11,7 @@ Currently supported:
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
+| Elvi    | `scripts/scrape_elvi.py`   | `data/elvi-offers.json` | Production (daily GH Actions) |
 
 ---
 
@@ -187,6 +188,42 @@ Output: `data/rimi-offers.json` (refreshed daily by the same workflow as Maxima)
 
 ---
 
+## Elvi (elvi.lv)
+
+ELVI publishes its weekly newspaper ("Akcijas avīze") as an image-only issuu
+flipbook, but the promoted products are also server-rendered on the site:
+
+- `GET https://elvi.lv/akcijas-avize/` — first batch of product cards plus the
+  campaign validity header ("Spēkā no … līdz …"), applied to every offer;
+- `POST https://elvi.lv/wp-admin/admin-ajax.php` with `action=loadMore`,
+  `offset=N` (steps of 16) and empty `cat` — the remaining cards, same markup,
+  until the response only hides the load-more button.
+
+Card variants:
+
+- **default** — struck-through regular price (a range such as `3.19€ - 3.39€`
+  keeps its lower bound, like top!) and the sale price; a lone `p.single`
+  price is kept without a regular price;
+- **two-plus** — per-unit price valid when buying 2+; kept with a `multiBuy`
+  field that the site renders as a "Pērkot 2+" condition tag;
+- **percent** — only a percentage, no absolute price → `reviewOffers`;
+- `tooltip card` / `tooltip card_plus3` icons set `requiresCard` with
+  `cardName: "ELVI Klienta karte"` / `"3+ karte"`.
+
+The detail span ("Brand; 400 g; 5,98 €/kg") supplies brand and package size;
+the package is appended to the name when missing so identity keeps sizes
+apart. Unit prices and deposit notes are stripped. The issuu flipbook is
+recorded as a catalogue link (no public PDF, no text layer). ELVI does not
+publish alcohol in the online newspaper, so no alcohol filter is needed.
+
+```bash
+python scripts/scrape_elvi.py
+```
+
+Output: `data/elvi-offers.json` (refreshed daily by the same workflow as Maxima).
+
+---
+
 ## Product identity and grouping
 
 Shared logic in `scripts/product_identity.py`:
@@ -223,5 +260,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl and Rimi data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl, Rimi and Elvi data and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
