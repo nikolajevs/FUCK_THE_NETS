@@ -26,21 +26,44 @@ def product_identity(name: str) -> dict[str, str]:
     """
     raw = _ascii(name or "")
     packages: list[str] = []
+    display_packages: list[str] = []
     spans: list[tuple[int, int]] = []
+
+    def display_number(value: float) -> str:
+        rendered = f"{value:.3f}".rstrip("0").rstrip(".")
+        return rendered.replace(".", ",")
 
     for match in PACKAGE_RE.finditer(raw):
         value = float(match.group("value").replace(",", "."))
         unit = match.group("unit").casefold().rstrip(".")
         if unit == "kg":
-            packages.append(f"mass:{round(value * 1000)}g")
+            grams = round(value * 1000)
+            packages.append(f"mass:{grams}g")
+            display_packages.append(
+                f"{display_number(grams / 1000)} kg" if grams >= 1000 and grams % 1000 == 0
+                else f"{display_number(value)} kg"
+            )
         elif unit == "g":
-            packages.append(f"mass:{round(value)}g")
+            grams = round(value)
+            packages.append(f"mass:{grams}g")
+            display_packages.append(
+                f"{display_number(grams / 1000)} kg" if grams >= 1000 and grams % 1000 == 0
+                else f"{display_number(value)} g"
+            )
         elif unit == "l":
-            packages.append(f"volume:{round(value * 1000)}ml")
+            millilitres = round(value * 1000)
+            packages.append(f"volume:{millilitres}ml")
+            display_packages.append(f"{display_number(value)} l")
         elif unit == "ml":
-            packages.append(f"volume:{round(value)}ml")
+            millilitres = round(value)
+            packages.append(f"volume:{millilitres}ml")
+            display_packages.append(
+                f"{display_number(millilitres / 1000)} l" if millilitres >= 1000 and millilitres % 1000 == 0
+                else f"{display_number(value)} ml"
+            )
         else:
             packages.append(f"count:{round(value)}")
+            display_packages.append(f"{display_number(value)} gab.")
         spans.append(match.span())
 
     without_package = list(raw)
@@ -63,7 +86,7 @@ def product_identity(name: str) -> dict[str, str]:
     return {
         "canonicalProductId": canonical_id,
         "identityKey": signature,
-        "packageSize": package_signature,
+        "packageSize": ", ".join(sorted(set(display_packages))),
     }
 
 
