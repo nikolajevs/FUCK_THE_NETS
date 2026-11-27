@@ -75,7 +75,7 @@ def product_id(name: str, unit: str | None = None) -> str:
 def prices_from(text: str) -> list[float]:
     """Read shelf prices, excluding €/kg and €/l unit prices."""
     cleaned = re.sub(
-        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?)\b",
+        r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?|rull\w*)\b",
         " ", text, flags=re.IGNORECASE,
     )
     cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", cleaned)
@@ -823,6 +823,7 @@ def discover_active_catalogues(
             explicit_format = re.search(r"\bMAXIMA\s+(XXX|XX|X)\b", detail_text, flags=re.IGNORECASE)
             if explicit_format:
                 formats = [explicit_format.group(1).upper()]
+                scope_source = detail_url
 
         store_match = re.search(
             r"MAXIMA\s+veikalā\s+(.{2,100}?)(?:\.|Preču daudzums|Atpakaļ|$)",
@@ -1384,9 +1385,14 @@ def main():
 
     payload = {
         "source": BROCHURES_URL,
-        "sources": [metadata["source"] for metadata in campaign_metadata],
+        "sources": list(dict.fromkeys(
+            [metadata["source"] for metadata in campaign_metadata]
+            + [item["source"] for item in active_catalogues]
+            + [pdf for item in active_catalogues for pdf in item.get("pdfSources", [])]
+        )),
         "updatedAt": observed_at.isoformat(timespec="seconds"),
         "campaigns": campaign_metadata,
+        "catalogues": active_catalogues,
         "offers": offers,
         "products": grouped_products,
         "reviewOffers": review_offers,
