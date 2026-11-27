@@ -299,6 +299,15 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(catalogues[0]["pdfSources"], ["https://www.maxima.lv/uploads/test.pdf"])
         self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
 
+    def test_pdf_product_name_removes_orphaned_unit_price_labels(self):
+        value = _clean_pdf_product_name(
+            "€/kg; Tortiljas 320 g, vidējās (5,91 €/kg; 0 35 0 39"
+        )
+        self.assertEqual(value, "Tortiljas 320 g, vidējās")
+
+        value = _clean_pdf_product_name("Dzēriens 545 ml, LIME&LEMON ( /l")
+        self.assertEqual(value, "Dzēriens 545 ml, LIME&LEMON")
+
     def test_pdf_product_name_removes_card_ordinal_and_trailing_price_fragment(self):
         value = _clean_pdf_product_name(
             "2 Riekstu maisījums WELL PREMIUM 210 g, sāļais"
