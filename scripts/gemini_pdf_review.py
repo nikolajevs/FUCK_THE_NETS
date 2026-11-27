@@ -36,6 +36,11 @@ try:
 except ModuleNotFoundError:
     from qwen_pdf_review import _crop_rect, _prompt_for_offer, _valid_suggestion
 
+try:
+    from scripts.vision_price_check import annotate_vision_price_check
+except ModuleNotFoundError:
+    from vision_price_check import annotate_vision_price_check
+
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 # Daily free-tier budgets change; keep a persistent ledger so repeated runs
@@ -237,6 +242,7 @@ def add_gemini_review_suggestions(
                 continue
             suggestion["model"] = f"{client.model} (Gemini API)"
             offer.setdefault("reviewEvidence", {})["visionAssist"] = suggestion
+            annotate_vision_price_check(offer)
             attached += 1
             print(f"Gemini reviewed card {index}/{len(review_offers)}")
     finally:
@@ -294,6 +300,7 @@ def review_pending_directory(pending_dir: Path, offers_file: Path, client: Gemin
             ):
                 continue
             current_evidence["visionAssist"] = suggestion
+            annotate_vision_price_check(current)
 
     if attached:
         offers_file.write_text(

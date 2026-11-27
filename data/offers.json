@@ -158752,6 +158752,15 @@
           "regularPrice": 19.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            10.99,
+            19.99,
+            9.96
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -158821,6 +158830,18 @@
           "regularPrice": 9.94,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "mismatch",
+          "textLayerPrices": [
+            5.87
+          ],
+          "unmatchedModelPrices": [
+            {
+              "field": "regularPrice",
+              "price": 9.94
+            }
+          ]
         }
       }
     },
@@ -158891,6 +158912,14 @@
           "regularPrice": null,
           "requiresPaldies": null,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            4.99,
+            3.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -158961,6 +158990,14 @@
           "regularPrice": 1.49,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.98,
+            1.49
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159031,6 +159068,14 @@
           "regularPrice": 5.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99,
+            5.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159101,6 +159146,14 @@
           "regularPrice": 7.49,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99,
+            7.49
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159171,6 +159224,14 @@
           "regularPrice": 11.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            6.99,
+            11.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159241,6 +159302,14 @@
           "regularPrice": 24.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            13.99,
+            24.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159311,6 +159380,14 @@
           "regularPrice": 11.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            6.99,
+            11.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159381,6 +159458,14 @@
           "regularPrice": 22.99,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            22.99,
+            12.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159451,6 +159536,14 @@
           "regularPrice": 9.18,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            9.18,
+            4.59
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159520,6 +159613,18 @@
           "regularPrice": 0.45,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "mismatch",
+          "textLayerPrices": [
+            0.45
+          ],
+          "unmatchedModelPrices": [
+            {
+              "field": "price",
+              "price": 0.19
+            }
+          ]
         }
       }
     },
@@ -159590,6 +159695,14 @@
           "regularPrice": 0.99,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            0.75,
+            0.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159660,6 +159773,14 @@
           "regularPrice": 9.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            5.99,
+            9.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159730,6 +159851,14 @@
           "regularPrice": null,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            4.7,
+            2.35
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159800,6 +159929,14 @@
           "regularPrice": 12.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            6.99,
+            12.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159870,6 +160007,14 @@
           "regularPrice": 7.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            4.29,
+            7.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -159940,6 +160085,14 @@
           "regularPrice": 4.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.99,
+            4.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160010,6 +160163,14 @@
           "regularPrice": 9.18,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            9.18,
+            4.59
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160080,6 +160241,14 @@
           "regularPrice": 6.78,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            6.78,
+            3.39
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160150,6 +160319,14 @@
           "regularPrice": null,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.5,
+            1.25
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160220,6 +160397,14 @@
           "regularPrice": 49.99,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            31.99,
+            49.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160291,6 +160476,15 @@
           "regularPrice": 399.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            0.29,
+            219.99,
+            399.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160361,6 +160555,14 @@
           "regularPrice": 5.98,
           "requiresPaldies": false,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            5.98,
+            2.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160431,6 +160633,14 @@
           "regularPrice": 6.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99,
+            6.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160500,6 +160710,13 @@
           "regularPrice": null,
           "requiresPaldies": false,
           "model": "gemini-3.5-flash-lite (Gemini API)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160570,6 +160787,14 @@
           "regularPrice": 6.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            4.99,
+            6.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160640,6 +160865,14 @@
           "regularPrice": 7.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99,
+            7.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     },
@@ -160710,6 +160943,14 @@
           "regularPrice": 12.99,
           "requiresPaldies": true,
           "model": "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            6.99,
+            12.99
+          ],
+          "unmatchedModelPrices": []
         }
       }
     }

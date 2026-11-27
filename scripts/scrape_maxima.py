@@ -29,6 +29,11 @@ try:
 except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
     from product_identity import build_product_groups, product_identity
 
+try:
+    from scripts.vision_price_check import annotate_vision_price_check
+except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
+    from vision_price_check import annotate_vision_price_check
+
 BROCHURES_URL = "https://www.maxima.lv/bukleti/"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; LatviaOffersBot/1.0; +https://github.com/nikolajevs/FUCK_THE_NETS)"
@@ -2064,6 +2069,8 @@ def carry_forward_qwen_review_suggestions(
             evidence["visionAssist"] = previous_by_evidence[key]
             offer["reviewEvidence"] = evidence
             carried += 1
+        if isinstance(evidence.get("visionAssist"), dict):
+            annotate_vision_price_check(offer)
     return carried
 
 
