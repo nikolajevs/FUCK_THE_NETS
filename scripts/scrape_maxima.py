@@ -1194,7 +1194,7 @@ def parse_catalogue_pdf(
         # campaign at its end. That campaign has its own PDF URL and is parsed
         # separately; skip the duplicate page here.
         if catalogue["id"] == "maxima-weekly" and re.search(
-            r"black\\s*friday|cenu\\s+festivāls", folded_page_text
+            r"black\s*friday|cenu\s+festivāls", folded_page_text
         ):
             continue
 
@@ -1230,12 +1230,12 @@ def parse_catalogue_pdf(
             name_issues: list[str] = []
             if (
                 ";" in name
-                or len(re.findall(r"\\b\\d{1,2}\\.", name)) >= 2
+                or len(re.findall(r"\b\d{1,2}\.", name)) >= 2
                 or any(term in name_folded for term in (
                     "rojā", "darba dienā", "atklāšana", "dienā",
                 ))
-                or re.search(r"\\b\\d{1,2}:\\d{2}\\b", name)
-                or re.search(r"\\(\\s*/\\s*kg", name_folded)
+                or re.search(r"\b\d{1,2}:\d{2}\b", name)
+                or re.search(r"\(\s*/\s*kg", name_folded)
             ):
                 name_issues.append("product_name_ambiguous")
             issues = list(dict.fromkeys([*issues, *name_issues]))
