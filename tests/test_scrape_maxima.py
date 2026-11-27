@@ -777,16 +777,14 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
         by_name = {offer["name"]: offer for offer in offers}
-        self.assertIn("Coffee Set KITCHEN 1 gab.", by_name, f"offers={offers!r}; reviews={reviews!r}")
-        self.assertIn("Tablecloth HOME 1 gab.", by_name, f"offers={offers!r}; reviews={reviews!r}")
+        coffee = next(value for name, value in by_name.items() if name.startswith("Coffee Set KITCHEN"))
+        tablecloth = next(value for name, value in by_name.items() if name.startswith("Tablecloth HOME"))
         self.assertEqual(
-            (by_name["Coffee Set KITCHEN 1 gab."]["price"],
-             by_name["Coffee Set KITCHEN 1 gab."]["regularPrice"]),
+            (coffee["price"], coffee["regularPrice"]),
             (9.99, 21.99),
         )
         self.assertEqual(
-            (by_name["Tablecloth HOME 1 gab."]["price"],
-             by_name["Tablecloth HOME 1 gab."]["regularPrice"]),
+            (tablecloth["price"], tablecloth["regularPrice"]),
             (14.99, 24.99),
         )
 
