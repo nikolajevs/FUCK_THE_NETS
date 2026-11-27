@@ -293,6 +293,7 @@ class MaximaScraperTests(unittest.TestCase):
 
     def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
         import pymupdf as fitz
+        from scripts.scrape_maxima import _pdf_page_cells
 
         document = fitz.open()
         page = document.new_page(width=600, height=800)
@@ -319,9 +320,13 @@ class MaximaScraperTests(unittest.TestCase):
             "storeFormats": ["X", "XX", "XXX"],
             "storeScopeSource": "https://www.maxima.lv/bukleti/test",
         }
+        debug_document = fitz.open(stream=payload, filetype="pdf")
+        print("WIDE_PRICE_CELLS", _pdf_page_cells(debug_document[0]))
+        debug_document.close()
         offers, reviews, pages = parse_catalogue_pdf(
             payload, catalogue, [catalogue], today=date(2026, 11, 27)
         )
+        print('WIDE_PRICE_OFFERS', [(o['name'], o['price'], o['regularPrice']) for o in offers], 'reviews=', [(o['name'], o['quality']['issues']) for o in reviews])
         self.assertEqual(len(offers), 3)
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
