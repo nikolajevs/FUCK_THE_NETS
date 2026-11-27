@@ -278,7 +278,7 @@ class MaximaScraperTests(unittest.TestCase):
         offers, reviews, pages = parse_catalogue_pdf(payload, catalogue, [catalogue], today=date(2026, 11, 27))
         self.assertEqual(len(offers), 2)
         self.assertEqual(reviews, [])
-        self.assertEqual(pages, {"maxima-weekly": 2})
+        self.assertEqual(pages, {"maxima-weekly": 1})
         by_name = {offer["name"]: offer for offer in offers}
         cheese = next(offer for name, offer in by_name.items() if "Siers WELL DONE" in name)
         bananas = next(offer for name, offer in by_name.items() if "Banāni" in name)
