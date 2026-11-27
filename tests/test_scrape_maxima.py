@@ -22,6 +22,7 @@ from scripts.scrape_maxima import (
     prices_from,
     price_quality,
     _has_explicit_shelf_price,
+    _pdf_page_cells_geometry,
     _pdf_cell_starts_with_price,
     store_formats_from_text,
 )
@@ -1072,6 +1073,39 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(offers, [])
         self.assertEqual(len(reviews), 1)
         self.assertIn("price_before_product_name", reviews[0]["quality"]["issues"])
+
+    def test_pdf_geometry_keeps_staggered_products_in_their_columns(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        columns = [
+            [20, 35, 28],
+            [220, 235, 228],
+            [420, 435, 428],
+        ]
+        for column_index, starts in enumerate(columns):
+            for row_index, x in enumerate(starts):
+                y = 90 + row_index * 220 + column_index * 4
+                page.insert_textbox(
+                    fitz.Rect(x, y, x + 160, y + 75),
+                    f"Product {column_index + 1}-{row_index + 1} 1 gab.\\n"
+                    f"{1 + column_index * 3 + row_index}.99 {9 + column_index * 3 + row_index}.99",
+                    fontsize=9,
+                )
+
+        cells = _pdf_page_cells_geometry(page)
+        document.close()
+
+        self.assertEqual(len(cells), 9, f"cells={cells!r}")
+        self.assertEqual(
+            sorted(column for _, column, _ in cells),
+            [1, 1, 1, 2, 2, 2, 3, 3, 3],
+        )
+        self.assertTrue(
+            all(len(prices_from(text)) == 2 for _, _, text in cells),
+            f"unexpected merged cells: {cells!r}",
+        )
 
 
 if __name__ == "__main__":
