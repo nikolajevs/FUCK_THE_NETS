@@ -23,6 +23,32 @@ jobs:
           python-version: "3.12"
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4 pymupdf
+      - name: Diagnose brochure PDF text layout (temporary)
+        run: |
+          python - <<'PY'
+          import requests
+          import pymupdf
+          urls = {
+              "black-friday": ("https://www.maxima.lv/uploads/releases/pdf/MAXIMA_BLACK-FRIDAY_2026_x8pM.pdf", [0, 1]),
+              "weekly": ("https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_16Y5.pdf", [1, 2, 38]),
+          }
+          for label, (url, page_numbers) in urls.items():
+              response = requests.get(url, timeout=60)
+              response.raise_for_status()
+              document = pymupdf.open(stream=response.content, filetype="pdf")
+              for page_number in page_numbers:
+                  page = document[page_number]
+                  print(f"PDFDBG_PAGE {label} {page_number + 1} size={page.rect}")
+                  blocks = page.get_text("blocks")
+                  for block_number, block in enumerate(blocks, 1):
+                      value = " ".join(block[4].split())
+                      print(
+                          f"PDFDBG {label} page={page_number + 1} block={block_number} "
+                          f"bbox=({block[0]:.1f},{block[1]:.1f},{block[2]:.1f},{block[3]:.1f}) "
+                          f"text={value!r}"
+                      )
+              document.close()
+          PY
       - name: Validate scraper syntax
         run: python -m py_compile scripts/scrape_maxima.py
       - name: Run scraper tests
