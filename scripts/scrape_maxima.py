@@ -15,7 +15,10 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup, Tag
 
-from scripts.product_identity import build_product_groups, product_identity
+try:
+    from scripts.product_identity import build_product_groups, product_identity
+except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
+    from product_identity import build_product_groups, product_identity
 
 BROCHURES_URL = "https://www.maxima.lv/bukleti/"
 HEADERS = {
