@@ -1257,8 +1257,8 @@ def parse_catalogue_pdf(
             # geometric extraction, that number may be €/kg or €/l rather than
             # the product's shelf price. Keep it out of the verified feed.
             has_unit_price_label = bool(re.search(
-                r"(?:€\\s*/\\s*(?:kg|l|100\\s*g|100\\s*ml|gab\\.?|rull\\w*)|"
-                r"/\\s*(?:kg|l|100\\s*g|100\\s*ml))",
+                r"(?:€\s*/\s*(?:kg|l|100\s*g|100\s*ml|gab\.?|rull\w*)|"
+                r"/\s*(?:kg|l|100\s*g|100\s*ml))",
                 cell_text,
                 flags=re.IGNORECASE,
             ))
