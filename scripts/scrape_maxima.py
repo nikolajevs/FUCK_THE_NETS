@@ -964,7 +964,7 @@ def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(text.replace("\xa0", " ").split())
     # Brochure card numbers are often extracted as if they were part of the SKU.
     value = re.sub(
-        r"^\d{1,2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
+        r"^\d{1,2}\.?\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
         "",
         value,
         flags=re.IGNORECASE,
@@ -1122,6 +1122,14 @@ def _pdf_description_anchors_by_line(
             segment: list[tuple] = []
             segments: list[list[tuple]] = []
             for word in line_words:
+                token = str(word[4]).strip()
+                # Bullet glyphs are reliable separators between product cards
+                # when PDF extraction places several offers on one text line.
+                if re.fullmatch(r"[•·▪●◦]+", token):
+                    if segment:
+                        segments.append(segment)
+                        segment = []
+                    continue
                 if segment and float(word[0]) - max(float(item[2]) for item in segment) > split_gap:
                     segments.append(segment)
                     segment = []
@@ -1130,7 +1138,7 @@ def _pdf_description_anchors_by_line(
                 segments.append(segment)
 
             for segment in segments:
-                segment_text = " ".join(str(item[4]) for item in segment)
+                segment_text = " ".join(str(item[4]).lstrip("•·▪●◦") for item in segment)
                 if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
                     anchors.append((
                         min(float(item[0]) for item in segment),
