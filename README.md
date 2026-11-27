@@ -10,6 +10,7 @@ Currently supported:
 | Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
+| Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
 
 ---
 
@@ -125,6 +126,39 @@ Output: `data/lidl-offers.json` (refreshed daily by the same workflow as Maxima)
 
 ---
 
+## Rimi (rimi.lv)
+
+Rimi's online store server-renders its full promotion catalogue, so offers are
+collected from the HTML listing — no PDF parsing and no login required:
+
+- `GET https://www.rimi.lv/e-veikals/lv/akcijas-piedavajumi?currentPage=N&pageSize=100`
+  — every product that currently carries a price label (100 cards per page is
+  the server maximum; the last page number is read from the pagination).
+
+Two kinds of promotion cards are recognized:
+
+- **Mans Rimi card price** — the `price-label` block ("Piedāvājums spēkā tikai
+  MansRimi kartes lietotājiem") holds the loyalty price, the plain `card__price`
+  is the regular price; flagged `requiresCard` with `cardName: "Mans Rimi"`,
+  campaign "Mans Rimi cena";
+- **Regular discount** — `card__price` is the sale price and `old-price-tag`
+  ("Regulārā cena: …") the crossed-out regular price; campaign "Akcija".
+
+Sale prices use dot decimals, regular prices comma decimals — both are
+normalized; unit prices are ignored. Alcoholic products are excluded by the
+GTM category code embedded in each card (top-level `SH-1` Alkoholiskie dzērieni
+and `SH-18` Vīns un šampanietis); non-alcoholic beer/cider/wine (`SH-5-1`)
+stay in the feed. The listing has no per-product validity dates, so
+`validFrom`/`validUntil` are `null` instead of guessing a booklet period.
+
+```bash
+python scripts/scrape_rimi.py
+```
+
+Output: `data/rimi-offers.json` (refreshed daily by the same workflow as Maxima).
+
+---
+
 ## Product identity and grouping
 
 Shared logic in `scripts/product_identity.py`:
@@ -161,5 +195,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima, top! and Lidl data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl and Rimi data and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
