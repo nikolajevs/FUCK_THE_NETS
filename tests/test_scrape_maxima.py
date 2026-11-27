@@ -358,7 +358,11 @@ class MaximaScraperTests(unittest.TestCase):
             "storeFormats": ["X", "XX", "XXX"],
             "storeScopeSource": "https://www.maxima.lv/bukleti/test",
         }
+        debug_document = fitz.open(stream=payload, filetype="pdf")
+        print("DEBUG_CELLS_ORIGINAL", _pdf_page_cells(debug_document[0]))
+        debug_document.close()
         offers, reviews, pages = parse_catalogue_pdf(payload, catalogue, [catalogue], today=date(2026, 11, 27))
+        print("DEBUG_RESULT_ORIGINAL", [(o["name"],o["price"],o["regularPrice"]) for o in offers], [(o["name"],o["quality"]["issues"]) for o in reviews])
         self.assertEqual(len(offers), 2)
         self.assertEqual(reviews, [])
         self.assertEqual(pages, {"maxima-weekly": 1})
