@@ -971,12 +971,10 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
 
 
 def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
-    """Find product starts inside text blocks, splitting only real product columns."""
+    """Find product starts inside text blocks, splitting horizontally merged cards."""
     anchors: list[tuple[float, float]] = []
     split_gap = max(44, width * 0.08)
     for block in candidates:
-        # Match by coordinates rather than block_no: PyMuPDF may renumber
-        # blocks when one extraction uses sort=True and another does not.
         block_words = [
             word for word in words
             if float(block[0]) - 1 <= (float(word[0]) + float(word[2])) / 2 <= float(block[2]) + 1
@@ -986,24 +984,27 @@ def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[floa
             anchors.append((float(block[0]), float(block[1])))
             continue
 
-        lines: dict[int, list[tuple]] = defaultdict(list)
+        # PDF extraction sometimes merges horizontally adjacent products into
+        # one text block. Cluster all its words by x-gap; wrapped text stays
+        # within a card's column and does not create extra vertical grid rows.
+        block_words.sort(key=lambda word: (float(word[0]), float(word[1])))
+        segment: list[tuple] = []
+        segments: list[list[tuple]] = []
         for word in block_words:
-            lines[int(word[6])].append(word)
-        block_top = float(block[1])
-        for line_words in lines.values():
-            line_words.sort(key=lambda word: float(word[0]))
-            segment: list[tuple] = []
-            for word in line_words:
-                if segment and float(word[0]) - float(segment[-1][2]) > split_gap:
-                    segment_text = " ".join(str(item[4]) for item in segment)
-                    if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
-                        anchors.append((float(segment[0][0]), block_top))
-                    segment = []
-                segment.append(word)
-            if segment:
-                segment_text = " ".join(str(item[4]) for item in segment)
-                if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
-                    anchors.append((float(segment[0][0]), block_top))
+            if segment and float(word[0]) - max(float(item[2]) for item in segment) > split_gap:
+                segments.append(segment)
+                segment = []
+            segment.append(word)
+        if segment:
+            segments.append(segment)
+
+        for segment in segments:
+            segment_text = " ".join(str(item[4]) for item in segment)
+            if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                anchors.append((
+                    min(float(item[0]) for item in segment),
+                    float(block[1]),
+                ))
 
     unique: list[tuple[float, float]] = []
     for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
