@@ -1,7 +1,7 @@
 {
   "source": "https://www.e-latts.lv/products.sale.ppl",
   "store": "latts",
-  "updatedAt": "2026-11-27T22:15:40+00:00",
+  "updatedAt": "2026-11-27T22:34:10+00:00",
   "campaigns": [
     {
       "id": "akcijas",
@@ -46,7 +46,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.265494-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.264056-m1d.jpeg",
       "canonicalProductId": "aeons-etikis-sarkanvina-volume-250ml-f44abba9632d",
       "identityKey": "aeons etikis sarkanvina|volume:250ml",
       "packageSize": "250 ml"
@@ -407,7 +407,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.305269-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.283125-m1N.jpeg",
       "canonicalProductId": "a-b-club-dzeriens-gazets-indian-pet-royal-tonic-volume-1000ml-2c17b84083a7",
       "identityKey": "a b club dzeriens gazets indian pet royal tonic|volume:1000ml",
       "packageSize": "1 l"
@@ -540,7 +540,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.308864-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.277874-m1M.jpeg",
       "canonicalProductId": "aknu-ar-bariba-galu-kakiem-love-merce-mitra-my-mass-85g-c4c1ea92222e",
       "identityKey": "aknu ar bariba galu kakiem love merce mitra my|mass:85g",
       "packageSize": "85 g"
@@ -559,7 +559,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.298153-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.262004-m1O.jpeg",
       "canonicalProductId": "ar-bariba-galu-kakiem-love-maiga-merce-mitra-my-vistas-mass-85g-bd5e4f67cc01",
       "identityKey": "ar bariba galu kakiem love maiga merce mitra my vistas|mass:85g",
       "packageSize": "85 g"
@@ -673,7 +673,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.317377-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.260988-m1Z.jpeg",
       "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-miksta-my-tela-1878a79e1e18",
       "identityKey": "4x85g ar bariba galu kakiem love miksta my tela|",
       "packageSize": ""
@@ -692,7 +692,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.300149-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.260267-m1d.jpeg",
       "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-miksta-my-trusa-f62dd7c5f869",
       "identityKey": "4x85g ar bariba galu kakiem love miksta my trusa|",
       "packageSize": ""
@@ -711,7 +711,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.299907-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.259823-m1Z.jpeg",
       "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-maiga-merce-miksta-my-a6365cc1a73b",
       "identityKey": "4x85g ar bariba galu kakiem love maiga merce miksta my vistas|",
       "packageSize": ""
@@ -1034,7 +1034,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.312452-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.260268-m1d.jpeg",
       "canonicalProductId": "ar-bariba-galu-kakiem-love-my-sausa-vistas-mass-300g-e82dce1e12c6",
       "identityKey": "ar bariba galu kakiem love my sausa vistas|mass:300g",
       "packageSize": "300 g"
@@ -1186,7 +1186,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.314997-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.258849-m1f.jpeg",
       "canonicalProductId": "4x100g-adult-aknu-ar-bariba-izlase-liellopa-maisij-maj-e546f297c2c0",
       "identityKey": "4x100g adult aknu ar bariba izlase liellopa maisij majp miksta mixed pedigree suniem un|",
       "packageSize": ""
@@ -1984,7 +1984,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.306916-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.269504-m1M.jpeg",
       "canonicalProductId": "alveja-cementejosi-kakiem-pakaisi-paws-pure-white-volume-5000ml-c28de7b6a748",
       "identityKey": "alveja cementejosi kakiem pakaisi paws pure white|volume:5000ml",
       "packageSize": "5 l"
@@ -2212,7 +2212,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.323322-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.277872-m1Z.jpeg",
       "canonicalProductId": "citronskabe-spilva-mass-30g-b8774867ea09",
       "identityKey": "citronskabe spilva|mass:30g",
       "packageSize": "30 g"
@@ -2250,7 +2250,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.308320-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.283309-m1a.jpeg",
       "canonicalProductId": "colgate-max-pasta-shine-white-zobu-volume-75ml-50a83a5b1548",
       "identityKey": "colgate max pasta shine white zobu|volume:75ml",
       "packageSize": "75 ml"
@@ -2326,7 +2326,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.300157-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.264303-m1N.jpeg",
       "canonicalProductId": "atdzesets-calis-rm-sverams-ce1401f11102",
       "identityKey": "atdzesets calis rm sverams|",
       "packageSize": ""
@@ -2345,7 +2345,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.316238-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.274504-m1P.jpeg",
       "canonicalProductId": "basmati-cala-darzenu-gabalini-galas-kremiga-lido-merce-mass-330g-043ed18e7e78",
       "identityKey": "basmati cala darzenu gabalini galas kremiga lido merce risi un|mass:330g",
       "packageSize": "330 g"
@@ -2440,7 +2440,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.286842-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.263882-m1M.jpeg",
       "canonicalProductId": "atdzeseti-calu-pussparni-rm-mass-400g-60460105e9ea",
       "identityKey": "atdzeseti calu pussparni rm|mass:400g",
       "packageSize": "400 g"
@@ -2478,7 +2478,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.319563-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.265135-m1V.jpeg",
       "canonicalProductId": "atdzeseti-calu-rm-skinki-sverami-19b99927c4f1",
       "identityKey": "atdzeseti calu rm skinki sverami|",
       "packageSize": ""
@@ -2497,7 +2497,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.275849-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.247305-m1B.jpeg",
       "canonicalProductId": "cisini-kgs-premium-variti-mass-400g-a8da143664c0",
       "identityKey": "cisini kgs premium variti|mass:400g",
       "packageSize": "400 g"
@@ -2763,7 +2763,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.244167-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.243348-m1B.jpeg",
       "canonicalProductId": "biovela-desa-karsti-krakow-kupinata-skeles-mass-180g-bb295dba234e",
       "identityKey": "biovela desa karsti krakow kupinata skeles|mass:180g",
       "packageSize": "180 g"
@@ -2801,7 +2801,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.291612-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.272789-m1f.jpeg",
       "canonicalProductId": "desa-italu-noo-salami-skelites-mass-90g-4f519c0df098",
       "identityKey": "desa italu noo salami skelites|mass:90g",
       "packageSize": "90 g"
@@ -2820,7 +2820,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.318339-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.276508-m1N.jpeg",
       "canonicalProductId": "desa-noo-salami-skelites-vacu-mass-90g-af8594f45ea0",
       "identityKey": "desa noo salami skelites vacu|mass:90g",
       "packageSize": "90 g"
@@ -2839,7 +2839,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.303836-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.271960-m1Z.jpeg",
       "canonicalProductId": "corizo-desa-noo-salami-skelites-mass-90g-144614cbc622",
       "identityKey": "corizo desa noo salami skelites|mass:90g",
       "packageSize": "90 g"
@@ -3105,7 +3105,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.285611-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.276262-m1a.jpeg",
       "canonicalProductId": "dezodorants-invisible-pure-rexona-stick-volume-50ml-ed9e466e05c8",
       "identityKey": "dezodorants invisible pure rexona stick|volume:50ml",
       "packageSize": "50 ml"
@@ -3377,25 +3377,6 @@
       "packageSize": "400 g"
     },
     {
-      "offerId": "latts-22534",
-      "name": "Eklēri ar kakao krēmu 135g, Baltais",
-      "brand": "Baltais",
-      "price": 1.99,
-      "regularPrice": 2.39,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Akcijas",
-      "campaignId": "akcijas",
-      "source": "https://www.e-latts.lv/ekleri-ar-kakao-kremu-135g-baltais.22534.p",
-      "validFrom": null,
-      "validUntil": null,
-      "store": "latts",
-      "image": "https://www.e-latts.lv/i/ekleri-ar-kakao-kremu-135g-baltais.spm.54730-m1C.jpeg",
-      "canonicalProductId": "ar-baltais-ekleri-kakao-kremu-mass-135g-a528f40a4b81",
-      "identityKey": "ar baltais ekleri kakao kremu|mass:135g",
-      "packageSize": "135 g"
-    },
-    {
       "offerId": "latts-51103",
       "name": "Ekstrūderi ar bekona garšu 110g, Estrella",
       "brand": "Estrella",
@@ -3409,7 +3390,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.260518-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.248967-m1P.jpeg",
       "canonicalProductId": "ar-bekona-ekstruderi-estrella-garsu-mass-110g-2e4f4b8f77ba",
       "identityKey": "ar bekona ekstruderi estrella garsu|mass:110g",
       "packageSize": "110 g"
@@ -3770,7 +3751,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.316476-m1U.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.241490-m1U.jpeg",
       "canonicalProductId": "ar-estrella-grauzdeti-medu-sali-un-zemesrieksti-mass-240g-4b029ce9688e",
       "identityKey": "ar estrella grauzdeti medu sali un zemesrieksti|mass:240g",
       "packageSize": "240 g"
@@ -3789,7 +3770,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.302662-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.283850-m1e.jpeg",
       "canonicalProductId": "ar-garsu-grauzdeti-jega-krejuma-sipolu-skaba-un-zemesr-mass-140g-302fc7caf84a",
       "identityKey": "ar garsu grauzdeti jega krejuma sipolu skaba un zemesrieksti|mass:140g",
       "packageSize": "140 g"
@@ -3827,7 +3808,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.320180-m1X.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.241491-m1X.jpeg",
       "canonicalProductId": "ar-estrella-grauzdeti-sali-zemesrieksti-mass-240g-c0caf12294b2",
       "identityKey": "ar estrella grauzdeti sali zemesrieksti|mass:240g",
       "packageSize": "240 g"
@@ -4074,7 +4055,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.319416-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.283310-m1e.jpeg",
       "canonicalProductId": "always-and-day-higieniskas-night-paketes-ultra-count-14-6217f7386eed",
       "identityKey": "always and day higieniskas night paketes ultra|count:14",
       "packageSize": "14 gab."
@@ -4112,7 +4093,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.313068-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.274949-m1P.jpeg",
       "canonicalProductId": "always-higieniskas-normal-paketes-s1-ultra-count-10-a3728f686cf8",
       "identityKey": "always higieniskas normal paketes s1 ultra|count:10",
       "packageSize": "10 gab."
@@ -4131,7 +4112,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.313446-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.276440-m1e.jpeg",
       "canonicalProductId": "always-higieniskas-paketes-plus-s2-super-ultra-count-8-ae99326ef245",
       "identityKey": "always higieniskas paketes plus s2 super ultra|count:8",
       "packageSize": "8 gab."
@@ -5119,7 +5100,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.283576-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.242768-m1M.jpeg",
       "canonicalProductId": "ar-garsu-konfektes-magic-pop-rocks-sprakskosas-zemenu-mass-6g-e48ec7554c8b",
       "identityKey": "ar garsu konfektes magic pop rocks sprakskosas zemenu|mass:6g",
       "packageSize": "6 g"
@@ -5309,7 +5290,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.275205-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.254290-m1c.jpeg",
       "canonicalProductId": "discovery-konfektes-koslajamas-mentos-mass-38g-aee93dfe39c3",
       "identityKey": "discovery konfektes koslajamas mentos|mass:38g",
       "packageSize": "37,5 g"
@@ -5385,7 +5366,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.269197-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.267342-m1B.jpeg",
       "canonicalProductId": "ar-garsu-krejuma-krekeri-mini-petergailis-salie-sipola-mass-72g-2e3bc99a8072",
       "identityKey": "ar garsu krejuma krekeri mini petergailis salie sipola un|mass:72g",
       "packageSize": "72 g"
@@ -5404,7 +5385,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.325790-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.267343-m1f.jpeg",
       "canonicalProductId": "ar-garsu-krekeri-mini-petergailis-salie-siera-mass-72g-7d85c5364bbb",
       "identityKey": "ar garsu krekeri mini petergailis salie siera|mass:72g",
       "packageSize": "72 g"
@@ -5423,7 +5404,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.316391-m1b.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.267344-m1b.jpeg",
       "canonicalProductId": "ar-garsu-krekeri-mini-petergailis-salie-sviesta-mass-70g-98d7fd73903e",
       "identityKey": "ar garsu krekeri mini petergailis salie sviesta|mass:70g",
       "packageSize": "70 g"
@@ -5480,7 +5461,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.317854-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.282314-m1C.jpeg",
       "canonicalProductId": "krustnaglinas-spilva-mass-18g-07e31557789a",
       "identityKey": "krustnaglinas spilva|mass:18g",
       "packageSize": "18 g"
@@ -5803,7 +5784,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.315710-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.264029-m1a.jpeg",
       "canonicalProductId": "chupa-chups-crazy-dips-ledenes-strawbery-mass-14g-9eb21387d902",
       "identityKey": "chupa chups crazy dips ledenes strawbery|mass:14g",
       "packageSize": "14 g"
@@ -6810,7 +6791,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.278843-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.265229-m1c.jpeg",
       "canonicalProductId": "maria-nudeles-olu-santa-mass-250g-269631e31c93",
       "identityKey": "maria nudeles olu santa|mass:250g",
       "packageSize": "250 g"
@@ -6867,7 +6848,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.315637-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.252777-m1P.jpeg",
       "canonicalProductId": "10-8-ar-kupinatu-majas-pankukas-sieru-skinki-un-mass-420g-9b2be2420d0b",
       "identityKey": "10 8 ar kupinatu majas pankukas sieru skinki un|mass:420g",
       "packageSize": "420 g"
@@ -7494,7 +7475,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.319959-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.241660-m1c.jpeg",
       "canonicalProductId": "avenu-bez-lakto-laktozes-piena-produkts-raudzets-mass-200g-af7857c65211",
       "identityKey": "avenu bez lakto laktozes piena produkts raudzets|mass:200g",
       "packageSize": "200 g"
@@ -7513,7 +7494,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.324021-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.241661-m1B.jpeg",
       "canonicalProductId": "bez-lakto-laktozes-meza-piena-produkts-raudzets-zemenu-mass-200g-0c4aea3545a2",
       "identityKey": "bez lakto laktozes meza piena produkts raudzets zemenu|mass:200g",
       "packageSize": "200 g"
@@ -7551,7 +7532,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.325985-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.253440-m1O.jpeg",
       "canonicalProductId": "ar-avenem-latvijas-maiznieks-mikla-piparkuku-rudzu-mass-500g-73965314957f",
       "identityKey": "ar avenem latvijas maiznieks mikla piparkuku rudzu|mass:500g",
       "packageSize": "500 g"
@@ -7722,7 +7703,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.280267-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.277961-m1c.jpeg",
       "canonicalProductId": "ar-ievarijumu-karlsons-kartainais-saldejums-mass-75g-volume-100ml-3fa246d4e106",
       "identityKey": "ar ievarijumu karlsons kartainais saldejums|mass:75g volume:100ml",
       "packageSize": "100 ml, 75 g"
@@ -8007,7 +7988,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.319672-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.263732-m1f.jpeg",
       "canonicalProductId": "aha-brokastis-gliemezvaki-kakao-sausas-mass-400g-1976f226bcad",
       "identityKey": "aha brokastis gliemezvaki kakao sausas|mass:400g",
       "packageSize": "400 g"
@@ -8026,7 +8007,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.310924-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.259382-m1Z.jpeg",
       "canonicalProductId": "aha-ar-brokastis-kviesi-medu-sausas-mass-400g-cb97bce87c37",
       "identityKey": "aha ar brokastis kviesi medu sausas|mass:400g",
       "packageSize": "400 g"
@@ -8045,7 +8026,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.319673-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.279961-m1V.jpeg",
       "canonicalProductId": "aha-ar-brokastis-cepumu-garsu-gredzentini-sausas-mass-400g-69c3f3dabaf7",
       "identityKey": "aha ar brokastis cepumu garsu gredzentini sausas|mass:400g",
       "packageSize": "400 g"
@@ -8197,7 +8178,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.299790-m1X.jpeg",
+      "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.241939-m1X.jpeg",
       "canonicalProductId": "45-holandes-siers-valdo-mass-300g-ee6f5bfc7183",
       "identityKey": "45 holandes siers valdo|mass:300g",
       "packageSize": "300 g"
@@ -8311,7 +8292,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.314333-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.273929-m1B.jpeg",
       "canonicalProductId": "ella-fileja-kaltenes-silku-zivis-mass-250g-mass-500g-74c1576cb45b",
       "identityKey": "ella fileja kaltenes silku zivis|mass:250g mass:500g",
       "packageSize": "250 g, 500 g"
@@ -8938,7 +8919,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.326178-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.250945-m1N.jpeg",
       "canonicalProductId": "abolu-ceptu-krasni-latvijas-maiznieks-torte-mass-730g-7e66fb347e96",
       "identityKey": "abolu ceptu krasni latvijas maiznieks torte|mass:730g",
       "packageSize": "730 g"
@@ -9242,7 +9223,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.326060-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.254368-m1d.jpeg",
       "canonicalProductId": "banga-ella-saulespuku-tuncis-mass-112g-mass-160g-f86c2fe675c8",
       "identityKey": "banga ella saulespuku tuncis|mass:112g mass:160g",
       "packageSize": "112 g, 160 g"
@@ -9774,7 +9755,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.326091-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.281037-m1c.jpeg",
       "canonicalProductId": "3in1-effect-kastanis-lidzeklis-mazg-seal-velas-volume-900ml-92c6dc5e495e",
       "identityKey": "3in1 effect kastanis lidzeklis mazg seal velas|volume:900ml",
       "packageSize": "900 ml"
@@ -10040,7 +10021,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.295990-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.269133-m1V.jpeg",
       "canonicalProductId": "2-400-dvielis-kartu-loksnes-serla-virtuves-xxl-25747bf13ecf",
       "identityKey": "2 400 dvielis kartu loksnes serla virtuves xxl|",
       "packageSize": ""
@@ -10629,7 +10610,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.297562-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.268227-m1f.jpeg",
       "canonicalProductId": "extra-pasta-sensodyne-whitening-zobu-volume-75ml-c4ba93a9dc17",
       "identityKey": "extra pasta sensodyne whitening zobu|volume:75ml",
       "packageSize": "75 ml"
@@ -10914,7 +10895,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.281666-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.245533-m1O.jpeg",
       "canonicalProductId": "abolu-ar-biezenis-krejumu-persikiem-saldo-spilva-un-mass-300g-e0452de8ef97",
       "identityKey": "abolu ar biezenis krejumu persikiem saldo spilva un|mass:300g",
       "packageSize": "300 g"
@@ -11085,7 +11066,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.326297-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.258675-m1f.jpeg",
       "canonicalProductId": "ar-asian-atri-liellopu-nudeles-pagatavojamas-sun-yan-mass-65g-e079ec7fb1e1",
       "identityKey": "ar asian atri liellopu nudeles pagatavojamas sun yan|mass:65g",
       "packageSize": "65 g"
@@ -11750,7 +11731,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.299276-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.242772-m1e.jpeg",
       "canonicalProductId": "crispy-dream-geisha-piena-sokolade-mass-100g-341ab550b4a2",
       "identityKey": "crispy dream geisha piena sokolade|mass:100g",
       "packageSize": "100 g"
@@ -11769,7 +11750,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.316780-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.274960-m1c.jpeg",
       "canonicalProductId": "ekstra-laima-piena-sokolade-mass-90g-f58e569ca694",
       "identityKey": "ekstra laima piena sokolade|mass:90g",
       "packageSize": "90 g"
@@ -11788,7 +11769,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.316781-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.274961-m1B.jpeg",
       "canonicalProductId": "ar-ekstra-laima-lazdu-piena-riekstiem-sokolade-mass-90g-e63c54108f92",
       "identityKey": "ar ekstra laima lazdu piena riekstiem sokolade|mass:90g",
       "packageSize": "90 g"
@@ -11826,7 +11807,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.295215-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.277002-m1C.jpeg",
       "canonicalProductId": "laima-piena-poraina-sokolade-mass-60g-fa9a9eabd80d",
       "identityKey": "laima piena poraina sokolade|mass:60g",
       "packageSize": "60 g"
@@ -11940,7 +11921,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.287992-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.268306-m1M.jpeg",
       "canonicalProductId": "laima-magone-sarkana-sokolade-tumsa-mass-90g-03d1840ca9b4",
       "identityKey": "laima magone sarkana sokolade tumsa|mass:90g",
       "packageSize": "90 g"
@@ -11959,7 +11940,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.307173-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.275117-m1d.jpeg",
       "canonicalProductId": "aprikozem-ar-laima-serenade-sokolade-tumsa-mass-90g-63654edf3719",
       "identityKey": "aprikozem ar laima serenade sokolade tumsa|mass:90g",
       "packageSize": "90 g"
@@ -12092,7 +12073,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.284411-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.279755-m1f.jpeg",
       "canonicalProductId": "batonins-bounty-sokolades-mass-57g-56211e157dcc",
       "identityKey": "batonins bounty sokolades|mass:57g",
       "packageSize": "57 g"
@@ -12206,7 +12187,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.325526-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.243906-m1d.jpeg",
       "canonicalProductId": "dzeriens-nesquik-nestle-sokolades-mass-300g-c7697586b07a",
       "identityKey": "dzeriens nesquik nestle sokolades|mass:300g",
       "packageSize": "300 g"
@@ -12225,7 +12206,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.325868-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.250854-m1a.jpeg",
       "canonicalProductId": "figura-roshen-sokolades-vecitis-ziemassvetku-mass-60g-93887cef0e69",
       "identityKey": "figura roshen sokolades vecitis ziemassvetku|mass:60g",
       "packageSize": "60 g"
@@ -12586,7 +12567,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.326059-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.243684-m1P.jpeg",
       "canonicalProductId": "ar-garsu-mango-valdo-zeleja-mass-80g-f4bff873de93",
       "identityKey": "ar garsu mango valdo zeleja|mass:80g",
       "packageSize": "80 g"
@@ -12605,7 +12586,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.301552-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.243685-m1P.jpeg",
       "canonicalProductId": "ar-garsu-meza-valdo-zeleja-zemenu-mass-80g-73e388c4be90",
       "identityKey": "ar garsu meza valdo zeleja zemenu|mass:80g",
       "packageSize": "80 g"
@@ -12831,7 +12812,7 @@
         "AEONS Sarkanvīna etiķis, 250ml"
       ],
       "brand": null,
-      "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.265494-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.264056-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-51646",
@@ -12847,7 +12828,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.265494-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/aeons-sarkanvina-etikis-250ml.spm.264056-m1d.jpeg",
           "canonicalProductId": "aeons-etikis-sarkanvina-volume-250ml-f44abba9632d",
           "identityKey": "aeons etikis sarkanvina|volume:250ml",
           "packageSize": "250 ml"
@@ -13591,7 +13572,7 @@
         "B/a gāzēts dzēriens Indian tonic 1l PET, Royal Club"
       ],
       "brand": "Royal Club",
-      "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.305269-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.283125-m1N.jpeg",
       "offers": [
         {
           "offerId": "latts-54159",
@@ -13607,7 +13588,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.305269-m1N.jpeg",
+          "image": "https://www.e-latts.lv/i/b-a-gazets-dzeriens-indian-tonic-1l-pet-royal-club.spm.283125-m1N.jpeg",
           "canonicalProductId": "a-b-club-dzeriens-gazets-indian-pet-royal-tonic-volume-1000ml-2c17b84083a7",
           "identityKey": "a b club dzeriens gazets indian pet royal tonic|volume:1000ml",
           "packageSize": "1 l"
@@ -13871,7 +13852,7 @@
         "Barība kaķiem mitrā ar aknu gaļu mērcē 85g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.308864-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.277874-m1M.jpeg",
       "offers": [
         {
           "offerId": "latts-51313",
@@ -13887,7 +13868,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.308864-m1M.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-aknu-galu-merce-85g-my-love.spm.277874-m1M.jpeg",
           "canonicalProductId": "aknu-ar-bariba-galu-kakiem-love-merce-mitra-my-mass-85g-c4c1ea92222e",
           "identityKey": "aknu ar bariba galu kakiem love merce mitra my|mass:85g",
           "packageSize": "85 g"
@@ -13911,7 +13892,7 @@
         "Barība kaķiem mitrā ar vistas gaļu maigā mērcē 85g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.298153-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.262004-m1O.jpeg",
       "offers": [
         {
           "offerId": "latts-51288",
@@ -13927,7 +13908,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.298153-m1O.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-mitra-ar-vistas-galu-maiga-merce-85g-my-love.spm.262004-m1O.jpeg",
           "canonicalProductId": "ar-bariba-galu-kakiem-love-maiga-merce-mitra-my-vistas-mass-85g-bd5e4f67cc01",
           "identityKey": "ar bariba galu kakiem love maiga merce mitra my vistas|mass:85g",
           "packageSize": "85 g"
@@ -14151,7 +14132,7 @@
         "Barība kaķiem mīkstā ar teļa gaļu 4x85g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.317377-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.260988-m1Z.jpeg",
       "offers": [
         {
           "offerId": "latts-51141",
@@ -14167,7 +14148,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.317377-m1Z.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-tela-galu-4x85g-my-love.spm.260988-m1Z.jpeg",
           "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-miksta-my-tela-1878a79e1e18",
           "identityKey": "4x85g ar bariba galu kakiem love miksta my tela|",
           "packageSize": ""
@@ -14191,7 +14172,7 @@
         "Barība kaķiem mīkstā ar truša gaļu 4x85g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.300149-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.260267-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-51135",
@@ -14207,7 +14188,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.300149-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-trusa-galu-4x85g-my-love.spm.260267-m1d.jpeg",
           "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-miksta-my-trusa-f62dd7c5f869",
           "identityKey": "4x85g ar bariba galu kakiem love miksta my trusa|",
           "packageSize": ""
@@ -14231,7 +14212,7 @@
         "Barība kaķiem mīkstā ar vistas gaļu maigā mērcē 4x85g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.299907-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.259823-m1Z.jpeg",
       "offers": [
         {
           "offerId": "latts-51134",
@@ -14247,7 +14228,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.299907-m1Z.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-miksta-ar-vistas-galu-maiga-merce-4x85g-my-love.spm.259823-m1Z.jpeg",
           "canonicalProductId": "4x85g-ar-bariba-galu-kakiem-love-maiga-merce-miksta-my-a6365cc1a73b",
           "identityKey": "4x85g ar bariba galu kakiem love maiga merce miksta my vistas|",
           "packageSize": ""
@@ -14911,7 +14892,7 @@
         "Barība kaķiem sausā ar vistas gaļu 300g, My Love"
       ],
       "brand": "My Love",
-      "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.312452-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.260268-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-51136",
@@ -14927,7 +14908,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.312452-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-kakiem-sausa-ar-vistas-galu-300g-my-love.spm.260268-m1d.jpeg",
           "canonicalProductId": "ar-bariba-galu-kakiem-love-my-sausa-vistas-mass-300g-e82dce1e12c6",
           "identityKey": "ar bariba galu kakiem love my sausa vistas|mass:300g",
           "packageSize": "300 g"
@@ -15231,7 +15212,7 @@
         "Barība suņiem mīkstā Adult Mixed izlase ar liellopa - aknu maisīj. un mājp. 4x100g, Pedigree"
       ],
       "brand": "Pedigree",
-      "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.314997-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.258849-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-53043",
@@ -15247,7 +15228,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.314997-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/bariba-suniem-miksta-adult-mixed-izlase-ar-liellopa-aknu-maisij-un-majp-4x100g-pedigree.spm.258849-m1f.jpeg",
           "canonicalProductId": "4x100g-adult-aknu-ar-bariba-izlase-liellopa-maisij-maj-e546f297c2c0",
           "identityKey": "4x100g adult aknu ar bariba izlase liellopa maisij majp miksta mixed pedigree suniem un|",
           "packageSize": ""
@@ -16911,7 +16892,7 @@
         "Cementējoši pakaiši kaķiem (alveja) 5l, White Pure Paws"
       ],
       "brand": "White Pure Paws",
-      "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.306916-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.269504-m1M.jpeg",
       "offers": [
         {
           "offerId": "latts-51889",
@@ -16927,7 +16908,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.306916-m1M.jpeg",
+          "image": "https://www.e-latts.lv/i/cementejosi-pakaisi-kakiem-alveja-5l-white-pure-paws.spm.269504-m1M.jpeg",
           "canonicalProductId": "alveja-cementejosi-kakiem-pakaisi-paws-pure-white-volume-5000ml-c28de7b6a748",
           "identityKey": "alveja cementejosi kakiem pakaisi paws pure white|volume:5000ml",
           "packageSize": "5 l"
@@ -17391,7 +17372,7 @@
         "Citronskābe 30g, Spilva"
       ],
       "brand": "Spilva",
-      "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.323322-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.277872-m1Z.jpeg",
       "offers": [
         {
           "offerId": "latts-53000",
@@ -17407,7 +17388,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.323322-m1Z.jpeg",
+          "image": "https://www.e-latts.lv/i/citronskabe-30g-spilva.spm.277872-m1Z.jpeg",
           "canonicalProductId": "citronskabe-spilva-mass-30g-b8774867ea09",
           "identityKey": "citronskabe spilva|mass:30g",
           "packageSize": "30 g"
@@ -17471,7 +17452,7 @@
         "COLGATE Zobu pasta Max White Shine 75ml"
       ],
       "brand": null,
-      "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.308320-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.283309-m1a.jpeg",
       "offers": [
         {
           "offerId": "latts-53879",
@@ -17487,7 +17468,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.308320-m1a.jpeg",
+          "image": "https://www.e-latts.lv/i/colgate-zobu-pasta-max-white-shine-75ml.spm.283309-m1a.jpeg",
           "canonicalProductId": "colgate-max-pasta-shine-white-zobu-volume-75ml-50a83a5b1548",
           "identityKey": "colgate max pasta shine white zobu|volume:75ml",
           "packageSize": "75 ml"
@@ -17631,7 +17612,7 @@
         "Cālis atdzesēts, sverams, RM"
       ],
       "brand": "RM",
-      "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.300157-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.264303-m1N.jpeg",
       "offers": [
         {
           "offerId": "latts-51670",
@@ -17647,7 +17628,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.300157-m1N.jpeg",
+          "image": "https://www.e-latts.lv/i/calis-atdzesets-sverams-rm.spm.264303-m1N.jpeg",
           "canonicalProductId": "atdzesets-calis-rm-sverams-ce1401f11102",
           "identityKey": "atdzesets calis rm sverams|",
           "packageSize": ""
@@ -17671,7 +17652,7 @@
         "Cāļa gaļas gabaliņi krēmīgā dārzeņu mērcē un basmati rīsi 330g, Lido"
       ],
       "brand": "Lido",
-      "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.316238-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.274504-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-52738",
@@ -17687,7 +17668,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.316238-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/cala-galas-gabalini-kremiga-darzenu-merce-un-basmati-risi-330g-lido.spm.274504-m1P.jpeg",
           "canonicalProductId": "basmati-cala-darzenu-gabalini-galas-kremiga-lido-merce-mass-330g-043ed18e7e78",
           "identityKey": "basmati cala darzenu gabalini galas kremiga lido merce risi un|mass:330g",
           "packageSize": "330 g"
@@ -17871,7 +17852,7 @@
         "Cāļu pusspārni atdzesēti 400g, RM"
       ],
       "brand": "RM",
-      "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.286842-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.263882-m1M.jpeg",
       "offers": [
         {
           "offerId": "latts-51585",
@@ -17887,7 +17868,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.286842-m1M.jpeg",
+          "image": "https://www.e-latts.lv/i/calu-pussparni-atdzeseti-400g-rm.spm.263882-m1M.jpeg",
           "canonicalProductId": "atdzeseti-calu-pussparni-rm-mass-400g-60460105e9ea",
           "identityKey": "atdzeseti calu pussparni rm|mass:400g",
           "packageSize": "400 g"
@@ -17951,7 +17932,7 @@
         "Cāļu šķiņķi atdzesēti, sverami, RM"
       ],
       "brand": "RM",
-      "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.319563-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.265135-m1V.jpeg",
       "offers": [
         {
           "offerId": "latts-51672",
@@ -17967,7 +17948,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.319563-m1V.jpeg",
+          "image": "https://www.e-latts.lv/i/calu-skinki-atdzeseti-sverami-rm.spm.265135-m1V.jpeg",
           "canonicalProductId": "atdzeseti-calu-rm-skinki-sverami-19b99927c4f1",
           "identityKey": "atdzeseti calu rm skinki sverami|",
           "packageSize": ""
@@ -17991,7 +17972,7 @@
         "Cīsiņi Premium (vārīti) 400g, KGS"
       ],
       "brand": "KGS",
-      "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.275849-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.247305-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-49885",
@@ -18007,7 +17988,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.275849-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/cisini-premium-variti-400g-kgs.spm.247305-m1B.jpeg",
           "canonicalProductId": "cisini-kgs-premium-variti-mass-400g-a8da143664c0",
           "identityKey": "cisini kgs premium variti|mass:400g",
           "packageSize": "400 g"
@@ -18551,7 +18532,7 @@
         "Desa karsti kūpināta šķēlēs Krakow 180g, Biovela"
       ],
       "brand": "Biovela",
-      "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.244167-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.243348-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-48209",
@@ -18567,7 +18548,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.244167-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/desa-karsti-kupinata-skeles-krakow-180g-biovela.spm.243348-m1B.jpeg",
           "canonicalProductId": "biovela-desa-karsti-krakow-kupinata-skeles-mass-180g-bb295dba234e",
           "identityKey": "biovela desa karsti krakow kupinata skeles|mass:180g",
           "packageSize": "180 g"
@@ -18631,7 +18612,7 @@
         "Desa salami Itāļu šķēlītēs 90g, NOO"
       ],
       "brand": "NOO",
-      "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.291612-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.272789-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-52640",
@@ -18647,7 +18628,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.291612-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/desa-salami-italu-skelites-90g-noo.spm.272789-m1f.jpeg",
           "canonicalProductId": "desa-italu-noo-salami-skelites-mass-90g-4f519c0df098",
           "identityKey": "desa italu noo salami skelites|mass:90g",
           "packageSize": "90 g"
@@ -18671,7 +18652,7 @@
         "Desa salami Vācu šķēlītēs 90g, NOO"
       ],
       "brand": "NOO",
-      "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.318339-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.276508-m1N.jpeg",
       "offers": [
         {
           "offerId": "latts-52799",
@@ -18687,7 +18668,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.318339-m1N.jpeg",
+          "image": "https://www.e-latts.lv/i/desa-salami-vacu-skelites-90g-noo.spm.276508-m1N.jpeg",
           "canonicalProductId": "desa-noo-salami-skelites-vacu-mass-90g-af8594f45ea0",
           "identityKey": "desa noo salami skelites vacu|mass:90g",
           "packageSize": "90 g"
@@ -18711,7 +18692,7 @@
         "Desa salami Čorizo šķēlītēs 90g, NOO"
       ],
       "brand": "NOO",
-      "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.303836-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.271960-m1Z.jpeg",
       "offers": [
         {
           "offerId": "latts-52622",
@@ -18727,7 +18708,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.303836-m1Z.jpeg",
+          "image": "https://www.e-latts.lv/i/desa-salami-corizo-skelites-90g-noo.spm.271960-m1Z.jpeg",
           "canonicalProductId": "corizo-desa-noo-salami-skelites-mass-90g-144614cbc622",
           "identityKey": "corizo desa noo salami skelites|mass:90g",
           "packageSize": "90 g"
@@ -19271,7 +19252,7 @@
         "Dezodorants Pure Invisible stick 50ml, Rexona"
       ],
       "brand": "Rexona",
-      "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.285611-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.276262-m1a.jpeg",
       "offers": [
         {
           "offerId": "latts-52972",
@@ -19287,7 +19268,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.285611-m1a.jpeg",
+          "image": "https://www.e-latts.lv/i/dezodorants-pure-invisible-stick-50ml-rexona.spm.276262-m1a.jpeg",
           "canonicalProductId": "dezodorants-invisible-pure-rexona-stick-volume-50ml-ed9e466e05c8",
           "identityKey": "dezodorants invisible pure rexona stick|volume:50ml",
           "packageSize": "50 ml"
@@ -19862,46 +19843,6 @@
       "storeFormats": []
     },
     {
-      "productId": "ar-baltais-ekleri-kakao-kremu-mass-135g-a528f40a4b81",
-      "canonicalProductId": "ar-baltais-ekleri-kakao-kremu-mass-135g-a528f40a4b81",
-      "identityKey": "ar baltais ekleri kakao kremu|mass:135g",
-      "packageSize": "135 g",
-      "name": "Eklēri ar kakao krēmu 135g, Baltais",
-      "aliases": [
-        "Eklēri ar kakao krēmu 135g, Baltais"
-      ],
-      "brand": "Baltais",
-      "image": "https://www.e-latts.lv/i/ekleri-ar-kakao-kremu-135g-baltais.spm.54730-m1C.jpeg",
-      "offers": [
-        {
-          "offerId": "latts-22534",
-          "name": "Eklēri ar kakao krēmu 135g, Baltais",
-          "brand": "Baltais",
-          "price": 1.99,
-          "regularPrice": 2.39,
-          "requiresCard": false,
-          "onlyInApp": false,
-          "campaign": "Akcijas",
-          "campaignId": "akcijas",
-          "source": "https://www.e-latts.lv/ekleri-ar-kakao-kremu-135g-baltais.22534.p",
-          "validFrom": null,
-          "validUntil": null,
-          "store": "latts",
-          "image": "https://www.e-latts.lv/i/ekleri-ar-kakao-kremu-135g-baltais.spm.54730-m1C.jpeg",
-          "canonicalProductId": "ar-baltais-ekleri-kakao-kremu-mass-135g-a528f40a4b81",
-          "identityKey": "ar baltais ekleri kakao kremu|mass:135g",
-          "packageSize": "135 g"
-        }
-      ],
-      "offerCount": 1,
-      "lowestPrice": 1.99,
-      "highestDiscountPercent": null,
-      "campaigns": [
-        "Akcijas"
-      ],
-      "storeFormats": []
-    },
-    {
       "productId": "ar-bekona-ekstruderi-estrella-garsu-mass-110g-2e4f4b8f77ba",
       "canonicalProductId": "ar-bekona-ekstruderi-estrella-garsu-mass-110g-2e4f4b8f77ba",
       "identityKey": "ar bekona ekstruderi estrella garsu|mass:110g",
@@ -19911,7 +19852,7 @@
         "Ekstrūderi ar bekona garšu 110g, Estrella"
       ],
       "brand": "Estrella",
-      "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.260518-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.248967-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-51103",
@@ -19927,7 +19868,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.260518-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/ekstruderi-ar-bekona-garsu-110g-estrella.spm.248967-m1P.jpeg",
           "canonicalProductId": "ar-bekona-ekstruderi-estrella-garsu-mass-110g-2e4f4b8f77ba",
           "identityKey": "ar bekona ekstruderi estrella garsu|mass:110g",
           "packageSize": "110 g"
@@ -20671,7 +20612,7 @@
         "Grauzdēti zemesrieksti ar medu un sāli 240g, Estrella"
       ],
       "brand": "Estrella",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.316476-m1U.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.241490-m1U.jpeg",
       "offers": [
         {
           "offerId": "latts-48178",
@@ -20687,7 +20628,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.316476-m1U.jpeg",
+          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-medu-un-sali-240g-estrella.spm.241490-m1U.jpeg",
           "canonicalProductId": "ar-estrella-grauzdeti-medu-sali-un-zemesrieksti-mass-240g-4b029ce9688e",
           "identityKey": "ar estrella grauzdeti medu sali un zemesrieksti|mass:240g",
           "packageSize": "240 g"
@@ -20711,7 +20652,7 @@
         "Grauzdēti zemesrieksti ar skābā krējuma un sīpolu garšu 140g, Jega"
       ],
       "brand": "Jega",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.302662-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.283850-m1e.jpeg",
       "offers": [
         {
           "offerId": "latts-54168",
@@ -20727,7 +20668,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.302662-m1e.jpeg",
+          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-skaba-krejuma-un-sipolu-garsu-140g-jega.spm.283850-m1e.jpeg",
           "canonicalProductId": "ar-garsu-grauzdeti-jega-krejuma-sipolu-skaba-un-zemesr-mass-140g-302fc7caf84a",
           "identityKey": "ar garsu grauzdeti jega krejuma sipolu skaba un zemesrieksti|mass:140g",
           "packageSize": "140 g"
@@ -20791,7 +20732,7 @@
         "Grauzdēti zemesrieksti ar sāli 240g, Estrella"
       ],
       "brand": "Estrella",
-      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.320180-m1X.jpeg",
+      "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.241491-m1X.jpeg",
       "offers": [
         {
           "offerId": "latts-48179",
@@ -20807,7 +20748,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.320180-m1X.jpeg",
+          "image": "https://www.e-latts.lv/i/grauzdeti-zemesrieksti-ar-sali-240g-estrella.spm.241491-m1X.jpeg",
           "canonicalProductId": "ar-estrella-grauzdeti-sali-zemesrieksti-mass-240g-c0caf12294b2",
           "identityKey": "ar estrella grauzdeti sali zemesrieksti|mass:240g",
           "packageSize": "240 g"
@@ -21311,7 +21252,7 @@
         "Higiēniskās paketes Ultra Day and Night, 14 gab., Always"
       ],
       "brand": "Always",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.319416-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.283310-m1e.jpeg",
       "offers": [
         {
           "offerId": "latts-53095",
@@ -21327,7 +21268,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.319416-m1e.jpeg",
+          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-day-and-night-14-gab-always.spm.283310-m1e.jpeg",
           "canonicalProductId": "always-and-day-higieniskas-night-paketes-ultra-count-14-6217f7386eed",
           "identityKey": "always and day higieniskas night paketes ultra|count:14",
           "packageSize": "14 gab."
@@ -21391,7 +21332,7 @@
         "Higiēniskās paketes Ultra Normal, S1, 10 gab., Always"
       ],
       "brand": "Always",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.313068-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.274949-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-52797",
@@ -21407,7 +21348,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.313068-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-normal-s1-10-gab-always.spm.274949-m1P.jpeg",
           "canonicalProductId": "always-higieniskas-normal-paketes-s1-ultra-count-10-a3728f686cf8",
           "identityKey": "always higieniskas normal paketes s1 ultra|count:10",
           "packageSize": "10 gab."
@@ -21431,7 +21372,7 @@
         "Higiēniskās paketes Ultra Super Plus, S2, 8 gab., Always"
       ],
       "brand": "Always",
-      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.313446-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.276440-m1e.jpeg",
       "offers": [
         {
           "offerId": "latts-52980",
@@ -21447,7 +21388,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.313446-m1e.jpeg",
+          "image": "https://www.e-latts.lv/i/higieniskas-paketes-ultra-super-plus-s2-8-gab-always.spm.276440-m1e.jpeg",
           "canonicalProductId": "always-higieniskas-paketes-plus-s2-super-ultra-count-8-ae99326ef245",
           "identityKey": "always higieniskas paketes plus s2 super ultra|count:8",
           "packageSize": "8 gab."
@@ -23511,7 +23452,7 @@
         "Konfektes sprakšķošās ar zemeņu garšu Magic 6g, Pop Rocks"
       ],
       "brand": "Pop Rocks",
-      "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.283576-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.242768-m1M.jpeg",
       "offers": [
         {
           "offerId": "latts-48225",
@@ -23527,7 +23468,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.283576-m1M.jpeg",
+          "image": "https://www.e-latts.lv/i/konfektes-sprakskosas-ar-zemenu-garsu-magic-6g-pop-rocks.spm.242768-m1M.jpeg",
           "canonicalProductId": "ar-garsu-konfektes-magic-pop-rocks-sprakskosas-zemenu-mass-6g-e48ec7554c8b",
           "identityKey": "ar garsu konfektes magic pop rocks sprakskosas zemenu|mass:6g",
           "packageSize": "6 g"
@@ -23911,7 +23852,7 @@
         "Košļājamās konfektes Discovery 37.5g, Mentos"
       ],
       "brand": "Mentos",
-      "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.275205-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.254290-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-50391",
@@ -23927,7 +23868,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.275205-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/koslajamas-konfektes-discovery-37-5g-mentos.spm.254290-m1c.jpeg",
           "canonicalProductId": "discovery-konfektes-koslajamas-mentos-mass-38g-aee93dfe39c3",
           "identityKey": "discovery konfektes koslajamas mentos|mass:38g",
           "packageSize": "37,5 g"
@@ -24071,7 +24012,7 @@
         "Krekeri Minī sāļie ar krējuma un sīpola garšu 72g, Pētergailis"
       ],
       "brand": "Pētergailis",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.269197-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.267342-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-49918",
@@ -24087,7 +24028,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.269197-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-krejuma-un-sipola-garsu-72g-petergailis.spm.267342-m1B.jpeg",
           "canonicalProductId": "ar-garsu-krejuma-krekeri-mini-petergailis-salie-sipola-mass-72g-2e3bc99a8072",
           "identityKey": "ar garsu krejuma krekeri mini petergailis salie sipola un|mass:72g",
           "packageSize": "72 g"
@@ -24111,7 +24052,7 @@
         "Krekeri Minī sāļie ar siera garšu 72g, Pētergailis"
       ],
       "brand": "Pētergailis",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.325790-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.267343-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-49919",
@@ -24127,7 +24068,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.325790-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-siera-garsu-72g-petergailis.spm.267343-m1f.jpeg",
           "canonicalProductId": "ar-garsu-krekeri-mini-petergailis-salie-siera-mass-72g-7d85c5364bbb",
           "identityKey": "ar garsu krekeri mini petergailis salie siera|mass:72g",
           "packageSize": "72 g"
@@ -24151,7 +24092,7 @@
         "Krekeri Minī sāļie ar sviesta garšu 70g, Pētergailis"
       ],
       "brand": "Pētergailis",
-      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.316391-m1b.jpeg",
+      "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.267344-m1b.jpeg",
       "offers": [
         {
           "offerId": "latts-50590",
@@ -24167,7 +24108,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.316391-m1b.jpeg",
+          "image": "https://www.e-latts.lv/i/krekeri-mini-salie-ar-sviesta-garsu-70g-petergailis.spm.267344-m1b.jpeg",
           "canonicalProductId": "ar-garsu-krekeri-mini-petergailis-salie-sviesta-mass-70g-98d7fd73903e",
           "identityKey": "ar garsu krekeri mini petergailis salie sviesta|mass:70g",
           "packageSize": "70 g"
@@ -24271,7 +24212,7 @@
         "Krustnagliņas 18g, Spilva"
       ],
       "brand": "Spilva",
-      "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.317854-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.282314-m1C.jpeg",
       "offers": [
         {
           "offerId": "latts-52709",
@@ -24287,7 +24228,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.317854-m1C.jpeg",
+          "image": "https://www.e-latts.lv/i/krustnaglinas-18g-spilva.spm.282314-m1C.jpeg",
           "canonicalProductId": "krustnaglinas-spilva-mass-18g-07e31557789a",
           "identityKey": "krustnaglinas spilva|mass:18g",
           "packageSize": "18 g"
@@ -24951,7 +24892,7 @@
         "Ledenes Crazy Dips strawbery 14g, Chupa Chups"
       ],
       "brand": "Chupa Chups",
-      "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.315710-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.264029-m1a.jpeg",
       "offers": [
         {
           "offerId": "latts-51607",
@@ -24967,7 +24908,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.315710-m1a.jpeg",
+          "image": "https://www.e-latts.lv/i/ledenes-crazy-dips-strawbery-14g-chupa-chups.spm.264029-m1a.jpeg",
           "canonicalProductId": "chupa-chups-crazy-dips-ledenes-strawbery-mass-14g-9eb21387d902",
           "identityKey": "chupa chups crazy dips ledenes strawbery|mass:14g",
           "packageSize": "14 g"
@@ -27071,7 +27012,7 @@
         "Olu nūdeles 250g, Santa Maria"
       ],
       "brand": "Santa Maria",
-      "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.278843-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.265229-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-52173",
@@ -27087,7 +27028,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.278843-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/olu-nudeles-250g-santa-maria.spm.265229-m1c.jpeg",
           "canonicalProductId": "maria-nudeles-olu-santa-mass-250g-269631e31c93",
           "identityKey": "maria nudeles olu santa|mass:250g",
           "packageSize": "250 g"
@@ -27191,7 +27132,7 @@
         "Pankūkas ar kūpinātu šķiņķi un sieru 10.8% 420g, Mājas"
       ],
       "brand": "Mājas",
-      "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.315637-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.252777-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-49887",
@@ -27207,7 +27148,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.315637-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/pankukas-ar-kupinatu-skinki-un-sieru-10-8-420g-majas.spm.252777-m1P.jpeg",
           "canonicalProductId": "10-8-ar-kupinatu-majas-pankukas-sieru-skinki-un-mass-420g-9b2be2420d0b",
           "identityKey": "10 8 ar kupinatu majas pankukas sieru skinki un|mass:420g",
           "packageSize": "420 g"
@@ -28511,7 +28452,7 @@
         "Raudzēts piena produkts, aveņu, bez laktozes, 200g, Lakto"
       ],
       "brand": "Lakto",
-      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.319959-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.241660-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-48184",
@@ -28527,7 +28468,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.319959-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-avenu-bez-laktozes-200g-lakto.spm.241660-m1c.jpeg",
           "canonicalProductId": "avenu-bez-lakto-laktozes-piena-produkts-raudzets-mass-200g-af7857c65211",
           "identityKey": "avenu bez lakto laktozes piena produkts raudzets|mass:200g",
           "packageSize": "200 g"
@@ -28551,7 +28492,7 @@
         "Raudzēts piena produkts, meža zemeņu, bez laktozes, 200g, Lakto"
       ],
       "brand": "Lakto",
-      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.324021-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.241661-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-48185",
@@ -28567,7 +28508,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.324021-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/raudzets-piena-produkts-meza-zemenu-bez-laktozes-200g-lakto.spm.241661-m1B.jpeg",
           "canonicalProductId": "bez-lakto-laktozes-meza-piena-produkts-raudzets-zemenu-mass-200g-0c4aea3545a2",
           "identityKey": "bez lakto laktozes meza piena produkts raudzets zemenu|mass:200g",
           "packageSize": "200 g"
@@ -28631,7 +28572,7 @@
         "Rudzu piparkūku mīkla ar avenēm 500g, Latvijas Maiznieks"
       ],
       "brand": "Latvijas Maiznieks",
-      "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.325985-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.253440-m1O.jpeg",
       "offers": [
         {
           "offerId": "latts-50177",
@@ -28647,7 +28588,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.325985-m1O.jpeg",
+          "image": "https://www.e-latts.lv/i/rudzu-piparkuku-mikla-ar-avenem-500g-latvijas-maiznieks.spm.253440-m1O.jpeg",
           "canonicalProductId": "ar-avenem-latvijas-maiznieks-mikla-piparkuku-rudzu-mass-500g-73965314957f",
           "identityKey": "ar avenem latvijas maiznieks mikla piparkuku rudzu|mass:500g",
           "packageSize": "500 g"
@@ -28991,7 +28932,7 @@
         "Saldējums kārtainais ar ievārījumu 100ml/75g, Karlsons"
       ],
       "brand": "Karlsons",
-      "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.280267-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.277961-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-53179",
@@ -29007,7 +28948,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.280267-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/saldejums-kartainais-ar-ievarijumu-100ml-75g-karlsons.spm.277961-m1c.jpeg",
           "canonicalProductId": "ar-ievarijumu-karlsons-kartainais-saldejums-mass-75g-volume-100ml-3fa246d4e106",
           "identityKey": "ar ievarijumu karlsons kartainais saldejums|mass:75g volume:100ml",
           "packageSize": "100 ml, 75 g"
@@ -29591,7 +29532,7 @@
         "Sausās brokastis Gliemežvāki kakao 400g, Aha"
       ],
       "brand": "Aha",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.319672-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.263732-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-50893",
@@ -29607,7 +29548,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.319672-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/sausas-brokastis-gliemezvaki-kakao-400g-aha.spm.263732-m1f.jpeg",
           "canonicalProductId": "aha-brokastis-gliemezvaki-kakao-sausas-mass-400g-1976f226bcad",
           "identityKey": "aha brokastis gliemezvaki kakao sausas|mass:400g",
           "packageSize": "400 g"
@@ -29631,7 +29572,7 @@
         "Sausās brokastis Kvieši ar medu 400g, Aha"
       ],
       "brand": "Aha",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.310924-m1Z.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.259382-m1Z.jpeg",
       "offers": [
         {
           "offerId": "latts-50715",
@@ -29647,7 +29588,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.310924-m1Z.jpeg",
+          "image": "https://www.e-latts.lv/i/sausas-brokastis-kviesi-ar-medu-400g-aha.spm.259382-m1Z.jpeg",
           "canonicalProductId": "aha-ar-brokastis-kviesi-medu-sausas-mass-400g-cb97bce87c37",
           "identityKey": "aha ar brokastis kviesi medu sausas|mass:400g",
           "packageSize": "400 g"
@@ -29671,7 +29612,7 @@
         "Sausās brokastis gredzentiņi ar cepumu garšu 400g, Aha"
       ],
       "brand": "Aha",
-      "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.319673-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.279961-m1V.jpeg",
       "offers": [
         {
           "offerId": "latts-52057",
@@ -29687,7 +29628,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.319673-m1V.jpeg",
+          "image": "https://www.e-latts.lv/i/sausas-brokastis-gredzentini-ar-cepumu-garsu-400g-aha.spm.279961-m1V.jpeg",
           "canonicalProductId": "aha-ar-brokastis-cepumu-garsu-gredzentini-sausas-mass-400g-69c3f3dabaf7",
           "identityKey": "aha ar brokastis cepumu garsu gredzentini sausas|mass:400g",
           "packageSize": "400 g"
@@ -29991,7 +29932,7 @@
         "Siers Holandes 45% 300g, Valdo"
       ],
       "brand": "Valdo",
-      "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.299790-m1X.jpeg",
+      "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.241939-m1X.jpeg",
       "offers": [
         {
           "offerId": "latts-46045",
@@ -30007,7 +29948,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.299790-m1X.jpeg",
+          "image": "https://www.e-latts.lv/i/siers-holandes-45-300g-valdo.spm.241939-m1X.jpeg",
           "canonicalProductId": "45-holandes-siers-valdo-mass-300g-ee6f5bfc7183",
           "identityKey": "45 holandes siers valdo|mass:300g",
           "packageSize": "300 g"
@@ -30231,7 +30172,7 @@
         "Siļķu fileja eļļā 500g (250g), Kaltenes Zivis"
       ],
       "brand": "Kaltenes Zivis",
-      "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.314333-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.273929-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-52421",
@@ -30247,7 +30188,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.314333-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/silku-fileja-ella-500g-250g-kaltenes-zivis.spm.273929-m1B.jpeg",
           "canonicalProductId": "ella-fileja-kaltenes-silku-zivis-mass-250g-mass-500g-74c1576cb45b",
           "identityKey": "ella fileja kaltenes silku zivis|mass:250g mass:500g",
           "packageSize": "250 g, 500 g"
@@ -31551,7 +31492,7 @@
         "Torte Krāsnī ceptu ābolu 730g, Latvijas Maiznieks"
       ],
       "brand": "Latvijas Maiznieks",
-      "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.326178-m1N.jpeg",
+      "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.250945-m1N.jpeg",
       "offers": [
         {
           "offerId": "latts-49800",
@@ -31567,7 +31508,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.326178-m1N.jpeg",
+          "image": "https://www.e-latts.lv/i/torte-krasni-ceptu-abolu-730g-latvijas-maiznieks.spm.250945-m1N.jpeg",
           "canonicalProductId": "abolu-ceptu-krasni-latvijas-maiznieks-torte-mass-730g-7e66fb347e96",
           "identityKey": "abolu ceptu krasni latvijas maiznieks torte|mass:730g",
           "packageSize": "730 g"
@@ -32191,7 +32132,7 @@
         "Tuncis saulespuķu eļļā 160g (112g), Banga"
       ],
       "brand": "Banga",
-      "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.326060-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.254368-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-49782",
@@ -32207,7 +32148,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.326060-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/tuncis-saulespuku-ella-160g-112g-banga.spm.254368-m1d.jpeg",
           "canonicalProductId": "banga-ella-saulespuku-tuncis-mass-112g-mass-160g-f86c2fe675c8",
           "identityKey": "banga ella saulespuku tuncis|mass:112g mass:160g",
           "packageSize": "112 g, 160 g"
@@ -33311,7 +33252,7 @@
         "Veļas mazg. līdzeklis Kastanis 3in1 Effect 900ml, Seal"
       ],
       "brand": "Seal",
-      "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.326091-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.281037-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-51623",
@@ -33327,7 +33268,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.326091-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/velas-mazg-lidzeklis-kastanis-3in1-effect-900ml-seal.spm.281037-m1c.jpeg",
           "canonicalProductId": "3in1-effect-kastanis-lidzeklis-mazg-seal-velas-volume-900ml-92c6dc5e495e",
           "identityKey": "3in1 effect kastanis lidzeklis mazg seal velas|volume:900ml",
           "packageSize": "900 ml"
@@ -33871,7 +33812,7 @@
         "Virtuves dvielis XXL 2 kārtu 400 loksnes, Serla"
       ],
       "brand": "Serla",
-      "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.295990-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.269133-m1V.jpeg",
       "offers": [
         {
           "offerId": "latts-50438",
@@ -33887,7 +33828,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.295990-m1V.jpeg",
+          "image": "https://www.e-latts.lv/i/virtuves-dvielis-xxl-2-kartu-400-loksnes-serla.spm.269133-m1V.jpeg",
           "canonicalProductId": "2-400-dvielis-kartu-loksnes-serla-virtuves-xxl-25747bf13ecf",
           "identityKey": "2 400 dvielis kartu loksnes serla virtuves xxl|",
           "packageSize": ""
@@ -35111,7 +35052,7 @@
         "Zobu pasta Extra Whitening 75ml, Sensodyne"
       ],
       "brand": "Sensodyne",
-      "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.297562-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.268227-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-53034",
@@ -35127,7 +35068,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.297562-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/zobu-pasta-extra-whitening-75ml-sensodyne.spm.268227-m1f.jpeg",
           "canonicalProductId": "extra-pasta-sensodyne-whitening-zobu-volume-75ml-c4ba93a9dc17",
           "identityKey": "extra pasta sensodyne whitening zobu|volume:75ml",
           "packageSize": "75 ml"
@@ -35711,7 +35652,7 @@
         "Ābolu biezenis ar persikiem un saldo krējumu 300g, Spilva"
       ],
       "brand": "Spilva",
-      "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.281666-m1O.jpeg",
+      "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.245533-m1O.jpeg",
       "offers": [
         {
           "offerId": "latts-50518",
@@ -35727,7 +35668,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.281666-m1O.jpeg",
+          "image": "https://www.e-latts.lv/i/abolu-biezenis-ar-persikiem-un-saldo-krejumu-300g-spilva.spm.245533-m1O.jpeg",
           "canonicalProductId": "abolu-ar-biezenis-krejumu-persikiem-saldo-spilva-un-mass-300g-e0452de8ef97",
           "identityKey": "abolu ar biezenis krejumu persikiem saldo spilva un|mass:300g",
           "packageSize": "300 g"
@@ -36071,7 +36012,7 @@
         "Ātri pagatavojamās nūdeles ar liellopu Asian 65g, Sun Yan"
       ],
       "brand": "Sun Yan",
-      "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.326297-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.258675-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-47772",
@@ -36087,7 +36028,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.326297-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/atri-pagatavojamas-nudeles-ar-liellopu-asian-65g-sun-yan.spm.258675-m1f.jpeg",
           "canonicalProductId": "ar-asian-atri-liellopu-nudeles-pagatavojamas-sun-yan-mass-65g-e079ec7fb1e1",
           "identityKey": "ar asian atri liellopu nudeles pagatavojamas sun yan|mass:65g",
           "packageSize": "65 g"
@@ -37471,7 +37412,7 @@
         "Šokolāde piena Crispy Dream 100g, Geisha"
       ],
       "brand": "GEISHA",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.299276-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.242772-m1e.jpeg",
       "offers": [
         {
           "offerId": "latts-48287",
@@ -37487,7 +37428,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.299276-m1e.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-piena-crispy-dream-100g-geisha.spm.242772-m1e.jpeg",
           "canonicalProductId": "crispy-dream-geisha-piena-sokolade-mass-100g-341ab550b4a2",
           "identityKey": "crispy dream geisha piena sokolade|mass:100g",
           "packageSize": "100 g"
@@ -37511,7 +37452,7 @@
         "Šokolāde piena Ekstra 90g, Laima"
       ],
       "brand": "Laima",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.316780-m1c.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.274960-m1c.jpeg",
       "offers": [
         {
           "offerId": "latts-52373",
@@ -37527,7 +37468,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.316780-m1c.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-90g-laima.spm.274960-m1c.jpeg",
           "canonicalProductId": "ekstra-laima-piena-sokolade-mass-90g-f58e569ca694",
           "identityKey": "ekstra laima piena sokolade|mass:90g",
           "packageSize": "90 g"
@@ -37551,7 +37492,7 @@
         "Šokolāde piena Ekstra ar lazdu riekstiem 90g, Laima"
       ],
       "brand": "Laima",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.316781-m1B.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.274961-m1B.jpeg",
       "offers": [
         {
           "offerId": "latts-52374",
@@ -37567,7 +37508,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.316781-m1B.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-piena-ekstra-ar-lazdu-riekstiem-90g-laima.spm.274961-m1B.jpeg",
           "canonicalProductId": "ar-ekstra-laima-lazdu-piena-riekstiem-sokolade-mass-90g-e63c54108f92",
           "identityKey": "ar ekstra laima lazdu piena riekstiem sokolade|mass:90g",
           "packageSize": "90 g"
@@ -37631,7 +37572,7 @@
         "Šokolāde piena Porainā 60g, Laima"
       ],
       "brand": "Laima",
-      "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.295215-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.277002-m1C.jpeg",
       "offers": [
         {
           "offerId": "latts-53066",
@@ -37647,7 +37588,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.295215-m1C.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-piena-poraina-60g-laima.spm.277002-m1C.jpeg",
           "canonicalProductId": "laima-piena-poraina-sokolade-mass-60g-fa9a9eabd80d",
           "identityKey": "laima piena poraina sokolade|mass:60g",
           "packageSize": "60 g"
@@ -37871,7 +37812,7 @@
         "Šokolāde tumšā Sarkanā Magone 90g, Laima"
       ],
       "brand": "Laima",
-      "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.287992-m1M.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.268306-m1M.jpeg",
       "offers": [
         {
           "offerId": "latts-52064",
@@ -37887,7 +37828,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.287992-m1M.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-tumsa-sarkana-magone-90g-laima.spm.268306-m1M.jpeg",
           "canonicalProductId": "laima-magone-sarkana-sokolade-tumsa-mass-90g-03d1840ca9b4",
           "identityKey": "laima magone sarkana sokolade tumsa|mass:90g",
           "packageSize": "90 g"
@@ -37911,7 +37852,7 @@
         "Šokolāde tumšā Serenāde, ar aprikozēm 90g, Laima"
       ],
       "brand": "Laima",
-      "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.307173-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.275117-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-52341",
@@ -37927,7 +37868,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.307173-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolade-tumsa-serenade-ar-aprikozem-90g-laima.spm.275117-m1d.jpeg",
           "canonicalProductId": "aprikozem-ar-laima-serenade-sokolade-tumsa-mass-90g-63654edf3719",
           "identityKey": "aprikozem ar laima serenade sokolade tumsa|mass:90g",
           "packageSize": "90 g"
@@ -38191,7 +38132,7 @@
         "Šokolādes batoniņš 57g, Bounty"
       ],
       "brand": "Bounty",
-      "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.284411-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.279755-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-53679",
@@ -38207,7 +38148,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.284411-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolades-batonins-57g-bounty.spm.279755-m1f.jpeg",
           "canonicalProductId": "batonins-bounty-sokolades-mass-57g-56211e157dcc",
           "identityKey": "batonins bounty sokolades|mass:57g",
           "packageSize": "57 g"
@@ -38431,7 +38372,7 @@
         "Šokolādes dzēriens Nesquik 300g, Nestle"
       ],
       "brand": "Nestle",
-      "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.325526-m1d.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.243906-m1d.jpeg",
       "offers": [
         {
           "offerId": "latts-48391",
@@ -38447,7 +38388,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.325526-m1d.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolades-dzeriens-nesquik-300g-nestle.spm.243906-m1d.jpeg",
           "canonicalProductId": "dzeriens-nesquik-nestle-sokolades-mass-300g-c7697586b07a",
           "identityKey": "dzeriens nesquik nestle sokolades|mass:300g",
           "packageSize": "300 g"
@@ -38471,7 +38412,7 @@
         "Šokolādes figūra Ziemassvētku vecītis 60g, Roshen"
       ],
       "brand": "Roshen",
-      "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.325868-m1a.jpeg",
+      "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.250854-m1a.jpeg",
       "offers": [
         {
           "offerId": "latts-49797",
@@ -38487,7 +38428,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.325868-m1a.jpeg",
+          "image": "https://www.e-latts.lv/i/sokolades-figura-ziemassvetku-vecitis-60g-roshen.spm.250854-m1a.jpeg",
           "canonicalProductId": "figura-roshen-sokolades-vecitis-ziemassvetku-mass-60g-93887cef0e69",
           "identityKey": "figura roshen sokolades vecitis ziemassvetku|mass:60g",
           "packageSize": "60 g"
@@ -39231,7 +39172,7 @@
         "Želeja ar mango garšu 80g, Valdo"
       ],
       "brand": "Valdo",
-      "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.326059-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.243684-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-48192",
@@ -39247,7 +39188,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.326059-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/zeleja-ar-mango-garsu-80g-valdo.spm.243684-m1P.jpeg",
           "canonicalProductId": "ar-garsu-mango-valdo-zeleja-mass-80g-f4bff873de93",
           "identityKey": "ar garsu mango valdo zeleja|mass:80g",
           "packageSize": "80 g"
@@ -39271,7 +39212,7 @@
         "Želeja ar meža zemeņu garšu 80g, Valdo"
       ],
       "brand": "Valdo",
-      "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.301552-m1P.jpeg",
+      "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.243685-m1P.jpeg",
       "offers": [
         {
           "offerId": "latts-48193",
@@ -39287,7 +39228,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.301552-m1P.jpeg",
+          "image": "https://www.e-latts.lv/i/zeleja-ar-meza-zemenu-garsu-80g-valdo.spm.243685-m1P.jpeg",
           "canonicalProductId": "ar-garsu-meza-valdo-zeleja-zemenu-mass-80g-73e388c4be90",
           "identityKey": "ar garsu meza valdo zeleja zemenu|mass:80g",
           "packageSize": "80 g"
@@ -39744,8 +39685,8 @@
   ],
   "reviewOffers": [],
   "summary": {
-    "offerVariants": 673,
-    "uniqueProducts": 673,
+    "offerVariants": 672,
+    "uniqueProducts": 672,
     "reviewOffers": 0,
     "catalogues": 3
   }
