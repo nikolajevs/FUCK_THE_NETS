@@ -1563,6 +1563,48 @@ def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetim
     }
 
 
+def partition_review_offers(offers: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Fail closed: only explicitly verified offers may enter the public feed/history."""
+    verified: list[dict] = []
+    review: list[dict] = []
+    for offer in offers:
+        if offer.get("quality", {}).get("priceStatus") == "verified":
+            verified.append(offer)
+        else:
+            review.append(offer)
+    return verified, review
+
+
+def build_review_summary(review_offers: list[dict]) -> dict:
+    """Summarize review causes and provide a few compact examples for diagnostics."""
+    by_issue: dict[str, int] = defaultdict(int)
+    by_catalogue: dict[str, int] = defaultdict(int)
+    examples: dict[str, list[dict]] = defaultdict(list)
+
+    for offer in review_offers:
+        by_catalogue[offer.get("campaign") or offer.get("sourceId") or "unknown"] += 1
+        issues = sorted(set(offer.get("quality", {}).get("issues") or ["unspecified_review"]))
+        for issue in issues:
+            by_issue[issue] += 1
+            if len(examples[issue]) < 3:
+                evidence = offer.get("reviewEvidence") or {}
+                examples[issue].append({
+                    "campaign": offer.get("campaign") or offer.get("sourceId"),
+                    "name": offer.get("name"),
+                    "price": offer.get("price"),
+                    "regularPrice": offer.get("regularPrice"),
+                    "pdfPage": offer.get("pdfPage"),
+                    "rawCellText": evidence.get("rawCellText"),
+                })
+
+    return {
+        "total": len(review_offers),
+        "byIssue": dict(sorted(by_issue.items())),
+        "byCatalogue": dict(sorted(by_catalogue.items())),
+        "examplesByIssue": dict(examples),
+    }
+
+
 def reconcile_paldies_prices(
     pdf_offers: list[dict],
     paldies_offers: list[dict],
@@ -1607,7 +1649,20 @@ def reconcile_paldies_prices(
             if len(variants) > 1:
                 quality = offer.setdefault("quality", {})
                 quality["priceStatus"] = "review"
-                quality.setdefault("issues", []).append("ambiguous_paldies_prices")
+                issues = quality.setdefault("issues", [])
+                if "ambiguous_paldies_prices" not in issues:
+                    issues.append("ambiguous_paldies_prices")
+                offer.setdefault("reviewEvidence", {})["paldiesCandidates"] = [
+                    {
+                        "price": candidate.get("price"),
+                        "regularPrice": candidate.get("regularPrice"),
+                        "discountPercent": candidate.get("discountPercent"),
+                        "validFrom": candidate.get("validFrom"),
+                        "validUntil": candidate.get("validUntil"),
+                        "storeFormats": candidate.get("storeFormats") or [],
+                    }
+                    for candidate in candidates[:10]
+                ]
             continue
 
         source = candidates[0]
@@ -1621,10 +1676,17 @@ def reconcile_paldies_prices(
                 continue
             computed = round((1 - price / regular) * 100)
             if discount is not None and abs(discount - computed) > 1:
-                offer.setdefault("quality", {}).setdefault("issues", []).append(
-                    "paldies_discount_percent_mismatch"
-                )
-                offer["quality"]["priceStatus"] = "review"
+                quality = offer.setdefault("quality", {})
+                issues = quality.setdefault("issues", [])
+                if "paldies_discount_percent_mismatch" not in issues:
+                    issues.append("paldies_discount_percent_mismatch")
+                quality["priceStatus"] = "review"
+                offer.setdefault("reviewEvidence", {})["paldiesCandidate"] = {
+                    "price": price,
+                    "regularPrice": regular,
+                    "discountPercent": discount,
+                    "computedDiscountPercent": computed,
+                }
                 continue
 
         offer["price"] = price
@@ -1740,6 +1802,16 @@ def main():
     if reconciled_paldies:
         print(f"Reconciled {reconciled_paldies} brochure prices against the official PALDIES catalogue")
 
+    # Reconciliation can downgrade an initially parsed PDF offer to review.
+    # Move those offers out of the verified feed before history is rebuilt.
+    catalogue_offers, reconciliation_reviews = partition_review_offers(catalogue_offers)
+    if reconciliation_reviews:
+        catalogue_reviews.extend(reconciliation_reviews)
+        print(
+            f"Moved {len(reconciliation_reviews)} PALDIES-reconciliation offers "
+            "from verified PDF data to manual review"
+        )
+
     # PDF variants that duplicate the same product/price already collected from its
     # HTML campaign page are redundant. Keep new catalogue entries and price values.
     existing_offer_keys = {
@@ -1853,6 +1925,7 @@ def main():
         "offers": offers,
         "products": grouped_products,
         "reviewOffers": review_offers,
+        "reviewSummary": build_review_summary(review_offers),
         "summary": {
             "offerVariants": len(offers),
             "uniqueProducts": len(grouped_products),
@@ -1880,6 +1953,18 @@ def main():
         f"and {catalogue_review_count} PDF items need review; "
         f"history contains {len(history_payload['products'])} canonical products"
     )
+    review_summary = payload["reviewSummary"]
+    print("REVIEW_SUMMARY", json.dumps({
+        "total": review_summary["total"],
+        "byIssue": review_summary["byIssue"],
+        "byCatalogue": review_summary["byCatalogue"],
+    }, ensure_ascii=False))
+    for issue, examples in review_summary["examplesByIssue"].items():
+        print("REVIEW_EXAMPLES", json.dumps({
+            "issue": issue,
+            "examples": examples,
+        }, ensure_ascii=False))
+
     for catalogue in active_catalogues:
         print("ACTIVE_CATALOGUE", json.dumps({
             key: catalogue.get(key) for key in (
