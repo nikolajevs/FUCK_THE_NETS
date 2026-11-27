@@ -971,7 +971,7 @@ def _clean_pdf_product_name(text: str) -> str:
     value = " ".join(value.split())
     # Brochure card numbers are often extracted as if they were part of the SKU.
     value = re.sub(
-        r"^\d{1,2}\.?\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
+        r"^(?:\d{1,2}\.?\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b))+",
         "",
         value,
         flags=re.IGNORECASE,
