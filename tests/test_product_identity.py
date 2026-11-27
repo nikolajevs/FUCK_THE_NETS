@@ -13,6 +13,10 @@ class ProductIdentityTests(unittest.TestCase):
         left = product_identity("Piens VALMIERA, 1 kg")
         right = product_identity("Piens VALMIERA 1000g")
         self.assertEqual(left["canonicalProductId"], right["canonicalProductId"])
+        self.assertEqual(left["packageSize"], "1 kg")
+
+    def test_product_package_size_is_formatted_for_display(self):
+        self.assertEqual(product_identity("Siers WELL DONE PREMIUM, 180 g")["packageSize"], "180 g")
 
     def test_different_package_sizes_do_not_match(self):
         left = product_identity("Jogurts, 180 g")
