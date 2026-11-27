@@ -6,6 +6,8 @@ const formatDate=value=>{const [y,m,d]=String(value).split("-").map(Number);retu
 function priceHistoryMarkup(offer){
   const history=state.history[offer.productId||""];
   const points=(history?.points||[]).filter(point=>Number.isFinite(point.price)).slice(-60);
+  const priceLabel=offer.requiresPaldies?"Cena ar PALDIES":"Akcijas cena";
+  const pointPriceLabel=offer.requiresPaldies?"cena ar PALDIES":"akcijas cena";
   if(!points.length)return '<p class="history-note">Cenu vēsture vēl nav savākta.</p>';
   const first=points[0],last=points[points.length-1];
   if(points.length===1){
@@ -28,7 +30,7 @@ function priceHistoryMarkup(offer){
     const value=min+(max-min)*index/3,yy=y(value);
     return '<line class="chart-grid" x1="'+left+'" y1="'+yy+'" x2="'+(width-right)+'" y2="'+yy+'"/><text class="chart-axis" x="'+(left-9)+'" y="'+(yy+4)+'" text-anchor="end">'+escapeHtml(money(value))+'</text>';
   }).join("");
-  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+": akcijas cena "+money(point.price))+'</title></circle>').join("");
+  const promoCircles=points.map((point,index)=>'<circle class="chart-point promo-point" cx="'+x(index)+'" cy="'+y(point.price)+'" r="'+(index===points.length-1?5:3.5)+'"><title>'+escapeHtml(formatDate(point.date)+"+pointPriceLabel+" "+money(point.price))+'</title></circle>').join("");
   const regularCircles=points.map((point,index)=>Number.isFinite(point.regularPrice)?'<circle class="chart-point regular-point" cx="'+x(index)+'" cy="'+y(point.regularPrice)+'" r="3"><title>'+escapeHtml(formatDate(point.date)+": parastā cena "+money(point.regularPrice))+'</title></circle>':"").join("");
   const difference=last.price-first.price;
   const percent=first.price?difference/first.price*100:0;
@@ -48,14 +50,16 @@ function render(){
   document.querySelector("#count").textContent=items.length+" piedāvājumi";
   document.querySelector("#offers").innerHTML=items.map(offer=>{
     const historyId=offer.productId||"";
+    const storeLabel=Array.isArray(offer.storeFormats)&&offer.storeFormats.length?"MAXIMA "+offer.storeFormats.join(", "):([offer.city,offer.store].filter(Boolean).join(" · ")||"Vieta nav norādīta");
+    const validity=offer.validUntil?formatDate(offer.validUntil):"nav norādīts";
     return `<article class="card">
       <div class="card-image">${offer.image?'<img src="'+escapeHtml(offer.image)+'" alt="" style="max-width:100%;max-height:100%;object-fit:contain">':'%'}</div>
       <div class="card-body">
         ${Number.isFinite(offer.discountPercent)?'<span class="badge">-'+escapeHtml(offer.discountPercent)+'%</span>':''}
         <h3>${escapeHtml(offer.name)}</h3><div class="meta">${escapeHtml([offer.brand,offer.unit].filter(Boolean).join(" · "))}</div>
         <div class="price-row"><span class="price">${Number.isFinite(offer.price)?money(offer.price):"Cena nav norādīta"}</span>${Number.isFinite(offer.regularPrice)?'<span class="old-price">'+money(offer.regularPrice)+'</span>':''}</div>
-        <div class="card-foot"><span>${escapeHtml([offer.city,offer.store].filter(Boolean).join(" · ")||"Vieta nav norādīta")}</span><span>${offer.paldis?"PALDIES":""}</span></div>
-        <div class="card-foot"><span>Derīgs līdz: ${escapeHtml(offer.validUntil||"nav norādīts")}</span><a href="${escapeHtml(offer.source||"#")}" target="_blank" rel="noopener">Avots ↗</a></div>
+        <div class="card-foot"><span>${escapeHtml(storeLabel)}</span><span>${offer.paldis?"PALDIES":""}</span></div>
+        <div class="card-foot"><span>Derīgs līdz: ${escapeHtml(validity)}</span><a href="${escapeHtml(offer.source||"#")}" target="_blank" rel="noopener">Avots ↗</a></div>
         <button class="history-toggle" type="button" data-history-toggle="${escapeHtml(historyId)}" aria-expanded="false">Cenu vēsture <span aria-hidden="true">⌄</span></button>
         <div class="history-panel" id="history-${escapeHtml(historyId)}" hidden>${priceHistoryMarkup(offer)}</div>
       </div>
