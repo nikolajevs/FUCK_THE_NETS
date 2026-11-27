@@ -4,7 +4,7 @@ A static website for collecting and browsing verified supermarket offers across 
 
 ## Project status
 
-The static interface and a first automated collector are in place. GitHub Actions runs the collector daily and can be started manually. The collector reads the public Maxima Latvia offers page and only publishes product cards for which it can identify a name and price. The source page may change, so the workflow must be checked after its first runs.
+The static interface, daily collector and price-history charts are in place. GitHub Actions records one price observation per product per day while it appears on Maxima's public offers page. Price history is retained after an offer disappears from the current page. The collector does not infer a city or nationwide availability.
 
 ## Local preview
 
@@ -35,6 +35,6 @@ Each offer can include:
 - `city`, `store`: geographic scope; omit rather than guessing
 - `paldis`: whether a PALDIES card is required
 - `source`: source URL
-- `checkedAt`: when the offer was checked
+- `checkedAt`: when the offer was checked\n- `productId`: stable product key used to connect daily observations
 
-Only publish offers supported by an identifiable source. The collector does not assign a city or claim nationwide availability: Maxima notes that some offers can differ by store format/location. Review the Actions log if the source markup changes or no products are detected.
+Price charts initially have one observation and become useful after repeated daily runs. They show observed promotional prices from the public offers page, not a complete archive of ordinary shelf prices. Only publish offers supported by an identifiable source. The collector does not assign a city or claim nationwide availability. Review the Actions log if the source markup changes or no products are detected.
