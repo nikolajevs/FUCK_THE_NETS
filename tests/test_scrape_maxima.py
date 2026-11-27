@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
+    _catalogue_for_pdf_page,
     collect_paldies_catalog,
     discover_active_catalogues,
     find_paldies_filter_id,
@@ -290,6 +291,124 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(catalogues[0]["name"], "Black Friday cenu festivāls")
         self.assertEqual(catalogues[0]["pdfSources"], ["https://www.maxima.lv/uploads/test.pdf"])
         self.assertEqual(catalogues[0]["storeFormats"], ["X", "XX", "XXX"])
+
+    def test_well_done_page_is_detected_with_one_text_mention(self):
+        weekly = {"id": "maxima-weekly", "name": "Iknedēļas piedāvājums"}
+        premium = {"id": "maxima-well-done-premium", "name": "Well Done Premium"}
+        result = _catalogue_for_pdf_page(
+            "WELL DONE PREMIUM Aitas siers 150 g 3 99 4 99",
+            [weekly, premium],
+            weekly,
+        )
+        self.assertEqual(result["id"], "maxima-well-done-premium")
+
+    def test_mixed_black_friday_page_is_not_repeated_from_weekly_pdf(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        weekly_page = document.new_page(width=600, height=800)
+        weekly_page.insert_textbox(
+            fitz.Rect(25, 190, 220, 270),
+            "Makaroni EXTRA LINE 500 g\n1 99 2 49",
+        )
+        bf_page = document.new_page(width=600, height=800)
+        bf_page.insert_textbox(
+            fitz.Rect(25, 40, 570, 130),
+            "BLACK FRIDAY CENU FESTIVĀLS",
+        )
+        bf_page.insert_textbox(
+            fitz.Rect(25, 190, 220, 270),
+            "Pampers autiņbiksītes 24 gab.\n20 99 44 99",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        weekly = {
+            "id": "maxima-weekly",
+            "name": "Iknedēļas piedāvājums",
+            "source": "https://www.maxima.lv/bukleti/weekly",
+            "detailSource": "https://www.maxima.lv/bukleti/weekly",
+            "pdfSources": ["https://www.maxima.lv/uploads/weekly.pdf"],
+            "validFrom": "2026-11-24",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/weekly",
+        }
+        black_friday = {
+            **weekly,
+            "id": "maxima-catalogue-black-friday-cenu-festivals",
+            "name": "Black Friday cenu festivāls",
+        }
+        offers, reviews, pages = parse_catalogue_pdf(
+            payload, weekly, [weekly, black_friday], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 1)
+        self.assertEqual(reviews, [])
+        self.assertEqual(pages, {"maxima-weekly": 1})
+        self.assertEqual(offers[0]["name"], "Makaroni EXTRA LINE 500 g")
+
+    def test_black_friday_first_page_prices_require_paldies_card(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 260, 275),
+            "Autiņbiksītes PAMPERS 24 gab.\n20 99 44 99",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-catalogue-black-friday-cenu-festivals",
+            "name": "Black Friday cenu festivāls",
+            "source": "https://www.maxima.lv/bukleti/black-friday",
+            "detailSource": "https://www.maxima.lv/bukleti/black-friday",
+            "pdfSources": ["https://www.maxima.lv/uploads/black-friday.pdf"],
+            "validFrom": "2026-11-26",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/black-friday",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(len(offers), 1)
+        self.assertEqual(reviews, [])
+        self.assertTrue(offers[0]["requiresPaldies"])
+        self.assertEqual(offers[0]["paldiesPrice"], 20.99)
+        self.assertEqual(offers[0]["priceWithoutPaldies"], 44.99)
+
+    def test_roja_event_text_in_product_title_requires_review(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 260, 275),
+            "Kausētais siers DZINTARS 200 g Rojā Darba dienā\n0 69 1 29",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-catalogue-roja-selgas-iela-2",
+            "name": "Roja, Selgas iela 2",
+            "source": "https://www.maxima.lv/bukleti/roja",
+            "detailSource": "https://www.maxima.lv/bukleti/roja",
+            "pdfSources": ["https://www.maxima.lv/uploads/roja.pdf"],
+            "validFrom": "2026-11-26",
+            "validUntil": "2026-11-29",
+            "storeFormats": [],
+            "storeDescription": "Selgas iela 12, Rojā",
+            "city": "Roja",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(offers, [])
+        self.assertEqual(len(reviews), 1)
+        self.assertIn("product_name_ambiguous", reviews[0]["quality"]["issues"])
 
     def test_pdf_parser_splits_wide_price_text_block_by_product_column(self):
         import pymupdf as fitz

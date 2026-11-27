@@ -1162,7 +1162,7 @@ def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: di
         match = next((item for item in catalogues if "grāmatu festivāls" in item["name"].casefold()), None)
         if match:
             return match
-    if folded.count("well done premium") >= 3:
+    if folded.count("well done premium") >= 1:
         match = next((item for item in catalogues if "well done premium" in item["name"].casefold()), None)
         if match:
             return match
@@ -1188,6 +1188,16 @@ def parse_catalogue_pdf(
 
     for page_index, page in enumerate(document):
         page_text = page.get_text("text", sort=True)
+        folded_page_text = page_text.casefold()
+
+        # The weekly combined PDF also contains the standalone Black Friday
+        # campaign at its end. That campaign has its own PDF URL and is parsed
+        # separately; skip the duplicate page here.
+        if catalogue["id"] == "maxima-weekly" and re.search(
+            r"black\\s*friday|cenu\\s+festivāls", folded_page_text
+        ):
+            continue
+
         page_catalogue = _catalogue_for_pdf_page(page_text, all_catalogues, catalogue)
         cells = _pdf_page_cells(page)
         if not cells:
@@ -1214,6 +1224,22 @@ def parse_catalogue_pdf(
             if price is None:
                 continue
 
+            # A plausible price pair is not enough when neighbouring cards or
+            # store-event copy leaked into the product title.
+            name_folded = name.casefold()
+            name_issues: list[str] = []
+            if (
+                ";" in name
+                or len(re.findall(r"\\b\\d{1,2}\\.", name)) >= 2
+                or any(term in name_folded for term in (
+                    "rojā", "darba dienā", "atklāšana", "dienā",
+                ))
+                or re.search(r"\\b\\d{1,2}:\\d{2}\\b", name)
+                or re.search(r"\\(\\s*/\\s*kg", name_folded)
+            ):
+                name_issues.append("product_name_ambiguous")
+            issues = list(dict.fromkeys([*issues, *name_issues]))
+
             identity = product_identity(name)
             image = None
             source_product_id = f"pdf:{page_index + 1}:{row_number}:{column_number}"
@@ -1239,7 +1265,14 @@ def parse_catalogue_pdf(
                 cell_text,
                 flags=re.IGNORECASE,
             ))
-            requires_paldies = paldies_marker or page_catalogue["id"] == "maxima-well-done-premium"
+            requires_paldies = (
+                paldies_marker
+                or page_catalogue["id"] == "maxima-well-done-premium"
+                or (
+                    page_catalogue["id"] == "maxima-catalogue-black-friday-cenu-festivals"
+                    and page_index == 0
+                )
+            )
             offer = {
                 "offerId": offer_id,
                 "sourceId": page_catalogue["id"],
