@@ -10,7 +10,10 @@ the chain also server-renders the promoted products on its own site:
   ``POST https://elvi.lv/wp-admin/admin-ajax.php`` with ``action=loadMore``,
   ``offset=N`` (steps of 16) and an empty ``cat`` (empty = all categories).
   The response is the same ``<li data-id="...">`` card markup; the end of the
-  list is a small script that hides the load-more button.
+  list is a small script that hides the load-more button. admin-ajax.php is
+  occasionally 403-blocked for datacenter IPs (GitHub Actions runners), so an
+  AJAX failure only ends pagination with a warning while the SSR cards are
+  kept; the scrape fails only when no cards at all were collected.
 
 The issuu flipbook itself is image-only (no public PDF download, no text
 layer), so it is recorded as a catalogue link rather than parsed.
@@ -303,10 +306,19 @@ def fetch_ajax_page(sess: requests.Session, offset: int) -> str:
         "latvia_product": "",
         "moreless_count": "",
     }
+    # Look like the theme's own jQuery $.ajax call: some WAF rules reject
+    # bare POSTs to admin-ajax.php without these headers (403 from CI IPs).
+    headers = {
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": OFFERS_PAGE,
+        "Origin": BASE,
+        "Accept": "text/html, */*; q=0.01",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    }
     last_error: Exception | None = None
     for attempt in range(RETRIES):
         try:
-            r = sess.post(AJAX_URL, data=data, timeout=60)
+            r = sess.post(AJAX_URL, data=data, headers=headers, timeout=60)
             r.raise_for_status()
             if ID_RE.search(r.text) or END_OF_LIST_RE.search(r.text):
                 return r.text
@@ -317,8 +329,18 @@ def fetch_ajax_page(sess: requests.Session, offset: int) -> str:
     raise RuntimeError(f"ELVI AJAX offset {offset} failed after {RETRIES} attempts: {last_error}")
 
 
-def fetch_offers(sess: requests.Session) -> tuple[list[dict], str | None, str | None, list[dict]]:
-    first = fetch_page(sess, OFFERS_PAGE)
+def fetch_offers(sess: requests.Session, *, page_fetcher=None,
+                 ajax_fetcher=None) -> tuple[list[dict], str | None, str | None, list[dict]]:
+    """Collect SSR cards plus AJAX pages; AJAX failure degrades gracefully.
+
+    The SSR page already renders the first batch (and lately the whole online
+    selection). admin-ajax.php is occasionally 403-blocked for datacenter IPs
+    (GitHub Actions runners), so an AJAX failure only ends pagination with a
+    warning when SSR cards exist; with no cards at all the error propagates.
+    """
+    page_fetcher = page_fetcher or fetch_page
+    ajax_fetcher = ajax_fetcher or fetch_ajax_page
+    first = page_fetcher(sess, OFFERS_PAGE)
     valid_from, valid_until = parse_validity(first)
     catalogues = parse_catalogues(first, valid_from, valid_until)
     cards = parse_cards(first)
@@ -327,7 +349,14 @@ def fetch_offers(sess: requests.Session) -> tuple[list[dict], str | None, str | 
     for page in range(MAX_PAGES):
         offset = page * PAGE_SIZE
         time.sleep(PAGE_DELAY)
-        text = fetch_ajax_page(sess, offset)
+        try:
+            text = ajax_fetcher(sess, offset)
+        except RuntimeError as exc:
+            if not cards:
+                raise
+            print(f"  ajax pagination stopped ({exc}); keeping {len(cards)} SSR cards",
+                  file=sys.stderr)
+            break
         fresh = [c for c in parse_cards(text) if c["id"] not in seen]
         for c in fresh:
             seen.add(c["id"])
