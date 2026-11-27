@@ -10,6 +10,8 @@ from scripts.scrape_maxima import (
     _looks_like_pdf_product_description,
     _is_pdf_product_title_seed,
     reconcile_paldies_prices,
+    partition_review_offers,
+    build_review_summary,
     _catalogue_for_pdf_page,
     collect_paldies_catalog,
     discover_active_catalogues,
@@ -355,6 +357,51 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertIn("5 16 /kg", reviews[0]["reviewEvidence"]["rawCellText"])
         self.assertEqual(reviews[0]["reviewEvidence"]["parsedPrices"], [5.16])
 
+    def test_partition_review_offers_excludes_downgraded_items_from_verified_feed(self):
+        verified = {"offerId": "verified-1", "quality": {"priceStatus": "verified"}}
+        downgraded = {
+            "offerId": "review-1",
+            "quality": {"priceStatus": "review", "issues": ["ambiguous_paldies_prices"]},
+        }
+        missing_status = {"offerId": "review-2"}
+        kept, review = partition_review_offers([verified, downgraded, missing_status])
+        self.assertEqual(kept, [verified])
+        self.assertEqual(review, [downgraded, missing_status])
+
+    def test_review_summary_counts_issues_campaigns_and_examples(self):
+        reviews = [
+            {
+                "campaign": "Weekly",
+                "name": "Product A",
+                "price": 1.99,
+                "quality": {"issues": ["price_mismatch", "product_name_ambiguous"]},
+                "reviewEvidence": {"rawCellText": "Product A 1 99"},
+            },
+            {
+                "campaign": "Weekly",
+                "name": "Product B",
+                "price": 2.99,
+                "quality": {"issues": ["price_mismatch"]},
+            },
+            {
+                "campaign": "Black Friday",
+                "name": "Product C",
+                "price": 3.99,
+                "quality": {"issues": []},
+            },
+        ]
+        summary = build_review_summary(reviews)
+        self.assertEqual(summary["total"], 3)
+        self.assertEqual(summary["byIssue"]["price_mismatch"], 2)
+        self.assertEqual(summary["byIssue"]["product_name_ambiguous"], 1)
+        self.assertEqual(summary["byIssue"]["unspecified_review"], 1)
+        self.assertEqual(summary["byCatalogue"]["Weekly"], 2)
+        self.assertEqual(summary["byCatalogue"]["Black Friday"], 1)
+        self.assertEqual(
+            summary["examplesByIssue"]["price_mismatch"][0]["rawCellText"],
+            "Product A 1 99",
+        )
+
     def test_reconcile_pdf_paldies_prices_from_official_catalogue(self):
         scope = {
             "validFrom": "2026-11-24",
@@ -459,6 +506,7 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(offer["price"], 7.99)
         self.assertEqual(offer["quality"]["priceStatus"], "review")
         self.assertIn("ambiguous_paldies_prices", offer["quality"]["issues"])
+        self.assertEqual(len(offer["reviewEvidence"]["paldiesCandidates"]), 2)
 
     def test_reconcile_marks_paldies_discount_mismatch_for_review(self):
         scope = {
@@ -489,6 +537,10 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertIn(
             "paldies_discount_percent_mismatch",
             offer["quality"]["issues"],
+        )
+        self.assertEqual(
+            offer["reviewEvidence"]["paldiesCandidate"]["computedDiscountPercent"],
+            25,
         )
 
     def test_well_done_page_is_detected_with_one_text_mention(self):
