@@ -259,8 +259,8 @@ class MaximaScraperTests(unittest.TestCase):
         page = document.new_page(width=600, height=800)
         page.insert_text((25, 220), "Siers WELL DONE PREMIUM 180 g")
         page.insert_text((110, 220), "3 29 4 49")
-        page.insert_text((25, 420), "Banāni 1 kg")
-        page.insert_text((110, 420), "1 19 -34% 0 79")
+        page.insert_text((320, 220), "Banāni 1 kg")
+        page.insert_text((405, 220), "1 19 -34% 0 79")
         payload = document.tobytes()
         document.close()
 
