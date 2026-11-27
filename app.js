@@ -6,14 +6,14 @@ function render(){
   const city=document.querySelector("#city").value;
   const sort=document.querySelector("#sort").value;
   const items=state.offers.filter(o=>(!city||o.city===city)&&[o.name,o.brand,o.store].some(v=>String(v??"").toLocaleLowerCase("lv").includes(query)));
-  items.sort((a,b)=>sort==="price"?a.price-b.price:sort==="name"?a.name.localeCompare(b.name,"lv"):(b.discountPercent??0)-(a.discountPercent??0));
+  items.sort((a,b)=>sort==="price"?(a.price??Infinity)-(b.price??Infinity):sort==="name"?a.name.localeCompare(b.name,"lv"):(b.discountPercent??0)-(a.discountPercent??0));
   document.querySelector("#count").textContent=items.length+" piedāvājumi";
   document.querySelector("#offers").innerHTML=items.map(o=>`<article class="card">
     <div class="card-image">${o.image?'<img src="'+escapeHtml(o.image)+'" alt="" style="max-width:100%;max-height:100%;object-fit:contain">':'%'}</div>
     <div class="card-body">
       ${Number.isFinite(o.discountPercent)?'<span class="badge">-'+escapeHtml(o.discountPercent)+'%</span>':''}
       <h3>${escapeHtml(o.name)}</h3><div class="meta">${escapeHtml([o.brand,o.unit].filter(Boolean).join(" · "))}</div>
-      <div class="price-row"><span class="price">${money(o.price)}</span>${Number.isFinite(o.regularPrice)?'<span class="old-price">'+money(o.regularPrice)+'</span>':''}</div>
+      <div class="price-row"><span class="price">${Number.isFinite(o.price)?money(o.price):"Cena nav norādīta"}</span>${Number.isFinite(o.regularPrice)?'<span class="old-price">'+money(o.regularPrice)+'</span>':''}</div>
       <div class="card-foot"><span>${escapeHtml([o.city,o.store].filter(Boolean).join(" · ")||"Vieta nav norādīta")}</span><span>${o.paldis?"PALDIES":""}</span></div>
       <div class="card-foot"><span>Derīgs līdz: ${escapeHtml(o.validUntil||"nav norādīts")}</span><a href="${escapeHtml(o.source||"#")}" target="_blank" rel="noopener">Avots ↗</a></div>
     </div></article>`).join("");
