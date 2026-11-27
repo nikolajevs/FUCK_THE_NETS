@@ -1032,46 +1032,49 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
     return price_quality(prices, text)
 
 
-def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
-    """Find product starts inside text blocks, splitting horizontally merged cards."""
+def _pdf_description_anchors(
+    candidates, words, width: float
+) -> list[tuple[float, float]]:
+    """Find product starts from individual PDF text lines and horizontal segments."""
     anchors: list[tuple[float, float]] = []
-    split_gap = max(44, width * 0.08)
+    split_gap = max(22, width * 0.045)
+
     for block in candidates:
         block_words = [
             word for word in words
             if float(block[0]) - 1 <= (float(word[0]) + float(word[2])) / 2 <= float(block[2]) + 1
             and float(block[1]) - 1 <= (float(word[1]) + float(word[3])) / 2 <= float(block[3]) + 1
         ]
-        if not block_words:
-            anchors.append((float(block[0]), float(block[1])))
-            continue
-
-        # PDF extraction sometimes merges horizontally adjacent products into
-        # one text block. Cluster all its words by x-gap; wrapped text stays
-        # within a card's column and does not create extra vertical grid rows.
-        block_words.sort(key=lambda word: (float(word[0]), float(word[1])))
-        segment: list[tuple] = []
-        segments: list[list[tuple]] = []
+        lines: dict[int, list[tuple]] = defaultdict(list)
         for word in block_words:
-            if segment and float(word[0]) - max(float(item[2]) for item in segment) > split_gap:
+            lines[int(word[6])].append(word)
+
+        for line_words in lines.values():
+            line_words.sort(key=lambda word: (float(word[0]), int(word[7])))
+            segment: list[tuple] = []
+            segments: list[list[tuple]] = []
+            for word in line_words:
+                if segment and float(word[0]) - max(float(item[2]) for item in segment) > split_gap:
+                    segments.append(segment)
+                    segment = []
+                segment.append(word)
+            if segment:
                 segments.append(segment)
-                segment = []
-            segment.append(word)
-        if segment:
-            segments.append(segment)
 
-        for segment in segments:
-            segment_text = " ".join(str(item[4]) for item in segment)
-            if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
-                anchors.append((
-                    min(float(item[0]) for item in segment),
-                    float(block[1]),
-                ))
+            for segment in segments:
+                segment_text = " ".join(str(item[4]) for item in segment)
+                if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                    anchors.append((
+                        min(float(item[0]) for item in segment),
+                        min(float(item[1]) for item in segment),
+                    ))
 
+    # Wrapped title lines may each look like a product candidate. Collapse only
+    # near-identical starts; vertically stacked products in one column remain separate.
     unique: list[tuple[float, float]] = []
     for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
         if not any(
-            abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 8
+            abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 18
             for seen_x, seen_y in unique
         ):
             unique.append((x, y))
@@ -1211,11 +1214,83 @@ def _pdf_page_cells_split(page) -> list[tuple[int, int, str]]:
     return results
 
 
+def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
+    """Create one rectangle per product using neighbouring title anchors as boundaries."""
+    blocks = page.get_text("blocks")
+    candidates = [
+        block for block in blocks
+        if _looks_like_pdf_product_description(block[4])
+        or _is_pdf_product_title_seed(block[4])
+    ]
+    if not candidates:
+        return []
+
+    rect = page.rect
+    width, height = float(rect.width), float(rect.height)
+    words = page.get_text("words", sort=True)
+    anchors = _pdf_description_anchors(candidates, words, width)
+    if not anchors:
+        return []
+
+    anchors = sorted(anchors, key=lambda point: (point[1], point[0]))
+    column_tolerance = max(34, width * 0.085)
+    row_tolerance = max(48, height * 0.09)
+    results: list[tuple[int, int, str]] = []
+
+    for anchor_index, (x, y) in enumerate(anchors):
+        # Products stacked in the same column bound each other's vertical area.
+        same_column_y = sorted(
+            other_y
+            for other_x, other_y in anchors
+            if abs(other_x - x) <= column_tolerance and abs(other_y - y) > 2
+        )
+        previous_y = max((value for value in same_column_y if value < y), default=None)
+        next_y = min((value for value in same_column_y if value > y), default=None)
+        top = max(float(rect.y0), y - 2)
+        bottom = min(float(rect.y1), next_y - 2 if next_y is not None else float(rect.y1))
+        if bottom <= top:
+            continue
+
+        # Products side-by-side in the same visual row bound their horizontal area.
+        same_row_x = sorted(
+            other_x
+            for other_x, other_y in anchors
+            if abs(other_y - y) <= row_tolerance
+            and abs(other_x - x) > column_tolerance
+        )
+        previous_x = max((value for value in same_row_x if value < x), default=None)
+        next_x = min((value for value in same_row_x if value > x), default=None)
+        left = max(float(rect.x0), (previous_x + x) / 2 if previous_x is not None else float(rect.x0))
+        right = min(float(rect.x1), (x + next_x) / 2 if next_x is not None else float(rect.x1))
+        if right <= left:
+            continue
+
+        cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
+        if cell_text.strip() and prices_from(cell_text):
+            row_number = sum(1 for _, other_y in anchors if other_y < y) + 1
+            column_number = sum(1 for other_x, _ in anchors if other_x < x) + 1
+            results.append((row_number, column_number, cell_text))
+
+    # A few anchors can share the same cell after PDF line wrapping. Keep one
+    # record per geometric rectangle to avoid duplicate imports.
+    unique: dict[tuple[int, int, str], tuple[int, int, str]] = {}
+    for item in results:
+        unique[(item[0], item[1], " ".join(item[2].split()))] = item
+    return list(unique.values())
+
+
 def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
-    """Prefer conservative cells; use split-block recovery only when it finds more."""
+    """Choose the extraction that yields the most isolated, price-bearing product cards."""
     legacy = _pdf_page_cells_legacy(page)
     recovered = _pdf_page_cells_split(page)
-    return recovered if len(recovered) > len(legacy) else legacy
+    geometry = _pdf_page_cells_geometry(page)
+
+    def score(cells: list[tuple[int, int, str]]) -> tuple[float, int]:
+        ambiguous = sum(len(prices_from(text)) > 2 for _, _, text in cells)
+        return len(cells) - 0.75 * ambiguous, len(cells)
+
+    return max((legacy, recovered, geometry), key=score)
+
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
     folded = page_text.casefold()
