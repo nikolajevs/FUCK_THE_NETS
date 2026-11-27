@@ -1,18 +1,49 @@
 # Maxima Latvia offers aggregator
 
-A static website for collecting and browsing verified supermarket offers across Latvia.
+A static website for collecting and comparing Maxima Latvia promotional offers.
 
-## Project status
+## Current collection sources
 
-The static interface, daily collector and price-history charts are in place. GitHub Actions records one verified price observation per product per day while it appears on Maxima's public offers page. Price history is retained after an offer disappears from the current page.
+The daily collector reads two public Maxima campaign pages:
 
-The collector reads the weekly campaign dates from the section heading, looks up the linked brochure page for an explicit X / XX / XXX store-scope statement, and checks for the PALDIES marker inside each product card. It keeps ambiguous price cards out of the verified price history and records them separately in \`reviewOffers\`.
+- Weekly offers: \`https://www.maxima.lv/piedavajumi/\`
+- Well Done Premium offers: \`https://www.maxima.lv/premium\`
 
-The scraper does not infer a city, store availability or store format when the official page does not state it.
+It resolves each campaign's date range and brochure detail page from \`https://www.maxima.lv/bukleti/\`. The campaign detail page is used to verify whether an offer applies in MAXIMA X, XX and/or XXX stores.
+
+The collector currently adds only these two campaign sources. It does not claim that every Maxima campaign or every store-specific offer has been collected.
+
+## Product identity and grouping
+
+Offers are preserved as separate variants, including their campaign, source URL, dates, PALDIES requirement, prices and store formats. Product cards are grouped using a conservative normalized identity:
+
+- Latvian diacritics and punctuation are normalized.
+- Word order and capitalization do not affect a match.
+- Package sizes are normalized (for example, 1 kg and 1000 g).
+- Different package sizes and flavour names remain separate.
+- No fuzzy matching is used to merge products automatically.
+
+The output keeps both formats:
+
+- \`offers\`: flat source-level offer variants.
+- \`products\`: grouped products, each containing all matching \`offers\` variants.
+
+This allows the same product to appear in more than one campaign without losing the source-level price, PALDIES or store availability details.
+
+## Price history
+
+Price history is keyed by canonical product identity. Each product keeps:
+
+- \`observations\`: one record per source offer and day.
+- \`points\`: one daily point using the lowest verified price observed across collected variants.
+
+The previous name-keyed history is migrated into canonical product history by the scraper. The chart therefore shows the lowest verified observed price per day, while the separate offer variants retain campaign-level detail.
+
+The collector does not infer a city, store-specific availability or store format when the official page does not state it. Ambiguous price cards are flagged in \`reviewOffers\` and excluded from verified history.
 
 ## Local preview
 
-Run any static HTTP server from the repository root, for example:
+Run any static HTTP server from the repository root:
 
 \`\`\`bash
 python3 -m http.server 8000
@@ -22,7 +53,7 @@ Then open \`http://localhost:8000\`.
 
 ## Tests
 
-Run the parser and validation tests before publishing:
+Run parser and identity tests:
 
 \`\`\`bash
 python -m unittest discover -s tests -v
@@ -31,22 +62,3 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 In repository Settings → Pages, set the build and deployment source to **GitHub Actions**. The workflow \`.github/workflows/maxima.yml\` publishes the static site after a successful data refresh. You can also start it from Actions → Update Maxima offers and deploy → Run workflow.
-
-## Offer data
-
-Each offer can include:
-
-- \`name\`, \`brand\`, \`image\`, \`unit\`
-- \`price\`: currently shown promotional price
-- \`regularPrice\`: second displayed price, when its relationship is unambiguous
-- \`paldiesPrice\`, \`priceWithoutPaldies\`, \`requiresPaldies\`
-- \`discountPercent\`: source-displayed value, checked against the two prices when both exist
-- \`validFrom\`, \`validUntil\`: campaign validity dates (\`YYYY-MM-DD\`)
-- \`storeFormats\`: only formats explicitly confirmed by the linked campaign page
-- \`city\`, \`store\`: geographic scope; omitted rather than guessed
-- \`source\`, \`storeScopeSource\`, \`checkedAt\`
-- \`quality\`: independent price, date and store-scope verification states
-
-The \`offers\` list remains backward-compatible with the current frontend. Ambiguous price cards are flagged with \`quality.priceStatus = "review"\` and copied to \`reviewOffers\`; they are not added to price history. Price charts show observed promotional prices, not a complete archive of ordinary shelf prices.
-
-Only publish offers supported by an identifiable source. Review the Actions log if the source markup changes or no products are detected.
