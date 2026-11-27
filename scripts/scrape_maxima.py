@@ -1236,15 +1236,16 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     column_tolerance = max(34, width * 0.085)
     row_tolerance = max(48, height * 0.09)
     results: list[tuple[int, int, str]] = []
+    row_levels = sorted({round(y, 1) for _, y in anchors})
+    column_levels = sorted({round(x, 1) for x, _ in anchors})
 
-    for anchor_index, (x, y) in enumerate(anchors):
+    for x, y in anchors:
         # Products stacked in the same column bound each other's vertical area.
         same_column_y = sorted(
             other_y
             for other_x, other_y in anchors
             if abs(other_x - x) <= column_tolerance and abs(other_y - y) > 2
         )
-        previous_y = max((value for value in same_column_y if value < y), default=None)
         next_y = min((value for value in same_column_y if value > y), default=None)
         top = max(float(rect.y0), y - 2)
         bottom = min(float(rect.y1), next_y - 2 if next_y is not None else float(rect.y1))
@@ -1267,8 +1268,8 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
 
         cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
         if cell_text.strip() and prices_from(cell_text):
-            row_number = sum(1 for _, other_y in anchors if other_y < y) + 1
-            column_number = sum(1 for other_x, _ in anchors if other_x < x) + 1
+            row_number = row_levels.index(round(y, 1)) + 1
+            column_number = column_levels.index(round(x, 1)) + 1
             results.append((row_number, column_number, cell_text))
 
     # A few anchors can share the same cell after PDF line wrapping. Keep one
@@ -1289,7 +1290,7 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         ambiguous = sum(len(prices_from(text)) > 2 for _, _, text in cells)
         return len(cells) - 0.75 * ambiguous, len(cells)
 
-    return max((legacy, recovered, geometry), key=score)
+    return max((geometry, recovered, legacy), key=score)
 
 
 def _catalogue_for_pdf_page(page_text: str, catalogues: list[dict], fallback: dict) -> dict:
