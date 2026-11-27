@@ -976,11 +976,12 @@ def _clean_pdf_product_name(text: str) -> str:
     # suffix at the beginning of the remaining title (for example "49 Bļoda").
     # Keep one-digit quantity labels and explicit multi-pack labels intact.
     value = re.sub(
-        r"^\d{2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
+        r"^[•·€\s]*\d{2}\s+(?!(?:cm|mm|kg|g|ml|l|gab\.?|iepak\.?)\b)",
         "",
         value,
         flags=re.IGNORECASE,
     )
+    value = re.sub(r"^[•·€\s]+", "", value)
     return value
 
 def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | None, list[str]]:
