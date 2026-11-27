@@ -84,6 +84,77 @@ def inspect_all_paldies_offers(session: requests.Session) -> None:
         print("response_excerpt=", re.sub(r"\s+", " ", markup or response.text)[:1800])
 
 
+
+def inspect_filtered_paldies(session: requests.Session) -> None:
+    page_url = "https://www.maxima.lv/piedavajumi/"
+    response = session.get(page_url, headers=HEADERS, timeout=30)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    print("\n===== FILTERED PALDIES CATALOGUE =====")
+    for element_id in ("ajax-load-more-url", "totalProducts", "filter_limit", "filter_sort_by"):
+        node = soup.find(id=element_id)
+        print("GLOBAL_FIELD", element_id, node.attrs if isinstance(node, Tag) else None)
+    if not soup.find(id="ajax-load-more-url"):
+        print("No ajax-load-more-url found in initial page")
+        return
+
+    ajax_url = urljoin(response.url, soup.find(id="ajax-load-more-url").get("value", ""))
+    options = [
+        {"value": option.get("value"), "text": option.get_text(" ", strip=True)}
+        for option in soup.select("#filter_limit option")
+    ]
+    print("AJAX_URL", ajax_url, "LIMIT_OPTIONS", options)
+
+    params = [
+        ("filters[]", "18"),
+        ("sort_by", "newest"),
+        ("limit", "75"),
+        ("ajax", "1"),
+    ]
+    headers = {
+        **HEADERS,
+        "Referer": page_url,
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+    }
+    result = session.get(ajax_url, params=params, headers=headers, timeout=45)
+    print("FILTERED_RESPONSE", result.status_code, result.url,
+          result.headers.get("content-type"), len(result.content))
+    if result.status_code >= 400:
+        print("FILTERED_ERROR", re.sub(r"\s+", " ", result.text)[:1600])
+        return
+    try:
+        payload = result.json()
+    except ValueError:
+        print("FILTERED_NOT_JSON", re.sub(r"\s+", " ", result.text)[:1600])
+        return
+    print("FILTERED_JSON_KEYS", list(payload) if isinstance(payload, dict) else type(payload).__name__)
+    if not isinstance(payload, dict):
+        return
+    print("FILTERED_TOTAL", payload.get("totalItems"), "MORE", payload.get("hasMore"),
+          "OTHER_FIELDS", {key: value for key, value in payload.items() if key != "html" and not isinstance(value, (dict, list))})
+    markup = payload.get("html", "")
+    print("FILTERED_HTML_LENGTH", len(markup))
+    result_soup = BeautifulSoup(markup, "html.parser")
+    items = result_soup.select(".item")
+    names = []
+    for item in items:
+        image = item.find("img", alt=True)
+        if image and image.get("alt", "").strip():
+            names.append(image["alt"].strip())
+    print("FILTERED_ITEMS", len(items), "NAMES", len(names), "UNIQUE_NAMES", len(set(names)))
+    print("FILTERED_FIRST", names[:8])
+    print("FILTERED_LAST", names[-5:])
+
+    asset_url = "https://www.maxima.lv/js/front/pages/offers/offers.js?1793968385"
+    asset = session.get(asset_url, headers=HEADERS, timeout=30)
+    print("OFFERS_JS", asset.status_code, len(asset.content))
+    js = asset.text
+    for term in ("ajax-load-more-url", "totalProducts", "load-more", "offset", "skip"):
+        positions = [m.start() for m in re.finditer(re.escape(term), js, flags=re.IGNORECASE)]
+        for position in positions[:3]:
+            print("OFFERS_JS_CONTEXT", term, re.sub(r"\s+", " ", js[max(0, position-500):position+1100]))
+
 def describe_page(url: str, session: requests.Session) -> None:
     response = session.get(url, headers=HEADERS, timeout=30)
     response.raise_for_status()
@@ -180,5 +251,6 @@ def describe_page(url: str, session: requests.Session) -> None:
 if __name__ == "__main__":
     session = requests.Session()
     inspect_all_paldies_offers(session)
+    inspect_filtered_paldies(session)
     for page_url in URLS:
         describe_page(page_url, session)
