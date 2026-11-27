@@ -1117,7 +1117,7 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(len(parts), 2)
         names = [_clean_pdf_product_name(part) for part in parts]
         self.assertEqual(names, [
-            "Baking Set 1 iepak./3 gab.",
+            "Baking Set 1 iepak./3 gab",
             "Tablecloth 1 gab., 148x250 cm",
         ])
         self.assertEqual([prices_from(part) for part in parts], [
