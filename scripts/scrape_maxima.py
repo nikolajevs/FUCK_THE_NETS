@@ -1032,10 +1032,56 @@ def _pdf_price_quality(text: str) -> tuple[float | None, float | None, int | Non
     return price_quality(prices, text)
 
 
-def _pdf_description_anchors(
+def _pdf_description_anchors(candidates, words, width: float) -> list[tuple[float, float]]:
+    """Find product starts inside text blocks, splitting horizontally merged cards."""
+    anchors: list[tuple[float, float]] = []
+    split_gap = max(44, width * 0.08)
+    for block in candidates:
+        block_words = [
+            word for word in words
+            if float(block[0]) - 1 <= (float(word[0]) + float(word[2])) / 2 <= float(block[2]) + 1
+            and float(block[1]) - 1 <= (float(word[1]) + float(word[3])) / 2 <= float(block[3]) + 1
+        ]
+        if not block_words:
+            anchors.append((float(block[0]), float(block[1])))
+            continue
+
+        # PDF extraction sometimes merges horizontally adjacent products into
+        # one text block. Cluster all its words by x-gap; wrapped text stays
+        # within a card's column and does not create extra vertical grid rows.
+        block_words.sort(key=lambda word: (float(word[0]), float(word[1])))
+        segment: list[tuple] = []
+        segments: list[list[tuple]] = []
+        for word in block_words:
+            if segment and float(word[0]) - max(float(item[2]) for item in segment) > split_gap:
+                segments.append(segment)
+                segment = []
+            segment.append(word)
+        if segment:
+            segments.append(segment)
+
+        for segment in segments:
+            segment_text = " ".join(str(item[4]) for item in segment)
+            if _is_pdf_product_title_seed(segment_text) or _looks_like_pdf_product_description(segment_text):
+                anchors.append((
+                    min(float(item[0]) for item in segment),
+                    float(block[1]),
+                ))
+
+    unique: list[tuple[float, float]] = []
+    for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
+        if not any(
+            abs(x - seen_x) < max(12, width * 0.025) and abs(y - seen_y) < 8
+            for seen_x, seen_y in unique
+        ):
+            unique.append((x, y))
+    return unique
+
+
+def _pdf_description_anchors_by_line(
     candidates, words, width: float
 ) -> list[tuple[float, float]]:
-    """Find product starts from individual PDF text lines and horizontal segments."""
+    """Find distinct product starts on separate lines inside a merged PDF text block."""
     anchors: list[tuple[float, float]] = []
     split_gap = max(22, width * 0.045)
 
@@ -1069,8 +1115,6 @@ def _pdf_description_anchors(
                         min(float(item[1]) for item in segment),
                     ))
 
-    # Wrapped title lines may each look like a product candidate. Collapse only
-    # near-identical starts; vertically stacked products in one column remain separate.
     unique: list[tuple[float, float]] = []
     for x, y in sorted(anchors, key=lambda point: (point[1], point[0])):
         if not any(
@@ -1228,7 +1272,7 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
     rect = page.rect
     width, height = float(rect.width), float(rect.height)
     words = page.get_text("words", sort=True)
-    anchors = _pdf_description_anchors(candidates, words, width)
+    anchors = _pdf_description_anchors_by_line(candidates, words, width)
     if not anchors:
         return []
 
