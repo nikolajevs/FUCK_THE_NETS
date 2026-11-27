@@ -32,6 +32,7 @@ function normalizedStore(value) {
   if (folded.includes("top")) return { key: "top", name: "Top!" };
   if (folded.includes("lidl")) return { key: "lidl", name: "Lidl" };
   if (folded.includes("rimi")) return { key: "rimi", name: "Rimi" };
+  if (folded.includes("elvi")) return { key: "elvi", name: "Elvi" };
   return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
 }
 
@@ -224,6 +225,7 @@ function offerVariantMarkup(offer) {
   if (offer.requiresPaldies) tags.push('<span class="condition-tag strong">PALDIES karte</span>');
   else if (offer.requiresCard) tags.push('<span class="condition-tag strong">' + escapeHtml(offer.cardName ? offer.cardName + " karte" : "Klienta karte") + '</span>');
   if (offer.onlyInApp) tags.push('<span class="condition-tag strong">Tikai lietotnē</span>');
+  if (offer.multiBuy) tags.push('<span class="condition-tag strong">Pērkot ' + escapeHtml(offer.multiBuy) + '</span>');
   if (!tags.length) tags.push('<span class="condition-tag">Bez kartes nosacījuma</span>');
   const formats = Array.isArray(offer.storeFormats) && offer.storeFormats.length
     ? '<span>Veikali ' + escapeHtml(offer.storeFormats.join(", ")) + '</span>'
@@ -422,6 +424,7 @@ async function init() {
     ["data/top-offers.json", "Top!"],
     ["data/lidl-offers.json", "Lidl"],
     ["data/rimi-offers.json", "Rimi"],
+    ["data/elvi-offers.json", "Elvi"],
   ];
   const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
   const feeds = [];
