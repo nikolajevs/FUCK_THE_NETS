@@ -5,6 +5,7 @@ const state = {
   campaignLabels: new Map(),
   campaignOptions: [],
   updates: [],
+  catalogues: [],
   selectedStore: "",
   page: 1,
   pageSize: 24,
@@ -34,6 +35,10 @@ function normalizedStore(value) {
   if (folded.includes("rimi")) return { key: "rimi", name: "Rimi" };
   if (folded.includes("elvi")) return { key: "elvi", name: "Elvi" };
   if (folded.includes("latts")) return { key: "latts", name: "LaTS" };
+  if (folded.includes("vesko")) return { key: "vesko", name: "Vesko" };
+  if (folded.includes("aibe")) return { key: "aibe", name: "Aibe" };
+  if (folded.includes("citro")) return { key: "citro", name: "Citro" };
+  if (folded.includes("spar")) return { key: "spar", name: "Spar" };
   return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
 }
 
@@ -401,6 +406,30 @@ function renderStats() {
     : "";
 }
 
+function renderCatalogues() {
+  const section = document.querySelector("#cataloguesSection");
+  const target = document.querySelector("#catalogues");
+  if (!section || !target) return;
+  const seen = new Set();
+  const items = state.catalogues.filter(cat => {
+    if (seen.has(cat.source)) return false;
+    seen.add(cat.source);
+    return true;
+  }).sort((a, b) => a.storeName.localeCompare(b.storeName, "lv"));
+  section.hidden = items.length === 0;
+  target.innerHTML = items.map(cat => {
+    const period = cat.validFrom && cat.validUntil
+      ? formatShortDate(cat.validFrom) + "–" + formatShortDate(cat.validUntil)
+      : (cat.validUntil ? formatShortDate(cat.validUntil) : "");
+    return '<a class="catalogue-card" href="' + escapeHtml(safeSource(cat.source)) + '" target="_blank" rel="noopener">'
+      + '<span class="retailer-tag ' + escapeHtml(cat.storeKey) + '">' + escapeHtml(cat.storeName) + '</span>'
+      + '<span class="catalogue-name">' + escapeHtml(cat.name || "Akciju buklets") + '</span>'
+      + (period ? '<span class="catalogue-period">' + escapeHtml(period) + '</span>' : "")
+      + '<span class="catalogue-open">Atvērt bukletu ↗</span>'
+      + '</a>';
+  }).join("");
+}
+
 async function fetchFeed(path, fallbackStore) {
   const response = await fetch(path, { cache: "no-store" });
   if (!response.ok) throw new Error(path + " returned " + response.status);
@@ -427,6 +456,10 @@ async function init() {
     ["data/rimi-offers.json", "Rimi"],
     ["data/elvi-offers.json", "Elvi"],
     ["data/latts-offers.json", "LaTS"],
+    ["data/vesko-offers.json", "Vesko"],
+    ["data/aibe-offers.json", "Aibe"],
+    ["data/citro-offers.json", "Citro"],
+    ["data/spar-offers.json", "Spar"],
   ];
   const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
   const feeds = [];
@@ -442,6 +475,9 @@ async function init() {
     const store = normalizedStore(feed.data.store || feed.fallbackStore);
     storeMap.set(store.key, store);
     addCampaignMetadata(feed, store.key);
+    for (const cat of feed.data.catalogues || []) {
+      if (cat && cat.source) state.catalogues.push({ ...cat, storeKey: store.key, storeName: store.name });
+    }
     if (feed.data.updatedAt) state.updates.push({ name: store.name, value: feed.data.updatedAt });
     for (const rawOffer of feed.data.offers || []) {
       if (!Number.isFinite(rawOffer.price)) continue;
@@ -472,6 +508,7 @@ async function init() {
   renderCampaignOptions();
   renderCityOptions();
   renderStats();
+  renderCatalogues();
   render();
 }
 
