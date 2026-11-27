@@ -29,6 +29,7 @@ jobs:
           python -m py_compile scripts/scrape_top.py
           python -m py_compile scripts/scrape_lidl.py
           python -m py_compile scripts/scrape_rimi.py
+          python -m py_compile scripts/booklet_images.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
       - name: Validate frontend JavaScript
@@ -148,6 +149,8 @@ jobs:
           if [ -f data/top-offers.json ]; then git add data/top-offers.json; fi
           if [ -f data/lidl-offers.json ]; then git add data/lidl-offers.json; fi
           if [ -f data/rimi-offers.json ]; then git add data/rimi-offers.json; fi
+          if [ -d data/lidl-img ]; then git add data/lidl-img; fi
+          if [ -d data/mego-img ]; then git add data/mego-img; fi
           if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update Maxima, top!, Lidl and Rimi offers and price history"

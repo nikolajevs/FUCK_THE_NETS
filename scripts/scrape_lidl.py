@@ -55,6 +55,11 @@ try:
 except ModuleNotFoundError:
     from product_identity import build_product_groups
 
+try:
+    from scripts.booklet_images import prune_images, save_product_photo
+except ModuleNotFoundError:
+    from booklet_images import prune_images, save_product_photo
+
 BASE = "https://www.lidl.lv"
 BOOKLETS_PAGE = BASE + "/c/lv-LV/akciju-bukleti/s10024390"
 LEAFLET_API = "https://endpoints.leaflets.schwarz/v4/flyer"
@@ -146,7 +151,7 @@ def _clean_name(parts: list[str]) -> str:
     return " ".join(dedup)[:90]
 
 
-def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
+def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None) -> tuple[list[dict], list[dict]]:
     words = page.get_text("words")
     if not words:
         return [], []
@@ -252,22 +257,29 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
                 offer["reviewReason"] = "weak_name"
                 reviews.append(offer)
             else:
+                if img_dir is not None:
+                    photo = save_product_photo(page, x_lo, x_hi, a["y0"], a["y1"],
+                                               prev_bottom, img_dir, offer["offerId"])
+                    if photo:
+                        offer["image"] = photo
                 offers.append(offer)
             prev_bottom = a["y1"]
     return offers, reviews
 
 
-def extract_offers_from_pdf(pdf_path: Path, booklet: dict) -> tuple[list[dict], list[dict]]:
+def extract_offers_from_pdf(pdf_path: Path, booklet: dict, img_dir: Path | None = None) -> tuple[list[dict], list[dict]]:
     if fitz is None:
         raise RuntimeError("PyMuPDF (fitz) is required for PDF parsing")
     doc = fitz.open(pdf_path)
     all_offers: list[dict] = []
     all_review: list[dict] = []
-    for page_num, page in enumerate(doc):
-        offers, review = extract_page(page, page_num, booklet)
-        all_offers.extend(offers)
-        all_review.extend(review)
-    doc.close()
+    try:
+        for page_num, page in enumerate(doc):
+            offers, review = extract_page(page, page_num, booklet, img_dir)
+            all_offers.extend(offers)
+            all_review.extend(review)
+    finally:
+        doc.close()
     return all_offers, all_review
 
 
@@ -300,9 +312,12 @@ def main() -> None:
         pdf_path.parent.mkdir(parents=True, exist_ok=True)
         pdf_path.write_bytes(r.content)
         try:
-            offers, review = extract_offers_from_pdf(pdf_path, booklet)
+            offers, review = extract_offers_from_pdf(pdf_path, booklet, Path("data/lidl-img"))
         finally:
-            pdf_path.unlink(missing_ok=True)
+            try:
+                pdf_path.unlink(missing_ok=True)
+            except OSError:
+                pass
         print(f"  -> {len(offers)} offers, {len(review)} need review")
         all_offers.extend(offers)
         all_review.extend(review)
@@ -324,6 +339,7 @@ def main() -> None:
     unique_rev = {o["offerId"]: o for o in all_review}
     reviews = sorted(unique_rev.values(), key=lambda x: x["name"].casefold())
     products = build_product_groups(offers) if offers else []
+    prune_images(Path("data/lidl-img"), {o["image"] for o in offers if o.get("image")})
 
     payload = {
         "source": BOOKLETS_PAGE,
