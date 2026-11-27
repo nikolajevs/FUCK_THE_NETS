@@ -110,6 +110,10 @@ button, select { cursor: pointer; }
 .retailer-tag.rimi { background: #fbe9eb; color: #a6192e; }
 .retailer-tag.elvi { background: #eef7e6; color: #3e7a1e; }
 .retailer-tag.latts { background: #fdeede; color: #c2571b; }
+.retailer-tag.vesko { background: #e0f3f1; color: #0b6e63; }
+.retailer-tag.aibe { background: #fff0e8; color: #c2410c; }
+.retailer-tag.citro { background: #e9effc; color: #1d4ed8; }
+.retailer-tag.spar { background: #eaf6ec; color: #15803d; }
 .product-heading h3 { margin: 0; color: #23352a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
 .product-meta { margin: 4px 0 0; color: #87938a; font-size: 9px; }
 .best-price { display: flex; justify-content: space-between; align-items: end; gap: 10px; margin-top: 14px; padding: 11px 12px; border-radius: 10px; background: #f5f9f5; }
@@ -197,3 +201,12 @@ button, select { cursor: pointer; }
   .product-thumb { width: 62px; height: 62px; }
   .footer { flex-direction: column; gap: 5px; margin-top: 35px; }
 }
+
+.catalogues-section { margin-top: 30px; }
+.catalogues-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 14px; }
+.catalogue-card { display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 12px; background: #fff; border: 1px solid #e2ebe4; text-decoration: none; color: inherit; transition: border-color .15s ease, box-shadow .15s ease; }
+.catalogue-card:hover { border-color: #b9d3c2; box-shadow: 0 4px 14px rgba(20, 60, 40, .08); }
+.catalogue-card .retailer-tag { align-self: flex-start; }
+.catalogue-name { font-weight: 700; font-size: 13px; color: #23352a; line-height: 1.35; }
+.catalogue-period { font-size: 11px; color: #5c6f63; }
+.catalogue-open { font-size: 11px; font-weight: 800; color: #176b46; margin-top: auto; padding-top: 4px; }

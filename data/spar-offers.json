@@ -1,0 +1,27 @@
+{
+  "source": "https://spar.lv/akcijas/",
+  "store": "spar",
+  "updatedAt": "2026-11-28T00:01:28+02:00",
+  "catalogues": [
+    {
+      "id": "spar-light-sparavize78",
+      "name": "SPAR akciju avīze",
+      "source": "https://spar.lv/wp-content/uploads/2023/04/light-SPARavize78.pdf",
+      "validFrom": "2026-11-05",
+      "validUntil": "2026-11-25",
+      "verifiedOffers": 0,
+      "reviewOffers": 0,
+      "complete": false,
+      "note": "Cenas PDF ir attēli; buklets pieejams kā kataloga saite."
+    }
+  ],
+  "offers": [],
+  "products": [],
+  "reviewOffers": [],
+  "summary": {
+    "offerVariants": 0,
+    "uniqueProducts": 0,
+    "reviewOffers": 0,
+    "catalogues": 1
+  }
+}

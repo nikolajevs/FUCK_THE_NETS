@@ -8,6 +8,10 @@ Currently supported:
 |---------|----------------------------|-------------------------|-------------------------------|
 | Maxima  | `scripts/scrape_maxima.py` | `data/offers.json`      | Production (daily GH Actions) |
 | Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
+| Vesko   | `scripts/scrape_vesko.py`  | `data/vesko-offers.json`| Production (PDF booklet)      |
+| Aibe    | `scripts/scrape_aibe.py`   | `data/aibe-offers.json` | Production (SSR cards)        |
+| Citro   | `scripts/scrape_citro.py`  | `data/citro-offers.json`| Production (PDF newspaper)    |
+| Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Catalogue link (image prices) |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
@@ -56,6 +60,45 @@ python scripts/scrape_mego.py
 ```
 
 Output: `data/mego-offers.json`
+
+---
+
+## Vesko, Aibe, Citro and Spar
+
+Four more Latvian chains, each read from its own published source:
+
+- **Vesko** (`veskoveikals.lv`) — the monthly booklet linked from the home
+  page (`/booklets/<id>/lv/pdf_download`) has a real text layer in three
+  columns. The tallest cent integer in a card is the sale price, the next is
+  the struck-through regular price; the printed `-NN%` badge validates the
+  pair. Names keep the package size; unit prices, discount badges and the
+  duplicated shadow text layer are removed.
+- **Aibe** (`aibe.lv/akcijas/`) — server-rendered WordPress cards grouped by
+  category, with euro+cent sale price, regular price, discount, photo and a
+  `Product, Brand, size` name. The akciju avīze (DearPDF flipbook) is recorded
+  as a catalogue link and supplies the campaign year.
+- **Citro** (`citro.lv/akcijas/`) — the "Citro Avīze" PDF (the sister-chain
+  ELDO avīze and the lottery booklet on the same page are skipped). Cards are
+  anchored on the large cent sale price; the ALL-CAPS name sits to the right
+  (standard cards) or below (fruit & vegetable cards). Regular-price ranges
+  keep their lower bound.
+- **Spar** (`spar.lv/akcijas/`) — the DearPDF newspaper keeps names and the
+  validity period as text but renders **prices as images**, so individual
+  prices cannot be verified. Mirroring LaTS's image-only newspaper, Spar is
+  recorded as a catalogue link with its printed period rather than a priced
+  feed.
+
+All four drop alcoholic products (matching LaTS/Rimi/top!) and send ambiguous
+cards to `reviewOffers`. The site shows a **"Akciju bukleti"** strip listing
+every chain's current booklet/avīze with its period, so catalogue-only stores
+like Spar stay visible.
+
+```bash
+python scripts/scrape_vesko.py
+python scripts/scrape_aibe.py
+python scripts/scrape_citro.py
+python scripts/scrape_spar.py
+```
 
 ---
 
