@@ -45,7 +45,9 @@ def product_id(name: str, unit: str | None = None) -> str:
 
 def prices_from(text: str) -> list[float]:
     """Read shelf prices, excluding parenthesized €/kg or €/l unit prices."""
-    cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", text)
+    # Remove unit prices even when the source omits their surrounding parentheses.
+    cleaned = re.sub(r"(?<!\d)\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*(?:kg|l|100\s*g|100\s*ml)\b", " ", text, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\([^)]*€\s*/\s*[^)]*\)", " ", cleaned)
     values = [
         int(euros) + int(cents) / 100
         for euros, cents in PRICE_TOKEN_RE.findall(cleaned)
@@ -110,11 +112,13 @@ def offer_dates(text: str, today: date | None = None) -> tuple[str | None, str |
 def campaign_dates(page_text: str, campaign_name: str = CAMPAIGN_NAME,
                    today: date | None = None) -> tuple[str | None, str | None]:
     """Use the date range adjacent to the weekly-offer heading, not another banner."""
-    match = re.search(re.escape(campaign_name), page_text, flags=re.IGNORECASE)
-    if not match:
-        return None, None
-    nearby_text = page_text[match.end():match.end() + 220]
-    return offer_dates(nearby_text, today=today)
+    matches = list(re.finditer(re.escape(campaign_name), page_text, flags=re.IGNORECASE))
+    for match in matches:
+        nearby_text = page_text[match.end():match.end() + 300]
+        dates = offer_dates(nearby_text, today=today)
+        if dates != (None, None):
+            return dates
+    return None, None
 
 
 def store_formats_from_text(text: str) -> list[str]:
