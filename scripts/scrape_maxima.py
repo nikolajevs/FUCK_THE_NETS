@@ -1358,6 +1358,14 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
         max(28, height * 0.045),
     )
     y_centres = [sum(group) / len(group) for group in y_clusters]
+    has_bullet_separators = any(
+        re.fullmatch(r"[•·▪●◦]+", str(word[4]).strip())
+        for word in words
+    )
+    anchor_rows = [
+        min(range(len(y_centres)), key=lambda index: abs(y - y_centres[index]))
+        for _, y in anchors
+    ]
 
     results: list[tuple[int, int, str]] = []
     for anchor_index, (x, y) in enumerate(anchors):
@@ -1374,17 +1382,29 @@ def _pdf_page_cells_geometry(page) -> list[tuple[int, int, str]]:
         if bottom <= top:
             continue
 
-        # MAXIMA brochures use regular multi-column product grids. Equal-width
-        # column bounds are more stable than bisecting the starts of left-aligned
-        # product titles (which would cut the names off).
-        left = float(rect.x0) + column_index * width / len(x_centres)
-        right = float(rect.x0) + (column_index + 1) * width / len(x_centres)
+        if has_bullet_separators:
+            # When the PDF explicitly separates adjacent product cards with
+            # bullets, line anchors are card centres. Bisect only neighbours
+            # on the same visual row so irregular card widths remain intact.
+            row_xs = sorted(
+                anchors[index][0]
+                for index, row_number in enumerate(anchor_rows)
+                if row_number == anchor_rows[anchor_index]
+            )
+            previous_x = max((value for value in row_xs if value < x), default=None)
+            next_x = min((value for value in row_xs if value > x), default=None)
+            left = max(float(rect.x0), (previous_x + x) / 2 if previous_x is not None else float(rect.x0))
+            right = min(float(rect.x1), (x + next_x) / 2 if next_x is not None else float(rect.x1))
+        else:
+            # Without explicit separators, MAXIMA's catalogue grids are
+            # regular multi-column layouts, so equal-width columns avoid
+            # clipping a left-aligned title at a midpoint between title starts.
+            left = float(rect.x0) + column_index * width / len(x_centres)
+            right = float(rect.x0) + (column_index + 1) * width / len(x_centres)
+
         cell_text = _pdf_words_in_rect(words, left, top, right, bottom)
         if cell_text.strip() and prices_from(cell_text):
-            row_number = min(
-                range(len(y_centres)),
-                key=lambda index: abs(y - y_centres[index]),
-            ) + 1
+            row_number = anchor_rows[anchor_index] + 1
             results.append((row_number, column_index + 1, cell_text))
 
     unique: dict[tuple[int, int, str], tuple[int, int, str]] = {}
