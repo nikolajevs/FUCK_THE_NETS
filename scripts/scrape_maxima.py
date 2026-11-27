@@ -82,9 +82,9 @@ def prices_from(text: str) -> list[float]:
     # €/kg label only to the second value, e.g. "(12,48 19,98 €/kg)".
     # Remove both only when a separate shelf-price token remains outside it.
     unit_pair = re.search(
-        r"\\(\\s*\\d{1,3}[,.]\\s*\\d{2}\\s*(?:[;,]\\s*|\\s+)"
-        r"\\d{1,3}[,.]\\s*\\d{2}\\s*€\\s*/\\s*"
-        r"(?:kg|l|100\\s*g|100\\s*ml|gab\\.?|pcs?|rull\\w*|pāri|pāris)\\b[^)]*\\)",
+        r"\(\s*\d{1,3}[,.]\s*\d{2}\s*(?:[;,]\s*|\s+)"
+        r"\d{1,3}[,.]\s*\d{2}\s*€\s*/\s*"
+        r"(?:kg|l|100\s*g|100\s*ml|gab\.?|pcs?|rull\w*|pāri|pāris)\b[^)]*\)",
         text,
         flags=re.IGNORECASE,
     )
