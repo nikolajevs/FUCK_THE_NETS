@@ -416,6 +416,36 @@ class MaximaScraperTests(unittest.TestCase):
         self.assertEqual(offers[0]["paldiesPrice"], 20.99)
         self.assertEqual(offers[0]["priceWithoutPaldies"], 44.99)
 
+    def test_size_label_prefix_in_product_title_requires_review(self):
+        import pymupdf as fitz
+
+        document = fitz.open()
+        page = document.new_page(width=600, height=800)
+        page.insert_textbox(
+            fitz.Rect(25, 190, 300, 275),
+            "izmērs 15+ kg ROBOROCK Q7 BF 1 gab.\n139 99 229 99",
+        )
+        payload = document.tobytes()
+        document.close()
+
+        catalogue = {
+            "id": "maxima-catalogue-black-friday-cenu-festivals",
+            "name": "Black Friday cenu festivāls",
+            "source": "https://www.maxima.lv/bukleti/black-friday",
+            "detailSource": "https://www.maxima.lv/bukleti/black-friday",
+            "pdfSources": ["https://www.maxima.lv/uploads/black-friday.pdf"],
+            "validFrom": "2026-11-26",
+            "validUntil": "2026-11-30",
+            "storeFormats": ["X", "XX", "XXX"],
+            "storeScopeSource": "https://www.maxima.lv/bukleti/black-friday",
+        }
+        offers, reviews, _ = parse_catalogue_pdf(
+            payload, catalogue, [catalogue], today=date(2026, 11, 27)
+        )
+        self.assertEqual(offers, [])
+        self.assertEqual(len(reviews), 1)
+        self.assertIn("product_name_ambiguous", reviews[0]["quality"]["issues"])
+
     def test_roja_event_text_in_product_title_requires_review(self):
         import pymupdf as fitz
 
