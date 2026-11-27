@@ -17,6 +17,11 @@ try:
 except ImportError:  # pragma: no cover - compatibility with older PyMuPDF releases
     import fitz
 
+try:
+    from scripts.vision_price_check import annotate_vision_price_check
+except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
+    from vision_price_check import annotate_vision_price_check
+
 
 MODEL_LABEL = "Qwen3-VL-4B-Instruct-Q4_K_M (local llama.cpp)"
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
@@ -213,6 +218,7 @@ def add_qwen_review_suggestions(
                 suggestion = suggestions[0]
                 suggestion["model"] = MODEL_LABEL
                 offer.setdefault("reviewEvidence", {})["visionAssist"] = suggestion
+                annotate_vision_price_check(offer)
                 attached += 1
                 print(f"Qwen reviewed card {index}/{len(review_offers)}")
     finally:
@@ -261,6 +267,7 @@ def review_pending_directory(pending_dir: Path, offers_file: Path) -> int:
             ):
                 continue
             current_evidence["visionAssist"] = suggestion
+            annotate_vision_price_check(current)
 
     if attached:
         offers_file.write_text(
