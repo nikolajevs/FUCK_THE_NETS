@@ -917,6 +917,8 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
         if _looks_like_pdf_product_description(block[4])
     ]
     if not descriptions:
+        if float(page.rect.width) == 600 and float(page.rect.height) == 800:
+            print("PDF_DEBUG_NO_DESCRIPTIONS", blocks)
         return []
 
     width, height = float(page.rect.width), float(page.rect.height)
@@ -956,6 +958,12 @@ def _pdf_page_cells(page) -> list[tuple[int, int, str]]:
             if not cell_descriptions:
                 continue
             results.append((row_index + 1, column_index + 1, cell_text))
+    if width == 600 and height == 800:
+        print("PDF_DEBUG_CELLS", {
+            "descriptions": [(b[0], b[1], b[4]) for b in descriptions],
+            "xClusters": x_clusters, "yClusters": y_clusters,
+            "results": results,
+        })
     return results
 
 
@@ -1011,6 +1019,8 @@ def parse_catalogue_pdf(
 
         for row_number, column_number, cell_text in cells:
             name = _clean_pdf_product_name(cell_text)
+            if page.rect.width == 600 and page.rect.height == 800:
+                print("PDF_DEBUG_CARD", row_number, column_number, repr(cell_text), repr(name), _looks_like_pdf_product_description(name))
             if not name or not _looks_like_pdf_product_description(name):
                 continue
             price, regular, discount, issues = _pdf_price_quality(cell_text)
