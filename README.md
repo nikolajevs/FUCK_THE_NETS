@@ -186,9 +186,28 @@ Extraction per page:
   distance, with page-specific mappings for headings shared by several variants;
 - leading A/B/C variant markers that leak from the booklet layout are removed;
   pages with a single sale-price anchor are still parsed;
-- a small decimal to the **right** of the anchor is the crossed-out regular price;
-  unit prices (`1 kg = 16,14 €`) live inside the name block and are ignored;
+- the crossed-out regular price is the small `LidlFontPro-Book` decimal over the
+  right half of the sale price; when a `-NN%` badge sits just above the price
+  the pair must agree with it, and `discountPercent` is set from the pair. A
+  badge alone never creates a discount (Lidl also prints "2. precei -61%"
+  second-item badges). Unit prices (`1 kg = 16,14 €`) live inside the name block
+  and are ignored;
+- the pack line under the title ("200 g", "36 x 13 g", "400 g vai 500 g") is
+  appended to the name, so product identity keeps sizes apart; leading all-caps
+  words ("DELUXE", "J.D. GROSS") become `brand`;
+- a big "3 gab." printed before the price ("Ietaupi vairāk") sets
+  `multiBuy: "3"`, shown as "Pērkot 3" — the price is per piece when buying 3;
+- the same product repeated on several pages of one booklet is kept once;
 - `Ar Lidl Plus` near the card sets `requiresCard` with `cardName: "Lidl Plus"`.
+
+Lidl publishes every booklet issue under a new PDF URL and the seasonal
+catalogues are over 100 MB. A booklet whose PDF URL and parser code
+(`scrape_lidl.py`, `booklet_images.py`, `product_identity.py`, hashed into
+`parserVersion` on each catalogue entry) are unchanged is not downloaded again;
+its offers are carried over from the previous feed, so a quiet day takes seconds
+and any parser change re-parses everything. The wine catalogue ("Garšu
+atklājumi") is recognised by its statutory alcohol notice and not listed
+(`skippedBooklets`), matching the project's no-alcohol rule.
 
 Quality gate: only cards with a readable title and a finite sale price are promoted
 to `offers`; empty/generic names, oversized title blocks, marketing copy and date

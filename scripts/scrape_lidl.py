@@ -21,9 +21,14 @@ Extraction (per PDF page):
 - columns are clustered from the anchor x positions; within a column the product
 - name is matched to a bold condensed title block with a minimum-distance
   assignment;
-- a small decimal to the right of the anchor is the crossed-out regular price
-  (unit prices such as ``1 kg = 16,14 €`` sit inside the name block and are
-  ignored);
+- the crossed-out regular price is the small ``LidlFontPro-Book`` decimal over
+  the right half of the sale price; when the card also prints a ``-NN%`` badge
+  the pair must agree with it (badges alone never create a discount: Lidl also
+  prints "2. precei -61%" second-item badges); unit prices such as
+  ``1 kg = 16,14 €`` sit inside the name block and are ignored;
+- the pack size line under the title ("200 g", "36 x 13 g") is appended to the
+  name so product identity keeps sizes apart, leading all-caps words become the
+  brand, and a big "3 gab." before the price becomes ``multiBuy``;
 - ``Ar Lidl Plus`` near the card flags ``requiresCard`` (card name ``Lidl Plus``).
 
 Only cards with a clean name and a finite sale price are promoted to ``offers``;
@@ -31,6 +36,12 @@ ambiguous cards (empty/short/merged names, marketing copy, date banners) go to
 ``reviewOffers`` and are not shown on the site. Regular prices are kept only when
 confidently detected, otherwise ``null`` — the comparator never guesses a
 discount from a unit price.
+
+Lidl publishes every booklet issue under a new PDF URL, and the seasonal
+catalogues are 100+ MB. A booklet whose PDF URL and parser code (this file,
+booklet_images.py, product_identity.py) are unchanged since the previous run is
+not downloaded again: its offers are carried over from the previous feed. The
+wine catalogue is detected by its statutory alcohol notice and not listed.
 """
 from __future__ import annotations
 
@@ -70,9 +81,24 @@ HEADERS = {
     "Accept-Language": "lv-LV,lv;q=0.9,en;q=0.8",
 }
 OUT = Path("data/lidl-offers.json")
+_SCRIPTS = Path(__file__).resolve().parent
+# Any change to the parsing code invalidates the per-booklet cache.
+PARSER_VERSION = hashlib.sha256(b"".join(
+    (_SCRIPTS / name).read_bytes().replace(b"\r\n", b"\n")  # same on Windows and CI
+    for name in ("scrape_lidl.py", "booklet_images.py", "product_identity.py")
+)).hexdigest()[:12]
 
 DEC_RE = re.compile(r"^(\d{1,3})[,.](\d{2})$")
 DATE_RE = re.compile(r"\d{1,2}\.\d{1,2}\.")
+BADGE_RE = re.compile(r"^-(\d{1,2})\s?%$")
+_QTY = r"(?:\d+\s*[x×]\s*)?\d+(?:[,.]\d+)?\s*(?:kg|g|ml|cl|l|gab\.?|m|cm|mazg\.)"
+# The small line under a title that states the pack ("200 g", "36 x 13 g",
+# "400 g vai 500 g", "1 kg iepakojums"). Unit prices contain "=" and are not
+# matched; neither are descriptions such as "dažādi veidi".
+SIZE_LINE_RE = re.compile(
+    rf"^({_QTY}(?:\s*(?:vai|/)\s*{_QTY})?)(?:\s+(?:iepakojums|iepak\.|neto))?$", re.I)
+# Leading all-caps words that are labels rather than brands.
+NOT_BRANDS = {"BIO", "XXL", "XL", "DUO", "MINI", "MAXI", "LED", "USB", "EKO"}
 NOISE_TOK = {
     "€", "/", "=", "ar", "lidl", "plus", "no", "vai", "gab.", "kg", "g", "ml", "l",
     "mazg.", "slāņi", "loksnes", "iepak.", "gab", "cm", "mm", "den", "x", "×", "un",
@@ -234,24 +260,118 @@ def _clean_name(parts: list[str]) -> str:
     return " ".join(dedup)[:90]
 
 
-def _page_text_features(page) -> tuple[list[dict], list[dict]]:
-    """Read Lidl sale-price spans and bold condensed product titles."""
+def brand_from_name(name: str) -> str | None:
+    """Leading all-caps words of a Lidl title ("DELUXE Makarūnu izlase")."""
+    tokens = name.split()
+    brand: list[str] = []
+    for token in tokens:
+        letters = re.sub(r"[^A-Za-zĀ-ž]", "", token)
+        if len(letters) >= 2 and letters == letters.upper():
+            brand.append(token)
+        else:
+            break
+    if not brand or len(brand) == len(tokens) or " ".join(brand) in NOT_BRANDS:
+        return None
+    return " ".join(brand)
+
+
+def name_with_size(name: str, size: str | None) -> str:
+    """Append the printed pack size unless the title already carries it."""
+    if not size:
+        return name
+    number = re.match(r"\d+(?:[,.]\d+)?", size)
+    if number and re.search(rf"(?<![\d,.]){re.escape(number.group(0))}(?![\d,.])", name):
+        return name
+    return f"{name} {size}"
+
+
+def pick_regular_price(anchor: dict, candidates: list[dict]) -> float | None:
+    """The crossed-out price printed beside/above the right half of the sale price."""
+    best, best_cost = None, float("inf")
+    width = anchor["x1"] - anchor["x0"]
+    for c in candidates:
+        dx = c["x0"] - anchor["x0"]
+        dy = c["y0"] - anchor["y0"]
+        if not (15 <= dx <= width + 130 and -45 <= dy <= 25):
+            continue
+        if not anchor["v"] * 1.03 < c["v"] < anchor["v"] * 6:
+            continue
+        cost = abs(dy) + 0.2 * abs(dx - 80)
+        if cost < best_cost:
+            best, best_cost = c["v"], cost
+    return best
+
+
+def pick_badge(anchor: dict, badges: list[dict]) -> int | None:
+    """The "-NN%" badge printed just above the left edge of the sale price."""
+    best, best_cost = None, float("inf")
+    for b in badges:
+        dx = b["x0"] - anchor["x0"]
+        dy = b["y0"] - anchor["y0"]
+        if not (-25 <= dx <= 45 and -45 <= dy <= 0):
+            continue
+        cost = abs(dx) + abs(dy)
+        if cost < best_cost:
+            best, best_cost = b["v"], cost
+    return best
+
+
+def pick_multi_buy(anchor: dict, counts: list[dict]) -> int | None:
+    """ "3 gab. 0,78 €": the sale price is per piece when buying N pieces."""
+    for c in counts:
+        dx = c["x1"] - anchor["x0"]
+        dy = c["y0"] - anchor["y0"]
+        if -55 <= dx <= 5 and abs(dy) <= 10:
+            return c["n"]
+    return None
+
+
+def discount_pair(sale: float, regular: float | None, badge: int | None) -> tuple[float | None, int | None]:
+    """Keep a regular price only when it is consistent with the printed badge.
+
+    Lidl also prints "2. precei -61%" (second item) badges and badges of the
+    neighbouring card nearby, so a badge alone never creates a discount.
+    """
+    if regular is None:
+        return None, None
+    implied = round((regular - sale) / regular * 100)
+    if badge is not None and abs(implied - badge) > 2:
+        return None, None
+    return regular, implied
+
+
+def _page_text_features(page) -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]:
+    """Read sale prices, crossed-out prices, badges, "N gab." counts and titles."""
     titles: list[dict] = []
     sale_prices: list[dict] = []
+    regular_prices: list[dict] = []
+    badges: list[dict] = []
+    piece_counts: list[dict] = []
+    gab_marks: list[tuple[float, float]] = []
     for block in page.get_text("dict").get("blocks", []):
         if block.get("type") != 0:
             continue
+        size_line = None
         for line in block.get("lines", []):
+            line_spans = [s for s in line.get("spans", []) if s.get("text", "").strip()]
+            if (size_line is None and line_spans
+                    and all("CondPro" in s.get("font", "") and "Bold" not in s.get("font", "")
+                            and 7 <= s.get("size", 0) <= 9.5 for s in line_spans)):
+                line_text = re.sub(r"\s+", " ", " ".join(s["text"].strip() for s in line_spans))
+                match = SIZE_LINE_RE.match(line_text)
+                if match:
+                    size_line = match.group(1)
             for span in line.get("spans", []):
                 font = span.get("font", "")
-                value = dec_val(span.get("text", "").strip())
+                text = span.get("text", "").strip()
+                value = dec_val(text)
+                x0, y0, x1, y1 = span["bbox"]
                 if (
                     value is not None
                     and font.startswith("LidlFontPrice")
                     and "PublicBeta" not in font
                     and span.get("size", 0) >= 45
                 ):
-                    x0, y0, x1, y1 = span["bbox"]
                     sale_prices.append({
                         "cx": (x0 + x1) / 2,
                         "x0": x0,
@@ -260,6 +380,16 @@ def _page_text_features(page) -> tuple[list[dict], list[dict]]:
                         "y1": y1,
                         "v": value,
                     })
+                elif (value is not None and "Book" in font and "CondPro" not in font
+                        and 8.5 <= span.get("size", 0) <= 18):
+                    regular_prices.append({"x0": x0, "y0": y0, "v": value})
+                elif BADGE_RE.match(text) and "Bold" in font and span.get("size", 0) >= 14:
+                    badges.append({"x0": x0, "y0": y0, "v": int(BADGE_RE.match(text).group(1))})
+                elif font.startswith("LidlFontPrice") and re.fullmatch(r"\d{1,2}", text) \
+                        and span.get("size", 0) >= 40 and 2 <= int(text) <= 20:
+                    piece_counts.append({"x0": x0, "x1": x1, "y0": y0, "n": int(text)})
+                elif font.startswith("LidlFontPrice") and text.casefold() in {"gab.", "gab"}:
+                    gab_marks.append((x0, y0))
         spans = [
             span
             for line in block.get("lines", [])
@@ -289,7 +419,7 @@ def _page_text_features(page) -> tuple[list[dict], list[dict]]:
         if not name:
             continue
         titles.append({
-            "name": name,
+            "name": name_with_size(name, size_line),
             "rect": (
                 min(span["bbox"][0] for span in spans),
                 min(span["bbox"][1] for span in spans),
@@ -297,7 +427,12 @@ def _page_text_features(page) -> tuple[list[dict], list[dict]]:
                 max(span["bbox"][3] for span in spans),
             ),
         })
-    return titles, sale_prices
+    # A big integer only counts as "N gab." when the "gab." label sits right of it.
+    counts = [
+        c for c in piece_counts
+        if any(-15 <= gx - c["x1"] <= 25 and 0 <= gy - c["y0"] <= 30 for gx, gy in gab_marks)
+    ]
+    return titles, sale_prices, regular_prices, badges, counts
 
 
 def _match_title_blocks(anchors: list[dict], blocks: list[dict]) -> dict[int, tuple[str, float]]:
@@ -388,7 +523,7 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
         return [], []
 
     width = float(page.rect.width)
-    title_blocks, anchors = _page_text_features(page)
+    title_blocks, anchors, regular_spans, badges, piece_counts = _page_text_features(page)
     if not anchors:
         # Synthetic PDFs and future Lidl templates may not use Lidl's price
         # font; preserve the coordinate fallback for those pages.
@@ -456,6 +591,12 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
             if override:
                 name = override
                 title_distance = 0.0
+            # Lidl's own fonts mark the crossed-out price (above the right half
+            # of the sale price) and the -NN% badge; the word-based guess above
+            # only covers plain PDFs without those fonts.
+            if regular_spans:
+                regular = pick_regular_price(a, regular_spans)
+            regular, discount = discount_pair(sale, regular, pick_badge(a, badges))
 
             key = f"{name.casefold()}|{sale:.2f}|{page_num}"
             if key in seen:
@@ -464,8 +605,10 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
             offer = {
                 "offerId": f"lidl-{booklet['id']}-p{page_num}-{hashlib.sha1(key.encode('utf-8')).hexdigest()[:8]}",
                 "name": name,
+                "brand": brand_from_name(name),
                 "price": sale,
                 "regularPrice": regular,
+                "discountPercent": discount,
                 "requiresCard": has_plus,
                 "onlyInApp": False,
                 "campaign": booklet["name"],
@@ -478,6 +621,9 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
             }
             if has_plus:
                 offer["cardName"] = "Lidl Plus"
+            pieces = pick_multi_buy(a, piece_counts)
+            if pieces:
+                offer["multiBuy"] = str(pieces)
 
             folded = name.casefold()
             name_words = name.split()
@@ -523,7 +669,36 @@ def extract_offers_from_pdf(pdf_path: Path, booklet: dict, img_dir: Path | None 
             all_review.extend(review)
     finally:
         doc.close()
-    return all_offers, all_review
+    return dedupe_offers(all_offers), all_review
+
+
+def dedupe_offers(offers: list[dict]) -> list[dict]:
+    """Keep one card per product and price within a booklet.
+
+    Lidl repeats some products on several pages of the same booklet (cover,
+    theme spread and category page); the first occurrence is kept, preferring
+    a later copy only when it adds a photo.
+    """
+    kept: dict[tuple, dict] = {}
+    for offer in offers:
+        key = (offer["name"].casefold(), offer["price"], offer.get("regularPrice"), offer.get("multiBuy"))
+        current = kept.get(key)
+        if current is None:
+            kept[key] = offer
+        elif offer.get("image") and not current.get("image"):
+            kept[key] = {**offer, "offerId": current["offerId"], "pdfPage": current["pdfPage"]}
+    return list(kept.values())
+
+
+ALCOHOL_NOTICE = "alkohola lietošanai ir negatīva ietekme"
+
+
+def is_alcohol_catalogue(pdf_path: Path) -> bool:
+    """Lidl's wine catalogues open with the statutory alcohol warning."""
+    if fitz is None:
+        return False
+    with fitz.open(pdf_path) as doc:
+        return bool(len(doc)) and ALCOHOL_NOTICE in " ".join(doc[0].get_text().split()).casefold()
 
 
 def main() -> None:
@@ -543,32 +718,20 @@ def main() -> None:
     for b in booklets:
         print(f"  - {b['name']} / {b['title']} [{b['validFrom']} – {b['validUntil']}] {b['status']}")
 
-    all_offers: list[dict] = []
-    all_review: list[dict] = []
-    catalogues = []
-    for booklet in booklets:
-        # Skip booklets whose offer window has not started or already ended.
-        if booklet.get("validFrom") and booklet["validFrom"] > today:
-            continue
-        if booklet.get("validUntil") and booklet["validUntil"] < today:
-            continue
-        print(f"Downloading {booklet['pdf']} ...")
-        r = sess.get(booklet["pdf"], timeout=240)
-        r.raise_for_status()
-        pdf_path = Path("tmp/pdfs") / f"lidl_{booklet['id']}.pdf"
-        pdf_path.parent.mkdir(parents=True, exist_ok=True)
-        pdf_path.write_bytes(r.content)
-        try:
-            offers, review = extract_offers_from_pdf(pdf_path, booklet, Path("data/lidl-img"))
-        finally:
-            try:
-                pdf_path.unlink(missing_ok=True)
-            except OSError:
-                pass
-        print(f"  -> {len(offers)} offers, {len(review)} need review")
-        all_offers.extend(offers)
-        all_review.extend(review)
-        catalogues.append({
+    # Booklets parsed by the same code from the same PDF URL are carried over
+    # from the previous feed instead of being downloaded again.
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.is_file() else {}
+    except (OSError, json.JSONDecodeError):
+        previous = {}
+    cached = {
+        item["pdf"]: item
+        for item in previous.get("catalogues", []) + previous.get("skippedBooklets", [])
+        if item.get("pdf") and item.get("parserVersion") == PARSER_VERSION
+    }
+
+    def catalogue_entry(booklet: dict, offers: int, review: int) -> dict:
+        return {
             "id": booklet["id"],
             "name": booklet["name"],
             "title": booklet["title"],
@@ -576,10 +739,67 @@ def main() -> None:
             "preview": booklet["preview"],
             "validFrom": booklet.get("validFrom"),
             "validUntil": booklet.get("validUntil"),
-            "verifiedOffers": len(offers),
-            "reviewOffers": len(review),
-            "complete": len(offers) > 0,
-        })
+            "verifiedOffers": offers,
+            "reviewOffers": review,
+            "complete": offers > 0,
+            "parserVersion": PARSER_VERSION,
+        }
+
+    def carried(items: list[dict], booklet: dict) -> list[dict]:
+        return [
+            {**item, "validFrom": booklet.get("validFrom"), "validUntil": booklet.get("validUntil")}
+            for item in items if item.get("campaignId") == booklet["id"]
+        ]
+
+    all_offers: list[dict] = []
+    all_review: list[dict] = []
+    catalogues = []
+    skipped: list[dict] = []
+    for booklet in booklets:
+        # Skip booklets whose offer window has not started or already ended.
+        if booklet.get("validFrom") and booklet["validFrom"] > today:
+            continue
+        if booklet.get("validUntil") and booklet["validUntil"] < today:
+            continue
+        known = cached.get(booklet["pdf"])
+        if known and known.get("reason") == "alcohol":
+            print(f"Skipping {booklet['name']}: wine catalogue")
+            skipped.append(known)
+            continue
+        if known:
+            offers = carried(previous.get("offers", []), booklet)
+            review = carried(previous.get("reviewOffers", []), booklet)
+            print(f"Unchanged {booklet['name']}: reusing {len(offers)} offers, {len(review)} review")
+            all_offers.extend(offers)
+            all_review.extend(review)
+            catalogues.append(catalogue_entry(booklet, len(offers), len(review)))
+            continue
+        print(f"Downloading {booklet['pdf']} ...")
+        r = sess.get(booklet["pdf"], timeout=240)
+        r.raise_for_status()
+        pdf_path = Path("tmp/pdfs") / f"lidl_{booklet['id']}.pdf"
+        pdf_path.parent.mkdir(parents=True, exist_ok=True)
+        pdf_path.write_bytes(r.content)
+        alcohol = False
+        try:
+            offers, review = extract_offers_from_pdf(pdf_path, booklet, Path("data/lidl-img"))
+            if not offers and not review:
+                alcohol = is_alcohol_catalogue(pdf_path)
+        finally:
+            try:
+                pdf_path.unlink(missing_ok=True)
+            except OSError:
+                pass
+        print(f"  -> {len(offers)} offers, {len(review)} need review")
+        if alcohol:
+            # The project leaves alcohol out, so the wine catalogue is not listed.
+            skipped.append({"id": booklet["id"], "pdf": booklet["pdf"], "reason": "alcohol",
+                            "parserVersion": PARSER_VERSION})
+            print("  wine catalogue: not listed")
+            continue
+        all_offers.extend(offers)
+        all_review.extend(review)
+        catalogues.append(catalogue_entry(booklet, len(offers), len(review)))
 
     unique = {o["offerId"]: o for o in all_offers}
     offers = sorted(unique.values(), key=lambda x: (x["name"].casefold(), x["price"]))
@@ -595,6 +815,7 @@ def main() -> None:
         "catalogues": catalogues,
         "offers": offers,
         "reviewOffers": reviews,
+        "skippedBooklets": skipped,
         "summary": {
             "offerVariants": len(offers),
             "uniqueProducts": len(products),
