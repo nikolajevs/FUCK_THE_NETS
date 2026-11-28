@@ -155,6 +155,10 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
 .table-status { display: inline-flex; align-items: center; gap: 5px; color: #568364; font-size: 8px; }
 .table-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .table-status.is-error { color: #bf8c42; }
+.table-status.is-muted { color: #9aa39d; }
+.table-status.health-degraded,
+.table-status.health-failed { color: #bf8c42; }
+.table-status.health-restored { color: #c0533a; }
 .table-loading { padding: 14px !important; color: #9aa49d !important; text-align: center; }
 
 .moderation-heading { margin-bottom: 20px; }
