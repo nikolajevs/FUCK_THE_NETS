@@ -1,7 +1,7 @@
 {
   "source": "https://spar.lv/akcijas/",
   "store": "spar",
-  "updatedAt": "2026-11-28T13:10:17+00:00",
+  "updatedAt": "2026-11-28T13:27:11+00:00",
   "catalogues": [
     {
       "id": "spar-light-sparavize78",
@@ -18,7 +18,6 @@
     }
   ],
   "offers": [],
-  "products": [],
   "reviewOffers": [],
   "summary": {
     "offerVariants": 0,
