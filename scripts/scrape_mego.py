@@ -38,7 +38,6 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; LatviaOffersBot/1.0; +https://github.com/nikolajevs/FUCK_THE_NETS)"
 }
 OUT = Path("data/mego-offers.json")
-HISTORY_OUT = Path("data/mego-price-history.json")
 
 PRICE_RE = re.compile(r"(?<!\d)(\d{1,3})(?:[,.]\s*|\s+)(\d{2})(?!\d)")
 DISCOUNT_RE = re.compile(r"-\s*(\d{1,2})\s*%")

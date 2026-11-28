@@ -256,6 +256,25 @@ function formatShortDate(value) {
   }).format(date);
 }
 
+// Offer dates are Latvian calendar days, so "today" must be the Riga date
+// regardless of the visitor's own time zone.
+function rigaToday() {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en", {
+    timeZone: "Europe/Riga",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date()).map(part => [part.type, part.value]));
+  return parts.year + "-" + parts.month + "-" + parts.day;
+}
+
+// validUntil is the last day an offer is valid (inclusive). Items without a
+// date are kept: several feeds publish no per-offer validity.
+function isExpired(item, today) {
+  const until = /^(\d{4}-\d{2}-\d{2})/.exec(String(item.validUntil || ""));
+  return Boolean(until) && until[1] < today;
+}
+
 function formatDateRange(offer) {
   if (offer.validFrom && offer.validUntil) {
     return formatShortDate(offer.validFrom) + "–" + formatShortDate(offer.validUntil);
@@ -625,6 +644,7 @@ async function init() {
     else failures.push(sources[index][1]);
   });
 
+  const today = rigaToday();
   const allOffers = [];
   const storeMap = new Map();
   for (const feed of feeds) {
@@ -632,11 +652,16 @@ async function init() {
     storeMap.set(store.key, store);
     addCampaignMetadata(feed, store.key);
     for (const cat of feed.data.catalogues || []) {
-      if (cat && cat.source) state.catalogues.push({ ...cat, storeKey: store.key, storeName: store.name });
+      // Lidl, Mego and top! publish the booklet link as `pdf` instead of `source`.
+      const source = cat && (cat.source || cat.pdf);
+      if (!source || isExpired(cat, today)) continue;
+      // Mego booklet names are URL slugs; reuse the campaign label for them.
+      const name = store.key === "mego" ? campaignSlugLabel(cat.id || cat.name) : cat.name;
+      state.catalogues.push({ ...cat, source, name, storeKey: store.key, storeName: store.name });
     }
     if (feed.data.updatedAt) state.updates.push({ name: store.name, value: feed.data.updatedAt });
     for (const rawOffer of feed.data.offers || []) {
-      if (!Number.isFinite(rawOffer.price)) continue;
+      if (!Number.isFinite(rawOffer.price) || isExpired(rawOffer, today)) continue;
       const rawStore = String(rawOffer.store || "").trim();
       const rawStoreType = rawStore ? normalizedStore(rawStore) : store;
       const location = rawStore && rawStoreType.key !== store.key
@@ -647,7 +672,11 @@ async function init() {
   }
 
   state.offers = allOffers;
-  state.stores = [...storeMap.values()].sort((a, b) => a.name.localeCompare(b.name, "lv"));
+  // A chain whose whole feed has expired would only add an empty filter button.
+  const storesWithOffers = new Set(allOffers.map(offer => offer.storeKey));
+  state.stores = [...storeMap.values()]
+    .filter(store => storesWithOffers.has(store.key))
+    .sort((a, b) => a.name.localeCompare(b.name, "lv"));
   state.products = groupOffers(allOffers);
   renderCategoryOptions();
   state.campaignOptions = [...new Map(allOffers.map(offer => [campaignToken(offer), {

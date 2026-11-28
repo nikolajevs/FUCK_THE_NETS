@@ -1,9 +1,8 @@
 import unittest
-from datetime import date, datetime, timezone
+from datetime import date
 
 from bs4 import BeautifulSoup
 
-from scripts.product_identity import product_identity
 from scripts.scrape_maxima import (
     campaign_dates_from_soup,
     campaign_index_metadata,
@@ -24,7 +23,6 @@ from scripts.scrape_maxima import (
     parse_paldies_card,
     prices_from,
     price_quality,
-    rebuild_history,
     repair_cp1251_utf8_mojibake,
     _has_explicit_shelf_price,
     _has_shelf_price_matching_unit_price,
@@ -55,34 +53,6 @@ class MaximaScraperTests(unittest.TestCase):
             _clean_pdf_product_name("ApelsД«nu Еѕeleja 180 g 5,99 € 9,99 €"),
             "Apelsīnu želeja 180 g",
         )
-
-    def test_rebuild_history_migrates_mojibake_to_correct_product_identity(self):
-        broken_name = "ApelsД«nu Еѕeleja 180 g"
-        fixed_name = "Apelsīnu želeja 180 g"
-        old_identity = product_identity(broken_name)
-        old_id = old_identity["canonicalProductId"]
-        rebuilt = rebuild_history(
-            {
-                "products": {
-                    old_id: {
-                        "canonicalProductId": old_id,
-                        "name": broken_name,
-                        "observations": [{
-                            "date": "2026-11-26",
-                            "offerId": "legacy:broken-card",
-                            "price": 5.99,
-                        }],
-                    },
-                },
-            },
-            [],
-            datetime(2026, 11, 27, tzinfo=timezone.utc),
-        )
-
-        fixed_id = product_identity(fixed_name)["canonicalProductId"]
-        self.assertEqual(list(rebuilt["products"]), [fixed_id])
-        self.assertEqual(rebuilt["products"][fixed_id]["name"], fixed_name)
-        self.assertEqual(rebuilt["products"][fixed_id]["points"][0]["price"], 5.99)
 
     def test_qwen_suggestions_carry_forward_only_for_identical_pdf_evidence(self):
         note = {"decision": "unclear", "reason": "same card"}

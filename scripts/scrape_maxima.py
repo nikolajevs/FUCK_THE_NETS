@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect Maxima campaigns, merge identical products and maintain price history."""
+"""Collect Maxima campaigns and merge identical products."""
 from __future__ import annotations
 
 import hashlib
@@ -39,7 +39,6 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; LatviaOffersBot/1.0; +https://github.com/nikolajevs/FUCK_THE_NETS)"
 }
 OUT = Path("data/offers.json")
-HISTORY_OUT = Path("data/price-history.json")
 PALDIES_PAGE_URL = "https://www.maxima.lv/piedavajumi/"
 PALDIES_CATALOG_ID = "maxima-paldies-catalogue"
 PALDIES_CATALOG_NAME = "Piedāvājumi ar PALDIES karti"
@@ -2391,171 +2390,8 @@ def load_json(path: Path, default):
         return default
 
 
-def rebuild_history(history_data: dict, offers: list[dict], observed_at: datetime) -> dict:
-    """Migrate old name-keyed history to canonical products and keep source-level observations."""
-    old_products = history_data.get("products", {})
-    products: dict[str, dict] = {}
-
-    # The first PDF-import run parsed three differently named URLs containing
-    # identical combined weekly brochures. Its fallback attribution incorrectly
-    # copied non-WDP pages into the WDP and book-festival histories. Remove only
-    # those PDF observations; the corrected run below re-adds the real sections.
-    misattributed_pdf_sources = {
-        (
-            "maxima-book-festival",
-            "https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_ViXL.pdf",
-        ),
-        (
-            "maxima-well-done-premium",
-            "https://www.maxima.lv/uploads/releases/pdf/MAXIMA_KC48_2026_6zq0.pdf",
-        ),
-    }
-
-    def get_entry(canonical_id: str, name: str, package_size: str = "") -> dict:
-        return products.setdefault(canonical_id, {
-            "productId": canonical_id,
-            "canonicalProductId": canonical_id,
-            "name": name,
-            "packageSize": package_size,
-            "observations": [],
-            "points": [],
-        })
-
-    for old_key, old_product in old_products.items():
-        old_name = old_product.get("name", "")
-        name = repair_cp1251_utf8_mojibake(old_name)
-        identity = product_identity(name)
-        canonical_id = (
-            identity["canonicalProductId"]
-            if name != old_name
-            else old_product.get("canonicalProductId") or identity["canonicalProductId"]
-        )
-        entry = get_entry(canonical_id, name, identity["packageSize"])
-        if len(name) > len(entry["name"]):
-            entry["name"] = name
-
-        observations = old_product.get("observations")
-        if isinstance(observations, list) and observations:
-            for observation in observations:
-                item = dict(observation)
-                item.setdefault("offerId", f"legacy:{old_key}")
-                if (item.get("sourceId"), item.get("source")) in misattributed_pdf_sources:
-                    continue
-                if str(item.get("sourceProductId", "")).startswith("pdf:"):
-                    continue
-                if item.get("date") and isinstance(item.get("price"), (int, float)):
-                    entry["observations"].append(item)
-        else:
-            # One-time migration of the existing daily history points.
-            for point in old_product.get("points", []):
-                if not point.get("date") or not isinstance(point.get("price"), (int, float)):
-                    continue
-                entry["observations"].append({
-                    **point,
-                    "offerId": f"legacy:{old_key}",
-                    "sourceId": "legacy-history",
-                    "campaign": "Iepriekšējā cenu vēsture",
-                })
-
-    observation_date = observed_at.date().isoformat()
-    for offer in offers:
-        if offer["quality"]["priceStatus"] != "verified":
-            continue
-        canonical_id = offer["canonicalProductId"]
-        entry = get_entry(canonical_id, offer["name"], offer.get("packageSize", ""))
-        if len(offer["name"]) > len(entry["name"]):
-            entry["name"] = offer["name"]
-
-        observation = {
-            "date": observation_date,
-            "offerId": offer["offerId"],
-            "sourceProductId": offer.get("sourceProductId"),
-            "price": offer["price"],
-            "regularPrice": offer.get("regularPrice"),
-            "paldiesPrice": offer.get("paldiesPrice"),
-            "priceWithoutPaldies": offer.get("priceWithoutPaldies"),
-            "requiresPaldies": offer.get("requiresPaldies", False),
-            "discountPercent": offer.get("discountPercent"),
-            "validFrom": offer.get("validFrom"),
-            "validUntil": offer.get("validUntil"),
-            "storeFormats": offer.get("storeFormats", []),
-            "campaign": offer.get("campaign"),
-            "sourceId": offer.get("sourceId"),
-            "source": offer.get("source"),
-            "checkedAt": observed_at.isoformat(timespec="seconds"),
-        }
-
-        # One current observation per offer identity per day; re-runs refresh today's value.
-        entry["observations"] = [
-            item for item in entry["observations"]
-            if not (item.get("date") == observation_date and item.get("offerId") == offer["offerId"])
-        ]
-        entry["observations"].append(observation)
-
-    for entry in products.values():
-        # Merge repeated legacy points and current source observations without losing variants.
-        unique: dict[tuple[str, str], dict] = {}
-        for observation in entry["observations"]:
-            key = (str(observation.get("date", "")), str(observation.get("offerId", "")))
-            unique[key] = observation
-        observations = sorted(
-            unique.values(),
-            key=lambda item: (item.get("date", ""), item.get("price", float("inf"))),
-        )
-        entry["observations"] = observations
-
-        by_date: dict[str, list[dict]] = defaultdict(list)
-        for observation in observations:
-            by_date[observation["date"]].append(observation)
-
-        points = []
-        for point_date, day_observations in sorted(by_date.items()):
-            priced = [
-                item for item in day_observations
-                if isinstance(item.get("price"), (int, float))
-            ]
-            if not priced:
-                continue
-            best = min(priced, key=lambda item: item["price"])
-            points.append({
-                "date": point_date,
-                "price": best["price"],
-                "regularPrice": best.get("regularPrice"),
-                "paldiesPrice": best.get("paldiesPrice"),
-                "priceWithoutPaldies": best.get("priceWithoutPaldies"),
-                "requiresPaldies": best.get("requiresPaldies", False),
-                "discountPercent": best.get("discountPercent"),
-                "validFrom": best.get("validFrom"),
-                "validUntil": best.get("validUntil"),
-                "storeFormats": sorted({
-                    fmt for item in day_observations for fmt in item.get("storeFormats", [])
-                }),
-                "campaigns": sorted({
-                    item.get("campaign", "") for item in day_observations if item.get("campaign")
-                }),
-                "offerCount": len(priced),
-                "priceVariants": sorted({item["price"] for item in priced}),
-                "checkedAt": best.get("checkedAt"),
-            })
-        entry["points"] = points
-
-    # Drop empty records left behind by a history-source cleanup.
-    products = {
-        canonical_id: entry for canonical_id, entry in products.items()
-        if entry["observations"]
-    }
-
-    return {
-        "updatedAt": observed_at.isoformat(timespec="seconds"),
-        "sources": sorted({
-            offer["campaignSource"] for offer in offers if offer.get("campaignSource")
-        }),
-        "products": products,
-    }
-
-
 def partition_review_offers(offers: list[dict]) -> tuple[list[dict], list[dict]]:
-    """Fail closed: only explicitly verified offers may enter the public feed/history."""
+    """Fail closed: only explicitly verified offers may enter the public feed."""
     verified: list[dict] = []
     review: list[dict] = []
     for offer in offers:
@@ -2795,7 +2631,7 @@ def main():
         print(f"Reconciled {reconciled_paldies} brochure prices against the official PALDIES catalogue")
 
     # Reconciliation can downgrade an initially parsed PDF offer to review.
-    # Move those offers out of the verified feed before history is rebuilt.
+    # Move those offers out of the verified feed before it is written.
     catalogue_offers, reconciliation_reviews = partition_review_offers(catalogue_offers)
     if reconciliation_reviews:
         catalogue_reviews.extend(reconciliation_reviews)
@@ -2908,14 +2744,6 @@ def main():
 
     grouped_products = build_product_groups(offers)
     observed_at = datetime.now().astimezone()
-    history_data = load_json(HISTORY_OUT, {"updatedAt": None, "products": {}})
-    history_payload = rebuild_history(history_data, offers, observed_at)
-
-    HISTORY_OUT.parent.mkdir(parents=True, exist_ok=True)
-    HISTORY_OUT.write_text(
-        json.dumps(history_payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
 
     payload = {
         "source": BROCHURES_URL,
@@ -2955,8 +2783,7 @@ def main():
         f"Saved {len(offers)} offer variants grouped into {len(grouped_products)} products; "
         f"{len(review_offers)} variants need review; "
         f"{len(active_catalogues)} active brochures, {catalogue_offer_count} verified PDF offers "
-        f"and {catalogue_review_count} PDF items need review; "
-        f"history contains {len(history_payload['products'])} canonical products"
+        f"and {catalogue_review_count} PDF items need review"
     )
     review_summary = payload["reviewSummary"]
     print("REVIEW_SUMMARY", json.dumps({

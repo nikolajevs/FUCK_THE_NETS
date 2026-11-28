@@ -46,7 +46,9 @@ jobs:
           echo "run_scrapers=$run_scrapers" >> "$GITHUB_OUTPUT"
           echo "Run store scrapers: $run_scrapers"
       - name: Validate frontend JavaScript
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check admin.js
 
   update-data:
     needs: detect-changes
@@ -75,10 +77,11 @@ jobs:
           python -m py_compile scripts/scrape_citro.py
           python -m py_compile scripts/scrape_spar.py
           python -m py_compile scripts/scrape_beta.py
+          python -m py_compile scripts/scrape_mego.py
           python -m py_compile scripts/booklet_images.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
-      - name: Collect current offers and price history
+      - name: Collect Maxima offers
         run: python scripts/scrape_maxima.py
         env:
           QWEN_PENDING_DIR: ${{ runner.temp }}/maxima-qwen-pending
@@ -100,6 +103,9 @@ jobs:
       - name: Collect LaTS offers
         continue-on-error: true
         run: python scripts/scrape_latts.py
+      - name: Collect Mego offers
+        continue-on-error: true
+        run: python scripts/scrape_mego.py
       - name: Collect Vesko offers
         continue-on-error: true
         run: python scripts/scrape_vesko.py
@@ -254,13 +260,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/offers.json data/price-history.json
+          git add data/offers.json
           if [ -f data/top-offers.json ]; then git add data/top-offers.json; fi
           if [ -f data/lidl-offers.json ]; then git add data/lidl-offers.json; fi
           if [ -f data/rimi-offers.json ]; then git add data/rimi-offers.json; fi
           if [ -f data/rimi-eveikals-offers.json ]; then git add data/rimi-eveikals-offers.json; fi
           if [ -f data/elvi-offers.json ]; then git add data/elvi-offers.json; fi
           if [ -f data/latts-offers.json ]; then git add data/latts-offers.json; fi
+          if [ -f data/mego-offers.json ]; then git add data/mego-offers.json; fi
           if [ -f data/vesko-offers.json ]; then git add data/vesko-offers.json; fi
           if [ -f data/aibe-offers.json ]; then git add data/aibe-offers.json; fi
           if [ -f data/citro-offers.json ]; then git add data/citro-offers.json; fi
@@ -270,7 +277,7 @@ jobs:
           if [ -d data/mego-img ]; then git add data/mego-img; fi
           if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Vesko, Aibe, Citro, Spar, Beta and price history"
+            git commit -m "Update Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Mego, Vesko, Aibe, Citro, Spar and Beta offers"
             git push
           fi
 

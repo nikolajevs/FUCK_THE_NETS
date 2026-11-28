@@ -7,7 +7,7 @@ Currently supported:
 | Store   | Scraper                    | Data file               | Status                        |
 |---------|----------------------------|-------------------------|-------------------------------|
 | Maxima  | `scripts/scrape_maxima.py` | `data/offers.json`      | Production (daily GH Actions) |
-| Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Initial (PDF booklets)        |
+| Mego    | `scripts/scrape_mego.py`   | `data/mego-offers.json` | Production (PDF booklets)     |
 | Vesko   | `scripts/scrape_vesko.py`  | `data/vesko-offers.json`| Production (PDF booklet)      |
 | Aibe    | `scripts/scrape_aibe.py`   | `data/aibe-offers.json` | Production (SSR cards)        |
 | Citro   | `scripts/scrape_citro.py`  | `data/citro-offers.json`| Production (PDF newspaper)    |
@@ -61,7 +61,7 @@ Collects active PDF booklets from https://mego.lv/akcijas-un-piedavajumi/ (WordP
 python scripts/scrape_mego.py
 ```
 
-Output: `data/mego-offers.json`
+Output: `data/mego-offers.json` (refreshed daily by the same workflow as Maxima).
 
 ---
 
@@ -377,9 +377,13 @@ Output shapes:
 - `products` — grouped by identity
 - `reviewOffers` — needs manual check
 
-## Price history (Maxima)
+## Expired offers
 
-Keyed by canonical product identity. Daily point = lowest verified price that day. Review offers are excluded until prices are clean.
+The site compares each offer's and booklet's `validUntil` (inclusive last day)
+with today's date in Europe/Riga and hides anything that has ended, so a feed
+that failed to refresh never shows finished promotions. Items without a
+`validUntil` (Rimi e-veikals, LaTS, part of Maxima) are always shown. A chain
+whose feed contains no current offers drops out of the store filter.
 
 ## Local preview
 
@@ -415,5 +419,5 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes Maxima, top!, Lidl, Rimi, Elvi and LaTS data and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes every store feed (Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Mego, Vesko, Aibe, Citro, Spar and Beta) daily and deploys.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
