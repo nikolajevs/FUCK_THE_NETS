@@ -243,6 +243,30 @@ function offerVariantMarkup(offer) {
     + '</article>';
 }
 
+function offerListMarkup(offers) {
+  const groups = new Map();
+  offers.forEach((offer, index) => {
+    const key = Number.isFinite(offer.price)
+      ? "price:" + Math.round(offer.price * 100)
+      : "unknown:" + index;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(offer);
+  });
+
+  return [...groups.values()].map(group => {
+    const visibleOffer = offerVariantMarkup(group[0]);
+    if (group.length === 1) return visibleOffer;
+
+    const hiddenOffers = group.slice(1);
+    const count = hiddenOffers.length;
+    const label = count === 1 ? "piedāvājums" : "piedāvājumi";
+    return '<div class="offer-price-group">' + visibleOffer
+      + '<details class="offer-more"><summary>Vēl ' + count + ' ' + label + ' par ' + money(group[0].price) + '</summary>'
+      + '<div class="offer-more-list">' + hiddenOffers.map(offerVariantMarkup).join("") + '</div></details>'
+      + '</div>';
+  }).join("");
+}
+
 function renderProduct(product) {
   const prices = product.offers.map(offer => offer.price).filter(Number.isFinite);
   const bestPrice = prices.length ? Math.min(...prices) : null;
@@ -266,7 +290,7 @@ function renderProduct(product) {
     + '<span>labākā cena · ' + stores.map(([, name]) => escapeHtml(name)).join(" + ") + '</span></div>' + discountBadge + '</div>'
     + '<div class="offer-list-heading"><span>' + product.offers.length + ' ' + (product.offers.length === 1 ? 'piedāvājums' : 'piedāvājumi') + '</span>'
     + '<span>' + stores.length + ' ' + (stores.length === 1 ? 'veikalu tīkls' : 'veikalu tīkli') + '</span></div>'
-    + '<div class="offer-list">' + product.offers.map(offerVariantMarkup).join("") + '</div>'
+    + '<div class="offer-list">' + offerListMarkup(product.offers) + '</div>'
     + '</article>';
 }
 
