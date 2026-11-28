@@ -1,7 +1,7 @@
 {
   "source": "https://www.lidl.lv/c/lv-LV/akciju-bukleti/s10024390",
   "store": "lidl",
-  "updatedAt": "2026-11-28T12:33:57+02:00",
+  "updatedAt": "2026-11-28T10:42:05+00:00",
   "catalogues": [
     {
       "id": "aktualais-akciju-buklets-piedavajumi-no-23-11",
@@ -10360,24 +10360,6 @@
       "packageSize": ""
     },
     {
-      "offerId": "lidl-rotallietas-2026-p28-b2fcd36a",
-      "name": "Zefīrs uz kociņa",
-      "price": 0.99,
-      "regularPrice": null,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rotaļlietas 2026",
-      "campaignId": "rotallietas-2026",
-      "source": "https://assets.leaflets.schwarz/leaflets/pdfs/01a18d31-79a0-736f-b8fd-c52eb051adc5/Rotallietas-2026-Davat-rotaligus-mirklus-ir-vertigi-00.pdf",
-      "pdfPage": 29,
-      "validFrom": "2026-11-02",
-      "validUntil": "2026-12-27",
-      "store": "lidl",
-      "canonicalProductId": "kocina-uz-zefirs-6bebd04d2895",
-      "identityKey": "kocina uz zefirs|",
-      "packageSize": ""
-    },
-    {
       "offerId": "lidl-edienu-idejas-ziemassvetkiem-2026-p40-c88cc3ca",
       "name": "Zefīrs uz kociņa",
       "price": 0.99,
@@ -10389,6 +10371,24 @@
       "source": "https://assets.leaflets.schwarz/leaflets/pdfs/01a1b20b-248a-75f3-bddb-218a0c04d9b5/Edienu-idejas-Ziemassvetkiem-Atklat-svetku-gardumu-burvibu-00.pdf",
       "pdfPage": 41,
       "validFrom": "2026-11-09",
+      "validUntil": "2026-12-27",
+      "store": "lidl",
+      "canonicalProductId": "kocina-uz-zefirs-6bebd04d2895",
+      "identityKey": "kocina uz zefirs|",
+      "packageSize": ""
+    },
+    {
+      "offerId": "lidl-rotallietas-2026-p28-b2fcd36a",
+      "name": "Zefīrs uz kociņa",
+      "price": 0.99,
+      "regularPrice": null,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rotaļlietas 2026",
+      "campaignId": "rotallietas-2026",
+      "source": "https://assets.leaflets.schwarz/leaflets/pdfs/01a18d31-79a0-736f-b8fd-c52eb051adc5/Rotallietas-2026-Davat-rotaligus-mirklus-ir-vertigi-00.pdf",
+      "pdfPage": 29,
+      "validFrom": "2026-11-02",
       "validUntil": "2026-12-27",
       "store": "lidl",
       "canonicalProductId": "kocina-uz-zefirs-6bebd04d2895",
