@@ -69,6 +69,11 @@ except ModuleNotFoundError:
     from product_identity import build_product_groups
 
 try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
+
+try:
     from scripts.booklet_images import prune_images, save_product_photo
 except ModuleNotFoundError:
     from booklet_images import prune_images, save_product_photo
@@ -823,8 +828,7 @@ def main() -> None:
             "catalogues": len(catalogues),
         },
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers ({len(reviews)} review) → {OUT}")
 
 

@@ -44,7 +44,7 @@ import subprocess
 import sys
 import time
 import unicodedata
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -64,14 +64,9 @@ except ModuleNotFoundError:
     from product_identity import build_product_groups
 
 try:
-    from scripts.scrape_vesko import is_alcohol_name
+    from scripts.common import write_feed, is_alcohol_name, is_expired, riga_today
 except ModuleNotFoundError:
-    from scrape_vesko import is_alcohol_name
-
-try:
-    from scripts.scrape_top import riga_date
-except ModuleNotFoundError:
-    from scrape_top import riga_date
+    from common import write_feed, is_alcohol_name, is_expired, riga_today
 
 try:
     from scripts.gemini_pdf_review import (
@@ -191,15 +186,6 @@ def period_from_pdf(content: bytes) -> tuple[str | None, str | None]:
         if vf:
             return vf, vu
     return parse_period(text)
-
-
-def riga_today() -> str:
-    return riga_date(datetime.now(timezone.utc).isoformat())
-
-
-def is_expired(valid_until: str | None, today: str) -> bool:
-    """``validUntil`` is the newspaper's last valid day, so it still counts today."""
-    return bool(valid_until) and valid_until < today
 
 
 def carried_pages(previous: dict, pdf_url: str, sha256: str) -> tuple[set[int], list, list]:
@@ -594,8 +580,7 @@ def _finalise_payload(payload: dict) -> None:
         "offerVariants": len(offers), "uniqueProducts": len(products),
         "reviewOffers": len(reviews), "catalogues": len(payload.get("catalogues", [])),
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
 
 
 def main() -> None:

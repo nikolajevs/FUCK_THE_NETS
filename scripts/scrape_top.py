@@ -24,11 +24,9 @@ so no age-restricted price advertising is reproduced.
 """
 from __future__ import annotations
 
-import calendar
-import json
 import re
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -37,6 +35,11 @@ try:
     from scripts.product_identity import build_product_groups
 except ModuleNotFoundError:
     from product_identity import build_product_groups
+
+try:
+    from scripts.common import write_feed, parse_utc, riga_date, riga_offset
+except ModuleNotFoundError:
+    from common import write_feed, parse_utc, riga_date, riga_offset
 
 BASE = "https://etop.lv"
 OFFERS_PAGE = BASE + "/lv/visi-akcijas-produkti"
@@ -73,45 +76,12 @@ def session() -> requests.Session:
     return s
 
 
-# --- Europe/Riga local dates without an external tz database -----------------
-# Latvia follows EU summer-time rules: EEST (UTC+3) from the last Sunday of
-# March 01:00 UTC until the last Sunday of October 01:00 UTC, EET (UTC+2) rest.
-
-def _last_sunday(year: int, month: int) -> int:
-    sundays = [week[6] for week in calendar.monthcalendar(year, month) if week[6] != 0]
-    return sundays[-1]
-
-
-def riga_offset(dt_utc: datetime) -> timedelta:
-    year = dt_utc.year
-    start = datetime(year, 3, _last_sunday(year, 3), 1, 0, tzinfo=timezone.utc)
-    end = datetime(year, 10, _last_sunday(year, 10), 1, 0, tzinfo=timezone.utc)
-    return timedelta(hours=3) if start <= dt_utc < end else timedelta(hours=2)
-
-
-def _parse_utc(value: str | None) -> datetime | None:
-    if not value:
-        return None
-    try:
-        dt = datetime.fromisoformat(str(value))
-    except ValueError:
-        return None
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc)
-
-
-def riga_date(value: str | None) -> str | None:
-    dt = _parse_utc(value)
-    if dt is None:
-        return None
-    return (dt + riga_offset(dt)).date().isoformat()
-
+# --- Europe/Riga local dates (riga_offset / riga_date live in common.py) --------
 
 def offer_period(start_iso: str | None, end_iso: str | None) -> tuple[str | None, str | None]:
     """Local validity dates; the API end instant is exclusive (00:00 Riga)."""
-    start = _parse_utc(start_iso)
-    end = _parse_utc(end_iso)
+    start = parse_utc(start_iso)
+    end = parse_utc(end_iso)
     valid_from = (start + riga_offset(start)).date().isoformat() if start else None
     valid_until = ((end + riga_offset(end)) - timedelta(seconds=1)).date().isoformat() if end else None
     return valid_from, valid_until
@@ -313,8 +283,7 @@ def main() -> None:
         },
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers ({len(reviews)} review) → {OUT}")
 
 

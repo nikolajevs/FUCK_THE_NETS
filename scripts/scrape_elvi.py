@@ -47,7 +47,6 @@ list only contains non-alcoholic ones), so no alcohol filter is needed.
 from __future__ import annotations
 
 import html
-import json
 import re
 import sys
 import time
@@ -60,6 +59,11 @@ try:
     from scripts.product_identity import build_product_groups
 except ModuleNotFoundError:
     from product_identity import build_product_groups
+
+try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
 
 BASE = "https://elvi.lv"
 OFFERS_PAGE = BASE + "/akcijas-avize/"
@@ -411,8 +415,7 @@ def main() -> None:
         },
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers ({len(reviews)} review) → {OUT}")
 
 

@@ -31,13 +31,13 @@ try:
         GeminiClient, _daily_budget, _load_ledger, _save_ledger, load_api_key,
     )
     from scripts.product_identity import build_product_groups
-    from scripts.scrape_vesko import is_alcohol_name
+    from scripts.common import is_alcohol_name, write_feed
 except ModuleNotFoundError:
     from gemini_pdf_review import (
         GeminiClient, _daily_budget, _load_ledger, _save_ledger, load_api_key,
     )
     from product_identity import build_product_groups
-    from scrape_vesko import is_alcohol_name
+    from common import is_alcohol_name, write_feed
 
 STORE_PAGE = "https://mazacena.lv/veikali/beta/"
 HEADERS = {
@@ -306,8 +306,7 @@ def _finalise_payload(payload: dict) -> None:
         "reviewOffers": len(reviews),
         "catalogues": len(payload.get("catalogues", [])),
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
 
 
 def _previous_payload() -> dict:
@@ -502,8 +501,7 @@ def main() -> None:
             "catalogues": [], "offers": [], "reviewOffers": [],
             "summary": {"offerVariants": 0, "uniqueProducts": 0, "reviewOffers": 0, "catalogues": 0},
         }
-        OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        write_feed(OUT, payload)
         print("No active Beta booklet")
         return
 

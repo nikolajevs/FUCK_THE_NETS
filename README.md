@@ -38,6 +38,25 @@ line, then running `python scripts/stores.py`. `tests/test_stores.py` checks
 that each script writes the feed it is registered with and that the committed
 manifest is current.
 
+### Feed contract
+
+Every feed reaches `data/` through `write_feed()` in `scripts/common.py`, which
+applies the contract in `scripts/feed_schema.py` and writes atomically:
+
+- the feed must be an object with an `offers` list and name its store (the
+  registry id is filled in when missing); otherwise nothing is written and the
+  published feed stays as it was;
+- a published offer without a name, `offerId`, a positive price below
+  10 000 €, ISO `validFrom`/`validUntil` (from ≤ until) or boolean
+  `requiresCard`/`onlyInApp` is moved to `reviewOffers` with
+  `reviewReason: "contract:<rule>"`;
+- a `regularPrice` that is not above the sale price is dropped, and repeated
+  `offerId`s keep their first offer.
+
+`common.py` also holds the helpers chains share: `fold`, the name-based
+`is_alcohol_name` filter (Vesko, Citro, Spar, Beta) and the Europe/Riga date
+functions (`riga_date`, `riga_today`, `is_expired`).
+
 ---
 
 ## Maxima
