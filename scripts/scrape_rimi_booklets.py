@@ -39,6 +39,7 @@ except ModuleNotFoundError:
 BASE = "https://www.rimi.lv"
 BOOKLETS_PAGE = BASE + "/akcijas-un-bukleti"
 VIEWER_HOST = "bukleti.rimi.lv"
+IPAPER_HOST = "viewer.ipaper.io"
 OUT = Path("data/rimi-offers.json")
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -54,7 +55,8 @@ ALCOHOL_RE = re.compile(
 TITLE_NOISE_RE = re.compile(
     r"(preču pieejamība|piedāvājums var atšķirties|uz vietas veikalā|"
     r"rimi express|attēliem ir ilustratīva|reklāmā minētajai|"
-    r"cena ar atlaidi norādīta|izdevīgi|akciju buklets|rimi mini akcijas)", re.I)
+    r"cena ar atlaidi norādīta|izdevīgi|akciju buklets|rimi mini akcijas|"
+    r"\bpērkot\b|\bvismaz\b)", re.I)
 DATE_RANGE_RE = re.compile(r"^\d{1,2}\.\d{1,2}\.\s*[-–]\s*\d{1,2}\.\d{1,2}\.$")
 
 
@@ -80,6 +82,14 @@ def parse_validity(text: str, today: date | None = None) -> tuple[str | None, st
     """Read validity dates from an iPaper title or the leaflet's first page."""
     today = today or date.today()
     text = str(text or "")
+    day_first = re.search(
+        r"(?<!\d)(\d{1,2})\.(\d{1,2})\.(\d{4})\.?\s*[-–]\s*"
+        r"(\d{1,2})\.(\d{1,2})\.(\d{4})\.?", text)
+    if day_first:
+        d1, m1, y1, d2, m2, y2 = map(int, day_first.groups())
+        start, end = _parse_date(y1, d1, m1), _parse_date(y2, d2, m2)
+        return (start.isoformat() if start else None, end.isoformat() if end else None)
+
     explicit = re.search(
         r"(\d{4})\.(\d{1,2})\.(\d{1,2})\.?\s*[-–]\s*"
         r"(\d{4})\.(\d{1,2})\.(\d{1,2})\.?", text)
@@ -121,12 +131,21 @@ def discover_booklets(sess: requests.Session) -> list[dict]:
     for anchor in soup.select("a[href]"):
         url = urljoin(BOOKLETS_PAGE, anchor.get("href", "")).split("?", 1)[0]
         parsed = urlsplit(url)
-        if parsed.hostname != VIEWER_HOST or url in seen:
+        if parsed.hostname not in {VIEWER_HOST, IPAPER_HOST} or url in seen:
             continue
         path = parsed.path.casefold()
-        if "/akciju-bukleti/" not in path and "/specakcijas/" not in path:
-            continue
         name = " ".join(anchor.stripped_strings).strip()
+        weekly_booklet = (
+            parsed.hostname == VIEWER_HOST
+            and ("/akciju-bukleti/" in path or "/specakcijas/" in path)
+        )
+        christmas_booklet = (
+            parsed.hostname == IPAPER_HOST
+            and "/tematiskie-bukleti/" in path
+            and "ziemassvetku buklets" in _fold(name)
+        )
+        if not weekly_booklet and not christmas_booklet:
+            continue
         if not name:
             continue
         seen.add(url)
@@ -377,6 +396,11 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
         )
         card_band = " ".join(span["text"] for span in card_spans).casefold()
         requires_card = bool(re.search(r"mans\s*rimi|mansrimi|paldies", card_band))
+        has_multi_buy_condition = (
+            re.search(r"\bpērkot\b", card_band)
+            and re.search(r"\bvismaz\b", card_band)
+        )
+        multi_buy = "2" if has_multi_buy_condition else None
         offer = {
             "offerId": offer_id,
             "name": name,
@@ -394,6 +418,8 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
         }
         if requires_card:
             offer["cardName"] = "Mans Rimi"
+        if multi_buy:
+            offer["multiBuy"] = multi_buy
         if discount_percent is not None:
             offer["discountPercent"] = discount_percent
 
