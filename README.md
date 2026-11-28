@@ -223,6 +223,8 @@ text layer:
 - products with a clear discount but an incomplete name, or a price without a
   verifiable regular price or discount, are sent to `reviewOffers` instead of
   being shown as confirmed discounts;
+- if an active booklet fails to refresh, still-valid offers from its previous
+  feed are kept and marked stale; expired offers are dropped;
 - alcoholic products are excluded, matching the project's Rimi e-veikals feed.
 
 ```bash
