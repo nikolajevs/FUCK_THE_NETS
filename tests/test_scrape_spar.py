@@ -1,14 +1,12 @@
 import unittest
 
 from scripts.scrape_spar import (
-    carried_pages,
+    STORE,
     discover_booklets,
-    extract_booklet,
     fitz,
     is_expired,
-    name_blocks,
-    offers_from_vision,
     page_campaign,
+    page_meta,
     parse_period,
     parse_subperiod,
 )
@@ -57,77 +55,6 @@ META = {"campaign": "SPAR akciju avīze", "campaignId": "spar-t",
         "validFrom": "2026-11-05", "validUntil": "2026-11-25"}
 
 
-def blocks(*names):
-    return [{"text": n, "tokens": set(n.lower().split())} for n in names]
-
-
-def vision(*items):
-    return {"results": list(items)}
-
-
-def item(idx, **kw):
-    base = {"id": idx, "price": None, "regularPrice": None, "discountPercent": None,
-            "multiBuyCount": None, "multiBuyTotal": None, "multiBuyRegularTotal": None,
-            "requiresCard": False, "confidence": 0.9}
-    base.update(kw)
-    return base
-
-
-class OffersFromVisionTests(unittest.TestCase):
-    def test_normal_card(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, price=0.79, regularPrice=1.25)),
-            blocks("Piens Baltais 2% 1L"), BOOKLET, 1, META, "test-model")
-        self.assertEqual(reviews, [])
-        self.assertEqual(len(offers), 1)
-        self.assertEqual((offers[0]["price"], offers[0]["regularPrice"]), (0.79, 1.25))
-        self.assertEqual(offers[0]["store"], "spar")
-        self.assertEqual(offers[0]["priceSource"], "vision")
-
-    def test_bundle_divided_locally(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, multiBuyCount=2, multiBuyTotal=2.00, multiBuyRegularTotal=2.98)),
-            blocks("Mini pica ar šķiņķi un papriku 178G"), BOOKLET, 0, META, "m")
-        self.assertEqual(reviews, [])
-        self.assertEqual(offers[0]["price"], 1.00)
-        self.assertEqual(offers[0]["regularPrice"], 1.49)
-        self.assertEqual(offers[0]["multiBuy"], "2")
-
-    def test_badge_mismatch_goes_to_review(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, price=1.00, regularPrice=1.10, discountPercent=50)),
-            blocks("Piens Baltais 1L"), BOOKLET, 1, META, "m")
-        self.assertEqual(offers, [])
-        self.assertEqual(reviews[0]["reviewReason"], "price_mismatch")
-
-    def test_missing_price_goes_to_review(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, price=None, confidence=0.0)),
-            blocks("Karstais dzēriens Gutta 1L"), BOOKLET, 6, META, "m")
-        self.assertEqual(offers, [])
-        self.assertEqual(reviews[0]["reviewReason"], "missing_price")
-
-    def test_low_confidence_goes_to_review(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, price=1.00, confidence=0.2)),
-            blocks("Piens Baltais 1L"), BOOKLET, 1, META, "m")
-        self.assertEqual(offers, [])
-        self.assertEqual(reviews[0]["reviewReason"], "low_confidence")
-
-    def test_alcohol_dropped(self):
-        offers, reviews = offers_from_vision(
-            vision(item(1, price=5.00)),
-            blocks("Alus Cēsu Oriģinālais 500 ml"), BOOKLET, 1, META, "m")
-        self.assertEqual(offers, [])
-        self.assertEqual(reviews, [])
-
-    def test_out_of_range_id_ignored(self):
-        offers, reviews = offers_from_vision(
-            vision(item(9, price=1.00)), blocks("Piens Baltais 1L"), BOOKLET, 1, META, "m")
-        self.assertEqual(offers, [])
-        self.assertEqual(reviews, [])
-
-
 class PageCampaignTests(unittest.TestCase):
     def test_weekly(self):
         meta = page_campaign("NEDĒĻAS PIEDĀVĀJUMI no 05.11. līdz 11.11.2026.", BOOKLET)
@@ -144,71 +71,34 @@ class PageCampaignTests(unittest.TestCase):
         self.assertEqual(meta["validUntil"], "2026-11-25")
 
 
-class NameBlocksTests(unittest.TestCase):
-    def test_two_columns_stay_separate(self):
-        # two products side by side, same baseline; must not merge
-        words = [
-            (20, 100, 60, 113, "Piens", 0, 0, 0), (62, 100, 90, 113, "Baltais", 0, 0, 1),
-            (20, 110, 40, 123, "1L", 0, 1, 0),
-            (200, 100, 240, 113, "Kefīrs", 0, 0, 0), (242, 100, 270, 113, "ALMA", 0, 0, 1),
-            (200, 110, 220, 123, "1KG", 0, 1, 0),
-        ]
-        texts = [b["text"] for b in name_blocks(words)]
-        self.assertEqual(len(texts), 2)
-        self.assertTrue(any(t.startswith("Piens") for t in texts))
-        self.assertTrue(any(t.startswith("Kefīrs") for t in texts))
-
-
-class IdleWorkTests(unittest.TestCase):
-    PDF = "https://spar.lv/x.pdf"
-
+class SparPageTests(unittest.TestCase):
     def test_expiry_counts_last_day_as_valid(self):
         self.assertTrue(is_expired("2026-11-25", "2026-11-26"))
         self.assertFalse(is_expired("2026-11-25", "2026-11-25"))
         self.assertFalse(is_expired(None, "2026-11-26"))
 
-    def test_unchanged_pdf_carries_resolved_pages_only(self):
-        previous = {
-            "catalogues": [{"source": self.PDF, "pdfSha256": "abc", "resolvedPages": [1, 2]}],
-            "offers": [
-                {"offerId": "a", "source": self.PDF, "pdfPage": 1},
-                {"offerId": "b", "source": self.PDF, "pdfPage": 3},
-                {"offerId": "c", "source": "https://spar.lv/other.pdf", "pdfPage": 1},
-            ],
-            "reviewOffers": [{"offerId": "r", "source": self.PDF, "pdfPage": 2}],
-        }
-        pages, offers, reviews = carried_pages(previous, self.PDF, "abc")
-        self.assertEqual(pages, {1, 2})
-        self.assertEqual([o["offerId"] for o in offers], ["a"])
-        self.assertEqual([o["offerId"] for o in reviews], ["r"])
+    def test_page_meta_carries_campaign_and_pdf(self):
+        booklet = {**BOOKLET, "pdf": "https://spar.lv/x.pdf"}
+        meta = page_meta(booklet)(2, "NEDĒĻAS PIEDĀVĀJUMI no 05.11. līdz 11.11.2026.")
+        self.assertEqual(meta["campaignId"], "nedelas-piedavajumi")
+        self.assertEqual(meta["source"], "https://spar.lv/x.pdf")
 
-    def test_changed_pdf_carries_nothing(self):
-        previous = {
-            "catalogues": [{"source": self.PDF, "pdfSha256": "old", "resolvedPages": [1]}],
-            "offers": [{"offerId": "a", "source": self.PDF, "pdfPage": 1}],
-        }
-        self.assertEqual(carried_pages(previous, self.PDF, "new"), (set(), [], []))
-        self.assertEqual(carried_pages({}, self.PDF, "new"), (set(), [], []))
+    def test_registry_marks_prices_as_artwork(self):
+        self.assertFalse(STORE.prices_in_text)
+        self.assertIn("PAR", STORE.vision_hint)
 
     @unittest.skipIf(fitz is None, "PyMuPDF not installed")
-    def test_resolved_pages_are_not_sent_to_vision_again(self):
+    def test_pages_carry_text_layer_for_name_checks(self):
+        from scripts.booklet_vision import open_pdf_pages
         doc = fitz.open()
-        for _ in range(2):
-            doc.new_page().insert_text((50, 100), "Piens Baltais 1L", fontsize=10)
+        doc.new_page().insert_text((50, 100), "Piens Baltais 1L", fontsize=10)
         content = doc.tobytes()
         doc.close()
-
-        class FakeClient:
-            calls = 0
-
-            def generate(self, png, prompt):
-                FakeClient.calls += 1
-                return {"results": []}
-
-        offers, reviews, resolved = extract_booklet(content, BOOKLET, FakeClient(), None, {1})
-        self.assertEqual(FakeClient.calls, 1)
-        self.assertEqual(resolved, {2})
-        self.assertEqual((offers, reviews), ([], []))
+        booklet = {**BOOKLET, "pdf": "https://spar.lv/x.pdf"}
+        with open_pdf_pages(content, page_meta(booklet)) as pages:
+            self.assertEqual(len(pages), 1)
+            self.assertIn("Baltais", [w[4] for w in pages[0].words])
+            self.assertTrue(pages[0].render().startswith(b"\x89PNG"))
 
 
 if __name__ == "__main__":

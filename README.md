@@ -11,8 +11,8 @@ Currently supported:
 | Vesko   | `scripts/scrape_vesko.py`  | `data/vesko-offers.json`| Production (PDF booklet)      |
 | Aibe    | `scripts/scrape_aibe.py`   | `data/aibe-offers.json` | Production (SSR cards)        |
 | Citro   | `scripts/scrape_citro.py`  | `data/citro-offers.json`| Production (PDF newspaper)    |
-| Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Production (vision prices)    |
-| Beta    | `scripts/scrape_beta.py`  | `data/beta-offers.json` | Catalogue link (monthly)      |
+| Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Production (booklet vision)   |
+| Beta    | `scripts/scrape_beta.py`   | `data/beta-offers.json` | Production (booklet vision)   |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi_booklets.py` | `data/rimi-offers.json` | Production (daily GH Actions) |
@@ -122,20 +122,14 @@ Four more Latvian chains, each read from its own published source:
   (standard cards) or below (fruit & vegetable cards). Regular-price ranges
   keep their lower bound.
 - **Spar** (`spar.lv/akcijas/`) — the DearPDF newspaper keeps names, sizes and
-  the validity period as text but renders **prices as images**. Product names
-  are reconstructed from the text layer into per-card candidates; each page is
-  rendered to PNG and the project's two-layer vision stack reads the price
-  badges: **Gemini Flash-Lite** first (shared daily budget ledger with Maxima,
-  ≤8 requests/run), then the existing local **Qwen3-VL** llama.cpp build for
-  pages Gemini could not resolve (`--qwen-review`). Guards keep it conservative:
-  names must come from the text layer, prices are sanity-ranged, the printed
-  discount badge must agree with the sale/regular pair, "N for X€" bundle
-  totals are divided locally, alcohol is dropped and anything inconsistent goes
-  to `reviewOffers`. Without any vision layer it degrades to a catalogue link.
-  A newspaper whose printed period has ended is not read at all (SPAR often
-  leaves it on the page for days), and while the PDF stays byte-identical the
-  pages already read (`pdfSha256` + `resolvedPages` in the catalogue entry) are
-  carried forward, so Gemini/Qwen only see pages they have not resolved yet.
+  the validity period as text but renders **prices as images**. The scraper
+  finds the newspaper, its period and each page's campaign; the
+  [booklet vision engine](#booklet-vision-engine) reads the pages. The registry
+  marks Spar's prices as artwork (`prices_in_text=False`), so the engine checks
+  each card's name against the text layer under it but not its price, and its
+  `vision_hint` explains the "2.00 PAR 2" bundle badges. A newspaper whose
+  printed period has ended is not read at all (SPAR often leaves it on the page
+  for days).
 
 All four drop alcoholic products (matching LaTS/Rimi/top!) and send ambiguous
 cards to `reviewOffers`. The site shows a **"Akciju bukleti"** strip listing
@@ -154,10 +148,10 @@ python scripts/scrape_spar.py
 ## Beta
 
 Beta has no public structured product feed; its current monthly booklet is an
-image-only catalogue listed on MazaCena.lv. The scraper reads every page with
-Gemini Flash-Lite, then uses the workflow's local Qwen3-VL fallback for pages
-Gemini could not resolve. Only products with a legible sale price and high
-confidence are published; unclear cards stay in `reviewOffers`.
+image-only catalogue listed on MazaCena.lv. The scraper finds the booklet, its
+period and its page images; the [booklet vision engine](#booklet-vision-engine)
+reads them. Only products with a legible sale price and high confidence are
+published; unclear cards stay in `reviewOffers`.
 
 ```bash
 python scripts/scrape_beta.py
@@ -167,6 +161,44 @@ Output: `data/beta-offers.json` (refreshed daily by the same workflow as Maxima;
 the shared Gemini daily budget applies).
 
 ---
+
+## Booklet vision engine
+
+`scripts/booklet_vision.py` reads booklet pages for any chain; a scraper only
+discovers its booklets and hands the engine `Page`s — from a PDF
+(`open_pdf_pages`: the rendered page plus its text layer, rendered only when a
+model needs it) or from page images (`image_page`). Spar and Beta use it today.
+
+- **One prompt** for every chain asks for each priced card's name, brand, pack
+  size, price, crossed-out price, `-NN%` badge, "N for X" bundle, loyalty-card
+  condition, the card's box (`box_2d`, 0–1000) and a confidence. A chain's
+  quirks are one line in its registry entry (`vision_hint`), not code.
+- **Layout-free checks**: price range, crossed-out price above the price, badge
+  agrees with the price pair (±5 points), bundle totals divided locally,
+  alcohol dropped, the pack size appended to the name when missing. On pages
+  with a text layer the card's name must appear in the words under its box,
+  and — for chains whose prices are text (`prices_in_text`, the default) — so
+  must the price (`1,29`, `1.29`, `129` or `1` + `29`). A card confirmed by
+  the text layer or by a price, crossed-out price and `-NN%` badge that agree
+  is published from confidence 0.5, any other card from 0.8 (a missing
+  confidence counts as 0.5). Everything else goes to `reviewOffers` with
+  `percent_only` (only a "līdz -NN%" badge, no price), `missing_price`,
+  `price_mismatch`, `unit_price_suspected` (a "cenas no" or "€/kg" price was
+  read), `price_not_in_text`, `name_not_in_text` or `low_confidence`.
+- **Cache per page** in `data/vision-cache/<store>.json`, keyed by the page
+  content (PDF sha256 + page number, or the image's sha256) and
+  `PROMPT_VERSION`; entries unused for 45 days are pruned. Unchanged booklets
+  cost no requests; bumping `PROMPT_VERSION` re-reads everything on purpose.
+- **Free Gemini quota first, local Qwen after.** Pages go to Gemini Flash-Lite
+  while the shared daily budget lasts (`BOOKLET_VISION_MAX_REQUESTS`, default
+  40 per scraper run). The rest are written to `BOOKLET_VISION_PENDING_DIR`;
+  the workflow's single Qwen step
+  (`python scripts/booklet_vision.py --qwen-pending DIR`) reads them with the
+  local Qwen3-VL build into the same cache and re-runs the affected scrapers
+  with `run_scrapers.py --only <ids>` from the cache (no Gemini). A page Qwen
+  read with a median confidence below 0.6 is read again by Gemini on a later
+  day with quota left. A new booklet may therefore take a few days to be
+  complete; until then its unread pages are simply missing.
 
 ## Top! (etop.lv)
 
