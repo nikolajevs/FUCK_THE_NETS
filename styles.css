@@ -64,7 +64,7 @@ button, select { cursor: pointer; }
 .store-filter:hover { border-color: #a8cbb4; color: var(--green); }
 .store-filter[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: #fff; box-shadow: 0 4px 10px #176b4620; }
 .store-filter-count { margin-left: 5px; opacity: .72; font-size: 10px; }
-.filter-bottom { display: grid; grid-template-columns: minmax(170px, 1.2fr) minmax(145px, 1fr) minmax(120px, .85fr) minmax(160px, 1.1fr) minmax(140px, .95fr) auto; gap: 10px; align-items: end; margin-top: 15px; padding-top: 15px; border-top: 1px solid #edf1ed; }
+.filter-bottom { display: grid; grid-template-columns: minmax(155px, 1.1fr) minmax(145px, 1fr) minmax(145px, 1fr) minmax(120px, .85fr) minmax(150px, 1.05fr) minmax(130px, .9fr) auto; gap: 10px; align-items: end; margin-top: 15px; padding-top: 15px; border-top: 1px solid #edf1ed; }
 .field { display: grid; min-width: 0; margin: 0; padding: 0; border: 0; }
 .field select, .price-inputs input { width: 100%; height: 41px; min-width: 0; padding: 0 10px; border: 1px solid #e3e9e4; border-radius: 9px; outline: 0; background: #fff; color: #304137; font-size: 11px; }
 .field select:focus, .price-inputs input:focus { border-color: #75b891; box-shadow: 0 0 0 3px #176b4612; }
@@ -113,6 +113,7 @@ button, select { cursor: pointer; }
 .retailer-tag.citro { background: #e9effc; color: #1d4ed8; }
 .retailer-tag.spar { background: #eaf6ec; color: #15803d; }
 .product-heading h3 { margin: 0; color: #23352a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
+.product-category { display: inline-block; margin-top: 5px; padding: 3px 6px; border-radius: 5px; background: #eff6f0; color: #53745d; font-size: 8px; font-weight: 700; line-height: 1.3; }
 .product-meta { margin: 4px 0 0; color: #87938a; font-size: 9px; }
 .best-price { display: flex; justify-content: space-between; align-items: end; gap: 10px; margin-top: 14px; padding: 11px 12px; border-radius: 10px; background: #f5f9f5; }
 .best-price-main { display: grid; gap: 3px; }
@@ -170,7 +171,7 @@ button, select { cursor: pointer; }
   .filter-top { grid-template-columns: 1fr; gap: 12px; }
   .store-filters { min-height: 38px; }
   .filter-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .campaign-field { grid-column: span 2; }
+  .campaign-field, .category-field { grid-column: span 2; }
   .clear-filters { justify-self: end; }
   .results-section { padding-top: 34px; }
 }

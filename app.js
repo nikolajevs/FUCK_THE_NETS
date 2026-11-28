@@ -12,6 +12,65 @@ const state = {
   pageCount: 1,
 };
 
+const productCategories = {
+  produce: { label: "Augļi un dārzeņi", order: 1 },
+  dairy: { label: "Piens, siers un olas", order: 2 },
+  meat: { label: "Gaļa un zivis", order: 3 },
+  bakery: { label: "Maize un konditoreja", order: 4 },
+  drinks: { label: "Dzērieni", order: 5 },
+  sweets: { label: "Saldumi un uzkodas", order: 6 },
+  frozen: { label: "Saldētie produkti", order: 7 },
+  grocery: { label: "Pārtikas preces", order: 8 },
+  care: { label: "Skaistumkopšana un higiēna", order: 9 },
+  home: { label: "Mājai un uzkopšanai", order: 10 },
+  kidsPets: { label: "Bērniem un mājdzīvniekiem", order: 11 },
+  clothing: { label: "Apģērbs un tekstils", order: 12 },
+  electronics: { label: "Elektronika un tehnika", order: 13 },
+  other: { label: "Citas preces", order: 14 },
+};
+
+function normalizeProductText(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("lv")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function textHasAny(text, expressions) {
+  return expressions.some(expression => expression.test(text));
+}
+
+function inferProductCategory(product) {
+  const name = normalizeProductText([product.name, product.brand, ...(product.aliases || [])].filter(Boolean).join(" "));
+  const rules = [
+    ["produce", [/\baug\w*/u, /\bdarz\w*/u, /\bkartupel\w*/u, /\btomat\w*/u, /\bgurk\w*/u, /\bpaprik\w*/u, /\bsalat\w*/u, /\bkapost\w*/u, /\bburkan\w*/u, /\bsipol\w*/u, /\babol\w*/u, /\bbanan\w*/u, /\bapelsin\w*/u, /\bcitr\w*/u, /\bavokad\w*/u, /\barbuz\w*/u, /\bbumbier\w*/u, /\bmelon\w*/u, /\bpersik\w*/u, /\bplum\w*/u, /\bvinog\w*/u, /\bmandarin\w*/u, /\blimon(?:s|a|i|u)?\b/u, /\bgreipfrut\w*/u]],
+    ["frozen", [/\bsalde\w*/u, /\bfrozen\b/u, /\bgelat\w*/u]],
+    ["dairy", [/\bpien\w*/u, /\bsier\w*/u, /\bjogurt\w*/u, /\bbiezpien\w*/u, /\bkrej\w*/u, /\bkefir\w*/u, /\bsviest\w*/u, /\bol\w*/u, /\bmascarpone\b/u, /\bskab\w*\s+krejum\w*/u, /\bkarum\w*/u]],
+    ["meat", [/\bgal(?:a|as|u|ai)\w*/u, /\bcukgal\w*/u, /\bliellop\w*/u, /\bvist\w*/u, /\btitar\w*/u, /\bdes(?:a|as|u|in)\w*/u, /\bskink\w*/u, /\bbekon\w*/u, /\bziv\w*/u, /\blas\w*/u, /\bforel\w*/u, /\bgarnel\w*/u, /\bmenc\w*/u, /\btunc\w*/u, /\bkrab\w*/u, /\bikri\w*/u, /\bsard\w*/u]],
+    ["bakery", [/\bmaiz\w*/u, /\bbulcin\w*/u, /\bkruasan\w*/u, /\bkuka\w*/u, /\btort\w*/u, /\bkeks\w*/u, /\bcepum\w*/u, /\bvafel\w*/u, /\bpirag\w*/u, /\bdesert\w*/u]],
+    ["drinks", [/\bdzerien\w*/u, /\bdzeram\w*/u, /\bsul\w*/u, /\buden\w*/u, /\blimonad\w*/u, /\bkafij\w*/u, /\btej\w*/u, /\bkakao\w*/u, /\benergetisk\w*/u, /\bkvass\w*/u]],
+    ["sweets", [/\bsokolad\w*/u, /\bkonfekt\w*/u, /\bcips\w*/u, /\bpopkorn\w*/u, /\bsaldum\w*/u, /\bkoslaj\w*/u, /\bbatonin\w*/u, /\briekst\w*/u, /\bsekl\w*/u, /\bhalv\w*/u, /\bmarcipan\w*/u]],
+    ["grocery", [/\bmakaron\w*/u, /\bpast\w*/u, /\bris\w*/u, /\bmilti\w*/u, /\bella(?:s|u)?\b/u, /\bkonserv\w*/u, /\bmerc\w*/u, /\bputraim\w*/u, /\bgrik\w*/u, /\bgar[vw]\w*/u, /\bmajoniz\w*/u, /\bkecup\w*/u, /\bsauc\w*/u, /\bgar[vw]viel\w*/u, /\bmed\w*/u, /\bievar\w*/u, /\bsenes\w*/u, /\bpup\w*/u, /\bzirn\w*/u, /\bsoj\w*/u]],
+    ["kidsPets", [/\bkak\w*/u, /\bsun\w*\s+barib\w*/u, /\bdzivniek\w*/u, /\bmaijdzivniek\w*/u, /\bbernu\s+(?:barib\w*|maisijum\w*|partik\w*)/u, /\bautin\w*/u, /\bplen\w*/u, /\blego\b/u, /\brotal\w*/u, /\bkonstru\w*\s+komplekt\w*/u, /\bgalda\s+spel\w*/u]],
+    ["clothing", [/\bzek\w*/u, /\bsievies\w*/u, /\bviries\w*/u, /\bkrekl\w*/u, /\bdzemper\w*/u, /\bjak\w*/u, /\bkleit\w*/u, /\bapavi\w*/u, /\bkurp\w*/u, /\bvel\w*/u, /\btekst\w*/u, /\bpidzam\w*/u]],
+    ["care", [/\bdus\w*/u, /\bzob\w*/u, /\bsampun\w*/u, /\bmat\w*\s+(?:balzam\w*|kondicion\w*)/u, /\bkrem\w*/u, /\bdezodor\w*/u, /\bkosmet\w*/u, /\bsej\w*\s+(?:krem\w*|mask\w*)/u, /\bskuvek\w*/u, /\bskuves\w*/u, /\bdezinfek\w*/u, /\bintim\w*/u, /\bieliktn\w*/u, /\bpaket\w*\s+higien\w*/u]],
+    ["home", [/\bmazg\w*\s+lidzek\w*/u, /\btiris\w*\s+lidzek\w*/u, /\blidzek\w*/u, /\bpapir\w*/u, /\bsvec\w*/u, /\btrauk\w*/u, /\bmaisi\w*/u, /\bvirtuv\w*/u, /\bgult\w*\s+vel\w*/u, /\bdekor\w*/u, /\binterjer\w*/u, /\btualet\w*\s+papir\w*/u, /\bspodr\w*/u, /\bskap\w*/u, /\bglaz\w*/u, /\bkruz\w*/u, /\bkatl\w*/u]],
+    ["electronics", [/\bled\b/u, /\baustin\w*/u, /\belektr\w*/u, /\btelefon\w*/u, /\bladet\w*/u, /\bbater\w*/u, /\bkabel\w*/u, /\bteleviz\w*/u, /\bspel\w*\s+(?:konsol\w*|austin\w*)/u, /\bklaviatur\w*/u, /\bpeli\w*\s+(?:dator\w*|bezvadu\w*)/u, /\bprinter\w*/u, /\bmazgajam\w*\s+masin\w*/u]],
+  ];
+  for (const [key, expressions] of rules) {
+    if (textHasAny(name, expressions)) return key;
+  }
+
+  const sourceCategories = product.offers.map(offer => normalizeProductText(offer.category)).filter(Boolean);
+  if (sourceCategories.some(category => /\bpiena produkt\w*/u.test(category))) return "dairy";
+  if (sourceCategories.some(category => /\bgalas produkt\w*/u.test(category))) return "meat";
+  if (sourceCategories.some(category => /\bzivju produkt\w*/u.test(category))) return "meat";
+  if (sourceCategories.some(category => /\bbakalej\w*/u.test(category))) return "grocery";
+  return "other";
+}
+
 const money = value => new Intl.NumberFormat("lv-LV", {
   style: "currency",
   currency: "EUR",
@@ -178,6 +237,8 @@ function groupOffers(offers) {
   }
   return [...groups.values()].map(product => {
     product.offers.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+    product.categoryKey = inferProductCategory(product);
+    product.category = productCategories[product.categoryKey].label;
     return product;
   }).sort((a, b) => a.name.localeCompare(b.name, "lv"));
 }
@@ -234,6 +295,20 @@ function renderCampaignOptions() {
   const target = document.querySelector("#campaign");
   target.innerHTML = '<option value="">Visi bukleti</option>' + state.campaignOptions.map(option =>
     '<option value="' + escapeHtml(option.value) + '">' + escapeHtml(option.label) + '</option>'
+  ).join("");
+}
+
+function renderCategoryOptions() {
+  const target = document.querySelector("#category");
+  const counts = new Map();
+  for (const product of state.products) {
+    counts.set(product.categoryKey, (counts.get(product.categoryKey) || 0) + 1);
+  }
+  const categories = Object.entries(productCategories)
+    .filter(([key]) => counts.has(key))
+    .sort(([, first], [, second]) => first.order - second.order);
+  target.innerHTML = '<option value="">Visas grupas</option>' + categories.map(([key, category]) =>
+    '<option value="' + escapeHtml(key) + '">' + escapeHtml(category.label) + ' (' + counts.get(key) + ')</option>'
   ).join("");
 }
 
@@ -345,7 +420,8 @@ function renderProduct(product) {
   return '<article class="card">'
     + '<div class="product-top"><div class="product-thumb">' + image + '</div>'
     + '<div class="product-heading"><div class="product-stores">' + storeTags + '</div>'
-    + '<h3>' + escapeHtml(product.name) + '</h3>' + packageSize + '</div></div>'
+    + '<h3>' + escapeHtml(product.name) + '</h3><span class="product-category">' + escapeHtml(product.category) + '</span>'
+    + packageSize + '</div></div>'
     + '<div class="best-price"><div class="best-price-main"><strong>' + (bestPrice === null ? 'Cena nav norādīta' : money(bestPrice)) + '</strong>'
     + '<span>labākā cena · ' + stores.map(([, name]) => escapeHtml(name)).join(" + ") + '</span></div>' + discountBadge + '</div>'
     + '<div class="offer-list-heading"><span>' + product.offers.length + ' ' + (product.offers.length === 1 ? 'piedāvājums' : 'piedāvājumi') + '</span>'
@@ -410,6 +486,7 @@ function activeFilters() {
   return {
     query: document.querySelector("#search").value.trim().toLocaleLowerCase("lv"),
     campaign: document.querySelector("#campaign").value,
+    category: document.querySelector("#category").value,
     minPrice: parsePrice("#minPrice"),
     maxPrice: parsePrice("#maxPrice"),
     minDiscount: discount ? Number(discount) : null,
@@ -423,6 +500,7 @@ function render({ resetPage = true } = {}) {
   const filters = activeFilters();
   const products = [];
   for (const product of state.products) {
+    if (filters.category && product.categoryKey !== filters.category) continue;
     const productText = [product.name, product.brand, ...(product.aliases || [])]
       .filter(Boolean).join(" ").toLocaleLowerCase("lv");
     const productMatchesQuery = !filters.query || productText.includes(filters.query);
@@ -463,7 +541,7 @@ function render({ resetPage = true } = {}) {
   document.querySelector("#emptyClear").hidden = noData;
 
   const clear = document.querySelector("#clearFilters");
-  clear.disabled = !filters.query && !state.selectedStore && !filters.campaign
+  clear.disabled = !filters.query && !state.selectedStore && !filters.campaign && !filters.category
     && filters.minPrice === null && filters.maxPrice === null
     && filters.minDiscount === null && !filters.condition && filters.sort === "price";
 }
@@ -565,6 +643,7 @@ async function init() {
   state.offers = allOffers;
   state.stores = [...storeMap.values()].sort((a, b) => a.name.localeCompare(b.name, "lv"));
   state.products = groupOffers(allOffers);
+  renderCategoryOptions();
   state.campaignOptions = [...new Map(allOffers.map(offer => [campaignToken(offer), {
     value: campaignToken(offer),
     label: normalizedStore(offer.storeName).name + " · " + campaignLabel(offer),
@@ -586,6 +665,7 @@ async function init() {
 function clearFilters() {
   document.querySelector("#search").value = "";
   document.querySelector("#campaign").value = "";
+  document.querySelector("#category").value = "";
   document.querySelector("#minPrice").value = "";
   document.querySelector("#maxPrice").value = "";
   document.querySelector("#discount").value = "";
@@ -626,7 +706,7 @@ document.querySelector("#offers").addEventListener("error", event => {
   if (event.target instanceof HTMLImageElement) event.target.hidden = true;
 }, true);
 
-["search", "campaign", "minPrice", "maxPrice", "discount", "condition", "sort"]
+["search", "campaign", "category", "minPrice", "maxPrice", "discount", "condition", "sort"]
   .forEach(id => document.querySelector("#" + id).addEventListener(id === "search" || id.endsWith("Price") ? "input" : "change", render));
 
 document.querySelector("#clearFilters").addEventListener("click", clearFilters);
