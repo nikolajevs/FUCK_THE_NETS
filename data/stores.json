@@ -1,0 +1,82 @@
+{
+  "stores": [
+    {
+      "id": "maxima",
+      "label": "Maxima",
+      "feed": "data/offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "mego",
+      "label": "Mego",
+      "feed": "data/mego-offers.json",
+      "campaignLabel": "slug"
+    },
+    {
+      "id": "top",
+      "label": "Top!",
+      "feed": "data/top-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "lidl",
+      "label": "Lidl",
+      "feed": "data/lidl-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "rimi",
+      "label": "Rimi",
+      "feed": "data/rimi-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "rimi-eveikals",
+      "label": "Rimi e-veikals",
+      "feed": "data/rimi-eveikals-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "elvi",
+      "label": "Elvi",
+      "feed": "data/elvi-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "latts",
+      "label": "LaTS",
+      "feed": "data/latts-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "vesko",
+      "label": "Vesko",
+      "feed": "data/vesko-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "aibe",
+      "label": "Aibe",
+      "feed": "data/aibe-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "citro",
+      "label": "Citro",
+      "feed": "data/citro-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "spar",
+      "label": "Spar",
+      "feed": "data/spar-offers.json",
+      "campaignLabel": "name"
+    },
+    {
+      "id": "beta",
+      "label": "Beta",
+      "feed": "data/beta-offers.json",
+      "campaignLabel": "name"
+    }
+  ]
+}

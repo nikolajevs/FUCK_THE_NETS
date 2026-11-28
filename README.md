@@ -20,6 +20,24 @@ Currently supported:
 | Elvi    | `scripts/scrape_elvi.py`   | `data/elvi-offers.json` | Production (daily GH Actions) |
 | LaTS    | `scripts/scrape_latts.py`  | `data/latts-offers.json`| Production (daily GH Actions) |
 
+### Store registry
+
+`scripts/stores.py` is the one list of stores. Each entry names the store id
+(the feed's `store` value), the label shown on the site, the scraper script,
+the feed file, the runner lane, whether a failure fails the daily job and the
+secrets the scraper may see. Everything else is derived from it:
+
+- `scripts/run_scrapers.py` builds its parallel lanes from it;
+- `data/stores.json` — the manifest the site (`app.js`) and the admin panel
+  (`admin.js`) load their feeds from — is generated from it
+  (`python scripts/stores.py`; the daily runner rewrites it too);
+- the workflow compiles `scripts/*.py` and commits everything under `data/`.
+
+Adding a store therefore means writing its scraper and adding one `Store(...)`
+line, then running `python scripts/stores.py`. `tests/test_stores.py` checks
+that each script writes the feed it is registered with and that the committed
+manifest is current.
+
 ---
 
 ## Maxima
@@ -446,11 +464,12 @@ python -m unittest discover -s tests -v
 ## GitHub Pages
 
 Settings → Pages → source **GitHub Actions**.  
-Workflow `.github/workflows/maxima.yml` refreshes every store feed (Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Mego, Vesko, Aibe, Citro, Spar and Beta) daily and deploys.  
+Workflow `.github/workflows/maxima.yml` refreshes every store feed listed in
+`scripts/stores.py` daily, commits `data/` and deploys.  
 The scrapers are started by `scripts/run_scrapers.py`, which runs independent
-ones in parallel lanes (Spar, Beta and the Rimi booklets share a lane because
-they update the Gemini budget ledger), prints each scraper's log as a
-collapsible group and adds a duration table to the job summary. A failing
-store only warns; a failing Maxima scrape fails the job. Run it locally with
-`python scripts/run_scrapers.py`.  
+ones in parallel lanes taken from the registry (Spar, Beta and the Rimi
+booklets share the `gemini` lane because they update the Gemini budget
+ledger), prints each scraper's log as a collapsible group and adds a duration
+table to the job summary. A failing store only warns; a failing required store
+(Maxima) fails the job. Run it locally with `python scripts/run_scrapers.py`.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.

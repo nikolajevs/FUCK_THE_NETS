@@ -6,14 +6,19 @@ waiting for remote servers, so running them one after another made the data
 job take ~10 minutes. They now run in lanes: lanes run at the same time, the
 scrapers inside one lane run in order.
 
+The stores, their lanes, the required flag and the secrets each scraper may
+see all come from the registry in ``scripts/stores.py``:
+
 - Scrapers that read and write the shared Gemini budget ledger
   (``data/gemini-usage.json``) share a lane, so their updates never race.
 - The small scrapers share a lane to stay gentle on the runner.
 
-Each scraper keeps the semantics of its old workflow step: a failing store
-only produces a warning (its previous data file stays as it was), except
-Maxima, whose failure fails the job as before. ``GEMINI_API_KEY`` is passed
-only to the scrapers that used to receive it.
+A failing store only produces a warning (its previous data file stays as it
+was), except a ``required`` one (Maxima), whose failure fails the job. A secret
+such as ``GEMINI_API_KEY`` reaches only the scrapers that declare it.
+
+Before scraping, the runner rewrites the ``data/stores.json`` manifest the site
+and the admin panel load their feeds from.
 
 Output is collected per scraper and printed as one collapsible log group as
 soon as that scraper finishes, each line prefixed with its elapsed time; a
@@ -29,8 +34,14 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
+try:
+    from scripts.stores import STORES, Store, write_manifest
+except ModuleNotFoundError:
+    from stores import STORES, Store, write_manifest
+
 SCRIPTS = Path(__file__).resolve().parent
-SECRETS = ("GEMINI_API_KEY",)
+# Every secret some store declares is withheld from the stores that do not.
+SECRETS = tuple(sorted({secret for store in STORES for secret in store.secrets}))
 JOB_TIMEOUT_SECONDS = 20 * 60
 
 
@@ -58,26 +69,17 @@ def script(name: str, file: str, **kwargs) -> Job:
     return Job(name, (sys.executable, "-u", str(SCRIPTS / file)), **kwargs)
 
 
-LANES: list[list[Job]] = [
-    [script("Maxima", "scrape_maxima.py", required=True)],
-    [script("Lidl", "scrape_lidl.py")],
-    [script("Rimi e-veikals", "scrape_rimi.py")],
-    [
-        script("top!", "scrape_top.py"),
-        script("LaTS", "scrape_latts.py"),
-        script("ELVI", "scrape_elvi.py"),
-        script("Mego", "scrape_mego.py"),
-        script("Vesko", "scrape_vesko.py"),
-        script("Aibe", "scrape_aibe.py"),
-        script("Citro", "scrape_citro.py"),
-    ],
-    # These three may update data/gemini-usage.json: one at a time.
-    [
-        script("Rimi booklets", "scrape_rimi_booklets.py"),
-        script("Spar", "scrape_spar.py", secrets=("GEMINI_API_KEY",)),
-        script("Beta", "scrape_beta.py", secrets=("GEMINI_API_KEY",)),
-    ],
-]
+def lanes_from(stores: tuple[Store, ...] | list[Store]) -> list[list[Job]]:
+    """Group the registry into lanes, in order of each lane's first store."""
+    lanes: dict[str, list[Job]] = {}
+    for store in stores:
+        lanes.setdefault(store.lane, []).append(
+            script(store.label, store.script, required=store.required, secrets=store.secrets)
+        )
+    return list(lanes.values())
+
+
+LANES: list[list[Job]] = lanes_from(STORES)
 
 
 def job_env(job: Job, base: dict[str, str]) -> dict[str, str]:
@@ -162,6 +164,8 @@ def summary_table(results: list[Result], wall_seconds: float) -> str:
 
 def main() -> int:
     os.chdir(SCRIPTS.parent)
+    if write_manifest():
+        print("data/stores.json updated from scripts/stores.py")
     start = time.monotonic()
     results = run_lanes(LANES)
     table = summary_table(results, time.monotonic() - start)

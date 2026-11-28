@@ -2,6 +2,8 @@ const state = {
   products: [],
   offers: [],
   stores: [],
+  // Every known store from data/stores.json (generated from scripts/stores.py).
+  storeRegistry: [],
   campaignLabels: new Map(),
   campaignOptions: [],
   updates: [],
@@ -87,22 +89,24 @@ const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({
 function normalizedStore(value) {
   const name = String(value || "Veikals").trim();
   const folded = name.toLocaleLowerCase("lv");
-  if (folded.includes("maxima")) return { key: "maxima", name: "Maxima" };
-  if (folded.includes("mego")) return { key: "mego", name: "Mego" };
-  if (folded.includes("top")) return { key: "top", name: "Top!" };
-  if (folded.includes("lidl")) return { key: "lidl", name: "Lidl" };
-  if (folded.includes("rimi-eveikals") || folded.includes("rimi e-veikals")) {
-    return { key: "rimi-eveikals", name: "Rimi e-veikals" };
+  let match = null;
+  let matchLength = 0;
+  for (const store of state.storeRegistry) {
+    for (const alias of [store.id, store.label.toLocaleLowerCase("lv")]) {
+      if (folded === alias) return { key: store.id, name: store.label };
+      // "Maxima <store address>" and similar: the longest store name the value starts with.
+      if (folded.startsWith(alias + " ") && alias.length > matchLength) {
+        match = store;
+        matchLength = alias.length;
+      }
+    }
   }
-  if (folded.includes("rimi")) return { key: "rimi", name: "Rimi" };
-  if (folded.includes("elvi")) return { key: "elvi", name: "Elvi" };
-  if (folded.includes("latts")) return { key: "latts", name: "LaTS" };
-  if (folded.includes("vesko")) return { key: "vesko", name: "Vesko" };
-  if (folded.includes("aibe")) return { key: "aibe", name: "Aibe" };
-  if (folded.includes("citro")) return { key: "citro", name: "Citro" };
-  if (folded === "beta" || folded.startsWith("beta ")) return { key: "beta", name: "Beta" };
-  if (folded.includes("spar")) return { key: "spar", name: "Spar" };
+  if (match) return { key: match.id, name: match.label };
   return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
+}
+
+function usesSlugCampaigns(storeKey) {
+  return state.storeRegistry.some(store => store.id === storeKey && store.campaignLabel === "slug");
 }
 
 function campaignKey(offer) {
@@ -615,27 +619,21 @@ function addCampaignMetadata(feed, storeKey) {
   for (const item of [...(data.campaigns || []), ...(data.catalogues || [])]) {
     if (!item.id || !item.name) continue;
     const token = storeKey + "::" + item.id;
-    const name = storeKey === "mego" ? campaignSlugLabel(item.id) : item.name;
+    const name = usesSlugCampaigns(storeKey) ? campaignSlugLabel(item.id) : item.name;
     state.campaignLabels.set(token, name);
   }
 }
 
+async function fetchStoreRegistry() {
+  const response = await fetch("data/stores.json", { cache: "no-store" });
+  if (!response.ok) throw new Error("data/stores.json returned " + response.status);
+  const manifest = await response.json();
+  return (manifest.stores || []).filter(store => store && store.id && store.label && store.feed);
+}
+
 async function init() {
-  const sources = [
-    ["data/offers.json", "Maxima"],
-    ["data/mego-offers.json", "Mego"],
-    ["data/top-offers.json", "Top!"],
-    ["data/lidl-offers.json", "Lidl"],
-    ["data/rimi-offers.json", "Rimi"],
-    ["data/rimi-eveikals-offers.json", "Rimi e-veikals"],
-    ["data/elvi-offers.json", "Elvi"],
-    ["data/latts-offers.json", "LaTS"],
-    ["data/vesko-offers.json", "Vesko"],
-    ["data/aibe-offers.json", "Aibe"],
-    ["data/citro-offers.json", "Citro"],
-    ["data/spar-offers.json", "Spar"],
-    ["data/beta-offers.json", "Beta"],
-  ];
+  state.storeRegistry = await fetchStoreRegistry();
+  const sources = state.storeRegistry.map(store => [store.feed, store.label]);
   const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
   const feeds = [];
   const failures = [];
@@ -655,8 +653,8 @@ async function init() {
       // Lidl, Mego and top! publish the booklet link as `pdf` instead of `source`.
       const source = cat && (cat.source || cat.pdf);
       if (!source || isExpired(cat, today)) continue;
-      // Mego booklet names are URL slugs; reuse the campaign label for them.
-      const name = store.key === "mego" ? campaignSlugLabel(cat.id || cat.name) : cat.name;
+      // Some chains (Mego) name booklets by URL slug; reuse the campaign label for them.
+      const name = usesSlugCampaigns(store.key) ? campaignSlugLabel(cat.id || cat.name) : cat.name;
       state.catalogues.push({ ...cat, source, name, storeKey: store.key, storeName: store.name });
     }
     if (feed.data.updatedAt) state.updates.push({ name: store.name, value: feed.data.updatedAt });

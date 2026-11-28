@@ -69,28 +69,14 @@ jobs:
       - name: Install scraper dependencies
         run: pip install requests beautifulsoup4 pymupdf pillow
       - name: Validate scraper syntax
-        run: |
-          python -m py_compile scripts/scrape_maxima.py
-          python -m py_compile scripts/scrape_top.py
-          python -m py_compile scripts/scrape_lidl.py
-          python -m py_compile scripts/scrape_rimi.py
-          python -m py_compile scripts/scrape_rimi_booklets.py
-          python -m py_compile scripts/scrape_elvi.py
-          python -m py_compile scripts/scrape_latts.py
-          python -m py_compile scripts/scrape_vesko.py
-          python -m py_compile scripts/scrape_aibe.py
-          python -m py_compile scripts/scrape_citro.py
-          python -m py_compile scripts/scrape_spar.py
-          python -m py_compile scripts/scrape_beta.py
-          python -m py_compile scripts/scrape_mego.py
-          python -m py_compile scripts/booklet_images.py
-          python -m py_compile scripts/run_scrapers.py
+        run: python -m py_compile scripts/*.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
       - name: Collect offers from every store
-        # Independent scrapers run in parallel lanes (see scripts/run_scrapers.py);
-        # a failing store only warns, a failing Maxima scrape fails the job.
-        # The runner passes GEMINI_API_KEY to Spar and Beta only.
+        # Stores, lanes and secrets come from scripts/stores.py; independent
+        # scrapers run in parallel lanes (see scripts/run_scrapers.py). A failing
+        # store only warns, a failing required store (Maxima) fails the job.
+        # The runner passes GEMINI_API_KEY only to the stores that declare it.
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           QWEN_PENDING_DIR: ${{ runner.temp }}/maxima-qwen-pending
@@ -230,24 +216,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/offers.json
-          if [ -f data/top-offers.json ]; then git add data/top-offers.json; fi
-          if [ -f data/lidl-offers.json ]; then git add data/lidl-offers.json; fi
-          if [ -f data/rimi-offers.json ]; then git add data/rimi-offers.json; fi
-          if [ -f data/rimi-eveikals-offers.json ]; then git add data/rimi-eveikals-offers.json; fi
-          if [ -f data/elvi-offers.json ]; then git add data/elvi-offers.json; fi
-          if [ -f data/latts-offers.json ]; then git add data/latts-offers.json; fi
-          if [ -f data/mego-offers.json ]; then git add data/mego-offers.json; fi
-          if [ -f data/vesko-offers.json ]; then git add data/vesko-offers.json; fi
-          if [ -f data/aibe-offers.json ]; then git add data/aibe-offers.json; fi
-          if [ -f data/citro-offers.json ]; then git add data/citro-offers.json; fi
-          if [ -f data/spar-offers.json ]; then git add data/spar-offers.json; fi
-          if [ -f data/beta-offers.json ]; then git add data/beta-offers.json; fi
-          if [ -d data/lidl-img ]; then git add data/lidl-img; fi
-          if [ -d data/mego-img ]; then git add data/mego-img; fi
-          if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
+          # Every feed, the store manifest, booklet photos and the Gemini ledger
+          # live under data/, so a new store needs no change here.
+          git add data/
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Mego, Vesko, Aibe, Citro, Spar and Beta offers"
+            git commit -m "Update store offers"
             git push
           fi
 
