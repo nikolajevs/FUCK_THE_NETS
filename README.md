@@ -377,9 +377,13 @@ Shared logic in `scripts/product_identity.py`:
 
 Output shapes:
 
-- `offers` — flat source-level variants
-- `products` — grouped by identity
+- `offers` — flat source-level variants, each carrying `identityKey` /
+  `canonicalProductId` / `packageSize`
 - `reviewOffers` — needs manual check
+
+The feeds do not store a grouped `products` array: the site groups offers by
+`identityKey` across all chains itself, and the grouped copy more than doubled
+the JSON every visitor had to parse. `summary.uniqueProducts` keeps the count.
 
 ## Expired offers
 

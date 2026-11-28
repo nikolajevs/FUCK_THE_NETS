@@ -38,7 +38,9 @@ from __future__ import annotations
 import json
 import re
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from pathlib import Path
 
@@ -62,6 +64,9 @@ OUT = Path("data/rimi-eveikals-offers.json")
 PAGE_SIZE = 100
 MAX_PAGES = 120
 PAGE_DELAY = 0.4
+# Rimi needs ~3 s to render each 100-card page, so a few pages are fetched at
+# once; this keeps the scrape at ~1-2 minutes instead of ~6.
+PAGE_WORKERS = 4
 RETRIES = 3
 
 PRICE_TEXT_RE = re.compile(r"(?<![\d.,])([\d.,]+)\s*€")
@@ -238,7 +243,9 @@ def fetch_page(sess: requests.Session, page: int) -> str:
         try:
             r = sess.get(url, timeout=90)
             r.raise_for_status()
-            if BeautifulSoup(r.text, "html.parser").select_one("[data-product-code]"):
+            # A plain substring check: parse_cards() parses the page anyway,
+            # and a full BeautifulSoup pass here doubled the per-page cost.
+            if 'data-product-code="' in r.text:
                 return r.text
             last_error = RuntimeError(f"page {page}: no product cards (bot check?)")
         except requests.RequestException as exc:
@@ -253,16 +260,30 @@ def fetch_offers(sess: requests.Session) -> tuple[list[dict], int]:
     cards = parse_cards(first)
     print(f"  page 1: {len(cards)} cards, {pages} pages total")
     seen = {c["code"] for c in cards}
-    for page in range(2, pages + 1):
+
+    local = threading.local()
+
+    def fetch_in_worker(page: int) -> str:
+        # requests.Session is not thread-safe; each worker keeps its own.
+        if not hasattr(local, "sess"):
+            local.sess = session()
         time.sleep(PAGE_DELAY)
-        text = fetch_page(sess, page)
-        fresh = [c for c in parse_cards(text) if c["code"] not in seen]
-        for c in fresh:
-            seen.add(c["code"])
-        cards.extend(fresh)
-        print(f"  page {page}: {len(fresh)} new cards")
-        if not fresh:
-            break
+        return fetch_page(local.sess, page)
+
+    remaining = range(2, pages + 1)
+    pool = ThreadPoolExecutor(max_workers=PAGE_WORKERS)
+    try:
+        # map() yields in page order, so cards keep the listing order.
+        for page, text in zip(remaining, pool.map(fetch_in_worker, remaining)):
+            fresh = [c for c in parse_cards(text) if c["code"] not in seen]
+            for c in fresh:
+                seen.add(c["code"])
+            cards.extend(fresh)
+            print(f"  page {page}: {len(fresh)} new cards")
+            if not fresh:
+                break
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
     return cards, pages
 
 
@@ -301,7 +322,6 @@ def main() -> None:
         "campaigns": CAMPAIGNS,
         "catalogues": [],
         "offers": offers,
-        "products": grouped,
         "reviewOffers": reviews,
         "summary": {
             "offerVariants": len(offers),

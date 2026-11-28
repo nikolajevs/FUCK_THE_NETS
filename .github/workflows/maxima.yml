@@ -11,6 +11,11 @@ concurrency:
   group: maxima-pages
   cancel-in-progress: true
 
+env:
+  # Print scraper progress as it happens; buffered output gave every log line
+  # the timestamp of the end of its step.
+  PYTHONUNBUFFERED: "1"
+
 jobs:
   detect-changes:
     runs-on: ubuntu-latest

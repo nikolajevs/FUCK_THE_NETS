@@ -257,6 +257,26 @@ class FetchOffersTests(unittest.TestCase):
                                  ajax_fetcher=ajax)
         self.assertEqual([c["id"] for c in cards], ["1", "2", "3", "4"])
 
+    def test_ajax_403_is_not_retried(self):
+        import requests
+
+        class Forbidden:
+            status_code = 403
+
+            def raise_for_status(self):
+                raise requests.HTTPError("403 Forbidden", response=self)
+
+        class Session:
+            calls = 0
+
+            def post(self, *args, **kwargs):
+                Session.calls += 1
+                return Forbidden()
+
+        with self.assertRaises(RuntimeError):
+            elvi.fetch_ajax_page(Session(), 0)
+        self.assertEqual(Session.calls, 1)
+
 
 class EndOfListTests(unittest.TestCase):
     def test_hide_script_detected(self):

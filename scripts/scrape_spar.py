@@ -587,7 +587,7 @@ def _finalise_payload(payload: dict) -> None:
     reviews = sorted(unique_rev.values(), key=lambda x: x["name"].casefold())
     products = build_product_groups(offers) if offers else []
     payload["offers"] = offers
-    payload["products"] = products
+    payload.pop("products", None)  # the site groups offers itself
     payload["reviewOffers"] = reviews
     payload["updatedAt"] = datetime.now().astimezone().isoformat(timespec="seconds")
     payload["summary"] = {
@@ -687,7 +687,7 @@ def main() -> None:
     payload = {
         "source": OFFERS_PAGE, "store": "spar",
         "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "catalogues": catalogues, "offers": all_offers, "products": [],
+        "catalogues": catalogues, "offers": all_offers,
         "reviewOffers": all_reviews, "summary": {},
     }
     _finalise_payload(payload)

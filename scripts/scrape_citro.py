@@ -412,7 +412,7 @@ def main() -> None:
     payload = {
         "source": OFFERS_PAGE, "store": "citro",
         "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "catalogues": catalogues, "offers": offers, "products": products,
+        "catalogues": catalogues, "offers": offers,
         "reviewOffers": reviews,
         "summary": {"offerVariants": len(offers), "uniqueProducts": len(products),
                     "reviewOffers": len(reviews), "catalogues": len(catalogues)},

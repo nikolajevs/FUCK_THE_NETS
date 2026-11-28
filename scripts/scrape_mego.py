@@ -494,7 +494,6 @@ def main() -> None:
         "updatedAt": observed_at.isoformat(timespec="seconds"),
         "catalogues": catalogues,
         "offers": offers,
-        "products": products,
         "reviewOffers": review_offers,
         "summary": {
             "offerVariants": len(offers),

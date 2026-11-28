@@ -360,7 +360,6 @@ def main() -> None:
         "campaigns": CAMPAIGNS,
         "catalogues": catalogues,
         "offers": offers,
-        "products": grouped,
         "reviewOffers": reviews,
         "summary": {
             "offerVariants": len(offers),

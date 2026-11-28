@@ -428,7 +428,7 @@ function updateFeedMetadata(feed) {
   if (Object.hasOwn(summary, "offerVariants")) summary.offerVariants = offers.length;
   if (Object.hasOwn(summary, "verifiedOffers")) summary.verifiedOffers = offers.length;
   if (Object.hasOwn(summary, "reviewOffers")) summary.reviewOffers = reviews.length;
-  if (Object.hasOwn(summary, "uniqueProducts")) summary.uniqueProducts = feed.payload.products?.length ?? offers.length;
+  if (Object.hasOwn(summary, "uniqueProducts")) summary.uniqueProducts = countProducts(feed);
   payload.summary = summary;
   for (const campaign of [...(payload.campaigns || []), ...(payload.catalogues || [])]) {
     if (!campaign || typeof campaign !== "object") continue;
@@ -439,59 +439,21 @@ function updateFeedMetadata(feed) {
   }
 }
 
-function rebuildProducts(feed) {
-  const groups = new Map();
+// Feeds no longer publish a products array (the site groups offers itself),
+// so only the unique-product count in the summary is kept up to date.
+function countProducts(feed) {
+  const keys = new Set();
   for (const offer of feedOffers(feed, "offers")) {
     const identity = String(offer.identityKey || "").trim();
-    const key = identity && identity !== "|" && !identity.startsWith("unmatched:")
+    keys.add(identity && identity !== "|" && !identity.startsWith("unmatched:")
       ? "identity:" + identity
-      : "product:" + (offer.canonicalProductId || offer.productId || offer.offerId);
-    let product = groups.get(key);
-    if (!product) {
-      product = {
-        productId: offer.canonicalProductId || offer.productId || offer.offerId,
-        canonicalProductId: offer.canonicalProductId || offer.productId || null,
-        identityKey: identity,
-        packageSize: offer.packageSize || "",
-        name: offer.name || "Без названия",
-        aliases: [],
-        brand: offer.brand || null,
-        image: offer.image || null,
-        offers: [],
-      };
-      groups.set(key, product);
-    }
-    if (offer.name && !product.aliases.includes(offer.name)) product.aliases.push(offer.name);
-    if (offer.name && offer.name.length > product.name.length) product.name = offer.name;
-    if (!product.brand && offer.brand) product.brand = offer.brand;
-    if (!product.image && offer.image) product.image = offer.image;
-    if (!product.packageSize && offer.packageSize) product.packageSize = offer.packageSize;
-    if (!product.canonicalProductId && (offer.canonicalProductId || offer.productId)) {
-      product.canonicalProductId = offer.canonicalProductId || offer.productId;
-    }
-    product.offers.push(offer);
+      : "product:" + (offer.canonicalProductId || offer.productId || offer.offerId));
   }
-  feed.payload.products = [...groups.values()].map(product => {
-    const prices = product.offers.map(offer => Number(offer.price)).filter(Number.isFinite);
-    const discounts = product.offers.map(offer => {
-      if (Number.isFinite(offer.discountPercent)) return offer.discountPercent;
-      if (Number.isFinite(offer.regularPrice) && Number.isFinite(offer.price) && offer.regularPrice > offer.price) {
-        return Math.round((offer.regularPrice - offer.price) / offer.regularPrice * 100);
-      }
-      return null;
-    }).filter(Number.isFinite);
-    const campaigns = [...new Set(product.offers.map(offer => offer.campaign).filter(Boolean))];
-    const storeFormats = [...new Set(product.offers.flatMap(offer => Array.isArray(offer.storeFormats) ? offer.storeFormats : []))];
-    product.offers.sort((a, b) => (Number(a.price) || Infinity) - (Number(b.price) || Infinity));
-    return {
-      ...product,
-      offerCount: product.offers.length,
-      lowestPrice: prices.length ? Math.min(...prices) : null,
-      highestDiscountPercent: discounts.length ? Math.max(...discounts) : null,
-      campaigns,
-      storeFormats,
-    };
-  }).sort((a, b) => a.name.localeCompare(b.name, "lv"));
+  return keys.size;
+}
+
+function dropProducts(feed) {
+  delete feed.payload.products;
 }
 
 function setSelectionAfterAction() {
@@ -526,7 +488,7 @@ function approveSelected() {
   delete offer.reviewReason;
   feedOffers(feed, "offers").push(offer);
   feed.payload.reviewOffers.splice(item.index, 1);
-  rebuildProducts(feed);
+  dropProducts(feed);
   updateFeedMetadata(feed);
   markDirty(feed);
   setSelectionAfterAction();

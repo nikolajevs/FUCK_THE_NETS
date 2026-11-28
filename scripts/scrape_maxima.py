@@ -2756,7 +2756,6 @@ def main():
         "campaigns": campaign_metadata,
         "catalogues": active_catalogues,
         "offers": offers,
-        "products": grouped_products,
         "reviewOffers": review_offers,
         "reviewSummary": build_review_summary(review_offers),
         "summary": {

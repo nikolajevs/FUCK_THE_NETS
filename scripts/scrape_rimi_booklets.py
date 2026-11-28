@@ -793,7 +793,6 @@ def main() -> None:
         "campaigns": campaigns,
         "catalogues": catalogues,
         "offers": offers,
-        "products": products,
         "reviewOffers": reviews,
         "summary": {
             "offerVariants": len(offers),

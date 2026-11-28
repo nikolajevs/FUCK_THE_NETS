@@ -325,6 +325,10 @@ def fetch_ajax_page(sess: requests.Session, offset: int) -> str:
             last_error = RuntimeError(f"offset {offset}: unexpected AJAX response")
         except requests.RequestException as exc:
             last_error = exc
+            # A 403 is the WAF blocking this IP; retrying only adds ~12 s per run.
+            response = getattr(exc, "response", None)
+            if response is not None and response.status_code == 403:
+                break
         time.sleep(2 * (attempt + 1))
     raise RuntimeError(f"ELVI AJAX offset {offset} failed after {RETRIES} attempts: {last_error}")
 
@@ -398,7 +402,6 @@ def main() -> None:
         "campaigns": CAMPAIGNS,
         "catalogues": catalogues,
         "offers": offers,
-        "products": grouped,
         "reviewOffers": reviews,
         "summary": {
             "offerVariants": len(offers),

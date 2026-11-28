@@ -457,7 +457,6 @@ def main() -> None:
         "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
         "catalogues": catalogues,
         "offers": offers,
-        "products": products,
         "reviewOffers": reviews,
         "summary": {
             "offerVariants": len(offers), "uniqueProducts": len(products),

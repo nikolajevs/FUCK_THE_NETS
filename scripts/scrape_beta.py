@@ -294,14 +294,15 @@ def _finalise_payload(payload: dict) -> None:
     reviews = sorted(unique_reviews.values(), key=lambda item: item["name"].casefold())
     payload["offers"] = offers
     payload["reviewOffers"] = reviews
-    payload["products"] = build_product_groups(offers) if offers else []
+    products = build_product_groups(offers) if offers else []
+    payload.pop("products", None)  # the site groups offers itself
     payload["updatedAt"] = datetime.now().astimezone().isoformat(timespec="seconds")
     for catalogue in payload.get("catalogues", []):
         catalogue["verifiedOffers"] = sum(1 for item in offers if item.get("campaignId") == catalogue.get("id"))
         catalogue["reviewOffers"] = sum(1 for item in reviews if item.get("campaignId") == catalogue.get("id"))
     payload["summary"] = {
         "offerVariants": len(offers),
-        "uniqueProducts": len(payload["products"]),
+        "uniqueProducts": len(products),
         "reviewOffers": len(reviews),
         "catalogues": len(payload.get("catalogues", [])),
     }
@@ -498,7 +499,7 @@ def main() -> None:
         payload = {
             "source": STORE_PAGE, "store": "beta",
             "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
-            "catalogues": [], "offers": [], "products": [], "reviewOffers": [],
+            "catalogues": [], "offers": [], "reviewOffers": [],
             "summary": {"offerVariants": 0, "uniqueProducts": 0, "reviewOffers": 0, "catalogues": 0},
         }
         OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -523,7 +524,7 @@ def main() -> None:
     payload = {
         "source": STORE_PAGE, "store": "beta",
         "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "catalogues": [catalogue], "offers": offers, "products": [],
+        "catalogues": [catalogue], "offers": offers,
         "reviewOffers": reviews, "summary": {},
     }
     _finalise_payload(payload)
