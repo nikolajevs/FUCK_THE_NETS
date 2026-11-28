@@ -428,4 +428,10 @@ python -m unittest discover -s tests -v
 
 Settings → Pages → source **GitHub Actions**.  
 Workflow `.github/workflows/maxima.yml` refreshes every store feed (Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Mego, Vesko, Aibe, Citro, Spar and Beta) daily and deploys.  
+The scrapers are started by `scripts/run_scrapers.py`, which runs independent
+ones in parallel lanes (Spar, Beta and the Rimi booklets share a lane because
+they update the Gemini budget ledger), prints each scraper's log as a
+collapsible group and adds a duration table to the job summary. A failing
+store only warns; a failing Maxima scrape fails the job. Run it locally with
+`python scripts/run_scrapers.py`.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.

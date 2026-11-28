@@ -84,54 +84,19 @@ jobs:
           python -m py_compile scripts/scrape_beta.py
           python -m py_compile scripts/scrape_mego.py
           python -m py_compile scripts/booklet_images.py
+          python -m py_compile scripts/run_scrapers.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
-      - name: Collect Maxima offers
-        run: python scripts/scrape_maxima.py
+      - name: Collect offers from every store
+        # Independent scrapers run in parallel lanes (see scripts/run_scrapers.py);
+        # a failing store only warns, a failing Maxima scrape fails the job.
+        # The runner passes GEMINI_API_KEY to Spar and Beta only.
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           QWEN_PENDING_DIR: ${{ runner.temp }}/maxima-qwen-pending
-      - name: Collect top! offers
-        continue-on-error: true
-        run: python scripts/scrape_top.py
-      - name: Collect Lidl offers
-        continue-on-error: true
-        run: python scripts/scrape_lidl.py
-      - name: Collect Rimi e-veikals offers
-        continue-on-error: true
-        run: python scripts/scrape_rimi.py
-      - name: Collect Rimi in-store booklet offers
-        continue-on-error: true
-        run: python scripts/scrape_rimi_booklets.py
-      - name: Collect ELVI offers
-        continue-on-error: true
-        run: python scripts/scrape_elvi.py
-      - name: Collect LaTS offers
-        continue-on-error: true
-        run: python scripts/scrape_latts.py
-      - name: Collect Mego offers
-        continue-on-error: true
-        run: python scripts/scrape_mego.py
-      - name: Collect Vesko offers
-        continue-on-error: true
-        run: python scripts/scrape_vesko.py
-      - name: Collect Aibe offers
-        continue-on-error: true
-        run: python scripts/scrape_aibe.py
-      - name: Collect Citro offers
-        continue-on-error: true
-        run: python scripts/scrape_citro.py
-      - name: Collect Spar booklets
-        continue-on-error: true
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SPAR_PENDING_DIR: ${{ runner.temp }}/spar-qwen-pending
-        run: python scripts/scrape_spar.py
-      - name: Collect Beta offers
-        continue-on-error: true
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BETA_PENDING_DIR: ${{ runner.temp }}/beta-qwen-pending
-        run: python scripts/scrape_beta.py
+        run: python scripts/run_scrapers.py
       - name: Check for new PDF review cards
         id: qwen-pending
         shell: bash
