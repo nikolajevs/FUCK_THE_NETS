@@ -111,6 +111,46 @@ class ParseCardsTests(unittest.TestCase):
         self.assertEqual([c["code"] for c in cards], ["1", "2"])
         self.assertEqual(cards[1]["name"], "Siers & maize")
 
+    def test_attribute_and_class_order_changes_do_not_break_card_parsing(self):
+        fragment = card(label="1.05", price="2.39", old="2.99")
+        fragment = fragment.replace(
+            '<li class="product-grid__item">',
+            '<li data-layout="wide" class="tile product-grid__item">',
+        ).replace(
+            'data-product-code="286441"',
+            "data-product-code='286441'",
+        )
+        raw = parse_one(fragment)
+        self.assertEqual(raw["code"], "286441")
+        self.assertEqual(raw["cardPrice"], 1.05)
+        self.assertEqual(raw["price"], 2.39)
+        self.assertEqual(raw["oldPrice"], 2.99)
+
+    def test_generic_price_label_is_not_assumed_to_be_mans_rimi(self):
+        fragment = card(label="1.19", price="2.39").replace(
+            "Piedāvājums spēkā tikai MansRimi kartes lietotājiem",
+            "Īpašā cena",
+        )
+        raw = parse_one(fragment)
+        self.assertFalse(raw["hasCardLabel"])
+        self.assertIsNone(raw["cardPrice"])
+        offer = card_to_offer(raw)
+        self.assertEqual(offer["price"], 2.39)
+        self.assertEqual(offer["reviewReason"], "no_discount")
+
+    def test_unreadable_mans_rimi_price_is_sent_to_review(self):
+        fragment = card(label="1.19", price="2.39", old="3.19").replace(
+            'class="cents">19<',
+            'class="cents">xx<',
+        )
+        raw = parse_one(fragment)
+        self.assertTrue(raw["hasCardLabel"])
+        self.assertIsNone(raw["cardPrice"])
+        offer = card_to_offer(raw)
+        self.assertIsNone(offer["price"])
+        self.assertTrue(offer["requiresCard"])
+        self.assertEqual(offer["reviewReason"], "missing_price")
+
     def test_cents_keep_leading_zero(self):
         raw = parse_one(card(label="1.05", price="2.39"))
         self.assertEqual(raw["cardPrice"], 1.05)
@@ -123,6 +163,10 @@ class LastPageTests(unittest.TestCase):
 
     def test_single_page(self):
         self.assertEqual(last_page("<span>1</span>"), 1)
+
+    def test_reads_unquoted_page_reference(self):
+        html = '<a class="page" data-page=2 href="?currentPage=2">2</a>'
+        self.assertEqual(last_page(html), 2)
 
 
 class AlcoholTests(unittest.TestCase):

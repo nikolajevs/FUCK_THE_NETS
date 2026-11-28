@@ -35,7 +35,6 @@ than guessing a booklet period for month-long card prices.
 """
 from __future__ import annotations
 
-import html
 import json
 import re
 import sys
@@ -44,6 +43,7 @@ from datetime import datetime
 from pathlib import Path
 
 import requests
+from bs4 import BeautifulSoup
 
 try:
     from scripts.product_identity import build_product_groups
@@ -64,17 +64,7 @@ MAX_PAGES = 120
 PAGE_DELAY = 0.4
 RETRIES = 3
 
-CARD_SPLIT_RE = re.compile(r'(?=<li class="product-grid__item">)')
-CODE_RE = re.compile(r'data-product-code="(\d+)"')
-NAME_RE = re.compile(r'class="card__name">([^<]+)<')
-URL_RE = re.compile(r'card__url[^>]*href="([^"]+)"')
-IMAGE_RE = re.compile(r'card__image-wrapper.*?<img\s+src="([^"]+)"', re.S)
-GTM_RE = re.compile(r"data-gtm-eec-product='([^']+)'")
-LABEL_RE = re.compile(r'<div class="price-label"')
-LABEL_PRICE_RE = re.compile(r'class="major">(\d+)<.*?class="cents">(\d+)<', re.S)
-PRICE_RE = re.compile(r'class="sr-only">\s*([\d.,]+)\s*€')
-OLD_PRICE_RE = re.compile(r'Regulārā cena:\s*([\d.,]+)')
-PAGE_REF_RE = re.compile(r'data-page="(\d+)"')
+PRICE_TEXT_RE = re.compile(r"(?<![\d.,])([\d.,]+)\s*€")
 
 # Top-level GTM category codes that hold alcoholic products.
 ALCOHOL_CATEGORIES = {"1", "18"}
@@ -107,41 +97,86 @@ def is_alcohol(category: str | None) -> bool:
 
 
 def last_page(html_text: str) -> int:
-    refs = [int(x) for x in PAGE_REF_RE.findall(html_text)]
-    return max(refs) if refs else 1
+    refs = []
+    for element in BeautifulSoup(html_text, "html.parser").select("[data-page]"):
+        try:
+            refs.append(int(element.get("data-page")))
+        except (TypeError, ValueError):
+            continue
+    return max(refs, default=1)
+
+
+def _element_price(element) -> float | None:
+    if element is None:
+        return None
+    match = PRICE_TEXT_RE.search(element.get_text(" ", strip=True))
+    return _money(match.group(1)) if match else None
+
+
+def _gtm_product(card_element) -> dict:
+    raw = card_element.get("data-gtm-eec-product")
+    if not raw:
+        return {}
+    try:
+        value = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+        return {}
+    return value if isinstance(value, dict) else {}
 
 
 def parse_cards(html_text: str) -> list[dict]:
     """Extract raw promotion cards from one server-rendered listing page."""
     cards: list[dict] = []
-    for chunk in CARD_SPLIT_RE.split(html_text):
-        code_match = CODE_RE.search(chunk)
-        if not code_match:
+    soup = BeautifulSoup(html_text, "html.parser")
+    card_elements = soup.select("li.product-grid__item")
+    if not card_elements:
+        # Keep working if Rimi changes the grid wrapper but retains product IDs.
+        card_elements = soup.select("[data-product-code]")
+
+    for element in card_elements:
+        product_element = (
+            element if element.has_attr("data-product-code")
+            else element.select_one("[data-product-code]")
+        )
+        if product_element is None:
             continue
-        name_match = NAME_RE.search(chunk)
-        url_match = URL_RE.search(chunk)
-        image_match = IMAGE_RE.search(chunk)
-        gtm_match = GTM_RE.search(chunk)
-        gtm: dict = {}
-        if gtm_match:
-            try:
-                gtm = json.loads(gtm_match.group(1))
-            except json.JSONDecodeError:
-                gtm = {}
-        label_price = LABEL_PRICE_RE.search(chunk) if LABEL_RE.search(chunk) else None
-        price_match = PRICE_RE.search(chunk)
-        old_match = OLD_PRICE_RE.search(chunk)
+        code = str(product_element.get("data-product-code") or "").strip()
+        if not code:
+            continue
+
+        name_element = element.select_one(".card__name")
+        url_element = element.select_one(".card__url[href]")
+        image_element = (
+            element.select_one(".card__image-wrapper img[src]")
+            or element.select_one("img[src]")
+        )
+        label_element = element.select_one(".price-label")
+        label_text = ""
+        if label_element is not None:
+            label_text = " ".join((
+                str(label_element.get("title") or ""),
+                label_element.get_text(" ", strip=True),
+            )).casefold()
+        has_card_label = bool(re.search(r"mans\s*rimi|mansrimi|paldies", label_text))
+        label_price = None
+        if has_card_label:
+            major = label_element.select_one(".price-label__price .major")
+            cents = label_element.select_one(".price-label__price .cents")
+            if major and cents:
+                label_price = _money(major.get_text(strip=True) + "." + cents.get_text(strip=True))
+
+        gtm = _gtm_product(product_element)
         cards.append({
-            "code": code_match.group(1),
-            "name": html.unescape(name_match.group(1)).strip() if name_match else "",
-            "url": html.unescape(url_match.group(1)) if url_match else None,
-            "image": html.unescape(image_match.group(1)) if image_match else None,
+            "code": code,
+            "name": name_element.get_text(" ", strip=True) if name_element else "",
+            "url": url_element.get("href") if url_element else None,
+            "image": image_element.get("src") if image_element else None,
             "category": gtm.get("category"),
             "brand": gtm.get("brand"),
-            "hasCardLabel": label_price is not None,
-            "cardPrice": _money(label_price.group(1) + "." + label_price.group(2)) if label_price else None,
-            "price": _money(price_match.group(1)) if price_match else None,
-            "oldPrice": _money(old_match.group(1)) if old_match else None,
+            "hasCardLabel": has_card_label,
+            "cardPrice": label_price,
+            "price": _element_price(element.select_one(".card__price")),
+            "oldPrice": _element_price(element.select_one(".old-price-tag")),
         })
     return cards
 
@@ -152,8 +187,8 @@ def card_to_offer(card: dict) -> dict | None:
         return None
 
     name = card.get("name") or ""
-    if card.get("hasCardLabel") and card.get("cardPrice") is not None:
-        sale = card["cardPrice"]
+    if card.get("hasCardLabel"):
+        sale = card.get("cardPrice")
         regular = card.get("price")
         requires_card = True
         campaign_id, campaign = "mans-rimi-cena", "Mans Rimi cena"
@@ -203,7 +238,7 @@ def fetch_page(sess: requests.Session, page: int) -> str:
         try:
             r = sess.get(url, timeout=90)
             r.raise_for_status()
-            if CODE_RE.search(r.text):
+            if BeautifulSoup(r.text, "html.parser").select_one("[data-product-code]"):
                 return r.text
             last_error = RuntimeError(f"page {page}: no product cards (bot check?)")
         except requests.RequestException as exc:

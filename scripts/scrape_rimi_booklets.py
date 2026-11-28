@@ -81,6 +81,62 @@ def _parse_date(year: int, day: int, month: int) -> date | None:
         return None
 
 
+def _offer_is_current(offer: dict, today: date) -> bool:
+    """Keep a carried-forward offer only while its known validity includes today."""
+    for field, comparison in (("validFrom", lambda value: value <= today),
+                              ("validUntil", lambda value: value >= today)):
+        raw = offer.get(field)
+        if not raw:
+            continue
+        try:
+            value = date.fromisoformat(str(raw))
+        except ValueError:
+            continue
+        if not comparison(value):
+            return False
+    return True
+
+
+def _carry_forward_booklet(booklet: dict, previous_offers: list[dict],
+                           previous_reviews: list[dict], previous_catalogues: list[dict],
+                           previous_campaigns: list[dict], today: date
+                           ) -> tuple[list[dict], list[dict], dict, dict]:
+    """Preserve the last known active offers if this booklet could not be fetched."""
+    booklet_id = booklet["id"]
+    offers = [
+        {**item, "stale": True}
+        for item in previous_offers
+        if item.get("campaignId") == booklet_id and _offer_is_current(item, today)
+    ]
+    reviews = [
+        {**item, "stale": True}
+        for item in previous_reviews
+        if item.get("campaignId") == booklet_id and _offer_is_current(item, today)
+    ]
+
+    catalogue = next((item for item in previous_catalogues if item.get("id") == booklet_id), None)
+    if catalogue:
+        catalogue = {**catalogue, "stale": True}
+        catalogue["offerVariants"] = len(offers)
+        catalogue["reviewOffers"] = len(reviews)
+    else:
+        catalogue = {
+            "id": booklet_id,
+            "name": booklet["name"],
+            "source": booklet["source"],
+            "validFrom": None,
+            "validUntil": None,
+            "offerVariants": len(offers),
+            "reviewOffers": len(reviews),
+            "complete": False,
+            "stale": True,
+        }
+    campaign = next((item for item in previous_campaigns if item.get("id") == booklet_id), None)
+    if campaign is None:
+        campaign = {"id": booklet_id, "name": booklet["name"]}
+    return offers, reviews, catalogue, campaign
+
+
 def parse_validity(text: str, today: date | None = None) -> tuple[str | None, str | None]:
     """Read validity dates from an iPaper title or the leaflet's first page."""
     today = today or date.today()
@@ -614,7 +670,13 @@ def main() -> None:
         previous = json.loads(OUT.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         previous = {}
-    previous_items = previous.get("reviewOffers", []) + previous.get("offers", [])
+    if not isinstance(previous, dict):
+        previous = {}
+    previous_offers = [item for item in previous.get("offers", []) if isinstance(item, dict)]
+    previous_reviews = [item for item in previous.get("reviewOffers", []) if isinstance(item, dict)]
+    previous_catalogues = [item for item in previous.get("catalogues", []) if isinstance(item, dict)]
+    previous_campaigns = [item for item in previous.get("campaigns", []) if isinstance(item, dict)]
+    previous_items = previous_reviews + previous_offers
     for item in previous_items:
         evidence = item.get("reviewEvidence") or {}
         if isinstance(evidence.get("visionAssist"), dict):
@@ -628,7 +690,8 @@ def main() -> None:
     reviews: list[dict] = []
     catalogues: list[dict] = []
     campaigns: list[dict] = []
-    failed = []
+    failed: list[dict] = []
+    refreshed_booklet_ids: set[str] = set()
     for index, booklet in enumerate(booklets):
         try:
             pdf_bytes, meta = download_booklet(sess, booklet)
@@ -640,6 +703,7 @@ def main() -> None:
                 print(f"  Skipping future booklet: {meta['name']}")
                 continue
             booklet_offers, booklet_reviews, page_count = extract_offers(pdf_bytes, meta)
+            refreshed_booklet_ids.add(booklet["id"])
             for offer in booklet_reviews:
                 evidence = offer.get("reviewEvidence") or {}
                 old_evidence = previous_vision.get(str(offer.get("offerId", "")))
@@ -682,10 +746,25 @@ def main() -> None:
             print(f"  {meta['name']}: {len(booklet_offers)} offers, "
                   f"{len(booklet_reviews)} review, {page_count} pages")
         except Exception as exc:
-            failed.append(booklet["name"])
+            failed.append(booklet)
             print(f"  ! {booklet['name']}: {exc}", file=sys.stderr)
         if index + 1 < len(booklets):
             time.sleep(0.7)
+
+    if failed and not refreshed_booklet_ids:
+        raise RuntimeError("No Rimi booklet refreshed successfully; existing feed preserved")
+
+    today = date.today()
+    for booklet in failed:
+        carried_offers, carried_reviews, catalogue, campaign = _carry_forward_booklet(
+            booklet, previous_offers, previous_reviews, previous_catalogues,
+            previous_campaigns, today,
+        )
+        offers.extend(carried_offers)
+        reviews.extend(carried_reviews)
+        catalogues.append(catalogue)
+        campaigns.append(campaign)
+        print(f"  Keeping {len(carried_offers)} unexpired offers from the last {booklet['name']} feed")
 
     if not offers and not reviews:
         raise RuntimeError("No Rimi booklet offers were extracted")
@@ -694,7 +773,8 @@ def main() -> None:
         _save_ledger(gemini_ledger)
         print(f"Gemini usage today: {gemini_ledger['requests']}/{gemini_budget}")
     if failed:
-        print("Warning: some Rimi booklets could not be refreshed: " + ", ".join(failed),
+        print("Warning: some Rimi booklets could not be refreshed: "
+              + ", ".join(booklet["name"] for booklet in failed),
               file=sys.stderr)
 
     # The opening spread often previews items that also appear on an inner page.

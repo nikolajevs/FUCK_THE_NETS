@@ -360,6 +360,7 @@ function offerVariantMarkup(offer) {
   else if (offer.requiresCard) tags.push('<span class="condition-tag strong">' + escapeHtml(offer.cardName ? offer.cardName + " karte" : "Klienta karte") + '</span>');
   if (offer.onlyInApp) tags.push('<span class="condition-tag strong">Tikai lietotnē</span>');
   if (offer.multiBuy) tags.push('<span class="condition-tag strong">Pērkot ' + escapeHtml(offer.multiBuy) + '</span>');
+  if (offer.stale) tags.push('<span class="condition-tag stale">Buklets nav atjaunināts</span>');
   if (!tags.length) tags.push('<span class="condition-tag">Bez kartes nosacījuma</span>');
   const formats = Array.isArray(offer.storeFormats) && offer.storeFormats.length
     ? '<span>Veikali ' + escapeHtml(offer.storeFormats.join(", ")) + '</span>'
@@ -576,6 +577,7 @@ function renderCatalogues() {
       + '<span class="retailer-tag ' + escapeHtml(cat.storeKey) + '">' + escapeHtml(cat.storeName) + '</span>'
       + '<span class="catalogue-name">' + escapeHtml(cat.name || "Akciju buklets") + '</span>'
       + (period ? '<span class="catalogue-period">' + escapeHtml(period) + '</span>' : "")
+      + (cat.stale ? '<span class="catalogue-stale">Buklets nav atjaunināts</span>' : "")
       + '<span class="catalogue-open">Atvērt bukletu ↗</span>'
       + '</a>';
   }).join("");

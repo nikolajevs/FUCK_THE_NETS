@@ -142,6 +142,8 @@ button, select { cursor: pointer; }
 .variant-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
 .condition-tag { padding: 3px 5px; border-radius: 4px; background: #f2f4ef; color: #737e75; font-size: 8px; font-weight: 700; }
 .condition-tag.strong { background: #fdf2d9; color: #8b6721; }
+.condition-tag.stale, .catalogue-stale { background: #fff0df; color: #99500d; }
+.catalogue-stale { align-self: flex-start; padding: 4px 6px; border-radius: 5px; font-size: 9px; font-weight: 700; }
 .variant-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; padding-top: 7px; border-top: 1px solid #f0f3f0; color: #8a958d; font-size: 8px; }
 .variant-bottom a { color: var(--green); font-size: 9px; font-weight: 700; text-decoration: none; }
 .variant-bottom a:hover { text-decoration: underline; }
