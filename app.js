@@ -85,9 +85,69 @@ function offerDiscount(offer) {
   return null;
 }
 
+function duplicateOfferName(offer) {
+  let name = String(offer.name || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("lv");
+  // Maxima booklet OCR sometimes appends the card's ordinal to its title.
+  if (String(offer.sourceProductId || "").startsWith("pdf:")) name = name.replace(/\s+0\s*$/, "");
+  return name.replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
+}
+
+function fullOfferDuplicateKey(offer) {
+  const name = duplicateOfferName(offer);
+  if (!name) return null;
+  return JSON.stringify([
+    normalizedStore(offer.storeName || offer.store).key,
+    campaignKey(offer),
+    name,
+    duplicateOfferName({ name: offer.brand }),
+    offer.packageSize || "",
+    offer.price ?? null,
+    offer.regularPrice ?? null,
+    offer.paldiesPrice ?? null,
+    offer.priceWithoutPaldies ?? null,
+    offerDiscount(offer),
+    Boolean(offer.requiresPaldies || offer.requiresCard),
+    Boolean(offer.paldis),
+    offer.validFrom || "",
+    offer.validUntil || "",
+    [...(offer.storeFormats || [])].sort().join("|"),
+  ]);
+}
+
+function removeFullOfferDuplicates(offers) {
+  const unique = new Map();
+  for (const offer of offers) {
+    const key = fullOfferDuplicateKey(offer);
+    if (!key) {
+      unique.set(Symbol(), offer);
+      continue;
+    }
+    const current = unique.get(key);
+    if (!current) {
+      unique.set(key, offer);
+      continue;
+    }
+
+    const currentHasImage = Boolean(current.image);
+    const offerHasImage = Boolean(offer.image);
+    if (offerHasImage && !currentHasImage) {
+      const cleanerName = String(current.name || "").replace(/\s+0\s*$/, "");
+      unique.set(key, { ...offer, name: cleanerName || offer.name });
+    } else if (!currentHasImage && !offerHasImage && String(offer.name || "").length > String(current.name || "").length) {
+      unique.set(key, offer);
+    } else if (currentHasImage && offerHasImage && String(offer.name || "").length > String(current.name || "").length) {
+      unique.set(key, offer);
+    }
+  }
+  return [...unique.values()];
+}
+
 function groupOffers(offers) {
   const groups = new Map();
-  for (const offer of offers) {
+  for (const offer of removeFullOfferDuplicates(offers)) {
     const identity = String(offer.identityKey || "").trim();
     const key = identity && identity !== "|" && !identity.startsWith("unmatched:")
       ? "identity:" + identity
