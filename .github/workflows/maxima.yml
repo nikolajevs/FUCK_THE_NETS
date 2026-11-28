@@ -82,8 +82,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           QWEN_PENDING_DIR: ${{ runner.temp }}/maxima-qwen-pending
-          SPAR_PENDING_DIR: ${{ runner.temp }}/spar-qwen-pending
-          BETA_PENDING_DIR: ${{ runner.temp }}/beta-qwen-pending
+          # Booklet pages the vision engine could not read with Gemini today.
+          BOOKLET_VISION_PENDING_DIR: ${{ runner.temp }}/booklet-vision-pending
         run: python scripts/run_scrapers.py
       - name: Check for new PDF review cards
         id: qwen-pending
@@ -121,32 +121,23 @@ jobs:
               out.write(f"available={'true' if remaining else 'false'}\n")
           print(f"{remaining} cards left for local Qwen")
           EOF
-      - name: Check for Spar pages left for local Qwen
-        id: spar-qwen
+      - name: Check for booklet pages left for local Qwen
+        id: booklet-qwen
         shell: bash
         run: |
-          if compgen -G "$RUNNER_TEMP/spar-qwen-pending/*.json" > /dev/null; then
-            echo "available=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "available=false" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Check for Beta pages left for local Qwen
-        id: beta-qwen
-        shell: bash
-        run: |
-          if compgen -G "$RUNNER_TEMP/beta-qwen-pending/*.json" > /dev/null; then
+          if compgen -G "$RUNNER_TEMP/booklet-vision-pending/*/*.json" > /dev/null; then
             echo "available=true" >> "$GITHUB_OUTPUT"
           else
             echo "available=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Cache Qwen3-VL model files
-        if: steps.qwen-local.outputs.available == 'true' || steps.spar-qwen.outputs.available == 'true' || steps.beta-qwen.outputs.available == 'true'
+        if: steps.qwen-local.outputs.available == 'true' || steps.booklet-qwen.outputs.available == 'true'
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/maxima-qwen-model
           key: qwen3-vl-4b-q4km-mmproj-q8-${{ runner.os }}-66358cb18bb6b3b1b6675aa412c7a88ef01d228f481184d13668e5201c730a0a-30ba2c7dd3127a4561b6cba9d13d0f711c91bdb38742e2f56d73c8cb596bd06d
       - name: Download public Qwen3-VL GGUF files
-        if: steps.qwen-local.outputs.available == 'true' || steps.spar-qwen.outputs.available == 'true' || steps.beta-qwen.outputs.available == 'true'
+        if: steps.qwen-local.outputs.available == 'true' || steps.booklet-qwen.outputs.available == 'true'
         continue-on-error: true
         env:
           QWEN_MODEL_DIR: ${{ runner.temp }}/maxima-qwen-model
@@ -176,7 +167,7 @@ jobs:
             mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf \
             30ba2c7dd3127a4561b6cba9d13d0f711c91bdb38742e2f56d73c8cb596bd06d
       - name: Build CPU llama-mtmd-cli with Qwen3-VL support
-        if: steps.qwen-local.outputs.available == 'true' || steps.spar-qwen.outputs.available == 'true' || steps.beta-qwen.outputs.available == 'true'
+        if: steps.qwen-local.outputs.available == 'true' || steps.booklet-qwen.outputs.available == 'true'
         continue-on-error: true
         env:
           LLAMA_CPP_REF: 6d8a8886fa44a4a404c58ace93052ea680193981
@@ -197,23 +188,16 @@ jobs:
           QWEN_MMPROJ_PATH: ${{ runner.temp }}/maxima-qwen-model/mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf
           QWEN_LLAMA_CLI: ${{ runner.temp }}/llama.cpp/build/bin/llama-mtmd-cli
         run: python scripts/qwen_pdf_review.py "$RUNNER_TEMP/maxima-qwen-pending" --offers-file data/offers.json
-      - name: Review Spar pages with local Qwen3-VL
-        if: steps.spar-qwen.outputs.available == 'true'
+      - name: Read pending booklet pages with local Qwen3-VL
+        # Fills data/vision-cache/ with Qwen's answers for the pages Gemini had
+        # no quota for, then re-runs those stores' scrapers from the cache.
+        if: steps.booklet-qwen.outputs.available == 'true'
         continue-on-error: true
         env:
           QWEN_MODEL_PATH: ${{ runner.temp }}/maxima-qwen-model/Qwen3VL-4B-Instruct-Q4_K_M.gguf
           QWEN_MMPROJ_PATH: ${{ runner.temp }}/maxima-qwen-model/mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf
           QWEN_LLAMA_CLI: ${{ runner.temp }}/llama.cpp/build/bin/llama-mtmd-cli
-        run: python scripts/scrape_spar.py --qwen-review "$RUNNER_TEMP/spar-qwen-pending"
-      - name: Review Beta pages with local Qwen3-VL
-        if: steps.beta-qwen.outputs.available == 'true'
-        continue-on-error: true
-        env:
-          QWEN_MODEL_PATH: ${{ runner.temp }}/maxima-qwen-model/Qwen3VL-4B-Instruct-Q4_K_M.gguf
-          QWEN_MMPROJ_PATH: ${{ runner.temp }}/maxima-qwen-model/mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf
-          QWEN_LLAMA_CLI: ${{ runner.temp }}/llama.cpp/build/bin/llama-mtmd-cli
-          BETA_PENDING_DIR: ${{ runner.temp }}/beta-qwen-pending
-        run: python scripts/scrape_beta.py --qwen-review "$RUNNER_TEMP/beta-qwen-pending"
+        run: python scripts/booklet_vision.py --qwen-pending "$RUNNER_TEMP/booklet-vision-pending"
       - name: Open, update or close feed health issues
         # The runner recorded each store's health in data/health.json (and
         # restored feeds that broke); keep one GitHub issue per unhealthy

@@ -21,6 +21,14 @@ Fields:
 - ``secrets``: environment secrets passed to this scraper only;
 - ``campaign_label``: ``"slug"`` when campaign ids are URL slugs the site
   prettifies instead of using the printed campaign name.
+
+For chains read by the booklet vision engine (``booklet_vision.py``):
+
+- ``vision_hint``: one extra prompt line about this chain's booklets (how its
+  bundle or loyalty prices look) — data, not code;
+- ``prices_in_text``: whether a PDF's text layer carries the printed prices.
+  When it does, every price the model reads must also be found in the text
+  under the card; when prices are artwork (Spar), only names are checked.
 """
 from __future__ import annotations
 
@@ -44,6 +52,8 @@ class Store:
     required: bool = False
     secrets: tuple[str, ...] = ()
     campaign_label: str = "name"
+    vision_hint: str = ""
+    prices_in_text: bool = True
 
 
 GEMINI = ("GEMINI_API_KEY",)
@@ -63,7 +73,10 @@ STORES: tuple[Store, ...] = (
     Store("vesko", "Vesko", "scrape_vesko.py", "data/vesko-offers.json", "small"),
     Store("aibe", "Aibe", "scrape_aibe.py", "data/aibe-offers.json", "small"),
     Store("citro", "Citro", "scrape_citro.py", "data/citro-offers.json", "small"),
-    Store("spar", "Spar", "scrape_spar.py", "data/spar-offers.json", GEMINI_LANE, secrets=GEMINI),
+    Store("spar", "Spar", "scrape_spar.py", "data/spar-offers.json", GEMINI_LANE, secrets=GEMINI,
+          prices_in_text=False,
+          vision_hint="SPAR prints prices as graphics; a badge like '2.00 PAR 2' means "
+                      "2 items for 2.00 EUR in total."),
     Store("beta", "Beta", "scrape_beta.py", "data/beta-offers.json", GEMINI_LANE, secrets=GEMINI),
 )
 

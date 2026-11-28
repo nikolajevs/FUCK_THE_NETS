@@ -29,6 +29,7 @@ duration table is printed at the end and added to the job summary.
 """
 from __future__ import annotations
 
+import argparse
 import os
 import subprocess
 import sys
@@ -174,18 +175,35 @@ def scraper_status(results: list[Result], stores=STORES) -> dict[str, bool]:
     return {store.id: ok_by_label.get(store.label, True) for store in stores}
 
 
-def main() -> int:
+def selected_stores(only: str | None, stores=STORES) -> list[Store]:
+    """All stores, or the comma-separated ids in ``only`` (unknown ids are an error)."""
+    if not only:
+        return list(stores)
+    wanted = [item.strip() for item in only.split(",") if item.strip()]
+    known = {store.id for store in stores}
+    unknown = [item for item in wanted if item not in known]
+    if unknown:
+        raise SystemExit(f"unknown store id(s): {', '.join(unknown)}")
+    return [store for store in stores if store.id in wanted]
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--only", help="comma-separated store ids to run (default: all)")
+    args = parser.parse_args(argv)
+    stores = selected_stores(args.only)
+
     os.chdir(SCRIPTS.parent)
     if write_manifest():
         print("data/stores.json updated from scripts/stores.py")
-    snapshot = feed_health.snapshot_feeds()
+    snapshot = feed_health.snapshot_feeds(stores)
     start = time.monotonic()
-    results = run_lanes(LANES)
+    results = run_lanes(lanes_from(stores))
     table = summary_table(results, time.monotonic() - start)
     print(table)
 
     # Compare every new feed with the one it replaced; restore broken ones.
-    reports = feed_health.check_feeds(snapshot, scraper_status(results))
+    reports = feed_health.check_feeds(snapshot, scraper_status(results, stores), stores)
     feed_health.update_history(reports, datetime.now().astimezone().isoformat(timespec="seconds"))
     health_table = feed_health.summary_table(reports)
     print(health_table)
