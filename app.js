@@ -100,6 +100,7 @@ function normalizedStore(value) {
   if (folded.includes("vesko")) return { key: "vesko", name: "Vesko" };
   if (folded.includes("aibe")) return { key: "aibe", name: "Aibe" };
   if (folded.includes("citro")) return { key: "citro", name: "Citro" };
+  if (folded === "beta" || folded.startsWith("beta ")) return { key: "beta", name: "Beta" };
   if (folded.includes("spar")) return { key: "spar", name: "Spar" };
   return { key: folded.replace(/[^a-z0-9]+/g, "-") || "other", name };
 }
@@ -614,6 +615,7 @@ async function init() {
     ["data/aibe-offers.json", "Aibe"],
     ["data/citro-offers.json", "Citro"],
     ["data/spar-offers.json", "Spar"],
+    ["data/beta-offers.json", "Beta"],
   ];
   const results = await Promise.allSettled(sources.map(([path, store]) => fetchFeed(path, store)));
   const feeds = [];

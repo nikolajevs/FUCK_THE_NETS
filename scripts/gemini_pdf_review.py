@@ -113,7 +113,7 @@ class GeminiClient:
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             return -1, None, str(exc)
 
-    def generate(self, image_png: bytes, prompt: str) -> dict | None:
+    def generate(self, image_bytes: bytes, prompt: str, mime_type: str = "image/png") -> dict | None:
         """Return parsed JSON content, or None on any failure (caller falls back)."""
         if self.quota_exhausted:
             return None
@@ -125,14 +125,18 @@ class GeminiClient:
         body = {
             "contents": [{
                 "parts": [
-                    {"inline_data": {"mime_type": "image/png",
-                                     "data": base64.b64encode(image_png).decode("ascii")}},
+                    {"inline_data": {"mime_type": mime_type,
+                                     "data": base64.b64encode(image_bytes).decode("ascii")}},
                     {"text": prompt},
                 ]
             }],
             "generationConfig": {"temperature": 0, "responseMimeType": "application/json"},
         }
         for attempt in range(3):
+            if self.max_requests and self.requests_used >= self.max_requests:
+                print("Gemini run budget reached; remaining cards go to local Qwen")
+                self.quota_exhausted = True
+                return None
             wait = self.min_interval - (time.monotonic() - self._last_request)
             if wait > 0:
                 self._sleep(wait)

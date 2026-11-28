@@ -12,6 +12,7 @@ Currently supported:
 | Aibe    | `scripts/scrape_aibe.py`   | `data/aibe-offers.json` | Production (SSR cards)        |
 | Citro   | `scripts/scrape_citro.py`  | `data/citro-offers.json`| Production (PDF newspaper)    |
 | Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Production (vision prices)    |
+| Beta    | `scripts/scrape_beta.py`  | `data/beta-offers.json` | Catalogue link (monthly)      |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
 | Rimi    | `scripts/scrape_rimi_booklets.py` | `data/rimi-offers.json` | Production (daily GH Actions) |
@@ -106,6 +107,23 @@ python scripts/scrape_aibe.py
 python scripts/scrape_citro.py
 python scripts/scrape_spar.py
 ```
+
+---
+
+## Beta
+
+Beta has no public structured product feed; its current monthly booklet is an
+image-only catalogue listed on MazaCena.lv. The scraper reads every page with
+Gemini Flash-Lite, then uses the workflow's local Qwen3-VL fallback for pages
+Gemini could not resolve. Only products with a legible sale price and high
+confidence are published; unclear cards stay in `reviewOffers`.
+
+```bash
+python scripts/scrape_beta.py
+```
+
+Output: `data/beta-offers.json` (refreshed daily by the same workflow as Maxima;
+the shared Gemini daily budget applies).
 
 ---
 

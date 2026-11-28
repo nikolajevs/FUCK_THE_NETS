@@ -112,6 +112,7 @@ button, select { cursor: pointer; }
 .retailer-tag.aibe { background: #fff0e8; color: #c2410c; }
 .retailer-tag.citro { background: #e9effc; color: #1d4ed8; }
 .retailer-tag.spar { background: #eaf6ec; color: #15803d; }
+.retailer-tag.beta { background: #f2ecff; color: #653a91; }
 .product-heading h3 { margin: 0; color: #23352a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
 .product-category { display: inline-block; margin-top: 5px; padding: 3px 6px; border-radius: 5px; background: #eff6f0; color: #53745d; font-size: 8px; font-weight: 700; line-height: 1.3; }
 .product-meta { margin: 4px 0 0; color: #87938a; font-size: 9px; }

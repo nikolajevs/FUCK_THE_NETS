@@ -11,6 +11,7 @@ const FEED_SOURCES = [
   { file: "aibe-offers.json", path: "data/aibe-offers.json", store: "Aibe" },
   { file: "citro-offers.json", path: "data/citro-offers.json", store: "Citro" },
   { file: "spar-offers.json", path: "data/spar-offers.json", store: "Spar" },
+  { file: "beta-offers.json", path: "data/beta-offers.json", store: "Beta" },
 ];
 
 const state = {
