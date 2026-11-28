@@ -12,7 +12,45 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      run_scrapers: ${{ steps.path-filter.outputs.run_scrapers }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - id: path-filter
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          run_scrapers=true
+
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]] \
+            && [[ "$BEFORE_SHA" =~ ^[0-9a-f]{40}$ ]] \
+            && git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            if changed_files="$(git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA")"; then
+              if [[ -n "$changed_files" ]]; then
+                run_scrapers=false
+                while IFS= read -r path; do
+                  case "$path" in
+                    index.html|admin.html|styles.css|admin.css|app.js|admin.js|README.md|.github/workflows/maxima.yml) ;;
+                    *) run_scrapers=true; break ;;
+                  esac
+                done <<< "$changed_files"
+              fi
+            fi
+          fi
+
+          echo "run_scrapers=$run_scrapers" >> "$GITHUB_OUTPUT"
+          echo "Run store scrapers: $run_scrapers"
+      - name: Validate frontend JavaScript
+        run: node --check app.js
+
   update-data:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.run_scrapers == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -39,8 +77,6 @@ jobs:
           python -m py_compile scripts/booklet_images.py
       - name: Run scraper tests
         run: python -m unittest discover -s tests -v
-      - name: Validate frontend JavaScript
-        run: node --check app.js
       - name: Collect current offers and price history
         run: python scripts/scrape_maxima.py
         env:
@@ -213,7 +249,8 @@ jobs:
           fi
 
   build-pages:
-    needs: update-data
+    needs: [detect-changes, update-data]
+    if: ${{ always() && !cancelled() && needs.detect-changes.result == 'success' && (needs.update-data.result == 'success' || needs.update-data.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
