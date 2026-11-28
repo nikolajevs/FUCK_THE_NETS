@@ -10,9 +10,12 @@ verifiable discount are sent to ``reviewOffers`` rather than shown as offers.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import os
 import re
+import shutil
 import sys
 import time
 import unicodedata
@@ -328,7 +331,97 @@ def _match_price_details(anchors: list[dict], details: list[dict],
     return result
 
 
-def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
+def _review_evidence(page, anchor: dict, regular_price: float | None,
+                     pdf_digest: str) -> dict:
+    """Keep the exact card crop and text-layer prices for later vision review."""
+    bounds = page.rect
+    crop = fitz.Rect(
+        max(bounds.x0, anchor["cx"] - 75),
+        max(bounds.y0, anchor["y0"] - 18),
+        min(bounds.x1, anchor["cx"] + 75),
+        min(bounds.y1, anchor["y1"] + 112),
+    )
+    nearby = [
+        span for span in _page_spans(page)
+        if span["x1"] >= crop.x0 and span["x0"] <= crop.x1
+        and span["y1"] >= crop.y0 and span["y0"] <= crop.y1
+    ]
+    nearby.sort(key=lambda item: (item["y0"], item["x0"]))
+    parsed_prices = [anchor["value"]]
+    if regular_price is not None:
+        parsed_prices.append(regular_price)
+    return {
+        "pdfSha256": pdf_digest,
+        "pdfCrop": [round(value, 2) for value in crop],
+        "parsedPrices": parsed_prices,
+        "rawCellText": " ".join(span["text"] for span in nearby)[:600],
+    }
+
+
+def _vision_resolved(offer: dict) -> bool:
+    evidence = offer.get("reviewEvidence") or {}
+    suggestion = evidence.get("visionAssist") or {}
+    try:
+        confidence = float(suggestion.get("confidence", 0))
+    except (TypeError, ValueError):
+        return False
+    expected_price = offer.get("price")
+    expected_regular = offer.get("regularPrice")
+    suggested_price = suggestion.get("price")
+    suggested_regular = suggestion.get("regularPrice")
+    name = suggestion.get("productName")
+    evidence_text = suggestion.get("evidence")
+    if not isinstance(name, str) or not isinstance(evidence_text, str):
+        return False
+    name_words = set(re.findall(r"[a-z0-9āčēģīķļņšūž]{3,}", _fold(name)))
+    evidence_words = set(re.findall(r"[a-z0-9āčēģīķļņšūž]{3,}", _fold(evidence_text)))
+    name_words -= {"komplekts", "veidi", "veids", "gab", "iepak", "dažādi"}
+    shared_name_words = name_words & evidence_words
+    needed_name_words = 1 if len(name_words) <= 1 else 2
+    return (
+        suggestion.get("decision") == "resolved"
+        and len(name.strip()) >= 5
+        and confidence >= 0.9
+        and len(shared_name_words) >= needed_name_words
+        and isinstance(suggested_price, (int, float))
+        and round(float(suggested_price), 2) == round(float(expected_price), 2)
+        and (
+            expected_regular is None
+            or (
+                isinstance(suggested_regular, (int, float))
+                and round(float(suggested_regular), 2) == round(float(expected_regular), 2)
+            )
+        )
+    )
+
+
+def _promote_vision_resolutions(reviews: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Promote only vision-reviewed names whose prices match the PDF text layer."""
+    promoted: list[dict] = []
+    unresolved: list[dict] = []
+    for offer in reviews:
+        evidence = offer.get("reviewEvidence") or {}
+        suggestion = evidence.get("visionAssist") or {}
+        expected_price = offer.get("price")
+        expected_regular = offer.get("regularPrice")
+        has_discount = (
+            isinstance(expected_regular, (int, float)) and expected_regular > expected_price
+        ) or bool(offer.get("discountPercent"))
+        if (
+            offer.get("reviewReason") == "weak_name"
+            and _vision_resolved(offer)
+            and has_discount
+        ):
+            offer["name"] = suggestion["productName"].strip()
+            offer.pop("reviewReason", None)
+            promoted.append(offer)
+        else:
+            unresolved.append(offer)
+    return promoted, unresolved
+
+
+def extract_page(page, page_num: int, booklet: dict,
+                 pdf_digest: str) -> tuple[list[dict], list[dict]]:
     """Extract discount cards from one positioned-text PDF page."""
     raw_spans = _page_spans(page)
     if not raw_spans:
@@ -387,6 +480,10 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
             continue
 
         identity = f"{_fold(name)}|{anchor['value']:.2f}|{regular_price}"
+        if not name:
+            # Several cards can share a price and regular price on one page.
+            # Include their PDF position so unresolved cards keep distinct IDs.
+            identity += f"|{anchor['cx']:.1f}|{anchor['cy']:.1f}"
         if identity in seen:
             continue
         seen.add(identity)
@@ -425,9 +522,13 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
 
         if len(name) < 5 or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", normalized_name)) < 1:
             offer["reviewReason"] = "weak_name"
+            offer["reviewEvidence"] = _review_evidence(
+                page, anchor, regular_price, pdf_digest)
             reviews.append(offer)
         elif regular_price is None and discount_percent is None:
             offer["reviewReason"] = "no_discount"
+            offer["reviewEvidence"] = _review_evidence(
+                page, anchor, regular_price, pdf_digest)
             reviews.append(offer)
         else:
             offers.append(offer)
@@ -441,9 +542,11 @@ def extract_offers(pdf_bytes: bytes, booklet: dict) -> tuple[list[dict], list[di
     offers: list[dict] = []
     reviews: list[dict] = []
     page_count = len(doc)
+    pdf_digest = hashlib.sha256(pdf_bytes).hexdigest()
     try:
         for page_num, page in enumerate(doc):
-            page_offers, page_reviews = extract_page(page, page_num, booklet)
+            page_offers, page_reviews = extract_page(
+                page, page_num, booklet, pdf_digest)
             offers.extend(page_offers)
             reviews.extend(page_reviews)
     finally:
@@ -452,7 +555,71 @@ def extract_offers(pdf_bytes: bytes, booklet: dict) -> tuple[list[dict], list[di
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--vision-review", action="store_true",
+        help="review ambiguous PDF cards with Gemini and local Qwen when configured",
+    )
+    args = parser.parse_args()
+
+    gemini_client = None
+    gemini_ledger = None
+    gemini_budget = 0
+    qwen_available = False
+    if args.vision_review:
+        try:
+            from scripts.gemini_pdf_review import (
+                DEFAULT_MODEL, GeminiClient, _daily_budget, _load_ledger,
+                _save_ledger, add_gemini_review_suggestions, load_api_key,
+            )
+            from scripts.qwen_pdf_review import add_qwen_review_suggestions
+        except ModuleNotFoundError:
+            from gemini_pdf_review import (
+                DEFAULT_MODEL, GeminiClient, _daily_budget, _load_ledger,
+                _save_ledger, add_gemini_review_suggestions, load_api_key,
+            )
+            from qwen_pdf_review import add_qwen_review_suggestions
+
+        api_key = load_api_key()
+        if api_key:
+            ledger_day = time.strftime("%Y-%m-%d", time.gmtime())
+            gemini_ledger = _load_ledger(ledger_day)
+            gemini_budget = _daily_budget()
+            remaining = max(0, gemini_budget - int(gemini_ledger.get("requests", 0)))
+            run_cap = int(os.environ.get("GEMINI_MAX_REQUESTS", "40"))
+            effective_cap = min(run_cap or remaining, remaining)
+            if effective_cap > 0:
+                gemini_client = GeminiClient(
+                    api_key,
+                    model=os.environ.get("GEMINI_REVIEW_MODEL", DEFAULT_MODEL),
+                    max_requests=effective_cap,
+                    min_interval=float(os.environ.get("GEMINI_MIN_INTERVAL", "4.5")),
+                )
+            else:
+                print("Gemini review skipped: daily request budget exhausted")
+        else:
+            print("Gemini review skipped: no API key is configured")
+
+        qwen_cli = os.environ.get("QWEN_LLAMA_CLI", "llama-mtmd-cli")
+        qwen_executable = shutil.which(qwen_cli) or (qwen_cli if Path(qwen_cli).is_file() else None)
+        qwen_model = Path(os.environ.get("QWEN_MODEL_PATH", ""))
+        qwen_projector = Path(os.environ.get("QWEN_MMPROJ_PATH", ""))
+        qwen_available = bool(qwen_executable and qwen_model.is_file() and qwen_projector.is_file())
+        if not qwen_available:
+            print("Local Qwen skipped: llama.cpp and Qwen model files are not configured")
+
     sess = session()
+    previous_vision: dict[str, dict] = {}
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        previous = {}
+    previous_items = previous.get("reviewOffers", []) + previous.get("offers", [])
+    for item in previous_items:
+        evidence = item.get("reviewEvidence") or {}
+        if isinstance(evidence.get("visionAssist"), dict):
+            previous_vision[str(item.get("offerId", ""))] = evidence
+
     booklets = discover_booklets(sess)
     if not booklets:
         raise RuntimeError("No active Rimi in-store promotional booklets found")
@@ -473,6 +640,34 @@ def main() -> None:
                 print(f"  Skipping future booklet: {meta['name']}")
                 continue
             booklet_offers, booklet_reviews, page_count = extract_offers(pdf_bytes, meta)
+            for offer in booklet_reviews:
+                evidence = offer.get("reviewEvidence") or {}
+                old_evidence = previous_vision.get(str(offer.get("offerId", "")))
+                if (
+                    old_evidence
+                    and old_evidence.get("pdfSha256") == evidence.get("pdfSha256")
+                    and old_evidence.get("pdfCrop") == evidence.get("pdfCrop")
+                ):
+                    evidence["visionAssist"] = old_evidence["visionAssist"]
+                    if "visionPriceCrossCheck" in old_evidence:
+                        evidence["visionPriceCrossCheck"] = old_evidence["visionPriceCrossCheck"]
+                    offer["reviewEvidence"] = evidence
+
+            if args.vision_review and booklet_reviews:
+                reviewable = [
+                    offer for offer in booklet_reviews
+                    if offer.get("reviewReason") in {"weak_name", "no_discount"}
+                    and not _vision_resolved(offer)
+                ]
+                if gemini_client and reviewable:
+                    add_gemini_review_suggestions(pdf_bytes, reviewable, gemini_client)
+                if qwen_available:
+                    qwen_pending = [offer for offer in reviewable if not _vision_resolved(offer)]
+                    if qwen_pending:
+                        add_qwen_review_suggestions(pdf_bytes, qwen_pending)
+
+            vision_promoted, booklet_reviews = _promote_vision_resolutions(booklet_reviews)
+            booklet_offers.extend(vision_promoted)
             offers.extend(booklet_offers)
             reviews.extend(booklet_reviews)
             meta["pdfPages"] = page_count
@@ -494,6 +689,10 @@ def main() -> None:
 
     if not offers and not reviews:
         raise RuntimeError("No Rimi booklet offers were extracted")
+    if gemini_client and gemini_ledger is not None:
+        gemini_ledger["requests"] = int(gemini_ledger.get("requests", 0)) + gemini_client.requests_used
+        _save_ledger(gemini_ledger)
+        print(f"Gemini usage today: {gemini_ledger['requests']}/{gemini_budget}")
     if failed:
         print("Warning: some Rimi booklets could not be refreshed: " + ", ".join(failed),
               file=sys.stderr)

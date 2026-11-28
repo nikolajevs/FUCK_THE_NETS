@@ -1,7 +1,7 @@
 {
   "source": "https://www.rimi.lv/akcijas-un-bukleti",
   "store": "rimi",
-  "updatedAt": "2026-11-28T09:38:02+02:00",
+  "updatedAt": "2026-11-28T10:05:59+02:00",
   "campaigns": [
     {
       "id": "rimi-rimi-akciju-buklets-20262411-20263011-nr232",
@@ -41,8 +41,8 @@
       "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
       "validFrom": "2026-11-17",
       "validUntil": "2027-01-04",
-      "offerVariants": 269,
-      "reviewOffers": 13,
+      "offerVariants": 284,
+      "reviewOffers": 0,
       "complete": true
     },
     {
@@ -246,6 +246,110 @@
       "canonicalProductId": "1-adventes-iepak-sveces-count-4-63555797e75e",
       "identityKey": "1 adventes iepak sveces|count:4",
       "packageSize": "4 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-91810014",
+      "name": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+      "price": 1.49,
+      "regularPrice": 2.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          293.86,
+          57.81,
+          443.86,
+          217.62
+        ],
+        "parsedPrices": [
+          1.49,
+          2.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,49 2,99",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-91810014",
+          "decision": "resolved",
+          "productName": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+          "price": 1.49,
+          "regularPrice": 2.99,
+          "confidence": 1.0,
+          "evidence": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.49,
+            2.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "25-5-adventes-cm-pamatne-vainaga-x-count-1-9be9dbc2b271",
+      "identityKey": "25 5 adventes cm pamatne vainaga x|count:1",
+      "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-1a3bedc6",
+      "name": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+      "price": 2.49,
+      "regularPrice": 4.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          411.05,
+          60.98,
+          561.05,
+          220.79
+        ],
+        "parsedPrices": [
+          2.49,
+          4.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 2,49 4,99 2 PĒRKOT VISMAZ",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-1a3bedc6",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+          "evidence": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+          "reason": "The product name, current price (2.49), and regular price (4.99) are clearly visible on the flyer card.",
+          "price": 2.49,
+          "regularPrice": 4.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.49,
+            4.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "35-5-5-adventes-cm-pamatne-vainaga-x-count-1-1b49412c7616",
+      "identityKey": "35 5 5 adventes cm pamatne vainaga x|count:1",
+      "packageSize": "1 gab."
     },
     {
       "offerId": "rimi-rimi-christmas-2026-lv-p17-532b0458",
@@ -691,6 +795,59 @@
       "validUntil": "2027-01-04",
       "store": "rimi",
       "discountPercent": 40,
+      "canonicalProductId": "blasteris-deadeye-elite-nerf-ops-rebel-count-1-28bdfd0c1b36",
+      "identityKey": "blasteris deadeye elite nerf ops rebel|count:1",
+      "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p30-06afe1d2",
+      "name": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+      "price": 20.99,
+      "regularPrice": 34.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 30,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 40,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          702.59,
+          145.48,
+          841.89
+        ],
+        "parsedPrices": [
+          20.99,
+          34.99
+        ],
+        "rawCellText": "-40% 20,99 Blasteris NERF ELITE REBEL 34,99 OPS DEADEYE, 1 gab. 30",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p30-06afe1d2",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+          "evidence": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+          "reason": "Successfully parsed product name, promotional price, and regular price from the card and text.",
+          "price": 20.99,
+          "regularPrice": 34.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            20.99,
+            34.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
       "canonicalProductId": "blasteris-deadeye-elite-nerf-ops-rebel-count-1-28bdfd0c1b36",
       "identityKey": "blasteris deadeye elite nerf ops rebel|count:1",
       "packageSize": "1 gab."
@@ -3261,6 +3418,110 @@
       "packageSize": "30 g"
     },
     {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-cd42abaf",
+      "name": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+      "price": 2.99,
+      "regularPrice": 5.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          410.44,
+          374.04,
+          560.44,
+          533.85
+        ],
+        "parsedPrices": [
+          2.99,
+          5.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 2,99 5,99 2 PĒRKOT",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-cd42abaf",
+          "decision": "resolved",
+          "productName": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+          "price": 2.99,
+          "regularPrice": 5.99,
+          "confidence": 1.0,
+          "evidence": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.99,
+            5.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "dazadi-decoris-dekoracijas-kaltetas-veidi-count-1-bcce059654e8",
+      "identityKey": "dazadi decoris dekoracijas kaltetas veidi|count:1",
+      "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-659cfa0c",
+      "name": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+      "price": 3.49,
+      "regularPrice": 6.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          196.81,
+          141.11,
+          356.62
+        ],
+        "parsedPrices": [
+          3.49,
+          6.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 3,49 6,99 2 PĒRKOT VISMAZ",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-659cfa0c",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+          "evidence": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+          "reason": "Parsed product name, price, and regular price successfully.",
+          "price": 3.49,
+          "regularPrice": 6.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.49,
+            6.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "2-decoris-dekoraciju-kaltetu-komplekts-veidi-count-1-8c5259a483d1",
+      "identityKey": "2 decoris dekoraciju kaltetu komplekts veidi|count:1",
+      "packageSize": "1 gab."
+    },
+    {
       "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p25-b3a09673",
       "name": "Kanēļa maizītes LATVIJAS MAIZNIEKS, 2 x 320 g",
       "price": 4.99,
@@ -3424,6 +3685,59 @@
       "canonicalProductId": "edubebo-koka-lellu-maja-count-1-8e760bfebe66",
       "identityKey": "edubebo koka lellu maja|count:1",
       "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-90508db2",
+      "name": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+      "price": 1.49,
+      "regularPrice": 2.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          408.85,
+          212.63,
+          558.85,
+          372.44
+        ],
+        "parsedPrices": [
+          1.49,
+          2.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,49 2,99 2 PĒRKOT VISMAZ",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-90508db2",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+          "evidence": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+          "reason": "The product name, current price, and regular price are clearly legible from the image and text.",
+          "price": 1.49,
+          "regularPrice": 2.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.49,
+            2.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "1-11-cm-iepak-koka-komplekts-paliktnu-count-6-ba6978f20fa8",
+      "identityKey": "1 11 cm iepak koka komplekts paliktnu|count:6",
+      "packageSize": "6 gab."
     },
     {
       "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p11-1df5b3d8",
@@ -3630,6 +3944,59 @@
       "canonicalProductId": "3-kremsiers-rasa-veidi-mass-180g-35163d46e36f",
       "identityKey": "3 kremsiers rasa veidi|mass:180g",
       "packageSize": "180 g"
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p16-20fff3f1",
+      "name": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+      "price": 3.79,
+      "regularPrice": 7.49,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 16,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 50,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          704.8,
+          136.9,
+          841.89
+        ],
+        "parsedPrices": [
+          3.79,
+          7.49
+        ],
+        "rawCellText": "-50% 3,79 Krūze ALTOM DESIGN 7,49 GINGERBREAD, 340 ml, 1 gab. 16",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p16-20fff3f1",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+          "evidence": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+          "reason": "The product name, current price (3.79), and regular price (7.49) are clearly extracted from the flyer text.",
+          "price": 3.79,
+          "regularPrice": 7.49,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.79,
+            7.49
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "altom-design-gingerbread-kruze-count-1-volume-340ml-501e01cfe136",
+      "identityKey": "altom design gingerbread kruze|count:1 volume:340ml",
+      "packageSize": "1 gab., 340 ml"
     },
     {
       "offerId": "rimi-rimi-christmas-2026-lv-p16-bfafe3c4",
@@ -4234,6 +4601,59 @@
       "packageSize": ""
     },
     {
+      "offerId": "rimi-rimi-christmas-2026-lv-p36-796d8014",
+      "name": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+      "price": 13.99,
+      "regularPrice": 19.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 36,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 30,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          169.54,
+          375.23,
+          319.54,
+          535.04
+        ],
+        "parsedPrices": [
+          13.99,
+          19.99
+        ],
+        "rawCellText": "-30% 10954 LEGO® DUPLO® LEGO® DUPLO® Radoši krāsainā Ciparu vilciens – 13,99 mācies skaitt Vecums: 1½+ 19,99",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p36-796d8014",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+          "evidence": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+          "reason": "Successfully extracted product name, promotional price, and regular price from the visible flyer crop.",
+          "price": 13.99,
+          "regularPrice": 19.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            13.99,
+            19.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "ciparu-duplo-lego-macies-skaitit-vilciens-485001eb41a6",
+      "identityKey": "ciparu duplo lego macies skaitit vilciens|",
+      "packageSize": ""
+    },
+    {
       "offerId": "rimi-rimi-christmas-2026-lv-p36-5c279143",
       "name": "LEGO® DUPLO® Radoši krāsainā kārba Vecums: 1½",
       "price": 13.99,
@@ -4383,6 +4803,59 @@
       "discountPercent": 30,
       "canonicalProductId": "7-ferma-lego-minecraf-vecums-vistu-c2396c80a0c9",
       "identityKey": "7 ferma lego minecraf vecums vistu|",
+      "packageSize": ""
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p37-741a065c",
+      "name": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+      "price": 22.39,
+      "regularPrice": 31.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 37,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 30,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          167.83,
+          747.87,
+          317.83,
+          841.89
+        ],
+        "parsedPrices": [
+          22.39,
+          31.99
+        ],
+        "rawCellText": "-30% 71854 LEGO® NINJAGO® NINJAGO® 22,39 Nindzju tēlu Cole Misiju robots 15. gadadienas un Pūķis Zane 31,99 apskates modelis Vecums: 7+",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p37-741a065c",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+          "evidence": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+          "reason": "Successfully extracted product name and prices from the card and surrounding text.",
+          "price": 22.39,
+          "regularPrice": 31.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            22.39,
+            31.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "cole-lego-misiju-ninjago-pukis-robots-un-zane-06f413e8933f",
+      "identityKey": "cole lego misiju ninjago pukis robots un zane|",
       "packageSize": ""
     },
     {
@@ -5113,6 +5586,59 @@
       "discountPercent": 50,
       "canonicalProductId": "12-12-15-5-5-5-cm-karba-metala-x-x-count-1-4e4986162728",
       "identityKey": "12 12 15 5 5 5 cm karba metala x x|count:1",
+      "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p13-9a3ed54d",
+      "name": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+      "price": 1.79,
+      "regularPrice": 3.59,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 13,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 50,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          701.85,
+          136.77,
+          841.89
+        ],
+        "parsedPrices": [
+          1.79,
+          3.59
+        ],
+        "rawCellText": "-50% 1,79 Metāla kārba, 3,59 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab. Preču pamata cena un piedāvājums veikalos atšķiras. Ar aktuālo preču pamata cenu un piedāvājumu aicinām iepazīties veikalā.",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p13-9a3ed54d",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+          "evidence": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+          "reason": "Successfully extracted product name, promotional price, and regular price from the image and surrounding text.",
+          "price": 1.79,
+          "regularPrice": 3.59,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.79,
+            3.59
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "12-17-5-5-7-cm-dazadi-karba-metala-veidi-x-x-count-1-898cdde401cd",
+      "identityKey": "12 17 5 5 7 cm dazadi karba metala veidi x x|count:1",
       "packageSize": "1 gab."
     },
     {
@@ -7870,6 +8396,57 @@
       "packageSize": "1 gab."
     },
     {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-314f1107",
+      "name": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+      "price": 1.75,
+      "regularPrice": 3.49,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          407.69,
+          539.82,
+          557.69,
+          699.63
+        ],
+        "parsedPrices": [
+          1.75,
+          3.49
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,75 3,49 2 PĒRKOT",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-314f1107",
+          "decision": "resolved",
+          "productName": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+          "price": 1.75,
+          "regularPrice": 3.49,
+          "confidence": 1.0,
+          "evidence": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.75,
+            3.49
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "20-balta-gaismas-led-silti-stieples-sudraba-virtene-count-1-fb587aff4752",
+      "identityKey": "20 balta gaismas led silti stieples sudraba virtene|count:1",
+      "packageSize": "1 gab."
+    },
+    {
       "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p17-89ae7f77",
       "name": "Sulas dzērienu komplekts OGA SHOT, 8 x 60 ml",
       "price": 6.99,
@@ -8989,6 +9566,59 @@
       "packageSize": ""
     },
     {
+      "offerId": "rimi-rimi-christmas-2026-lv-p19-07a6f651",
+      "name": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+      "price": 2.24,
+      "regularPrice": 4.49,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 19,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 50,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          483.72,
+          138.87,
+          643.53
+        ],
+        "parsedPrices": [
+          2.24,
+          4.49
+        ],
+        "rawCellText": "-50% cepšanas piederumu komplekts, 2,24 1 gab. 4,49",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p19-07a6f651",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+          "evidence": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+          "reason": "Product name and pricing clearly visible on card and text",
+          "price": 2.24,
+          "regularPrice": 4.49,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            2.24,
+            4.49
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "cepsanas-komplekts-piederumu-ziemassvetku-count-1-1c9a17622720",
+      "identityKey": "cepsanas komplekts piederumu ziemassvetku|count:1",
+      "packageSize": "1 gab."
+    },
+    {
       "offerId": "rimi-rimi-christmas-2026-lv-p18-71821b58",
       "name": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
       "price": 2.64,
@@ -9214,6 +9844,59 @@
       "packageSize": "1 gab."
     },
     {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-fdd20abb",
+      "name": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+      "price": 1.99,
+      "regularPrice": 3.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          342.11,
+          138.76,
+          501.92
+        ],
+        "parsedPrices": [
+          1.99,
+          3.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,99 3,99 2 PĒRKOT",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-fdd20abb",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+          "evidence": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+          "reason": "Successfully extracted product name, promotional price, and regular price from the card.",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.99,
+            3.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "40-balta-gaismas-led-silti-virtene-zvaigznu-count-1-7b005cb5acc3",
+      "identityKey": "40 balta gaismas led silti virtene zvaigznu|count:1",
+      "packageSize": "1 gab."
+    },
+    {
       "offerId": "rimi-rimi-christmas-2026-lv-p33-6cba3757",
       "name": "Zīmēšanas robots, 1 gab.",
       "price": 9.59,
@@ -9305,6 +9988,59 @@
       "canonicalProductId": "2-cedaras-nams-siera-siers-veidi-mass-200g-2521f20acf52",
       "identityKey": "2 cedaras nams siera siers veidi|mass:200g",
       "packageSize": "200 g"
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p2-64a58bd2",
+      "name": "Čiekuri",
+      "price": 1.99,
+      "regularPrice": 3.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 2,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "multiBuy": "2",
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          59.63,
+          138.76,
+          219.44
+        ],
+        "parsedPrices": [
+          1.99,
+          3.99
+        ],
+        "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,99 3,99 2 PĒRKOT VISMAZ CENA PAR 1 GAB. 3,49",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-64a58bd2",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Čiekuri",
+          "evidence": "Čiekuri",
+          "reason": "The product name 'Čiekuri' and prices (1,99 and 3,99) are clearly readable from the flyer card.",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            1.99,
+            3.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
+      "canonicalProductId": "ciekuri-6ae37e0e66db",
+      "identityKey": "ciekuri|",
+      "packageSize": ""
     },
     {
       "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p27-babe3e14",
@@ -9416,6 +10152,59 @@
       "validUntil": "2027-01-04",
       "store": "rimi",
       "discountPercent": 30,
+      "canonicalProductId": "gold-idc-institute-kermena-komplekts-kopsanas-count-1-12e40191810d",
+      "identityKey": "gold idc institute kermena komplekts kopsanas|count:1",
+      "packageSize": "1 gab."
+    },
+    {
+      "offerId": "rimi-rimi-christmas-2026-lv-p22-cdd77db2",
+      "name": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+      "price": 19.59,
+      "regularPrice": 27.99,
+      "requiresCard": false,
+      "onlyInApp": false,
+      "campaign": "Rimi Christmas 2026 LV",
+      "campaignId": "rimi-rimi-christmas-2026-lv",
+      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+      "pdfPage": 22,
+      "validFrom": "2026-11-17",
+      "validUntil": "2027-01-04",
+      "store": "rimi",
+      "discountPercent": 30,
+      "reviewEvidence": {
+        "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+        "pdfCrop": [
+          0.0,
+          204.26,
+          143.84,
+          364.07
+        ],
+        "parsedPrices": [
+          19.59,
+          27.99
+        ],
+        "rawCellText": "-30% 19,59 Ķermeņa kopšanas komplekts IDC 27,99 INSTITUTE GOLD, 1 gab. -30% 10,49",
+        "visionAssist": {
+          "offerId": "rimi-rimi-christmas-2026-lv-p22-cdd77db2",
+          "decision": "resolved",
+          "confidence": 1.0,
+          "productName": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+          "evidence": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+          "reason": "The top card clearly shows a 30% discount, sale price 19,59, and regular price 27,99, with associated product text on the right.",
+          "price": 19.59,
+          "regularPrice": 27.99,
+          "requiresPaldies": false,
+          "model": "Gemini + manual PDF crop verification"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            19.59,
+            27.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      },
       "canonicalProductId": "gold-idc-institute-kermena-komplekts-kopsanas-count-1-12e40191810d",
       "identityKey": "gold idc institute kermena komplekts kopsanas|count:1",
       "packageSize": "1 gab."
@@ -10085,6 +10874,152 @@
       ],
       "offerCount": 1,
       "lowestPrice": 5.99,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "25-5-adventes-cm-pamatne-vainaga-x-count-1-9be9dbc2b271",
+      "canonicalProductId": "25-5-adventes-cm-pamatne-vainaga-x-count-1-9be9dbc2b271",
+      "identityKey": "25 5 adventes cm pamatne vainaga x|count:1",
+      "packageSize": "1 gab.",
+      "name": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+      "aliases": [
+        "Adventes vainaga pamatne, 25 x 5 cm, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-91810014",
+          "name": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+          "price": 1.49,
+          "regularPrice": 2.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              293.86,
+              57.81,
+              443.86,
+              217.62
+            ],
+            "parsedPrices": [
+              1.49,
+              2.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,49 2,99",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-91810014",
+              "decision": "resolved",
+              "productName": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+              "price": 1.49,
+              "regularPrice": 2.99,
+              "confidence": 1.0,
+              "evidence": "Adventes vainaga pamatne, 25 x 5 cm, 1 gab.",
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.49,
+                2.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "25-5-adventes-cm-pamatne-vainaga-x-count-1-9be9dbc2b271",
+          "identityKey": "25 5 adventes cm pamatne vainaga x|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.49,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "35-5-5-adventes-cm-pamatne-vainaga-x-count-1-1b49412c7616",
+      "canonicalProductId": "35-5-5-adventes-cm-pamatne-vainaga-x-count-1-1b49412c7616",
+      "identityKey": "35 5 5 adventes cm pamatne vainaga x|count:1",
+      "packageSize": "1 gab.",
+      "name": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+      "aliases": [
+        "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-1a3bedc6",
+          "name": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+          "price": 2.49,
+          "regularPrice": 4.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              411.05,
+              60.98,
+              561.05,
+              220.79
+            ],
+            "parsedPrices": [
+              2.49,
+              4.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 2,49 4,99 2 PĒRKOT VISMAZ",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-1a3bedc6",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+              "evidence": "Adventes vainaga pamatne, 35 x 5,5 cm, 1 gab.",
+              "reason": "The product name, current price (2.49), and regular price (4.99) are clearly visible on the flyer card.",
+              "price": 2.49,
+              "regularPrice": 4.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                2.49,
+                4.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "35-5-5-adventes-cm-pamatne-vainaga-x-count-1-1b49412c7616",
+          "identityKey": "35 5 5 adventes cm pamatne vainaga x|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 2.49,
       "highestDiscountPercent": null,
       "campaigns": [
         "Rimi Christmas 2026 LV"
@@ -11013,9 +11948,62 @@
           "canonicalProductId": "blasteris-deadeye-elite-nerf-ops-rebel-count-1-28bdfd0c1b36",
           "identityKey": "blasteris deadeye elite nerf ops rebel|count:1",
           "packageSize": "1 gab."
+        },
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p30-06afe1d2",
+          "name": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+          "price": 20.99,
+          "regularPrice": 34.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 30,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 40,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              702.59,
+              145.48,
+              841.89
+            ],
+            "parsedPrices": [
+              20.99,
+              34.99
+            ],
+            "rawCellText": "-40% 20,99 Blasteris NERF ELITE REBEL 34,99 OPS DEADEYE, 1 gab. 30",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p30-06afe1d2",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+              "evidence": "Blasteris NERF ELITE REBEL OPS DEADEYE, 1 gab.",
+              "reason": "Successfully parsed product name, promotional price, and regular price from the card and text.",
+              "price": 20.99,
+              "regularPrice": 34.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                20.99,
+                34.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "blasteris-deadeye-elite-nerf-ops-rebel-count-1-28bdfd0c1b36",
+          "identityKey": "blasteris deadeye elite nerf ops rebel|count:1",
+          "packageSize": "1 gab."
         }
       ],
-      "offerCount": 1,
+      "offerCount": 2,
       "lowestPrice": 8.39,
       "highestDiscountPercent": 40,
       "campaigns": [
@@ -16247,6 +17235,152 @@
       "storeFormats": []
     },
     {
+      "productId": "dazadi-decoris-dekoracijas-kaltetas-veidi-count-1-bcce059654e8",
+      "canonicalProductId": "dazadi-decoris-dekoracijas-kaltetas-veidi-count-1-bcce059654e8",
+      "identityKey": "dazadi decoris dekoracijas kaltetas veidi|count:1",
+      "packageSize": "1 gab.",
+      "name": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+      "aliases": [
+        "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-cd42abaf",
+          "name": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+          "price": 2.99,
+          "regularPrice": 5.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              410.44,
+              374.04,
+              560.44,
+              533.85
+            ],
+            "parsedPrices": [
+              2.99,
+              5.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 2,99 5,99 2 PĒRKOT",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-cd42abaf",
+              "decision": "resolved",
+              "productName": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+              "price": 2.99,
+              "regularPrice": 5.99,
+              "confidence": 1.0,
+              "evidence": "Kaltētas dekorācijas DECORIS, dažādi veidi, 1 gab.",
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                2.99,
+                5.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "dazadi-decoris-dekoracijas-kaltetas-veidi-count-1-bcce059654e8",
+          "identityKey": "dazadi decoris dekoracijas kaltetas veidi|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 2.99,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "2-decoris-dekoraciju-kaltetu-komplekts-veidi-count-1-8c5259a483d1",
+      "canonicalProductId": "2-decoris-dekoraciju-kaltetu-komplekts-veidi-count-1-8c5259a483d1",
+      "identityKey": "2 decoris dekoraciju kaltetu komplekts veidi|count:1",
+      "packageSize": "1 gab.",
+      "name": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+      "aliases": [
+        "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-659cfa0c",
+          "name": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+          "price": 3.49,
+          "regularPrice": 6.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              196.81,
+              141.11,
+              356.62
+            ],
+            "parsedPrices": [
+              3.49,
+              6.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 3,49 6,99 2 PĒRKOT VISMAZ",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-659cfa0c",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+              "evidence": "Kaltētu dekorāciju komplekts DECORIS, 2 veidi, 1 gab.",
+              "reason": "Parsed product name, price, and regular price successfully.",
+              "price": 3.49,
+              "regularPrice": 6.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                3.49,
+                6.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "2-decoris-dekoraciju-kaltetu-komplekts-veidi-count-1-8c5259a483d1",
+          "identityKey": "2 decoris dekoraciju kaltetu komplekts veidi|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 3.49,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
       "productId": "2-kanela-latvijas-maizites-maiznieks-x-mass-320g-4e3877ce457a",
       "canonicalProductId": "2-kanela-latvijas-maizites-maiznieks-x-mass-320g-4e3877ce457a",
       "identityKey": "2 kanela latvijas maizites maiznieks x|mass:320g",
@@ -16575,6 +17709,80 @@
       "offerCount": 1,
       "lowestPrice": 53.99,
       "highestDiscountPercent": 40,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "1-11-cm-iepak-koka-komplekts-paliktnu-count-6-ba6978f20fa8",
+      "canonicalProductId": "1-11-cm-iepak-koka-komplekts-paliktnu-count-6-ba6978f20fa8",
+      "identityKey": "1 11 cm iepak koka komplekts paliktnu|count:6",
+      "packageSize": "6 gab.",
+      "name": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+      "aliases": [
+        "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-90508db2",
+          "name": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+          "price": 1.49,
+          "regularPrice": 2.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              408.85,
+              212.63,
+              558.85,
+              372.44
+            ],
+            "parsedPrices": [
+              1.49,
+              2.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,49 2,99 2 PĒRKOT VISMAZ",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-90508db2",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+              "evidence": "Koka paliktņu komplekts, 11 cm, 6 gab., 1 iepak.",
+              "reason": "The product name, current price, and regular price are clearly legible from the image and text.",
+              "price": 1.49,
+              "regularPrice": 2.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.49,
+                2.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "1-11-cm-iepak-koka-komplekts-paliktnu-count-6-ba6978f20fa8",
+          "identityKey": "1 11 cm iepak koka komplekts paliktnu|count:6",
+          "packageSize": "6 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.49,
+      "highestDiscountPercent": null,
       "campaigns": [
         "Rimi Christmas 2026 LV"
       ],
@@ -16991,6 +18199,59 @@
       "image": null,
       "offers": [
         {
+          "offerId": "rimi-rimi-christmas-2026-lv-p16-20fff3f1",
+          "name": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+          "price": 3.79,
+          "regularPrice": 7.49,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 16,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 50,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              704.8,
+              136.9,
+              841.89
+            ],
+            "parsedPrices": [
+              3.79,
+              7.49
+            ],
+            "rawCellText": "-50% 3,79 Krūze ALTOM DESIGN 7,49 GINGERBREAD, 340 ml, 1 gab. 16",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p16-20fff3f1",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+              "evidence": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
+              "reason": "The product name, current price (3.79), and regular price (7.49) are clearly extracted from the flyer text.",
+              "price": 3.79,
+              "regularPrice": 7.49,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                3.79,
+                7.49
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "altom-design-gingerbread-kruze-count-1-volume-340ml-501e01cfe136",
+          "identityKey": "altom design gingerbread kruze|count:1 volume:340ml",
+          "packageSize": "1 gab., 340 ml"
+        },
+        {
           "offerId": "rimi-rimi-christmas-2026-lv-p16-bfafe3c4",
           "name": "Krūze ALTOM DESIGN GINGERBREAD, 340 ml, 1 gab.",
           "price": 3.99,
@@ -17010,8 +18271,8 @@
           "packageSize": "1 gab., 340 ml"
         }
       ],
-      "offerCount": 1,
-      "lowestPrice": 3.99,
+      "offerCount": 2,
+      "lowestPrice": 3.79,
       "highestDiscountPercent": 50,
       "campaigns": [
         "Rimi Christmas 2026 LV"
@@ -18233,6 +19494,80 @@
       "storeFormats": []
     },
     {
+      "productId": "ciparu-duplo-lego-macies-skaitit-vilciens-485001eb41a6",
+      "canonicalProductId": "ciparu-duplo-lego-macies-skaitit-vilciens-485001eb41a6",
+      "identityKey": "ciparu duplo lego macies skaitit vilciens|",
+      "packageSize": "",
+      "name": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+      "aliases": [
+        "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt"
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p36-796d8014",
+          "name": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+          "price": 13.99,
+          "regularPrice": 19.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 36,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 30,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              169.54,
+              375.23,
+              319.54,
+              535.04
+            ],
+            "parsedPrices": [
+              13.99,
+              19.99
+            ],
+            "rawCellText": "-30% 10954 LEGO® DUPLO® LEGO® DUPLO® Radoši krāsainā Ciparu vilciens – 13,99 mācies skaitt Vecums: 1½+ 19,99",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p36-796d8014",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+              "evidence": "LEGO® DUPLO® Ciparu vilciens – mācies skaitīt",
+              "reason": "Successfully extracted product name, promotional price, and regular price from the visible flyer crop.",
+              "price": 13.99,
+              "regularPrice": 19.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                13.99,
+                19.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "ciparu-duplo-lego-macies-skaitit-vilciens-485001eb41a6",
+          "identityKey": "ciparu duplo lego macies skaitit vilciens|",
+          "packageSize": ""
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 13.99,
+      "highestDiscountPercent": 30,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
       "productId": "11-2-duplo-karba-krasaina-lego-radosi-vecums-3b464a7034dc",
       "canonicalProductId": "11-2-duplo-karba-krasaina-lego-radosi-vecums-3b464a7034dc",
       "identityKey": "11 2 duplo karba krasaina lego radosi vecums|",
@@ -18546,6 +19881,80 @@
       ],
       "offerCount": 1,
       "lowestPrice": 13.99,
+      "highestDiscountPercent": 30,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "cole-lego-misiju-ninjago-pukis-robots-un-zane-06f413e8933f",
+      "canonicalProductId": "cole-lego-misiju-ninjago-pukis-robots-un-zane-06f413e8933f",
+      "identityKey": "cole lego misiju ninjago pukis robots un zane|",
+      "packageSize": "",
+      "name": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+      "aliases": [
+        "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane"
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p37-741a065c",
+          "name": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+          "price": 22.39,
+          "regularPrice": 31.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 37,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 30,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              167.83,
+              747.87,
+              317.83,
+              841.89
+            ],
+            "parsedPrices": [
+              22.39,
+              31.99
+            ],
+            "rawCellText": "-30% 71854 LEGO® NINJAGO® NINJAGO® 22,39 Nindzju tēlu Cole Misiju robots 15. gadadienas un Pūķis Zane 31,99 apskates modelis Vecums: 7+",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p37-741a065c",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+              "evidence": "LEGO® NINJAGO® Cole Misiju robots un Pūķis Zane",
+              "reason": "Successfully extracted product name and prices from the card and surrounding text.",
+              "price": 22.39,
+              "regularPrice": 31.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                22.39,
+                31.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "cole-lego-misiju-ninjago-pukis-robots-un-zane-06f413e8933f",
+          "identityKey": "cole lego misiju ninjago pukis robots un zane|",
+          "packageSize": ""
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 22.39,
       "highestDiscountPercent": 30,
       "campaigns": [
         "Rimi Christmas 2026 LV"
@@ -20074,6 +21483,59 @@
       "image": null,
       "offers": [
         {
+          "offerId": "rimi-rimi-christmas-2026-lv-p13-9a3ed54d",
+          "name": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+          "price": 1.79,
+          "regularPrice": 3.59,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 13,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 50,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              701.85,
+              136.77,
+              841.89
+            ],
+            "parsedPrices": [
+              1.79,
+              3.59
+            ],
+            "rawCellText": "-50% 1,79 Metāla kārba, 3,59 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab. Preču pamata cena un piedāvājums veikalos atšķiras. Ar aktuālo preču pamata cenu un piedāvājumu aicinām iepazīties veikalā.",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p13-9a3ed54d",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+              "evidence": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
+              "reason": "Successfully extracted product name, promotional price, and regular price from the image and surrounding text.",
+              "price": 1.79,
+              "regularPrice": 3.59,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.79,
+                3.59
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "12-17-5-5-7-cm-dazadi-karba-metala-veidi-x-x-count-1-898cdde401cd",
+          "identityKey": "12 17 5 5 7 cm dazadi karba metala veidi x x|count:1",
+          "packageSize": "1 gab."
+        },
+        {
           "offerId": "rimi-rimi-christmas-2026-lv-p13-0f692bbe",
           "name": "Metāla kārba, 17,5 x 12,5 x 7 cm, dažādi veidi, 1 gab.",
           "price": 3.29,
@@ -20093,9 +21555,9 @@
           "packageSize": "1 gab."
         }
       ],
-      "offerCount": 1,
-      "lowestPrice": 3.29,
-      "highestDiscountPercent": null,
+      "offerCount": 2,
+      "lowestPrice": 1.79,
+      "highestDiscountPercent": 50,
       "campaigns": [
         "Rimi Christmas 2026 LV"
       ],
@@ -25644,6 +27106,78 @@
       "storeFormats": []
     },
     {
+      "productId": "20-balta-gaismas-led-silti-stieples-sudraba-virtene-count-1-fb587aff4752",
+      "canonicalProductId": "20-balta-gaismas-led-silti-stieples-sudraba-virtene-count-1-fb587aff4752",
+      "identityKey": "20 balta gaismas led silti stieples sudraba virtene|count:1",
+      "packageSize": "1 gab.",
+      "name": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+      "aliases": [
+        "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-314f1107",
+          "name": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+          "price": 1.75,
+          "regularPrice": 3.49,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              407.69,
+              539.82,
+              557.69,
+              699.63
+            ],
+            "parsedPrices": [
+              1.75,
+              3.49
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,75 3,49 2 PĒRKOT",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-314f1107",
+              "decision": "resolved",
+              "productName": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+              "price": 1.75,
+              "regularPrice": 3.49,
+              "confidence": 1.0,
+              "evidence": "Sudraba stieples gaismas virtene, 20 LED, silti balta, 1 gab.",
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.75,
+                3.49
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "20-balta-gaismas-led-silti-stieples-sudraba-virtene-count-1-fb587aff4752",
+          "identityKey": "20 balta gaismas led silti stieples sudraba virtene|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.75,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
       "productId": "8-dzerienu-komplekts-oga-shot-sulas-x-volume-60ml-93cc94391575",
       "canonicalProductId": "8-dzerienu-komplekts-oga-shot-sulas-x-volume-60ml-93cc94391575",
       "identityKey": "8 dzerienu komplekts oga shot sulas x|volume:60ml",
@@ -27955,6 +29489,59 @@
       "image": null,
       "offers": [
         {
+          "offerId": "rimi-rimi-christmas-2026-lv-p19-07a6f651",
+          "name": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+          "price": 2.24,
+          "regularPrice": 4.49,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 19,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 50,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              483.72,
+              138.87,
+              643.53
+            ],
+            "parsedPrices": [
+              2.24,
+              4.49
+            ],
+            "rawCellText": "-50% cepšanas piederumu komplekts, 2,24 1 gab. 4,49",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p19-07a6f651",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+              "evidence": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
+              "reason": "Product name and pricing clearly visible on card and text",
+              "price": 2.24,
+              "regularPrice": 4.49,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                2.24,
+                4.49
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "cepsanas-komplekts-piederumu-ziemassvetku-count-1-1c9a17622720",
+          "identityKey": "cepsanas komplekts piederumu ziemassvetku|count:1",
+          "packageSize": "1 gab."
+        },
+        {
           "offerId": "rimi-rimi-christmas-2026-lv-p18-71821b58",
           "name": "Ziemassvētku cepšanas piederumu komplekts, 1 gab.",
           "price": 2.64,
@@ -28031,8 +29618,8 @@
           "packageSize": "1 gab."
         }
       ],
-      "offerCount": 4,
-      "lowestPrice": 2.64,
+      "offerCount": 5,
+      "lowestPrice": 2.24,
       "highestDiscountPercent": 50,
       "campaigns": [
         "Rimi Christmas 2026 LV"
@@ -28337,6 +29924,80 @@
       "storeFormats": []
     },
     {
+      "productId": "40-balta-gaismas-led-silti-virtene-zvaigznu-count-1-7b005cb5acc3",
+      "canonicalProductId": "40-balta-gaismas-led-silti-virtene-zvaigznu-count-1-7b005cb5acc3",
+      "identityKey": "40 balta gaismas led silti virtene zvaigznu|count:1",
+      "packageSize": "1 gab.",
+      "name": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+      "aliases": [
+        "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab."
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-fdd20abb",
+          "name": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              342.11,
+              138.76,
+              501.92
+            ],
+            "parsedPrices": [
+              1.99,
+              3.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,99 3,99 2 PĒRKOT",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-fdd20abb",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+              "evidence": "Zvaigžņu gaismas virtene, 40 LED, silti balta, 1 gab.",
+              "reason": "Successfully extracted product name, promotional price, and regular price from the card.",
+              "price": 1.99,
+              "regularPrice": 3.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.99,
+                3.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "40-balta-gaismas-led-silti-virtene-zvaigznu-count-1-7b005cb5acc3",
+          "identityKey": "40 balta gaismas led silti virtene zvaigznu|count:1",
+          "packageSize": "1 gab."
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.99,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
+      ],
+      "storeFormats": []
+    },
+    {
       "productId": "robots-zimesanas-count-1-6960fb2ed92a",
       "canonicalProductId": "robots-zimesanas-count-1-6960fb2ed92a",
       "identityKey": "robots zimesanas|count:1",
@@ -28531,6 +30192,80 @@
       "highestDiscountPercent": null,
       "campaigns": [
         "Rimi Akciju Buklets 2026.24.11.-2026.30.11. (Nr23.2)"
+      ],
+      "storeFormats": []
+    },
+    {
+      "productId": "ciekuri-6ae37e0e66db",
+      "canonicalProductId": "ciekuri-6ae37e0e66db",
+      "identityKey": "ciekuri|",
+      "packageSize": "",
+      "name": "Čiekuri",
+      "aliases": [
+        "Čiekuri"
+      ],
+      "brand": null,
+      "image": null,
+      "offers": [
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p2-64a58bd2",
+          "name": "Čiekuri",
+          "price": 1.99,
+          "regularPrice": 3.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 2,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "multiBuy": "2",
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              59.63,
+              138.76,
+              219.44
+            ],
+            "parsedPrices": [
+              1.99,
+              3.99
+            ],
+            "rawCellText": "2 VISMAZ CENA PAR 1 GAB. 1,99 3,99 2 PĒRKOT VISMAZ CENA PAR 1 GAB. 3,49",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p2-64a58bd2",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Čiekuri",
+              "evidence": "Čiekuri",
+              "reason": "The product name 'Čiekuri' and prices (1,99 and 3,99) are clearly readable from the flyer card.",
+              "price": 1.99,
+              "regularPrice": 3.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                1.99,
+                3.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "ciekuri-6ae37e0e66db",
+          "identityKey": "ciekuri|",
+          "packageSize": ""
+        }
+      ],
+      "offerCount": 1,
+      "lowestPrice": 1.99,
+      "highestDiscountPercent": null,
+      "campaigns": [
+        "Rimi Christmas 2026 LV"
       ],
       "storeFormats": []
     },
@@ -28764,9 +30499,62 @@
           "canonicalProductId": "gold-idc-institute-kermena-komplekts-kopsanas-count-1-12e40191810d",
           "identityKey": "gold idc institute kermena komplekts kopsanas|count:1",
           "packageSize": "1 gab."
+        },
+        {
+          "offerId": "rimi-rimi-christmas-2026-lv-p22-cdd77db2",
+          "name": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+          "price": 19.59,
+          "regularPrice": 27.99,
+          "requiresCard": false,
+          "onlyInApp": false,
+          "campaign": "Rimi Christmas 2026 LV",
+          "campaignId": "rimi-rimi-christmas-2026-lv",
+          "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
+          "pdfPage": 22,
+          "validFrom": "2026-11-17",
+          "validUntil": "2027-01-04",
+          "store": "rimi",
+          "discountPercent": 30,
+          "reviewEvidence": {
+            "pdfSha256": "50581e81946b27270b2e55bc41ea69717c8df1b705f37f754e57ea5ee33da104",
+            "pdfCrop": [
+              0.0,
+              204.26,
+              143.84,
+              364.07
+            ],
+            "parsedPrices": [
+              19.59,
+              27.99
+            ],
+            "rawCellText": "-30% 19,59 Ķermeņa kopšanas komplekts IDC 27,99 INSTITUTE GOLD, 1 gab. -30% 10,49",
+            "visionAssist": {
+              "offerId": "rimi-rimi-christmas-2026-lv-p22-cdd77db2",
+              "decision": "resolved",
+              "confidence": 1.0,
+              "productName": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+              "evidence": "Ķermeņa kopšanas komplekts IDC INSTITUTE GOLD, 1 gab.",
+              "reason": "The top card clearly shows a 30% discount, sale price 19,59, and regular price 27,99, with associated product text on the right.",
+              "price": 19.59,
+              "regularPrice": 27.99,
+              "requiresPaldies": false,
+              "model": "Gemini + manual PDF crop verification"
+            },
+            "visionPriceCrossCheck": {
+              "status": "matched",
+              "textLayerPrices": [
+                19.59,
+                27.99
+              ],
+              "unmatchedModelPrices": []
+            }
+          },
+          "canonicalProductId": "gold-idc-institute-kermena-komplekts-kopsanas-count-1-12e40191810d",
+          "identityKey": "gold idc institute kermena komplekts kopsanas|count:1",
+          "packageSize": "1 gab."
         }
       ],
-      "offerCount": 1,
+      "offerCount": 2,
       "lowestPrice": 13.99,
       "highestDiscountPercent": 30,
       "campaigns": [
@@ -29507,227 +31295,6 @@
   ],
   "reviewOffers": [
     {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-1e39ad76",
-      "name": "",
-      "price": 1.49,
-      "regularPrice": 2.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-376ee454",
-      "name": "",
-      "price": 1.99,
-      "regularPrice": 3.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-b3f9a75f",
-      "name": "",
-      "price": 2.49,
-      "regularPrice": 4.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-fce8e191",
-      "name": "",
-      "price": 3.49,
-      "regularPrice": 6.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-cb01e120",
-      "name": "",
-      "price": 2.99,
-      "regularPrice": 5.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p2-c1dec30c",
-      "name": "",
-      "price": 1.75,
-      "regularPrice": 3.49,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 2,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "multiBuy": "2",
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p13-d606cde2",
-      "name": "",
-      "price": 1.79,
-      "regularPrice": 3.59,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 13,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 50,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p16-5d62c885",
-      "name": "",
-      "price": 3.79,
-      "regularPrice": 7.49,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 16,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 50,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p19-043babbc",
-      "name": "",
-      "price": 2.24,
-      "regularPrice": 4.49,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 19,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 50,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p22-03ea4169",
-      "name": "",
-      "price": 19.59,
-      "regularPrice": 27.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 22,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 30,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p30-84821b20",
-      "name": "",
-      "price": 20.99,
-      "regularPrice": 34.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 30,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 40,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p36-829a8fcf",
-      "name": "",
-      "price": 13.99,
-      "regularPrice": 19.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 36,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 30,
-      "reviewReason": "weak_name"
-    },
-    {
-      "offerId": "rimi-rimi-christmas-2026-lv-p37-1abccab2",
-      "name": "",
-      "price": 22.39,
-      "regularPrice": 31.99,
-      "requiresCard": false,
-      "onlyInApp": false,
-      "campaign": "Rimi Christmas 2026 LV",
-      "campaignId": "rimi-rimi-christmas-2026-lv",
-      "source": "https://viewer.ipaper.io/rimi-baltic/latvia/2026/tematiskie-bukleti/rimi-christmas-2026-lv/rimi-christmas-2026-lv",
-      "pdfPage": 37,
-      "validFrom": "2026-11-17",
-      "validUntil": "2027-01-04",
-      "store": "rimi",
-      "discountPercent": 30,
-      "reviewReason": "weak_name"
-    },
-    {
       "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p1-30fa4090",
       "name": "Cūkas kakla karbonāde bez kaula un ādas, 1 kg",
       "price": 3.99,
@@ -29741,7 +31308,39 @@
       "validFrom": "2026-11-24",
       "validUntil": "2026-11-30",
       "store": "rimi",
-      "reviewReason": "no_discount"
+      "reviewReason": "no_discount",
+      "reviewEvidence": {
+        "pdfSha256": "81066f85bdc8518e4cd00c919bde1063cfdd9448f7ec5af68789f3c8efc4a378",
+        "pdfCrop": [
+          87.37,
+          217.82,
+          237.37,
+          375.24
+        ],
+        "parsedPrices": [
+          3.99
+        ],
+        "rawCellText": "IZDEVĪGI 3,99 Olas NORDIC, A/LM, (0,16 €/gab.;",
+        "visionAssist": {
+          "offerId": "rimi-rimi-akciju-buklets-20262411-20263011-nr232-p1-30fa4090",
+          "decision": "resolved",
+          "confidence": 0.95,
+          "productName": "Olas NORDIC, A/LM",
+          "evidence": "Olas NORDIC, A/LM",
+          "reason": "The product image shows Nordic Egg carton and nearby text confirms it is Olas NORDIC, A/LM priced at 3,99.",
+          "price": 3.99,
+          "regularPrice": null,
+          "requiresPaldies": false,
+          "model": "gemini-3.5-flash-lite (Gemini API)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      }
     },
     {
       "offerId": "rimi-mini-rimi-akciju-buklets-20262411-20263011-nr232-p1-fbc4b138",
@@ -29757,13 +31356,45 @@
       "validFrom": "2026-11-24",
       "validUntil": "2026-11-30",
       "store": "rimi",
-      "reviewReason": "no_discount"
+      "reviewReason": "no_discount",
+      "reviewEvidence": {
+        "pdfSha256": "2f8a13912884e83ebe8b32bb1ffe2773451e07bd30a6ca224c60171c9cd7f833",
+        "pdfCrop": [
+          370.88,
+          203.64,
+          510.24,
+          361.07
+        ],
+        "parsedPrices": [
+          3.99
+        ],
+        "rawCellText": "IZDEVĪGI 3,99 Cūkas kakla karbonāde bez kaula un ādas, fasēta, 1 kg -52%",
+        "visionAssist": {
+          "offerId": "rimi-mini-rimi-akciju-buklets-20262411-20263011-nr232-p1-fbc4b138",
+          "decision": "resolved",
+          "confidence": 0.98,
+          "productName": "Cūkas kakla karbonāde bez kaula un ādas, fasēta, 1 kg",
+          "evidence": "Cūkas kakla karbonāde bez kaula un ādas, fasēta, 1 kg",
+          "reason": "Successfully extracted product name, shelf price, and discount percentage without required loyalty card.",
+          "price": 3.99,
+          "regularPrice": null,
+          "requiresPaldies": false,
+          "model": "gemini-3.5-flash-lite (Gemini API)"
+        },
+        "visionPriceCrossCheck": {
+          "status": "matched",
+          "textLayerPrices": [
+            3.99
+          ],
+          "unmatchedModelPrices": []
+        }
+      }
     }
   ],
   "summary": {
-    "offerVariants": 518,
-    "uniqueProducts": 476,
-    "reviewOffers": 15,
+    "offerVariants": 533,
+    "uniqueProducts": 486,
+    "reviewOffers": 2,
     "catalogues": 5
   }
 }
