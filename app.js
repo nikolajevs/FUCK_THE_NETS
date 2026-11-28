@@ -6,7 +6,7 @@ const state = {
   campaignOptions: [],
   updates: [],
   catalogues: [],
-  selectedStore: "",
+  selectedStores: new Set(),
   page: 1,
   pageSize: 24,
   pageCount: 1,
@@ -287,7 +287,9 @@ function renderStoreFilters() {
     count: counts.get(store.key) || 0,
   }))];
   target.innerHTML = buttons.map(store => '<button class="store-filter" type="button" data-store="'
-    + escapeHtml(store.key) + '" aria-pressed="' + String(state.selectedStore === store.key) + '">'
+    + escapeHtml(store.key) + '" aria-pressed="' + String(store.key
+      ? state.selectedStores.has(store.key)
+      : state.selectedStores.size === 0) + '">'
     + escapeHtml(store.name) + '<span class="store-filter-count">' + store.count + '</span></button>').join("");
 }
 
@@ -333,7 +335,7 @@ function offerSearchText(offer) {
 }
 
 function matchesOffer(offer, filters) {
-  if (state.selectedStore && offer.storeKey !== state.selectedStore) return false;
+  if (state.selectedStores.size && !state.selectedStores.has(offer.storeKey)) return false;
   if (filters.campaign && campaignToken(offer) !== filters.campaign) return false;
   if (filters.minPrice !== null && (!Number.isFinite(offer.price) || offer.price < filters.minPrice)) return false;
   if (filters.maxPrice !== null && (!Number.isFinite(offer.price) || offer.price > filters.maxPrice)) return false;
@@ -541,7 +543,7 @@ function render({ resetPage = true } = {}) {
   document.querySelector("#emptyClear").hidden = noData;
 
   const clear = document.querySelector("#clearFilters");
-  clear.disabled = !filters.query && !state.selectedStore && !filters.campaign && !filters.category
+  clear.disabled = !filters.query && !state.selectedStores.size && !filters.campaign && !filters.category
     && filters.minPrice === null && filters.maxPrice === null
     && filters.minDiscount === null && !filters.condition && filters.sort === "price";
 }
@@ -671,7 +673,7 @@ function clearFilters() {
   document.querySelector("#discount").value = "";
   document.querySelector("#condition").value = "";
   document.querySelector("#sort").value = "price";
-  state.selectedStore = "";
+  state.selectedStores.clear();
   renderStoreFilters();
   render();
 }
@@ -679,7 +681,13 @@ function clearFilters() {
 document.querySelector("#storeFilters").addEventListener("click", event => {
   const button = event.target.closest("[data-store]");
   if (!button) return;
-  state.selectedStore = button.dataset.store;
+  if (!button.dataset.store) {
+    state.selectedStores.clear();
+  } else if (state.selectedStores.has(button.dataset.store)) {
+    state.selectedStores.delete(button.dataset.store);
+  } else {
+    state.selectedStores.add(button.dataset.store);
+  }
   renderStoreFilters();
   render();
 });
