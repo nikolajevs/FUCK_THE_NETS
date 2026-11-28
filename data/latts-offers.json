@@ -1,7 +1,7 @@
 {
   "source": "https://www.e-latts.lv/products.sale.ppl",
   "store": "latts",
-  "updatedAt": "2026-11-27T23:12:11+00:00",
+  "updatedAt": "2026-11-28T08:23:33+00:00",
   "campaigns": [
     {
       "id": "akcijas",
@@ -160,7 +160,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.15746-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.198745-m1f.jpeg",
       "canonicalProductId": "atlantijas-ella-kaija-sardines-mass-144g-mass-240g-54384f21eaaa",
       "identityKey": "atlantijas ella kaija sardines|mass:144g mass:240g",
       "packageSize": "144 g, 240 g"
@@ -179,7 +179,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.15747-m1b.jpeg",
+      "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.198746-m1b.jpeg",
       "canonicalProductId": "atlantijas-kaija-merce-sardines-tomatu-mass-132g-mass-240g-8618e256bfb9",
       "identityKey": "atlantijas kaija merce sardines tomatu|mass:132g mass:240g",
       "packageSize": "132 g, 240 g"
@@ -1889,7 +1889,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.2472-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.260143-m1V.jpeg",
       "canonicalProductId": "apceptas-bretlinas-kaija-merce-tomatu-mass-156g-mass-240g-9327e83ffac9",
       "identityKey": "apceptas bretlinas kaija merce tomatu|mass:156g mass:240g",
       "packageSize": "156 g, 240 g"
@@ -1908,7 +1908,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.2625-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.277399-m1e.jpeg",
       "canonicalProductId": "bretlinas-kaija-merce-tomatu-mass-144g-mass-240g-eb8eafc7c25d",
       "identityKey": "bretlinas kaija merce tomatu|mass:144g mass:240g",
       "packageSize": "144 g, 240 g"
@@ -2393,7 +2393,7 @@
       "name": "Cāļa stilbi Meistara mar., Lielpaka, a/atm., sverami, Ķekava",
       "brand": "Ķekava",
       "price": 2.99,
-      "regularPrice": 3.69,
+      "regularPrice": null,
       "requiresCard": false,
       "onlyInApp": false,
       "campaign": "Akcijas",
@@ -3694,7 +3694,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.28786-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.282659-m1C.jpeg",
       "canonicalProductId": "azaida-gala-gpu-nakotne-sverama-a21cbbf2de17",
       "identityKey": "azaida gala gpu nakotne sverama|",
       "packageSize": ""
@@ -3732,7 +3732,7 @@
       "validFrom": null,
       "validUntil": null,
       "store": "latts",
-      "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.55987-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.300057-m1V.jpeg",
       "canonicalProductId": "brokastis-galas-konservs-rgk-turista-mass-250g-35eb48e22b45",
       "identityKey": "brokastis galas konservs rgk turista|mass:250g",
       "packageSize": "250 g"
@@ -4767,8 +4767,8 @@
       "offerId": "latts-59295",
       "name": "Kartupeļu plāksnes ar grilēta cāļa garšu 75g, Long Chips",
       "brand": "Long Chips",
-      "price": 0.89,
-      "regularPrice": null,
+      "price": 0.65,
+      "regularPrice": 0.89,
       "requiresCard": false,
       "onlyInApp": false,
       "campaign": "Akcijas",
@@ -4805,7 +4805,7 @@
       "offerId": "latts-59427",
       "name": "Kartupeļu plāksnes Rosemary  and  Olive Oil75g, Long Chips",
       "brand": "Long Chips",
-      "price": 0.89,
+      "price": 0.65,
       "regularPrice": null,
       "requiresCard": false,
       "onlyInApp": false,
@@ -13052,7 +13052,7 @@
         "Atlantijas sardīnes eļļā 240g (144g), Kaija"
       ],
       "brand": "KAIJA",
-      "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.15746-m1f.jpeg",
+      "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.198745-m1f.jpeg",
       "offers": [
         {
           "offerId": "latts-8197",
@@ -13068,7 +13068,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.15746-m1f.jpeg",
+          "image": "https://www.e-latts.lv/i/atlantijas-sardines-ella-240g-144g-kaija.spm.198745-m1f.jpeg",
           "canonicalProductId": "atlantijas-ella-kaija-sardines-mass-144g-mass-240g-54384f21eaaa",
           "identityKey": "atlantijas ella kaija sardines|mass:144g mass:240g",
           "packageSize": "144 g, 240 g"
@@ -13092,7 +13092,7 @@
         "Atlantijas sardīnes tomātu mērcē 240g (132g), Kaija"
       ],
       "brand": "KAIJA",
-      "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.15747-m1b.jpeg",
+      "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.198746-m1b.jpeg",
       "offers": [
         {
           "offerId": "latts-9263",
@@ -13108,7 +13108,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.15747-m1b.jpeg",
+          "image": "https://www.e-latts.lv/i/atlantijas-sardines-tomatu-merce-240g-132g-kaija.spm.198746-m1b.jpeg",
           "canonicalProductId": "atlantijas-kaija-merce-sardines-tomatu-mass-132g-mass-240g-8618e256bfb9",
           "identityKey": "atlantijas kaija merce sardines tomatu|mass:132g mass:240g",
           "packageSize": "132 g, 240 g"
@@ -16692,7 +16692,7 @@
         "Brētliņas apceptas tomātu mērcē 240g (156g), Kaija"
       ],
       "brand": "KAIJA",
-      "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.2472-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.260143-m1V.jpeg",
       "offers": [
         {
           "offerId": "latts-2396",
@@ -16708,7 +16708,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.2472-m1V.jpeg",
+          "image": "https://www.e-latts.lv/i/bretlinas-apceptas-tomatu-merce-240g-156g-kaija.spm.260143-m1V.jpeg",
           "canonicalProductId": "apceptas-bretlinas-kaija-merce-tomatu-mass-156g-mass-240g-9327e83ffac9",
           "identityKey": "apceptas bretlinas kaija merce tomatu|mass:156g mass:240g",
           "packageSize": "156 g, 240 g"
@@ -16732,7 +16732,7 @@
         "Brētliņas tomātu mērcē 240g (144g), Kaija"
       ],
       "brand": "KAIJA",
-      "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.2625-m1e.jpeg",
+      "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.277399-m1e.jpeg",
       "offers": [
         {
           "offerId": "latts-2539",
@@ -16748,7 +16748,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.2625-m1e.jpeg",
+          "image": "https://www.e-latts.lv/i/bretlinas-tomatu-merce-240g-144g-kaija.spm.277399-m1e.jpeg",
           "canonicalProductId": "bretlinas-kaija-merce-tomatu-mass-144g-mass-240g-eb8eafc7c25d",
           "identityKey": "bretlinas kaija merce tomatu|mass:144g mass:240g",
           "packageSize": "144 g, 240 g"
@@ -17779,7 +17779,7 @@
           "name": "Cāļa stilbi Meistara mar., Lielpaka, a/atm., sverami, Ķekava",
           "brand": "Ķekava",
           "price": 2.99,
-          "regularPrice": 3.69,
+          "regularPrice": null,
           "requiresCard": false,
           "onlyInApp": false,
           "campaign": "Akcijas",
@@ -20492,7 +20492,7 @@
         "Gaļa Azaida, sverama, GPU Nākotne"
       ],
       "brand": "Nākotne",
-      "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.28786-m1C.jpeg",
+      "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.282659-m1C.jpeg",
       "offers": [
         {
           "offerId": "latts-13023",
@@ -20508,7 +20508,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.28786-m1C.jpeg",
+          "image": "https://www.e-latts.lv/i/gala-azaida-sverama-gpu-nakotne.spm.282659-m1C.jpeg",
           "canonicalProductId": "azaida-gala-gpu-nakotne-sverama-a21cbbf2de17",
           "identityKey": "azaida gala gpu nakotne sverama|",
           "packageSize": ""
@@ -20572,7 +20572,7 @@
         "Gaļas konservs Tūrista brokastis 250g, RGK"
       ],
       "brand": "RGK",
-      "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.55987-m1V.jpeg",
+      "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.300057-m1V.jpeg",
       "offers": [
         {
           "offerId": "latts-22208",
@@ -20588,7 +20588,7 @@
           "validFrom": null,
           "validUntil": null,
           "store": "latts",
-          "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.55987-m1V.jpeg",
+          "image": "https://www.e-latts.lv/i/galas-konservs-turista-brokastis-250g-rgk.spm.300057-m1V.jpeg",
           "canonicalProductId": "brokastis-galas-konservs-rgk-turista-mass-250g-35eb48e22b45",
           "identityKey": "brokastis galas konservs rgk turista|mass:250g",
           "packageSize": "250 g"
@@ -22778,8 +22778,8 @@
           "offerId": "latts-59295",
           "name": "Kartupeļu plāksnes ar grilēta cāļa garšu 75g, Long Chips",
           "brand": "Long Chips",
-          "price": 0.89,
-          "regularPrice": null,
+          "price": 0.65,
+          "regularPrice": 0.89,
           "requiresCard": false,
           "onlyInApp": false,
           "campaign": "Akcijas",
@@ -22795,7 +22795,7 @@
         }
       ],
       "offerCount": 1,
-      "lowestPrice": 0.89,
+      "lowestPrice": 0.65,
       "highestDiscountPercent": null,
       "campaigns": [
         "Akcijas"
@@ -22858,7 +22858,7 @@
           "offerId": "latts-59427",
           "name": "Kartupeļu plāksnes Rosemary  and  Olive Oil75g, Long Chips",
           "brand": "Long Chips",
-          "price": 0.89,
+          "price": 0.65,
           "regularPrice": null,
           "requiresCard": false,
           "onlyInApp": false,
@@ -22875,7 +22875,7 @@
         }
       ],
       "offerCount": 1,
-      "lowestPrice": 0.89,
+      "lowestPrice": 0.65,
       "highestDiscountPercent": null,
       "campaigns": [
         "Akcijas"

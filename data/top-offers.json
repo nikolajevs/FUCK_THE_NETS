@@ -1,7 +1,7 @@
 {
   "source": "https://etop.lv/lv/visi-akcijas-produkti",
   "store": "top",
-  "updatedAt": "2026-11-27T23:06:37+00:00",
+  "updatedAt": "2026-11-28T08:16:45+00:00",
   "campaigns": [
     {
       "id": "top-cena",
@@ -3041,27 +3041,6 @@
       "canonicalProductId": "ar-biezpiena-garsas-glazuru-karums-sierins-zemenu-mass-45g-ed101938594c",
       "identityKey": "ar biezpiena garsas glazuru karums sierins zemenu|mass:45g",
       "packageSize": "45 g"
-    },
-    {
-      "offerId": "top-tig-000018385",
-      "name": "Biezpiena Sieriņš Kārums Aveņu Bezlaktozes 40g",
-      "brand": null,
-      "price": 0.39,
-      "regularPrice": 0.52,
-      "requiresCard": true,
-      "onlyInApp": false,
-      "campaign": "top! cena",
-      "campaignId": "top-cena",
-      "source": "https://etop.lv/lv/visi-akcijas-produkti",
-      "validFrom": "2026-11-20",
-      "validUntil": "2026-12-14",
-      "store": "top",
-      "image": "https://cdn.etop.lv/products/4750050000715-328x328.png",
-      "ean": "4750050000715",
-      "cardName": "mans top!",
-      "canonicalProductId": "avenu-bezlaktozes-biezpiena-karums-sierins-mass-40g-2551675053a1",
-      "identityKey": "avenu bezlaktozes biezpiena karums sierins|mass:40g",
-      "packageSize": "40 g"
     },
     {
       "offerId": "top-t23262",
@@ -37389,48 +37368,6 @@
           "canonicalProductId": "ar-biezpiena-garsas-glazuru-karums-sierins-zemenu-mass-45g-ed101938594c",
           "identityKey": "ar biezpiena garsas glazuru karums sierins zemenu|mass:45g",
           "packageSize": "45 g"
-        }
-      ],
-      "offerCount": 1,
-      "lowestPrice": 0.39,
-      "highestDiscountPercent": null,
-      "campaigns": [
-        "top! cena"
-      ],
-      "storeFormats": []
-    },
-    {
-      "productId": "avenu-bezlaktozes-biezpiena-karums-sierins-mass-40g-2551675053a1",
-      "canonicalProductId": "avenu-bezlaktozes-biezpiena-karums-sierins-mass-40g-2551675053a1",
-      "identityKey": "avenu bezlaktozes biezpiena karums sierins|mass:40g",
-      "packageSize": "40 g",
-      "name": "Biezpiena Sieriņš Kārums Aveņu Bezlaktozes 40g",
-      "aliases": [
-        "Biezpiena Sieriņš Kārums Aveņu Bezlaktozes 40g"
-      ],
-      "brand": null,
-      "image": "https://cdn.etop.lv/products/4750050000715-328x328.png",
-      "offers": [
-        {
-          "offerId": "top-tig-000018385",
-          "name": "Biezpiena Sieriņš Kārums Aveņu Bezlaktozes 40g",
-          "brand": null,
-          "price": 0.39,
-          "regularPrice": 0.52,
-          "requiresCard": true,
-          "onlyInApp": false,
-          "campaign": "top! cena",
-          "campaignId": "top-cena",
-          "source": "https://etop.lv/lv/visi-akcijas-produkti",
-          "validFrom": "2026-11-20",
-          "validUntil": "2026-12-14",
-          "store": "top",
-          "image": "https://cdn.etop.lv/products/4750050000715-328x328.png",
-          "ean": "4750050000715",
-          "cardName": "mans top!",
-          "canonicalProductId": "avenu-bezlaktozes-biezpiena-karums-sierins-mass-40g-2551675053a1",
-          "identityKey": "avenu bezlaktozes biezpiena karums sierins|mass:40g",
-          "packageSize": "40 g"
         }
       ],
       "offerCount": 1,
@@ -94943,8 +94880,8 @@
   ],
   "reviewOffers": [],
   "summary": {
-    "offerVariants": 1546,
-    "uniqueProducts": 1545,
+    "offerVariants": 1545,
+    "uniqueProducts": 1544,
     "reviewOffers": 0,
     "catalogues": 2
   }
