@@ -1,7 +1,11 @@
 import unittest
 
 from scripts.scrape_spar import (
+    carried_pages,
     discover_booklets,
+    extract_booklet,
+    fitz,
+    is_expired,
     name_blocks,
     offers_from_vision,
     page_campaign,
@@ -153,6 +157,58 @@ class NameBlocksTests(unittest.TestCase):
         self.assertEqual(len(texts), 2)
         self.assertTrue(any(t.startswith("Piens") for t in texts))
         self.assertTrue(any(t.startswith("Kefīrs") for t in texts))
+
+
+class IdleWorkTests(unittest.TestCase):
+    PDF = "https://spar.lv/x.pdf"
+
+    def test_expiry_counts_last_day_as_valid(self):
+        self.assertTrue(is_expired("2026-11-25", "2026-11-26"))
+        self.assertFalse(is_expired("2026-11-25", "2026-11-25"))
+        self.assertFalse(is_expired(None, "2026-11-26"))
+
+    def test_unchanged_pdf_carries_resolved_pages_only(self):
+        previous = {
+            "catalogues": [{"source": self.PDF, "pdfSha256": "abc", "resolvedPages": [1, 2]}],
+            "offers": [
+                {"offerId": "a", "source": self.PDF, "pdfPage": 1},
+                {"offerId": "b", "source": self.PDF, "pdfPage": 3},
+                {"offerId": "c", "source": "https://spar.lv/other.pdf", "pdfPage": 1},
+            ],
+            "reviewOffers": [{"offerId": "r", "source": self.PDF, "pdfPage": 2}],
+        }
+        pages, offers, reviews = carried_pages(previous, self.PDF, "abc")
+        self.assertEqual(pages, {1, 2})
+        self.assertEqual([o["offerId"] for o in offers], ["a"])
+        self.assertEqual([o["offerId"] for o in reviews], ["r"])
+
+    def test_changed_pdf_carries_nothing(self):
+        previous = {
+            "catalogues": [{"source": self.PDF, "pdfSha256": "old", "resolvedPages": [1]}],
+            "offers": [{"offerId": "a", "source": self.PDF, "pdfPage": 1}],
+        }
+        self.assertEqual(carried_pages(previous, self.PDF, "new"), (set(), [], []))
+        self.assertEqual(carried_pages({}, self.PDF, "new"), (set(), [], []))
+
+    @unittest.skipIf(fitz is None, "PyMuPDF not installed")
+    def test_resolved_pages_are_not_sent_to_vision_again(self):
+        doc = fitz.open()
+        for _ in range(2):
+            doc.new_page().insert_text((50, 100), "Piens Baltais 1L", fontsize=10)
+        content = doc.tobytes()
+        doc.close()
+
+        class FakeClient:
+            calls = 0
+
+            def generate(self, png, prompt):
+                FakeClient.calls += 1
+                return {"results": []}
+
+        offers, reviews, resolved = extract_booklet(content, BOOKLET, FakeClient(), None, {1})
+        self.assertEqual(FakeClient.calls, 1)
+        self.assertEqual(resolved, {2})
+        self.assertEqual((offers, reviews), ([], []))
 
 
 if __name__ == "__main__":

@@ -95,6 +95,10 @@ Four more Latvian chains, each read from its own published source:
   discount badge must agree with the sale/regular pair, "N for X€" bundle
   totals are divided locally, alcohol is dropped and anything inconsistent goes
   to `reviewOffers`. Without any vision layer it degrades to a catalogue link.
+  A newspaper whose printed period has ended is not read at all (SPAR often
+  leaves it on the page for days), and while the PDF stays byte-identical the
+  pages already read (`pdfSha256` + `resolvedPages` in the catalogue entry) are
+  carried forward, so Gemini/Qwen only see pages they have not resolved yet.
 
 All four drop alcoholic products (matching LaTS/Rimi/top!) and send ambiguous
 cards to `reviewOffers`. The site shows a **"Akciju bukleti"** strip listing

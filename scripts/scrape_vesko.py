@@ -413,11 +413,13 @@ def main() -> None:
     booklets = discover_booklets(sess)
     if not booklets:
         raise RuntimeError("No Vesko booklets discovered")
-    # keep the booklet whose period covers today, else the first (current)
+    # keep the booklet whose period covers today, else the first (current) one
+    # unless its printed period has already ended
     today = date.today().isoformat()
     active = [b for b in booklets if b.get("validFrom") and b.get("validUntil")
               and b["validFrom"] <= today <= b["validUntil"]]
-    chosen = active or booklets[:1]
+    chosen = active or [b for b in booklets[:1]
+                        if not (b.get("validUntil") and b["validUntil"] < today)]
     print(f"Found {len(booklets)} booklet(s); using {len(chosen)}")
 
     all_offers, all_review, catalogues = [], [], []

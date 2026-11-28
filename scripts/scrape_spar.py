@@ -26,6 +26,11 @@ with the sale/regular pair, bundle totals are divided locally, alcoholic
 products are dropped, and anything inconsistent goes to ``reviewOffers``.
 Without any vision layer the scraper degrades to a catalogue link with the
 printed period, as before.
+
+SPAR often leaves an ended newspaper on the page for days. A newspaper whose
+printed period is over is not read at all, and pages of an unchanged PDF that
+Gemini or Qwen already read are carried forward from the previous feed, so the
+vision layers only see pages they have not resolved yet.
 """
 from __future__ import annotations
 
@@ -39,7 +44,7 @@ import subprocess
 import sys
 import time
 import unicodedata
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -62,6 +67,11 @@ try:
     from scripts.scrape_vesko import is_alcohol_name
 except ModuleNotFoundError:
     from scrape_vesko import is_alcohol_name
+
+try:
+    from scripts.scrape_top import riga_date
+except ModuleNotFoundError:
+    from scrape_top import riga_date
 
 try:
     from scripts.gemini_pdf_review import (
@@ -181,6 +191,36 @@ def period_from_pdf(content: bytes) -> tuple[str | None, str | None]:
         if vf:
             return vf, vu
     return parse_period(text)
+
+
+def riga_today() -> str:
+    return riga_date(datetime.now(timezone.utc).isoformat())
+
+
+def is_expired(valid_until: str | None, today: str) -> bool:
+    """``validUntil`` is the newspaper's last valid day, so it still counts today."""
+    return bool(valid_until) and valid_until < today
+
+
+def carried_pages(previous: dict, pdf_url: str, sha256: str) -> tuple[set[int], list, list]:
+    """Pages of an unchanged PDF already read by a vision layer, with their offers.
+
+    Page numbers are 1-based like ``offer["pdfPage"]``. A different PDF hash
+    (SPAR replaced the file behind the same URL) carries nothing forward.
+    """
+    for cat in previous.get("catalogues", []):
+        if cat.get("source") == pdf_url and cat.get("pdfSha256") == sha256:
+            pages = {p for p in cat.get("resolvedPages", []) if isinstance(p, int)}
+            break
+    else:
+        return set(), [], []
+
+    def keep(offer: dict) -> bool:
+        return offer.get("source") == pdf_url and offer.get("pdfPage") in pages
+
+    return (pages,
+            [o for o in previous.get("offers", []) if keep(o)],
+            [o for o in previous.get("reviewOffers", []) if keep(o)])
 
 
 # --------------------------------------------------------------------------
@@ -422,11 +462,19 @@ def _write_pending(pending_dir: Path, page_num: int, png: bytes, blocks: list,
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def extract_booklet(content: bytes, booklet: dict, client, pending_dir: Path | None) -> tuple[list, list]:
+def extract_booklet(content: bytes, booklet: dict, client, pending_dir: Path | None,
+                    skip_pages: set[int] = frozenset()) -> tuple[list, list, set[int]]:
+    """Read prices for every page not in ``skip_pages`` (1-based).
+
+    Returns the offers, the review queue and the pages a vision layer answered.
+    """
     doc = fitz.open(stream=content, filetype="pdf")
     all_offers, all_reviews = [], []
+    resolved: set[int] = set()
     try:
         for page_num, page in enumerate(doc):
+            if page_num + 1 in skip_pages:
+                continue
             text = page.get_text()
             blocks = name_blocks(page.get_text("words", sort=True))
             meta = page_campaign(text, booklet)
@@ -443,10 +491,11 @@ def extract_booklet(content: bytes, booklet: dict, client, pending_dir: Path | N
                                                  GEMINI_MODEL_LABEL)
             all_offers.extend(offers)
             all_reviews.extend(reviews)
+            resolved.add(page_num + 1)
             print(f"  page {page_num + 1}: {len(offers)} offers, {len(reviews)} review")
     finally:
         doc.close()
-    return all_offers, all_reviews
+    return all_offers, all_reviews, resolved
 
 
 # --------------------------------------------------------------------------
@@ -480,6 +529,7 @@ def qwen_review_pending(pending_dir: Path) -> int:
     timeout = int(os.environ.get("QWEN_PAGE_TIMEOUT_SECONDS", "600"))
     payload = json.loads(OUT.read_text(encoding="utf-8"))
     merged = 0
+    resolved_any = False
     for sidecar in sorted(pending_dir.glob("page-*.json")):
         png_file = sidecar.with_suffix(".png")
         if not png_file.is_file():
@@ -514,11 +564,18 @@ def qwen_review_pending(pending_dir: Path) -> int:
             meta_doc["meta"], QWEN_MODEL_LABEL)
         payload.setdefault("offers", []).extend(offers)
         payload.setdefault("reviewOffers", []).extend(reviews)
+        page_no = int(meta_doc["pageNum"]) + 1
+        for cat in payload.get("catalogues", []):
+            if cat.get("source") == meta_doc["booklet"].get("pdf"):
+                cat["resolvedPages"] = sorted(set(cat.get("resolvedPages", [])) | {page_no})
         merged += len(offers)
+        resolved_any = True
         sidecar.unlink(missing_ok=True)
         png_file.unlink(missing_ok=True)
         print(f"Qwen resolved {sidecar.name}: {len(offers)} offers")
-    if merged:
+    # Save even when a page yielded no offers: its resolvedPages entry keeps
+    # the next run from sending the same page to the vision layers again.
+    if resolved_any:
         _finalise_payload(payload)
     return merged
 
@@ -577,6 +634,12 @@ def main() -> None:
     else:
         print("No Gemini key; Spar pages go to local Qwen / catalogue only")
 
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.is_file() else {}
+    except (OSError, json.JSONDecodeError):
+        previous = {}
+    riga_day = riga_today()
+
     catalogues, all_offers, all_reviews = [], [], []
     try:
         for booklet in booklets:
@@ -589,9 +652,20 @@ def main() -> None:
                 content = None
             vf, vu = period_from_pdf(content) if content else (None, None)
             booklet["validFrom"], booklet["validUntil"] = vf, vu
-            offers, reviews = [], []
-            if content is not None:
-                offers, reviews = extract_booklet(content, booklet, client, pending_dir)
+            sha256 = hashlib.sha256(content).hexdigest() if content else None
+            expired = is_expired(vu, riga_day)
+            offers, reviews, resolved = [], [], set()
+            if content is not None and expired:
+                print(f"  newspaper ended on {vu}; not reading it until SPAR publishes a new one")
+            elif content is not None:
+                resolved, offers, reviews = carried_pages(previous, booklet["pdf"], sha256)
+                if resolved:
+                    print(f"  PDF unchanged: reusing {len(resolved)} page(s) read earlier")
+                new_offers, new_reviews, new_pages = extract_booklet(
+                    content, booklet, client, pending_dir, resolved)
+                offers += new_offers
+                reviews += new_reviews
+                resolved |= new_pages
             all_offers.extend(offers)
             all_reviews.extend(reviews)
             catalogues.append({
@@ -599,6 +673,9 @@ def main() -> None:
                 "validFrom": vf, "validUntil": vu,
                 "verifiedOffers": len(offers), "reviewOffers": len(reviews),
                 "complete": len(offers) > 0,
+                "expired": expired,
+                "pdfSha256": sha256,
+                "resolvedPages": sorted(resolved),
             })
             print(f"  period {vf} – {vu}: {len(offers)} offers, {len(reviews)} review")
     finally:

@@ -439,10 +439,16 @@ def main() -> None:
     all_review: list[dict] = []
     catalogues = []
 
+    today = date.today().isoformat()
     for booklet in booklets:
         # Prefer main weekly booklets
         if "zem-zem" in booklet["pdf"].lower() and len(booklets) > 1:
             # Skip long-running static catalogues for first version
+            continue
+        if booklet.get("validUntil") and booklet["validUntil"] < today:
+            # mego.lv keeps ended booklets listed for a while; downloading them
+            # would only re-parse expired prices and re-save their photos.
+            print(f"Skipping ended booklet {booklet['name']} (until {booklet['validUntil']})")
             continue
         print(f"Downloading {booklet['pdf']} ...")
         r = sess.get(booklet["pdf"], timeout=60)
