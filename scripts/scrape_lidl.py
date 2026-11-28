@@ -443,6 +443,7 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
                         continue
                     if any(s in low for s in NOISE_SUB):
                         continue
+                    name_parts.append((wy, wx, tok))
             if title_blocks:
                 name, title_distance = title_matches.get(id(a), ("", float("inf")))
             else:
@@ -482,10 +483,12 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
             name_words = name.split()
             words_count = len(name_words)
             lowered = [w.casefold() for w in name_words]
+            brand_caps = len(re.findall(r"\b[A-ZĀČĒĢĪĶĻŅŠŪŽ]{3,}\b", name))
             weak = (
                 len(name) < 4
                 or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", folded)) < 1
                 or words_count > 12
+                or (not title_blocks and brand_caps >= 2)
                 or folded.startswith(("www", "no ", "ar ", "cena"))
                 or DATE_RE.search(name)
                 or name.count(",") >= 3
