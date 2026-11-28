@@ -32,6 +32,9 @@ function normalizedStore(value) {
   if (folded.includes("mego")) return { key: "mego", name: "Mego" };
   if (folded.includes("top")) return { key: "top", name: "Top!" };
   if (folded.includes("lidl")) return { key: "lidl", name: "Lidl" };
+  if (folded.includes("rimi-eveikals") || folded.includes("rimi e-veikals")) {
+    return { key: "rimi-eveikals", name: "Rimi e-veikals" };
+  }
   if (folded.includes("rimi")) return { key: "rimi", name: "Rimi" };
   if (folded.includes("elvi")) return { key: "elvi", name: "Elvi" };
   if (folded.includes("latts")) return { key: "latts", name: "LaTS" };
@@ -438,6 +441,7 @@ async function init() {
     ["data/top-offers.json", "Top!"],
     ["data/lidl-offers.json", "Lidl"],
     ["data/rimi-offers.json", "Rimi"],
+    ["data/rimi-eveikals-offers.json", "Rimi e-veikals"],
     ["data/elvi-offers.json", "Elvi"],
     ["data/latts-offers.json", "LaTS"],
     ["data/vesko-offers.json", "Vesko"],

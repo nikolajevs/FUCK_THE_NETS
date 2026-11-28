@@ -14,7 +14,8 @@ Currently supported:
 | Spar    | `scripts/scrape_spar.py`   | `data/spar-offers.json` | Production (vision prices)    |
 | Top!    | `scripts/scrape_top.py`    | `data/top-offers.json`  | Production (daily GH Actions) |
 | Lidl    | `scripts/scrape_lidl.py`   | `data/lidl-offers.json` | Initial (PDF booklets)        |
-| Rimi    | `scripts/scrape_rimi.py`   | `data/rimi-offers.json` | Production (daily GH Actions) |
+| Rimi    | `scripts/scrape_rimi_booklets.py` | `data/rimi-offers.json` | Production (daily GH Actions) |
+| Rimi e-veikals | `scripts/scrape_rimi.py` | `data/rimi-eveikals-offers.json` | Production (daily GH Actions) |
 | Elvi    | `scripts/scrape_elvi.py`   | `data/elvi-offers.json` | Production (daily GH Actions) |
 | LaTS    | `scripts/scrape_latts.py`  | `data/latts-offers.json`| Production (daily GH Actions) |
 
@@ -205,7 +206,31 @@ image (the frontend falls back to a letter placeholder).
 
 ---
 
-## Rimi (rimi.lv)
+## Rimi (physical stores)
+
+Rimi's official [booklets and offers page](https://www.rimi.lv/akcijas-un-bukleti)
+links to the active weekly, Mini and store-specific in-store booklets. The
+booklets are hosted in Rimi's iPaper viewer and can be downloaded as PDFs
+without a login. Product names and prices are read from the PDFs' positioned
+text layer:
+
+- large sale prices anchor each product card; a nearby smaller price is used as
+  the regular price;
+- products with a clear discount but an incomplete name, or a price without a
+  verifiable regular price or discount, are sent to `reviewOffers` instead of
+  being shown as confirmed discounts;
+- alcoholic products are excluded, matching the project's Rimi e-veikals feed.
+
+```bash
+python scripts/scrape_rimi_booklets.py
+```
+
+Output: `data/rimi-offers.json`. It includes the parsed offers and links to the
+source booklets.
+
+---
+
+## Rimi e-veikals (rimi.lv)
 
 Rimi's online store server-renders its full promotion catalogue, so offers are
 collected from the HTML listing — no PDF parsing and no login required:
@@ -234,7 +259,7 @@ stay in the feed. The listing has no per-product validity dates, so
 python scripts/scrape_rimi.py
 ```
 
-Output: `data/rimi-offers.json` (refreshed daily by the same workflow as Maxima).
+Output: `data/rimi-eveikals-offers.json` (refreshed daily by the same workflow as Maxima).
 
 ---
 

@@ -4,6 +4,7 @@ const FEED_SOURCES = [
   { file: "top-offers.json", path: "data/top-offers.json", store: "Top!" },
   { file: "lidl-offers.json", path: "data/lidl-offers.json", store: "Lidl" },
   { file: "rimi-offers.json", path: "data/rimi-offers.json", store: "Rimi" },
+  { file: "rimi-eveikals-offers.json", path: "data/rimi-eveikals-offers.json", store: "Rimi e-veikals" },
   { file: "elvi-offers.json", path: "data/elvi-offers.json", store: "Elvi" },
   { file: "latts-offers.json", path: "data/latts-offers.json", store: "LaTS" },
   { file: "vesko-offers.json", path: "data/vesko-offers.json", store: "Vesko" },

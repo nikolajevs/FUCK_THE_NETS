@@ -29,6 +29,7 @@ jobs:
           python -m py_compile scripts/scrape_top.py
           python -m py_compile scripts/scrape_lidl.py
           python -m py_compile scripts/scrape_rimi.py
+          python -m py_compile scripts/scrape_rimi_booklets.py
           python -m py_compile scripts/scrape_elvi.py
           python -m py_compile scripts/scrape_latts.py
           python -m py_compile scripts/scrape_vesko.py
@@ -50,9 +51,12 @@ jobs:
       - name: Collect Lidl offers
         continue-on-error: true
         run: python scripts/scrape_lidl.py
-      - name: Collect Rimi offers
+      - name: Collect Rimi e-veikals offers
         continue-on-error: true
         run: python scripts/scrape_rimi.py
+      - name: Collect Rimi in-store booklet offers
+        continue-on-error: true
+        run: python scripts/scrape_rimi_booklets.py
       - name: Collect ELVI offers
         continue-on-error: true
         run: python scripts/scrape_elvi.py
@@ -193,6 +197,7 @@ jobs:
           if [ -f data/top-offers.json ]; then git add data/top-offers.json; fi
           if [ -f data/lidl-offers.json ]; then git add data/lidl-offers.json; fi
           if [ -f data/rimi-offers.json ]; then git add data/rimi-offers.json; fi
+          if [ -f data/rimi-eveikals-offers.json ]; then git add data/rimi-eveikals-offers.json; fi
           if [ -f data/elvi-offers.json ]; then git add data/elvi-offers.json; fi
           if [ -f data/latts-offers.json ]; then git add data/latts-offers.json; fi
           if [ -f data/vesko-offers.json ]; then git add data/vesko-offers.json; fi
@@ -203,7 +208,7 @@ jobs:
           if [ -d data/mego-img ]; then git add data/mego-img; fi
           if [ -f data/gemini-usage.json ]; then git add data/gemini-usage.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Update Maxima, top!, Lidl, Rimi, Elvi, LaTS, Vesko, Aibe, Citro and Spar offers and price history"
+            git commit -m "Update Maxima, top!, Lidl, Rimi, Rimi e-veikals, Elvi, LaTS, Vesko, Aibe, Citro and Spar offers and price history"
             git push
           fi
 

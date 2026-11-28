@@ -58,7 +58,7 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "lv-LV,lv;q=0.9,en;q=0.8",
 }
-OUT = Path("data/rimi-offers.json")
+OUT = Path("data/rimi-eveikals-offers.json")
 PAGE_SIZE = 100
 MAX_PAGES = 120
 PAGE_DELAY = 0.4
@@ -180,7 +180,7 @@ def card_to_offer(card: dict) -> dict | None:
         "source": source,
         "validFrom": None,
         "validUntil": None,
-        "store": "rimi",
+        "store": "rimi-eveikals",
         "image": card.get("image"),
     }
     if requires_card:
@@ -261,7 +261,7 @@ def main() -> None:
 
     payload = {
         "source": OFFERS_PAGE,
-        "store": "rimi",
+        "store": "rimi-eveikals",
         "updatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
         "campaigns": CAMPAIGNS,
         "catalogues": [],

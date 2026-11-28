@@ -154,7 +154,7 @@ class OfferConversionTests(unittest.TestCase):
         self.assertEqual(offer["cardName"], "Mans Rimi")
         self.assertEqual(offer["campaignId"], "mans-rimi-cena")
         self.assertEqual(offer["campaign"], "Mans Rimi cena")
-        self.assertEqual(offer["store"], "rimi")
+        self.assertEqual(offer["store"], "rimi-eveikals")
         self.assertTrue(offer["source"].startswith("https://www.rimi.lv/"))
         self.assertIsNone(offer["validFrom"])
         self.assertIsNone(offer["validUntil"])
