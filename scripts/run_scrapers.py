@@ -18,7 +18,10 @@ was), except a ``required`` one (Maxima), whose failure fails the job. A secret
 such as ``GEMINI_API_KEY`` reaches only the scrapers that declare it.
 
 Before scraping, the runner rewrites the ``data/stores.json`` manifest the site
-and the admin panel load their feeds from.
+and the admin panel load their feeds from and keeps every feed's bytes. After
+scraping, ``feed_health.check_feeds`` compares each new feed with the one it
+replaced, restores feeds that broke, appends the run to ``data/health.json`` and
+adds a health table to the job summary.
 
 Output is collected per scraper and printed as one collapsible log group as
 soon as that scraper finishes, each line prefixed with its elapsed time; a
@@ -32,11 +35,14 @@ import sys
 import threading
 import time
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 
 try:
+    from scripts import feed_health
     from scripts.stores import STORES, Store, write_manifest
 except ModuleNotFoundError:
+    import feed_health
     from stores import STORES, Store, write_manifest
 
 SCRIPTS = Path(__file__).resolve().parent
@@ -162,18 +168,32 @@ def summary_table(results: list[Result], wall_seconds: float) -> str:
     return "\n".join(rows) + "\n"
 
 
+def scraper_status(results: list[Result], stores=STORES) -> dict[str, bool]:
+    """Whether each store's scraper exited cleanly, keyed by store id."""
+    ok_by_label = {result.job.name: result.ok for result in results}
+    return {store.id: ok_by_label.get(store.label, True) for store in stores}
+
+
 def main() -> int:
     os.chdir(SCRIPTS.parent)
     if write_manifest():
         print("data/stores.json updated from scripts/stores.py")
+    snapshot = feed_health.snapshot_feeds()
     start = time.monotonic()
     results = run_lanes(LANES)
     table = summary_table(results, time.monotonic() - start)
     print(table)
+
+    # Compare every new feed with the one it replaced; restore broken ones.
+    reports = feed_health.check_feeds(snapshot, scraper_status(results))
+    feed_health.update_history(reports, datetime.now().astimezone().isoformat(timespec="seconds"))
+    health_table = feed_health.summary_table(reports)
+    print(health_table)
+
     summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary_file:
         with open(summary_file, "a", encoding="utf-8") as handle:
-            handle.write("### Scrapers\n\n" + table)
+            handle.write("### Scrapers\n\n" + table + "\n### Feed health\n\n" + health_table)
     return 1 if any(result.job.required and not result.ok for result in results) else 0
 
 

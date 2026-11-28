@@ -8,12 +8,14 @@ async function loadFeedSources() {
   const manifest = await response.json();
   FEED_SOURCES = (manifest.stores || [])
     .filter(store => store && store.feed && store.label)
-    .map(store => ({ file: store.feed.split("/").pop(), path: store.feed, store: store.label }));
+    .map(store => ({ id: store.id, file: store.feed.split("/").pop(), path: store.feed, store: store.label }));
 }
 
 const state = {
   feeds: new Map(),
   ledger: null,
+  // data/health.json: each store's feed health from the last scraper runs.
+  health: null,
   selectedKey: "",
   selectedFeed: "all",
   search: "",
@@ -98,6 +100,23 @@ function feedStore(feed) {
   const stored = String(feed.payload.store || "").trim();
   if (stored) return stored;
   return feed.file.replace(/(?:-offers)?\.json$/i, "").replace(/[-_]+/g, " ");
+}
+
+const HEALTH_LABELS = {
+  ok: "В норме",
+  degraded: "Есть отклонения",
+  failed: "Ошибка скрапера",
+  restored: "Возвращён прошлый фид",
+};
+
+function feedHealthCell(feed) {
+  const source = FEED_SOURCES.find(item => item.file === feed.file);
+  const entry = source && state.health?.stores?.[source.id];
+  if (!entry) return '<span class="table-status is-muted">—</span>';
+  const notes = (entry.notes || []).join("; ");
+  const streak = entry.streak > 1 ? ` ×${entry.streak}` : "";
+  const title = [notes, entry.since ? `с ${formatDate(entry.since)}` : ""].filter(Boolean).join(" · ");
+  return `<span class="table-status health-${escapeHtml(entry.status)}" title="${escapeHtml(title)}">${escapeHtml((HEALTH_LABELS[entry.status] || entry.status) + streak)}</span>`;
 }
 
 function feedRows() {
@@ -259,7 +278,7 @@ function updateFeedSelectors() {
 function updateSourceTable() {
   const body = document.querySelector("#sourceRows");
   if (!state.feeds.size) {
-    body.innerHTML = '<tr><td colspan="5" class="table-loading">Не удалось загрузить файлы. Запустите локальный сервер или импортируйте JSON.</td></tr>';
+    body.innerHTML = '<tr><td colspan="6" class="table-loading">Не удалось загрузить файлы. Запустите локальный сервер или импортируйте JSON.</td></tr>';
     return;
   }
   body.innerHTML = feedRows().map(feed => {
@@ -268,7 +287,8 @@ function updateSourceTable() {
     const updated = feed.payload.updatedAt ? formatDate(feed.payload.updatedAt) : "—";
     const status = feed.dirty ? "Есть черновик" : "Загружен";
     const dot = feed.error ? "is-error" : "";
-    return `<tr data-select-feed="${escapeHtml(feed.file)}" tabindex="0" role="button" aria-label="Открыть очередь ${escapeHtml(feedStore(feed))}"><td class="table-store"><i class="table-dot ${dot}"></i>${escapeHtml(feedStore(feed))}</td><td>${formatCount(offerCount)}</td><td class="${reviewCount ? "table-pending" : ""}">${formatCount(reviewCount)}</td><td>${escapeHtml(updated)}</td><td><span class="table-status ${feed.error ? "is-error" : ""}">${escapeHtml(feed.error || status)}</span></td></tr>`;
+    const healthCell = feedHealthCell(feed);
+    return `<tr data-select-feed="${escapeHtml(feed.file)}" tabindex="0" role="button" aria-label="Открыть очередь ${escapeHtml(feedStore(feed))}"><td class="table-store"><i class="table-dot ${dot}"></i>${escapeHtml(feedStore(feed))}</td><td>${formatCount(offerCount)}</td><td class="${reviewCount ? "table-pending" : ""}">${formatCount(reviewCount)}</td><td>${escapeHtml(updated)}</td><td>${healthCell}</td><td><span class="table-status ${feed.error ? "is-error" : ""}">${escapeHtml(feed.error || status)}</span></td></tr>`;
   }).join("");
 }
 
@@ -722,6 +742,12 @@ async function loadFeeds() {
   for (const record of saved) {
     if (!record?.file || loadedNames.has(record.file) || !record.payload) continue;
     state.feeds.set(record.file, { file: record.file, payload: record.payload, dirty: true, saved: true, error: "" });
+  }
+  try {
+    const response = await fetch("data/health.json", { cache: "no-store" });
+    if (response.ok) state.health = await response.json();
+  } catch (error) {
+    console.warn("Could not load feed health", error);
   }
   try {
     const response = await fetch("data/gemini-usage.json", { cache: "no-store" });

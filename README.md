@@ -492,3 +492,27 @@ ledger), prints each scraper's log as a collapsible group and adds a duration
 table to the job summary. A failing store only warns; a failing required store
 (Maxima) fails the job. Run it locally with `python scripts/run_scrapers.py`.  
 Trigger manually: Actions → Update Maxima offers and deploy → Run workflow.
+
+### Feed health
+
+After the scrapers finish, `scripts/feed_health.py` compares every new feed
+with the one it replaced (the runner keeps the old bytes):
+
+| Status | When | What happens |
+|---|---|---|
+| `restored` | the new feed is unreadable or breaks the contract, its offers fell below 40 % of the previous feed's still-valid offers (feeds of 20+ offers), or it is empty while a booklet is current | the previous feed is written back with `"health": {"status": "stale"}`; photos the scraper pruned come back from git |
+| `failed` | the scraper exited with an error | its feed stays as it was |
+| `degraded` | the share of offers with a regular price, pack size or photo fell by more than half, the review queue took most cards, or the feed is empty with a current booklet and nothing to restore | the feed is published, the problem is reported |
+| `ok` | none of the above | — |
+
+Expired offers do not count, so a weekly booklet switch is not a collapse.
+Each run is appended to `data/health.json` (60 runs per store, with the
+current status, since when and how many runs in a row), printed as a table in
+the job summary and shown in the admin panel's sources table.
+
+The workflow then runs `python scripts/feed_health.py --sync-issues`, which
+keeps one GitHub issue per unhealthy store (label `feed-health`, title
+`Feed health: <store>`): opened at once for `restored`, after two runs in a
+row for `failed` or `degraded`, updated while the problem lasts and closed
+when the store is `ok` again. `python scripts/feed_health.py` prints the
+current statuses locally.

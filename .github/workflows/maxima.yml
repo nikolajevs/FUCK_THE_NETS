@@ -61,6 +61,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      # feed_health.py opens/closes one "feed-health" issue per broken store.
+      issues: write
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -212,6 +214,14 @@ jobs:
           QWEN_LLAMA_CLI: ${{ runner.temp }}/llama.cpp/build/bin/llama-mtmd-cli
           BETA_PENDING_DIR: ${{ runner.temp }}/beta-qwen-pending
         run: python scripts/scrape_beta.py --qwen-review "$RUNNER_TEMP/beta-qwen-pending"
+      - name: Open, update or close feed health issues
+        # The runner recorded each store's health in data/health.json (and
+        # restored feeds that broke); keep one GitHub issue per unhealthy
+        # store. A failure here never blocks the data commit or the deploy.
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/feed_health.py --sync-issues
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
