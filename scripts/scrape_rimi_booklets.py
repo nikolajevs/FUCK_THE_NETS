@@ -39,6 +39,11 @@ try:
 except ModuleNotFoundError:
     from product_identity import build_product_groups
 
+try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
+
 BASE = "https://www.rimi.lv"
 BOOKLETS_PAGE = BASE + "/akcijas-un-bukleti"
 VIEWER_HOST = "bukleti.rimi.lv"
@@ -801,8 +806,7 @@ def main() -> None:
             "catalogues": len(catalogues),
         },
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} Rimi booklet offers ({len(reviews)} review) → {OUT}")
 
 

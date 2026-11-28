@@ -1,18 +1,15 @@
-const FEED_SOURCES = [
-  { file: "offers.json", path: "data/offers.json", store: "Maxima" },
-  { file: "mego-offers.json", path: "data/mego-offers.json", store: "Mego" },
-  { file: "top-offers.json", path: "data/top-offers.json", store: "Top!" },
-  { file: "lidl-offers.json", path: "data/lidl-offers.json", store: "Lidl" },
-  { file: "rimi-offers.json", path: "data/rimi-offers.json", store: "Rimi" },
-  { file: "rimi-eveikals-offers.json", path: "data/rimi-eveikals-offers.json", store: "Rimi e-veikals" },
-  { file: "elvi-offers.json", path: "data/elvi-offers.json", store: "Elvi" },
-  { file: "latts-offers.json", path: "data/latts-offers.json", store: "LaTS" },
-  { file: "vesko-offers.json", path: "data/vesko-offers.json", store: "Vesko" },
-  { file: "aibe-offers.json", path: "data/aibe-offers.json", store: "Aibe" },
-  { file: "citro-offers.json", path: "data/citro-offers.json", store: "Citro" },
-  { file: "spar-offers.json", path: "data/spar-offers.json", store: "Spar" },
-  { file: "beta-offers.json", path: "data/beta-offers.json", store: "Beta" },
-];
+// Filled from data/stores.json (generated from scripts/stores.py) before the
+// feeds load: { file, path, store } per store feed.
+let FEED_SOURCES = [];
+
+async function loadFeedSources() {
+  const response = await fetch("data/stores.json", { cache: "no-store" });
+  if (!response.ok) throw new Error(`data/stores.json: HTTP ${response.status}`);
+  const manifest = await response.json();
+  FEED_SOURCES = (manifest.stores || [])
+    .filter(store => store && store.feed && store.label)
+    .map(store => ({ file: store.feed.split("/").pop(), path: store.feed, store: store.label }));
+}
 
 const state = {
   feeds: new Map(),
@@ -96,10 +93,10 @@ function feedOffers(feed, key) {
 }
 
 function feedStore(feed) {
-  const stored = String(feed.payload.store || "").trim();
-  if (stored) return stored;
   const known = FEED_SOURCES.find(item => item.file === feed.file);
   if (known) return known.store;
+  const stored = String(feed.payload.store || "").trim();
+  if (stored) return stored;
   return feed.file.replace(/(?:-offers)?\.json$/i, "").replace(/[-_]+/g, " ");
 }
 
@@ -692,6 +689,12 @@ async function importFiles(files) {
 }
 
 async function loadFeeds() {
+  try {
+    await loadFeedSources();
+  } catch (error) {
+    console.warn("Could not load the store list", error);
+    showToast("Не удалось загрузить список магазинов (data/stores.json). Импортируйте файлы JSON вручную.");
+  }
   const saved = await getSavedDrafts();
   const savedByName = new Map(saved.map(item => [item.file, item]));
   const loadedNames = new Set();

@@ -18,6 +18,11 @@ except ImportError:  # pragma: no cover - compatibility with older PyMuPDF relea
     import fitz
 
 try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
+
+try:
     from scripts.vision_price_check import annotate_vision_price_check
 except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
     from vision_price_check import annotate_vision_price_check
@@ -270,10 +275,7 @@ def review_pending_directory(pending_dir: Path, offers_file: Path) -> int:
             annotate_vision_price_check(current)
 
     if attached:
-        offers_file.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        write_feed(offers_file, payload)
     print(f"Added {attached} local Qwen3-VL suggestions")
     return attached
 

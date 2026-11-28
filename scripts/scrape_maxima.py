@@ -30,6 +30,11 @@ except ModuleNotFoundError:  # Running the file directly from the scripts/ direc
     from product_identity import build_product_groups, product_identity
 
 try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
+
+try:
     from scripts.vision_price_check import annotate_vision_price_check
 except ModuleNotFoundError:  # Running the file directly from the scripts/ directory.
     from vision_price_check import annotate_vision_price_check
@@ -2770,11 +2775,7 @@ def main():
             "catalogueReviewOffers": sum(item["reviewOffers"] for item in active_catalogues),
         },
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    write_feed(OUT, payload)
 
     catalogue_offer_count = sum(item["verifiedOffers"] for item in active_catalogues)
     catalogue_review_count = sum(item["reviewOffers"] for item in active_catalogues)

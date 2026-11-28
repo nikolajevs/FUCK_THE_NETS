@@ -193,6 +193,7 @@ class PendingDirectoryTests(unittest.TestCase):
             current_stale = make_offer("stale-card")
             current_stale["reviewEvidence"]["rawCellText"] = "changed text"
             offers_file.write_text(json.dumps({
+                "store": "maxima",
                 "offers": [],
                 "reviewOffers": [current_fresh, current_assisted, current_stale],
             }), encoding="utf-8")

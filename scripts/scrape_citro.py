@@ -22,7 +22,6 @@ mirroring the other chains.
 from __future__ import annotations
 
 import hashlib
-import json
 import re
 import sys
 from datetime import date, datetime
@@ -43,6 +42,11 @@ try:
     from scripts.product_identity import build_product_groups
 except ModuleNotFoundError:
     from product_identity import build_product_groups
+
+try:
+    from scripts.common import write_feed, is_alcohol_name
+except ModuleNotFoundError:
+    from common import write_feed, is_alcohol_name
 
 try:
     from scripts.booklet_images import prune_images, save_product_photo
@@ -68,10 +72,6 @@ DECIMAL_RE = re.compile(r"^(\d+[,.]\d+)(?:\s*[-–]\s*(\d+[,.]\d+))?$")
 DISCOUNT_RE = re.compile(r"^-(\d{1,2})%$")
 DATE_TOKEN_RE = re.compile(r"^\d{1,2}\.\d{1,2}\.?[–—-]?$|^\d{1,2}\.\d{1,2}\.\d{4}\.?$")
 URL_TOKEN_RE = re.compile(r"www\.|https?:|\.lv\b", re.I)
-ALCOHOL_RE = re.compile(
-    r"\b(alus|vins|viskijs|degvins|brendijs|konjaks|sampanietis|likieris|"
-    r"dzins|roms|tekila|vodka|sidrs|brut|prosecco|kava|lieris)\b")
-ALCOHOL_PHRASE_RE = re.compile(r"alkoholisk\w*\s+(dzerien|kokteil)")
 PACKAGE_RE = re.compile(r"(?<![a-z0-9])(\d+(?:[,.]\d+)?)\s*(kg|g|ml|l)(?![a-z])", re.I)
 NOISE = {"citro", "latvijas", "produkts", "jaunums", "jaunums!", "akcija",
          "piedavajums", "piedāvājums", "veikalos", "loterija", "loterijas"}
@@ -87,15 +87,6 @@ def _fold(text: str) -> str:
     import unicodedata
     normalized = unicodedata.normalize("NFKD", str(text or "").casefold())
     return "".join(ch for ch in normalized if not unicodedata.combining(ch))
-
-
-def is_alcohol_name(name: str) -> bool:
-    folded = _fold(name)
-    if "bezalkohol" in folded:
-        return False
-    if ALCOHOL_PHRASE_RE.search(folded):
-        return True
-    return bool(ALCOHOL_RE.search(folded))
 
 
 def _money(value: str) -> float | None:
@@ -417,8 +408,7 @@ def main() -> None:
         "summary": {"offerVariants": len(offers), "uniqueProducts": len(products),
                     "reviewOffers": len(reviews), "catalogues": len(catalogues)},
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers ({len(reviews)} review) → {OUT}")
 
 

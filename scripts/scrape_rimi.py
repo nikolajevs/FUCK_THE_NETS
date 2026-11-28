@@ -52,6 +52,11 @@ try:
 except ModuleNotFoundError:
     from product_identity import build_product_groups
 
+try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
+
 BASE = "https://www.rimi.lv"
 OFFERS_PAGE = BASE + "/e-veikals/lv/akcijas-piedavajumi"
 HEADERS = {
@@ -331,8 +336,7 @@ def main() -> None:
         },
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers ({len(reviews)} review) → {OUT}")
 
 

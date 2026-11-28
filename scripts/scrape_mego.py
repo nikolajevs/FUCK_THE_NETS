@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import hashlib
-import json
 import re
 import sys
 import unicodedata
@@ -26,6 +25,11 @@ try:
     from scripts.product_identity import build_product_groups, product_identity
 except ModuleNotFoundError:
     from product_identity import build_product_groups, product_identity
+
+try:
+    from scripts.common import write_feed
+except ModuleNotFoundError:
+    from common import write_feed
 
 try:
     from scripts.booklet_images import prune_images, save_product_photo
@@ -503,8 +507,7 @@ def main() -> None:
         },
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_feed(OUT, payload)
     print(f"Saved {len(offers)} offers → {OUT}")
 
 
