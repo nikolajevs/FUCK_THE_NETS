@@ -159,18 +159,22 @@ word coordinates — the same approach as Mego.
 
 Extraction per page:
 
-- the large sale price (text height ≥ 28 pt) anchors a product card; columns are
-  clustered from anchor x positions, and the name is the word block above/left of
-  the anchor within its column;
+- Lidl's sale-price font identifies the actual price separately from large
+  crossed-out regular prices; titles are assigned to price anchors by block
+  distance, with page-specific mappings for headings shared by several variants;
+- leading A/B/C variant markers that leak from the booklet layout are removed;
+  pages with a single sale-price anchor are still parsed;
 - a small decimal to the **right** of the anchor is the crossed-out regular price;
   unit prices (`1 kg = 16,14 €`) live inside the name block and are ignored;
 - `Ar Lidl Plus` near the card sets `requiresCard` with `cardName: "Lidl Plus"`.
 
-Quality gate: only cards with a clean name and a finite sale price are promoted to
-`offers`; empty/short/merged names (≥ 2 brand acronyms, > 7 words, repeated words),
-marketing copy and date banners go to `reviewOffers` and are **not shown**. Regular
+Quality gate: only cards with a readable title and a finite sale price are promoted
+to `offers`; empty/generic names, oversized title blocks, marketing copy and date
+banners go to `reviewOffers` and are **not shown**. Regular
 prices are kept only when confidently detected, otherwise `null`, so a discount is
 never derived from a unit price. Template pages (`Product name`, `XXX`) are skipped.
+Evergreen catalogues with placeholder validity windows longer than a year are
+skipped during discovery.
 
 ```bash
 python scripts/scrape_lidl.py

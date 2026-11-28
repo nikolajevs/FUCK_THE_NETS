@@ -16,10 +16,11 @@ Discovery:
 
 Extraction (per PDF page):
 
-- the large sale price (text height >= 28 pt) anchors a product card;
+- Lidl's sale-price font distinguishes the actual price from large crossed-out
+  regular prices;
 - columns are clustered from the anchor x positions; within a column the product
-  name is the block of words above (and to the left of) the anchor, below the
-  previous anchor;
+- name is matched to a bold condensed title block with a minimum-distance
+  assignment;
 - a small decimal to the right of the anchor is the crossed-out regular price
   (unit prices such as ``1 kg = 16,14 €`` sit inside the name block and are
   ignored);
@@ -35,6 +36,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import sys
 from datetime import date, datetime
@@ -83,6 +85,57 @@ NOISE_SUB = (
     "konkursa", "uzvarētājs", "pasaulē", "novērtēta", "marm", "sulīgiem", "challenge",
     "izlase", "akcija", "svaigi", "augļi", "dārzeņi",
 )
+
+# These offer titles share one printed heading across several price variants,
+# or are placed in a separate text block that the PDF geometry cannot associate
+# reliably. Values were checked against the artwork of the active Lidl Latvia
+# booklets; keys use the stable booklet slug, printed page, and sale price.
+TITLE_OVERRIDES = {
+    ("aktualais-akciju-buklets-piedavajumi-no-23-11", 13, 2.29):
+        "MAC&CHEESE Četru sieru makaroni vai makaroni ar Čedaras sieru",
+    ("aktualais-akciju-buklets-piedavajumi-no-23-11", 14, 4.99):
+        "NOWACO Exclusive Baltkāju garneles",
+    ("edienu-idejas-ziemassvetkiem-2026", 40, 1.29):
+        "FAVORINA Piena šokolādes figūriņa 75 g",
+    ("edienu-idejas-ziemassvetkiem-2026", 40, 2.49):
+        "FAVORINA Piena šokolādes figūriņa 125 g",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 5.99):
+        "LIVARNO Džersija auduma palags ar gumiju",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 6.99):
+        "LIVARNO Džersija auduma palags ar gumiju",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 8.99):
+        "ESMARA Pidžama sievietēm vai vīriešiem",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 9.99):
+        "LIVARNO Smalka flaneļa gultas veļa",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 12.99):
+        "LIVARNO Smalka flaneļa gultas veļa",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 16, 15.99):
+        "LIVARNO Smalka flaneļa gultas veļa",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 17, 6.99):
+        "LIVARNO Spilvens",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 17, 11.99):
+        "LIVARNO Sega",
+    ("nepartikas-precu-piedavajums-piedavajumi-no-23-11", 17, 14.99):
+        "LIVARNO Sega",
+    ("rotallietas-2026", 21, 7.99):
+        "HOT WHEELS / ENCHANTIMALS Rotaļu automašīna Monster Trucks vai lelle ar mājdzīvnieku",
+    ("rotallietas-2026", 26, 1.29):
+        "FAVORINA Piena šokolādes figūriņa 75 g",
+    ("rotallietas-2026", 26, 2.49):
+        "FAVORINA Piena šokolādes figūriņa 125 g",
+    ("rotallietas-2026", 29, 1.89):
+        "FAVORINA Adventes kalendārs",
+    ("rotallietas-2026", 29, 2.49):
+        "WINDEL Adventes kalendārs",
+    ("rotallietas-2026", 29, 0.49):
+        "Karameļu spieķītis",
+    ("rotallietas-2026", 29, 0.99):
+        "Zefīrs uz kociņa",
+    ("rotallietas-2026", 29, 1.49):
+        "FAVORINA Zefīri",
+    ("rotallietas-2026", 32, 2.99):
+        "CRELANDO Dimanta mozaīkas vai gleznošanas komplekts",
+}
 
 
 def session() -> requests.Session:
@@ -137,18 +190,193 @@ def discover_booklets(sess: requests.Session) -> list[dict]:
             "validUntil": flyer.get("offerEndDate") or flyer.get("endDate"),
             "status": flyer.get("status"),
         })
-    return booklets
+    # Lidl may expose evergreen assortment catalogues as active flyers with a
+    # placeholder end date (for example 2222-06-29). They are not current
+    # promotional booklets and waste a full PDF download on every refresh.
+    current: list[dict] = []
+    for booklet in booklets:
+        start, end = booklet.get("validFrom"), booklet.get("validUntil")
+        if start and end:
+            try:
+                start_date = date.fromisoformat(str(start)[:10])
+                end_date = date.fromisoformat(str(end)[:10])
+            except ValueError:
+                current.append(booklet)
+                continue
+            if end_date < start_date or (end_date - start_date).days > 366:
+                continue
+        current.append(booklet)
+    return current
 
 
 def _clean_name(parts: list[str]) -> str:
-    text = re.sub(r"\s+", " ", " ".join(parts)).strip(" -–•*:,+")
+    text = re.sub(r"\s+", " ", " ".join(parts)).strip(" -–•*:,+|")
     tokens = text.split()
     # collapse consecutive duplicate words (PILOS PILOS -> PILOS)
     dedup: list[str] = []
     for tok in tokens:
         if not dedup or dedup[-1].casefold() != tok.casefold():
             dedup.append(tok)
+    # A/B/C markers printed beside product variants can bleed into the PDF
+    # text layer before the actual name ("A B C LEXIBOOK ..."). Drop that
+    # leading marker run, and a lone marker when it immediately precedes an
+    # all-caps brand. Keep meaningful labels such as "B daļas ...".
+    marker_count = 0
+    for tok in dedup:
+        if re.fullmatch(r"[A-ZĀČĒĢĪĶĻŅŠŪŽ]", tok):
+            marker_count += 1
+        else:
+            break
+    if marker_count >= 2 or (
+        marker_count == 1 and len(dedup) > 1 and dedup[1].isupper()
+    ):
+        dedup = dedup[marker_count:]
     return " ".join(dedup)[:90]
+
+
+def _page_text_features(page) -> tuple[list[dict], list[dict]]:
+    """Read Lidl sale-price spans and bold condensed product titles."""
+    titles: list[dict] = []
+    sale_prices: list[dict] = []
+    for block in page.get_text("dict").get("blocks", []):
+        if block.get("type") != 0:
+            continue
+        for line in block.get("lines", []):
+            for span in line.get("spans", []):
+                font = span.get("font", "")
+                value = dec_val(span.get("text", "").strip())
+                if (
+                    value is not None
+                    and font.startswith("LidlFontPrice")
+                    and "PublicBeta" not in font
+                    and span.get("size", 0) >= 45
+                ):
+                    x0, y0, x1, y1 = span["bbox"]
+                    sale_prices.append({
+                        "cx": (x0 + x1) / 2,
+                        "x0": x0,
+                        "x1": x1,
+                        "y0": y0,
+                        "y1": y1,
+                        "v": value,
+                    })
+        spans = [
+            span
+            for line in block.get("lines", [])
+            for span in line.get("spans", [])
+            if "CondPro" in span.get("font", "")
+            and "Bold" in span.get("font", "")
+            and 9.5 <= span.get("size", 0) <= 13
+            and span.get("text", "").strip()
+        ]
+        if not spans:
+            continue
+        block_text = " ".join(span["text"].strip() for span in spans).casefold()
+        if any(
+            noise in block_text
+            for noise in ("pazīstami zīmoli", "līdz pat ziemassvētkiem", "no pirmdienas", "no ceturtdienas")
+        ):
+            continue
+        parts = []
+        for span in sorted(spans, key=lambda item: (round(item["bbox"][1], 1), item["bbox"][0])):
+            for token in span["text"].split():
+                if DATE_RE.search(token) or re.fullmatch(r"[\d.,]+", token):
+                    continue
+                if re.fullmatch(r"-?\d+%?", token):
+                    continue
+                parts.append(token)
+        name = _clean_name(parts)
+        if not name:
+            continue
+        titles.append({
+            "name": name,
+            "rect": (
+                min(span["bbox"][0] for span in spans),
+                min(span["bbox"][1] for span in spans),
+                max(span["bbox"][2] for span in spans),
+                max(span["bbox"][3] for span in spans),
+            ),
+        })
+    return titles, sale_prices
+
+
+def _match_title_blocks(anchors: list[dict], blocks: list[dict]) -> dict[int, tuple[str, float]]:
+    """Match sale prices to title blocks using minimum total distance."""
+    if not anchors or not blocks:
+        return {}
+
+    costs: list[list[float]] = []
+    for anchor_index, anchor in enumerate(anchors):
+        row = []
+        for block_index, block in enumerate(blocks):
+            x0, y0, x1, y1 = block["rect"]
+            dx = max(x0 - anchor["x1"], anchor["x0"] - x1, 0)
+            dy = max(y0 - anchor["y1"], anchor["y0"] - y1, 0)
+            distance = math.hypot(dx, dy)
+            # Lidl puts most titles above their price; avoid matching a price
+            # to the title of the following row when the blocks are adjacent.
+            if y0 > anchor["y1"] + 8:
+                distance += 100
+            row.append(distance)
+        # A dummy block leaves the title empty when every real match is remote.
+        row.extend([200.0] * len(anchors))
+        costs.append(row)
+
+    # Rectangular Hungarian algorithm. Global assignment avoids stealing a
+    # title from another nearby price (common in two-row, multi-column pages).
+    n = len(costs)
+    m = len(costs[0])
+    u = [0.0] * (n + 1)
+    v = [0.0] * (m + 1)
+    p = [0] * (m + 1)
+    way = [0] * (m + 1)
+    for i in range(1, n + 1):
+        p[0] = i
+        j0 = 0
+        minv = [float("inf")] * (m + 1)
+        used = [False] * (m + 1)
+        while True:
+            used[j0] = True
+            i0 = p[j0]
+            delta = float("inf")
+            j1 = 0
+            for j in range(1, m + 1):
+                if used[j]:
+                    continue
+                cur = costs[i0 - 1][j - 1] - u[i0] - v[j]
+                if cur < minv[j]:
+                    minv[j] = cur
+                    way[j] = j0
+                if minv[j] < delta:
+                    delta = minv[j]
+                    j1 = j
+            for j in range(m + 1):
+                if used[j]:
+                    u[p[j]] += delta
+                    v[j] -= delta
+                else:
+                    minv[j] -= delta
+            j0 = j1
+            if p[j0] == 0:
+                break
+        while True:
+            j1 = way[j0]
+            p[j0] = p[j1]
+            j0 = j1
+            if j0 == 0:
+                break
+
+    assignment = [-1] * n
+    for j in range(1, m + 1):
+        if p[j]:
+            assignment[p[j] - 1] = j - 1
+    matches: dict[int, tuple[str, float]] = {}
+    for anchor_index, block_index in enumerate(assignment):
+        if 0 <= block_index < len(blocks):
+            matches[id(anchors[anchor_index])] = (
+                blocks[block_index]["name"], costs[anchor_index][block_index]
+            )
+    return matches
 
 
 def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None) -> tuple[list[dict], list[dict]]:
@@ -160,17 +388,21 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
         return [], []
 
     width = float(page.rect.width)
-    anchors = []
-    for w in words:
-        x0, y0, x1, y1, tok = w[:5]
-        value = dec_val(tok)
-        if value is not None and (y1 - y0) >= 28:
-            anchors.append({"cx": (x0 + x1) / 2, "x0": x0, "x1": x1,
-                            "y0": y0, "y1": y1, "v": value})
-    if len(anchors) < 2:
+    title_blocks, anchors = _page_text_features(page)
+    if not anchors:
+        # Synthetic PDFs and future Lidl templates may not use Lidl's price
+        # font; preserve the coordinate fallback for those pages.
+        for w in words:
+            x0, y0, x1, y1, tok = w[:5]
+            value = dec_val(tok)
+            if value is not None and (y1 - y0) >= 28:
+                anchors.append({"cx": (x0 + x1) / 2, "x0": x0, "x1": x1,
+                                "y0": y0, "y1": y1, "v": value})
+    if not anchors:
         return [], []
 
     cols = _cluster([a["cx"] for a in anchors], 60)
+    title_matches = _match_title_blocks(anchors, title_blocks) if title_blocks else {}
     xb = [0] + [(cols[i] + cols[i + 1]) / 2 for i in range(len(cols) - 1)] + [width]
     for a in anchors:
         a["col"] = next(i for i in range(len(cols)) if xb[i] <= a["cx"] < xb[i + 1])
@@ -202,7 +434,7 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
                     regular = max(regular or 0, value)
                 above = prev_bottom - 2 <= wy < a["y0"] - 2
                 left = wx < a["x0"] - 2 and a["y0"] - 2 <= wy <= a["y1"]
-                if above or left:
+                if not title_blocks and (above or left):
                     if value is not None or re.fullmatch(r"-?\d+%?", tok) or re.fullmatch(r"[\d.,]+", tok):
                         continue
                     if DATE_RE.search(tok) or h < 9.5 or h >= 17:
@@ -211,9 +443,18 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
                         continue
                     if any(s in low for s in NOISE_SUB):
                         continue
-                    name_parts.append((wy, wx, tok))
-            name_parts.sort()
-            name = _clean_name([t for _, _, t in name_parts])
+            if title_blocks:
+                name, title_distance = title_matches.get(id(a), ("", float("inf")))
+            else:
+                name_parts.sort()
+                name = _clean_name([t for _, _, t in name_parts])
+                title_distance = 0.0
+            override = TITLE_OVERRIDES.get(
+                (booklet["id"], page_num + 1, round(sale, 2))
+            )
+            if override:
+                name = override
+                title_distance = 0.0
 
             key = f"{name.casefold()}|{sale:.2f}|{page_num}"
             if key in seen:
@@ -241,17 +482,16 @@ def extract_page(page, page_num: int, booklet: dict, img_dir: Path | None = None
             name_words = name.split()
             words_count = len(name_words)
             lowered = [w.casefold() for w in name_words]
-            has_dup = len(lowered) != len(set(lowered))
-            brand_caps = len(re.findall(r"\b[A-ZĀČĒĢĪĶĻŅŠŪŽ]{3,}\b", name))
             weak = (
-                len(name) < 6
-                or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", folded)) < 2
-                or words_count > 7
-                or has_dup
-                or brand_caps >= 2
+                len(name) < 4
+                or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", folded)) < 1
+                or words_count > 12
                 or folded.startswith(("www", "no ", "ar ", "cena"))
                 or DATE_RE.search(name)
                 or name.count(",") >= 3
+                or folded in {"līdz", "pāri", "pāris", "komplekts", "vairāk", "zīmoli"}
+                or "pazīstami zīmoli" in folded
+                or title_distance > 160
             )
             if weak:
                 offer["reviewReason"] = "weak_name"
@@ -284,6 +524,10 @@ def extract_offers_from_pdf(pdf_path: Path, booklet: dict, img_dir: Path | None 
 
 
 def main() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors="replace")
     if fitz is None:
         print("PyMuPDF not installed. Run: pip install pymupdf", file=sys.stderr)
         sys.exit(1)
