@@ -55,6 +55,7 @@ TITLE_NOISE_RE = re.compile(
     r"(preču pieejamība|piedāvājums var atšķirties|uz vietas veikalā|"
     r"rimi express|attēliem ir ilustratīva|reklāmā minētajai|"
     r"cena ar atlaidi norādīta|izdevīgi|akciju buklets|rimi mini akcijas)", re.I)
+DATE_RANGE_RE = re.compile(r"^\d{1,2}\.\d{1,2}\.\s*[-–]\s*\d{1,2}\.\d{1,2}\.$")
 
 
 def session() -> requests.Session:
@@ -175,52 +176,8 @@ def _money(text: str) -> float | None:
     return round(value, 2) if 0 < value < 10000 else None
 
 
-def _cluster(values: list[float], gap: float) -> list[float]:
-    clusters: list[list[float]] = []
-    for value in sorted(values):
-        if not clusters or value - clusters[-1][-1] > gap:
-            clusters.append([value])
-        else:
-            clusters[-1].append(value)
-    return [sum(group) / len(group) for group in clusters]
-
-
-def _column_layout(centers: list[float], width: float) -> tuple[int, list[int]]:
-    """Map sparse price anchors back to the booklet's evenly spaced columns."""
-    centers = _cluster(centers, 42)
-    if not centers:
-        return 1, []
-    phase = width * 0.075
-    choices = []
-    for count in range(1, 7):
-        step = width / count
-        indexes = [round((center - phase) / step) for center in centers]
-        errors = [abs(center - (phase + index * step)) for center, index in zip(centers, indexes)]
-        invalid = sum(index < 0 or index >= count for index in indexes)
-        collisions = len(indexes) - len(set(indexes))
-        score = sum(errors) + invalid * width + collisions * width
-        choices.append((score / len(centers), count, indexes))
-    _, count, indexes = min(choices, key=lambda item: (round(item[0], 4), item[1]))
-    return count, indexes
-
-
-def _clean_title(spans: list[dict]) -> str:
-    pieces = []
-    for span in spans:
-        text = re.sub(r"\s+", " ", span["text"]).strip()
-        if (not text or _money(text) is not None or PERCENT_RE.fullmatch(text)
-                or re.fullmatch(r"\d+", text) or "€/" in text or "€ /" in text
-                or TITLE_NOISE_RE.search(text) or re.fullmatch(r"[\d.,;()€/%\-–]+", text)):
-            continue
-        pieces.append((span["cy"], span["x0"], text))
-    pieces.sort(key=lambda item: (round(item[0], 1), item[1]))
-    name = re.sub(r"\s+", " ", " ".join(item[2] for item in pieces)).strip(" -–•*:,+")
-    return name[:140]
-
-
-def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
-    """Extract discount cards from one positioned-text PDF page."""
-    raw_spans = []
+def _page_spans(page) -> list[dict]:
+    spans = []
     for block in page.get_text("dict").get("blocks", []):
         for line in block.get("lines", []):
             for span in line.get("spans", []):
@@ -228,115 +185,226 @@ def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[d
                 if not text:
                     continue
                 x0, y0, x1, y1 = span["bbox"]
-                raw_spans.append({
+                spans.append({
                     "text": text, "x0": x0, "y0": y0, "x1": x1, "y1": y1,
                     "cx": (x0 + x1) / 2, "cy": (y0 + y1) / 2,
                     "size": float(span.get("size", 0)),
                 })
+    return spans
+
+
+def _sale_anchors(spans: list[dict]) -> list[dict]:
+    """Find sale prices while excluding large crossed-out reference prices."""
+    prices = [
+        {**span, "value": _money(span["text"])}
+        for span in spans
+        if span["size"] >= 16 and _money(span["text"]) is not None
+    ]
+    anchors = []
+    for candidate in prices:
+        old_price = any(
+            sale["value"] < candidate["value"]
+            and sale["size"] >= candidate["size"] + 2
+            and abs(sale["cx"] - candidate["cx"]) <= 90
+            and 0 < candidate["cy"] - sale["cy"] <= 75
+            for sale in prices
+        )
+        if not old_price:
+            anchors.append(candidate)
+    return anchors
+
+
+def _title_blocks(spans: list[dict]) -> list[dict]:
+    """Group nearby runs into product labels without assuming page columns."""
+    candidates = []
+    for span in spans:
+        text = span["text"]
+        if (not 6.5 <= span["size"] <= 15 or _money(text) is not None
+                or PERCENT_RE.fullmatch(text) or "€/" in text or "€ /" in text
+                or TITLE_NOISE_RE.search(text) or DATE_RANGE_RE.fullmatch(text)
+                or re.fullmatch(r"[\d.,;()€/%\-–]+", text)):
+            continue
+        candidates.append(span)
+
+    groups: list[dict] = []
+    for span in sorted(candidates, key=lambda item: (item["cy"], item["x0"])):
+        possible = [
+            (abs(span["cy"] - group["lastCy"]) + abs(span["x0"] - group["lastX0"]), group)
+            for group in groups
+            if 0 <= span["cy"] - group["lastCy"] <= 22
+            and abs(span["x0"] - group["lastX0"]) <= 75
+        ]
+        if possible:
+            group = min(possible, key=lambda item: item[0])[1]
+        else:
+            group = {"spans": []}
+            groups.append(group)
+        group["spans"].append(span)
+        group["lastCy"] = span["cy"]
+        group["lastX0"] = span["x0"]
+
+    blocks = []
+    for group in groups:
+        items = group["spans"]
+        ordered = sorted(items, key=lambda item: (round(item["cy"], 1), item["x0"]))
+        name = re.sub(r"\s+", " ", " ".join(item["text"] for item in ordered)).strip(" -–•*:,+")
+        blocks.append({
+            "text": name[:180],
+            "x0": min(item["x0"] for item in items),
+            "x1": max(item["x1"] for item in items),
+            "y0": min(item["y0"] for item in items),
+            "y1": max(item["y1"] for item in items),
+        })
+    return blocks
+
+
+def _box_gap(first: dict, second: dict) -> tuple[float, float]:
+    horizontal = max(first["x0"] - second["x1"], second["x0"] - first["x1"], 0)
+    vertical = max(first["y0"] - second["y1"], second["y0"] - first["y1"], 0)
+    return horizontal, vertical
+
+
+def _match_titles(anchors: list[dict], blocks: list[dict]) -> dict[int, dict]:
+    """Assign each printed product label to one nearest sale price."""
+    candidates = []
+    for anchor_index, anchor in enumerate(anchors):
+        for block_index, block in enumerate(blocks):
+            dx, dy = _box_gap(anchor, block)
+            if dx > 190 or dy > 300:
+                continue
+            candidates.append((dx * 0.55 + dy * 1.05, anchor_index, block_index))
+    candidates.sort()
+
+    result: dict[int, dict] = {}
+    used_blocks: set[int] = set()
+    for _, anchor_index, block_index in candidates:
+        if anchor_index in result or block_index in used_blocks:
+            continue
+        result[anchor_index] = blocks[block_index]
+        used_blocks.add(block_index)
+    return result
+
+
+def _match_price_details(anchors: list[dict], details: list[dict],
+                         predicate, max_x: float, max_y: float) -> dict[int, dict]:
+    """Match each printed regular price or percent badge to one sale price."""
+    candidates = []
+    for anchor_index, anchor in enumerate(anchors):
+        for detail_index, detail in enumerate(details):
+            if not predicate(anchor, detail):
+                continue
+            dx, dy = _box_gap(anchor, detail)
+            if dx > max_x or dy > max_y:
+                continue
+            candidates.append((dx * 0.8 + dy * 1.2, anchor_index, detail_index))
+    candidates.sort()
+
+    result: dict[int, dict] = {}
+    used_details: set[int] = set()
+    for _, anchor_index, detail_index in candidates:
+        if anchor_index in result or detail_index in used_details:
+            continue
+        result[anchor_index] = details[detail_index]
+        used_details.add(detail_index)
+    return result
+
+
+def extract_page(page, page_num: int, booklet: dict) -> tuple[list[dict], list[dict]]:
+    """Extract discount cards from one positioned-text PDF page."""
+    raw_spans = _page_spans(page)
     if not raw_spans:
         return [], []
 
-    anchors = []
-    for span in raw_spans:
-        value = _money(span["text"])
-        if value is not None and span["size"] >= 16.0:
-            anchors.append({**span, "value": value})
+    anchors = _sale_anchors(raw_spans)
     if not anchors:
         return [], []
-
-    width = float(page.rect.width)
-    count, grid_indexes = _column_layout([anchor["cx"] for anchor in anchors], width)
-    centers = _cluster([anchor["cx"] for anchor in anchors], 42)
-    center_to_index = {round(center, 1): index for center, index in zip(centers, grid_indexes)}
-    for anchor in anchors:
-        closest = min(centers, key=lambda center: abs(center - anchor["cx"]))
-        anchor["column"] = center_to_index[round(closest, 1)]
-
-    # Each row is ordered from top to bottom per brochure column.
-    by_column: dict[int, list[dict]] = {}
-    for anchor in anchors:
-        by_column.setdefault(anchor["column"], []).append(anchor)
+    anchors.sort(key=lambda item: (item["cy"], item["cx"]))
+    blocks = _title_blocks(raw_spans)
+    title_matches = _match_titles(anchors, blocks)
     offers: list[dict] = []
     reviews: list[dict] = []
     seen: set[str] = set()
-    for column, column_anchors in by_column.items():
-        column_anchors.sort(key=lambda item: item["y0"])
-        x_left, x_right = width * column / count, width * (column + 1) / count
-        for index, anchor in enumerate(column_anchors):
-            prev_bottom = column_anchors[index - 1]["y1"] + 14 if index else 0
-            title_spans = [
-                span for span in raw_spans
-                if x_left <= span["cx"] < x_right
-                and anchor["y0"] - 112 <= span["cy"] < anchor["y0"] - 2
-                and prev_bottom <= span["cy"]
-                and 7.2 <= span["size"] <= 10.5
-            ]
-            name = _clean_title(title_spans)
-            if not name:
-                continue
+    percent_spans = [
+        {**span, "value": int(PERCENT_RE.fullmatch(span["text"]).group(1))}
+        for span in raw_spans if PERCENT_RE.fullmatch(span["text"])
+    ]
+    regular_spans = [
+        {**span, "value": _money(span["text"])}
+        for span in raw_spans if _money(span["text"]) is not None and span["size"] >= 8
+    ]
+    regular_matches = _match_price_details(
+        anchors, regular_spans,
+        lambda anchor, item: item["value"] > anchor["value"] + 0.005
+        and item["size"] <= anchor["size"] - 2,
+        max_x=115, max_y=75,
+    )
+    percent_matches = _match_price_details(
+        anchors, percent_spans, lambda _anchor, _item: True, max_x=130, max_y=100,
+    )
 
-            regular_candidates = []
-            percentage_candidates = []
-            card_spans = [
-                span for span in raw_spans
-                if x_left <= span["cx"] < x_right
-                and abs(span["cx"] - anchor["cx"]) <= max(82, (x_right - x_left) * 0.52)
-                and anchor["y0"] - 8 <= span["cy"] <= anchor["y1"] + 42
-            ]
-            for span in card_spans:
-                regular = _money(span["text"])
-                if (regular is not None and regular > anchor["value"] + 0.005
-                        and 8 <= span["size"] < 16.0):
-                    distance = abs(span["cx"] - anchor["cx"]) + 1.5 * abs(span["cy"] - anchor["cy"])
-                    regular_candidates.append((distance, regular))
-                percent = PERCENT_RE.fullmatch(span["text"])
-                if percent:
-                    distance = abs(span["cx"] - anchor["cx"]) + 1.5 * abs(span["cy"] - anchor["cy"])
-                    percentage_candidates.append((distance, int(percent.group(1))))
-            regular_price = min(regular_candidates, default=(None, None))[1]
-            discount_percent = min(percentage_candidates, default=(None, None))[1]
-            normalized_name = _fold(name)
-            if ALCOHOL_RE.search(normalized_name) and "bezalkohol" not in normalized_name:
-                continue
+    for anchor_index, anchor in enumerate(anchors):
+        title = title_matches.get(anchor_index)
+        name = title["text"] if title else ""
 
-            identity = f"{_fold(name)}|{anchor['value']:.2f}|{regular_price}"
-            if identity in seen:
-                continue
-            seen.add(identity)
-            offer_id = (
-                f"{booklet['id']}-p{page_num + 1}-"
-                f"{hashlib.sha1(identity.encode('utf-8')).hexdigest()[:8]}"
-            )
-            card_band = " ".join(span["text"] for span in card_spans).casefold()
-            requires_card = bool(re.search(r"mans\s*rimi|mansrimi|paldies", card_band))
-            offer = {
-                "offerId": offer_id,
-                "name": name,
-                "price": anchor["value"],
-                "regularPrice": regular_price,
-                "requiresCard": requires_card,
-                "onlyInApp": False,
-                "campaign": booklet["name"],
-                "campaignId": booklet["id"],
-                "source": booklet["source"],
-                "pdfPage": page_num + 1,
-                "validFrom": booklet.get("validFrom"),
-                "validUntil": booklet.get("validUntil"),
-                "store": "rimi",
-            }
-            if requires_card:
-                offer["cardName"] = "Mans Rimi"
-            if discount_percent is not None:
-                offer["discountPercent"] = discount_percent
+        regular_match = regular_matches.get(anchor_index)
+        regular_price = regular_match["value"] if regular_match else None
+        percent_match = percent_matches.get(anchor_index)
+        discount_percent = percent_match["value"] if percent_match else None
+        if discount_percent is not None and regular_price is not None:
+            calculated = round((regular_price - anchor["value"]) / regular_price * 100)
+            if abs(calculated - discount_percent) > 4:
+                # A neighbouring badge can be closer than the actual badge when
+                # cards share a spread; the validated price pair remains usable.
+                discount_percent = None
 
-            if len(name) < 5 or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", normalized_name)) < 1:
-                offer["reviewReason"] = "weak_name"
-                reviews.append(offer)
-            elif regular_price is None and discount_percent is None:
-                offer["reviewReason"] = "no_discount"
-                reviews.append(offer)
-            else:
-                offers.append(offer)
+        # Keep nearby condition text scoped to the price badge and item label.
+        card_spans = [
+            span for span in raw_spans
+            if abs(span["cx"] - anchor["cx"]) <= 100
+            and abs(span["cy"] - anchor["cy"]) <= 100
+        ]
+        normalized_name = _fold(name)
+        if name and ALCOHOL_RE.search(normalized_name) and "bezalkohol" not in normalized_name:
+            continue
+
+        identity = f"{_fold(name)}|{anchor['value']:.2f}|{regular_price}"
+        if identity in seen:
+            continue
+        seen.add(identity)
+        offer_id = (
+            f"{booklet['id']}-p{page_num + 1}-"
+            f"{hashlib.sha1(identity.encode('utf-8')).hexdigest()[:8]}"
+        )
+        card_band = " ".join(span["text"] for span in card_spans).casefold()
+        requires_card = bool(re.search(r"mans\s*rimi|mansrimi|paldies", card_band))
+        offer = {
+            "offerId": offer_id,
+            "name": name,
+            "price": anchor["value"],
+            "regularPrice": regular_price,
+            "requiresCard": requires_card,
+            "onlyInApp": False,
+            "campaign": booklet["name"],
+            "campaignId": booklet["id"],
+            "source": booklet["source"],
+            "pdfPage": page_num + 1,
+            "validFrom": booklet.get("validFrom"),
+            "validUntil": booklet.get("validUntil"),
+            "store": "rimi",
+        }
+        if requires_card:
+            offer["cardName"] = "Mans Rimi"
+        if discount_percent is not None:
+            offer["discountPercent"] = discount_percent
+
+        if len(name) < 5 or len(re.findall(r"[a-zāčēģīķļņšūž]{3,}", normalized_name)) < 1:
+            offer["reviewReason"] = "weak_name"
+            reviews.append(offer)
+        elif regular_price is None and discount_percent is None:
+            offer["reviewReason"] = "no_discount"
+            reviews.append(offer)
+        else:
+            offers.append(offer)
     return offers, reviews
 
 
